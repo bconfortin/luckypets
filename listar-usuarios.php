@@ -45,7 +45,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										
+
 									</tbody>
 								</table>
 							</div>
@@ -71,12 +71,26 @@
 		<?php include "foot.php"; ?>
 
 		<script>
-		function make_base_auth(user, password) {
-		  var tok = user + ':' + password;
-		  var hash = btoa(tok);
-		  return "Basic " + hash;
-		}
+			function make_base_auth(user, password) {
+				var tok = user + ':' + password;
+				var hash = btoa(tok);
+				return "Basic " + hash;
+			}
 
+			$(function(){
+				$.getJSON('http://31.220.53.123:8080/luckypets-servidor/api/usuario', {
+				    format: "json",
+					crossOrigin: true
+				})
+				.done(function(){
+					console.log("Deu certo");
+				})
+				.fail(function(){
+					console.log("Deu ruim");
+				});
+			});
+
+			console.log('Segunda função');
 			$.ajax({
 				// 'Basic YnJ1bm9AZ21haWwuY29tOjEyMzEyMw=='
 			    type: 'GET',
@@ -85,8 +99,8 @@
 			    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
 			    dataType: 'jsonp',
 			    // headers: {'Authorization': make_base_auth('bruno@gmail.com', '123123')},
-			    // beforeSend: function (xhr){ 
-			    //     xhr.setRequestHeader('Authorization', make_base_auth('bruno@gmail.com', '123123')); 
+			    // beforeSend: function (xhr){
+			    //     xhr.setRequestHeader('Authorization', make_base_auth('bruno@gmail.com', '123123'));
 			    // },
 			    success:function(x){
 					console.log(x);
@@ -106,10 +120,10 @@
 			    },
 			    error:function(){
 			    	console.log("Deu bosta");
-			    },
+			    }
 			});
 
-			//console.log(make_base_auth('bruno@gmail.com', '123123')); 
+			//console.log(make_base_auth('bruno@gmail.com', '123123'));
 		</script>
 	</body>
 </html>
