@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-	<?php header('Access-Control-Allow-Origin: *'); ?>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,7 +96,7 @@
 			    crossOrigin: true,
 			    // http://localhost:8084/luckypets-servidor
 			    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
-			    dataType: 'jsonp',
+			    dataType: 'json',
 			    // headers: {'Authorization': make_base_auth('bruno@gmail.com', '123123')},
 			    // beforeSend: function (xhr){
 			    //     xhr.setRequestHeader('Authorization', make_base_auth('bruno@gmail.com', '123123'));
