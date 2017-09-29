@@ -4603,3 +4603,6 @@ h4.footer-titulo {
 	transition: .3s;
 }
 
+.table.middle td {
+    vertical-align: middle;
+}
