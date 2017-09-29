@@ -36,27 +36,27 @@
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="nome">Nome</label>
-											<input type="text" class="form-control" name="nome" placeholder="Ex: João">
+											<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="email">E-mail</label>
-											<input type="text" class="form-control" name="email" placeholder="Ex: João">
+											<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="sobrenome">Celular</label>
-											<input type="text" class="form-control" name="sobrenome" placeholder="Ex: da Silva">
+											<label for="celular">Celular</label>
+											<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="telefone">Telefone</label>
-											<input type="text" class="form-control" name="telefone" placeholder="Ex: da Silva">
+											<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122">
 										</div>
 									</div>
 								</div>
@@ -64,13 +64,13 @@
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="senha">Senha</label>
-											<input type="text" class="form-control" name="senha" placeholder="Ex: João">
+											<input type="text" class="form-control" name="senha" placeholder="******">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="senhaNovamente">Digite a senha novamente</label>
-											<input type="text" class="form-control" name="senhaNovamente" placeholder="Ex: da Silva">
+											<input type="text" class="form-control" name="senhaNovamente" placeholder="******">
 										</div>
 									</div>
 								</div>
