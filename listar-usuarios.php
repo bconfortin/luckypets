@@ -34,6 +34,7 @@
 								<table class="table middle table-hover" id="tabelaUsuarios">
 									<thead>
 										<tr>
+											<td>ID</td>
 											<td>Nome</td>
 											<td>E-mail</td>
 											<td>Telefone</td>
@@ -78,6 +79,7 @@
 				    var html = '';
 				    for (i = 0; i < x.length; i++) {
 			    		html += '<tr>';
+							html += '<td>' + x[i].id + '</td>';
 							html += '<td>' + x[i].nome + '</td>';
 							html += '<td>' + x[i].email + '</td>';
 							html += '<td>' + x[i].telefone + '</td>';
