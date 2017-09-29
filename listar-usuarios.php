@@ -31,16 +31,16 @@
 						<div class="padding-30 bg-fff">
 							<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Lista de Usuários</h1>
 							<div class="table-responsive">
-								<table class="table" id="tabelaUsuarios">
+								<table class="table middle table-hover" id="tabelaUsuarios">
 									<thead>
 										<tr>
-											<td>File</td>
 											<td>Nome</td>
 											<td>E-mail</td>
 											<td>Telefone</td>
 											<td>Celular</td>
 											<td>Facebook</td>
 											<td>Senha</td>
+											<td>Imagem</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -68,61 +68,31 @@
 		</div>
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
-
 		<script>
-			function make_base_auth(user, password) {
-				var tok = user + ':' + password;
-				var hash = btoa(tok);
-				return "Basic " + hash;
-			}
-
-			$(function(){
-				$.getJSON('http://31.220.53.123:8080/luckypets-servidor/api/usuario', {
-				    format: "json",
-					crossOrigin: true
-				})
-				.done(function(){
-					console.log("Deu certo");
-				})
-				.fail(function(){
-					console.log("Deu ruim");
-				});
-			});
-
-			console.log('Segunda função');
 			$.ajax({
-				// 'Basic YnJ1bm9AZ21haWwuY29tOjEyMzEyMw=='
 			    type: 'GET',
 			    crossOrigin: true,
-			    // http://localhost:8084/luckypets-servidor
 			    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
 			    dataType: 'json',
-			    // headers: {'Authorization': make_base_auth('bruno@gmail.com', '123123')},
-			    // beforeSend: function (xhr){
-			    //     xhr.setRequestHeader('Authorization', make_base_auth('bruno@gmail.com', '123123'));
-			    // },
 			    success:function(x){
-					console.log(x);
 				    var html = '';
 				    for (i = 0; i < x.length; i++) {
 			    		html += '<tr>';
-							html += '<td>' + x[i].file + '</td>';
 							html += '<td>' + x[i].nome + '</td>';
 							html += '<td>' + x[i].email + '</td>';
 							html += '<td>' + x[i].telefone + '</td>';
 							html += '<td>' + x[i].celular + '</td>';
-							html += '<td>' + x[i].facebook + '</td>';
+							html += '<td>' + x[i].authToken + '</td>';
 							html += '<td>' + x[i].senha + '</td>';
+							html += '<td><a href="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
 						html += '</tr>';
 				    }
 				    $("#tabelaUsuarios").append(html);
 			    },
 			    error:function(){
-			    	console.log("Deu bosta");
+			    	console.log("Ops! Não foi possível fazer sua requisição.");
 			    }
 			});
-
-			//console.log(make_base_auth('bruno@gmail.com', '123123'));
 		</script>
 	</body>
 </html>
