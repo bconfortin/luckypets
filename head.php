@@ -2,8 +2,8 @@
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        $_SESSION['teste'] = 'Testando';
-        echo '<pre>' . print_r($_SESSION, TRUE) . "Session ID: " . session_id() .'</pre>';
+        //$_SESSION['teste'] = 'Testando';
+        //echo '<pre>' . print_r($_SESSION, TRUE) . "Session ID: " . session_id() .'</pre>';
     ?>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
