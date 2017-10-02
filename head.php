@@ -3,7 +3,7 @@
             session_start();
         }
         //$_SESSION['teste'] = 'Testando';
-        //echo '<pre>' . print_r($_SESSION, TRUE) . "Session ID: " . session_id() .'</pre>';
+        echo '<pre>' . print_r($_SESSION, TRUE) . "Session ID: " . session_id() . " ||| Session Status: " . session_status() .'</pre>';
     ?>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
