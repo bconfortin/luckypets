@@ -13,6 +13,7 @@
     $_SESSION['nome'] = "";
     $_SESSION['senha'] = "";
     $_SESSION['telefone'] = "";
+    $_SESSION['basicAuth'] = "";
 
     if (isset($_POST['email'])) {
         $_SESSION['administrador'] = $_POST['administrador'];
@@ -25,6 +26,7 @@
         $_SESSION['nome'] = $_POST['nome'];
         $_SESSION['senha'] = $_POST['senha'];
         $_SESSION['telefone'] = $_POST['telefone'];
+        $_SESSION['basicAuth'] = $_POST['basicAuth'];
     }
 
     echo '<pre>' . print_r($_SESSION, TRUE) . "Session ID: " . session_id() .'</pre>';
