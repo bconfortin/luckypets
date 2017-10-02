@@ -25,13 +25,12 @@
 			</div>
 		</div>
 		<div class="container-fluid bg-f5f5f5 padver-50">
-			<div class="">
+			<div class="container">
 				<div class="row">
 					<div class="col-xs-12"><!--  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 -->
 						<div class="padding-30 bg-fff">
-							<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Alterar dados cadastrais</h1>
-							<form action="http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario" method="POST" enctype="multipart/form-data">
-								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de conta</h1>
+							<form action="" method="POST" enctype="multipart/form-data">
+								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Alterar dados cadastrais</h1>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
@@ -61,20 +60,6 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="senha">Senha</label>
-											<input type="text" class="form-control" name="senha" placeholder="******">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="senhaNovamente">Digite a senha novamente</label>
-											<input type="text" class="form-control" name="senhaNovamente" placeholder="******">
-										</div>
-									</div>
-								</div>
-								<div class="row">
 									<div class="col-xs-12">
 										<div class="form-group">
 											<label for="file">Fazer upload de foto</label>
@@ -83,17 +68,21 @@
 										</div>
 									</div>
 								</div>
-								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30">Enviar</button></p>
+								<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
+								<p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase padhor-30" id="btnEditar">Enviar</button></p>
 							</form>
 							<div class="table-responsive">
 								<table class="table middle table-hover" id="tabelaUsuarios">
 									<thead>
 										<tr>
-											<td>File</td>
+											<td>ID</td>
 											<td>Nome</td>
 											<td>E-mail</td>
 											<td>Telefone</td>
 											<td>Celular</td>
+											<td>Facebook</td>
+											<td>Senha</td>
+											<td>Imagem</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -146,6 +135,30 @@
 			    error:function(){
 			    	console.log("Ops! Não foi possível fazer sua requisição.");
 			    }
+			});
+
+			$("#btnEditar").on("click", function(){
+				var nome = $("input[name='nome']").val();
+				var email = $("input[name='email']").val();
+				var celular = $("input[name='celular']").val();
+				var telefone = $("input[name='telefone']").val();
+				var file = $("input[name='file']").val();
+				$.ajax({
+				    type: 'POST',
+					crossOrigin: true,
+				    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
+				    dataType: 'json',
+					data: { 'nome': nome, 'email': email, 'celular': celular, 'telefone': telefone, 'file': file },
+					beforeSend: function (xhr){
+				        xhr.setRequestHeader('Authorization', '<?php echo $_SESSION['basicAuth']; ?>');
+				    },
+				    success:function(x){
+					    console.log("Usuário alterado com sucesso.");
+				    },
+				    error:function(){
+				    	console.log("Ops! Não foi possível fazer sua requisição.");
+				    }
+				});
 			});
 		</script>
 	</body>
