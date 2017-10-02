@@ -85,6 +85,7 @@
                         $("#btnFecharLogin").trigger("click");
                         console.log("Data Loaded: ");
                         console.log(data);
+                        var basicAuth = make_base_auth(email, senha);
                         $.post("http://localhost:81/luckypets/login-backend.php", {
                             "administrador": data.administrador,
                             "authToken": data.authToken,
@@ -95,7 +96,8 @@
                             "imagem": data.imagem,
                             "nome": data.nome,
                             "senha": data.senha,
-                            "telefone": data.telefone
+                            "telefone": data.telefone,
+                            "basicAuth": basicAuth
                         });
                     });
                 }
@@ -113,4 +115,10 @@
         //         });
         //     });
         // });
+
+        function make_base_auth(user, password) {
+            var tok = user + ':' + password;
+            var hash = btoa(tok);
+            return "Basic " + hash;
+        }
         </script>
