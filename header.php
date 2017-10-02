@@ -83,6 +83,7 @@
 									</div>
 								</li>
 								<li><a href="quem-somos.php">Sobre</a></li>
+                                <li><a href="" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
 								<!-- <li><a href="">Contato</a></li> -->
 							</span>
 						</ul>
@@ -98,6 +99,35 @@
     			</div>
     		</div>
     	</div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-uppercase text-center font-700" id="modalLoginLabel">Login</h4>
+                    </div>
+                    <div class="modal-body"><!-- http://31.220.53.123:8080/luckypets-servidor/api/usuario/login -->
+                        <form class="" action="" method="POST">
+                            <div class="form-group">
+                                <label for="formLoginEmail" class="font-300">E-mail</label>
+                                <input type="text" name="formLoginEmail" class="form-control" placeholder="maria@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="formLoginSenha" class="font-300">Senha</label>
+                                <input type="password" name="formLoginSenha" class="form-control" placeholder="******">
+                            </div>
+                            <button type="button" class="btn btn-gradient text-uppercase force-radius-0" id="btnLogin">Logar</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnFecharLogin">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 		<!-- Modal -->
 		<div class="modal fade" id="modalLocalizacao" tabindex="-1" role="dialog" aria-labelledby="modalLocalizacaoLabel">
 		    <div class="modal-dialog modal-sm" role="document">
