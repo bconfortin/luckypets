@@ -72,4 +72,45 @@
 	    $(window).resize(function() {
   			containerFluidSm();
 		});
+
+        $(function(){
+            $("#btnLogin").on("click", function(){
+                var email = $("input[name='formLoginEmail']").val();
+                var senha = $("input[name='formLoginSenha']").val();
+                if (email !== "" && senha !== "") {
+                    $.post("http://31.220.53.123:8080/luckypets-servidor/api/usuario/login", {
+                        "email": email,
+                        "senha": senha
+                    }).done(function(data) {
+                        $("#btnFecharLogin").trigger("click");
+                        console.log("Data Loaded: ");
+                        console.log(data);
+                        $.post("http://localhost:81/luckypets/login-backend.php", {
+                            "administrador": data.administrador,
+                            "authToken": data.authToken,
+                            "celular": data.celular,
+                            "email": data.email,
+                            "facebook": data.facebook,
+                            "id": data.id,
+                            "imagem": data.imagem,
+                            "nome": data.nome,
+                            "senha": data.senha,
+                            "telefone": data.telefone
+                        });
+                    });
+                }
+            });
+        });
+
+        // Só testando
+        // $(function(){
+        //     $("#btnLogin").on("click", function(){
+        //         var email = $("input[name='email']").val();
+        //         var senha = $("input[name='senha']").val();
+        //         $.post("http://localhost:81/luckypets/login-backend.php", {
+        //             "email": email,
+        //             "senha": senha
+        //         });
+        //     });
+        // });
         </script>
