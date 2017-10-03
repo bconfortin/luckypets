@@ -29,7 +29,7 @@
 				<div class="row">
 					<div class="col-xs-12"><!--  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 -->
 						<div class="padding-30 bg-fff">
-							<form action="" method="POST" enctype="multipart/form-data">
+							<form action="" method="POST" enctype="multipart/form-data" id="formulario">
 								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Alterar dados cadastrais</h1>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
@@ -102,7 +102,7 @@
 						<h2 class="titulo">Gostaria de doar um animal?</h2>
 						<p class="line-height-1-5 text-justify font-1-1em">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatem saepe perspiciatis ut tempore, aliquam vero non. Hic quia voluptatem laborum eum quam maiores atque non dicta! Iure, culpa, sed.</p>
 						<p class="text-center mbottom-0 mtop-30">
-							<a href="http://www.loumarturismo.com.br/" class="btn btn-gradient force-radius-0 text-uppercase padhor-30" target="_blank">Saiba mais</a>
+							<a href="" class="btn btn-gradient force-radius-0 text-uppercase padhor-30" target="_blank">Saiba mais</a>
 						</p>
 					</div>
 				</div>
@@ -114,8 +114,9 @@
 			$.ajax({
 			    type: 'GET',
 			    crossOrigin: true,
-			    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
-			    dataType: 'json',
+			    //url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
+				url:'http://localhost:8084/luckypets-servidor/api/usuario',
+
 			    success:function(x){
 				    var html = '';
 				    for (i = 0; i < x.length; i++) {
@@ -127,7 +128,7 @@
 							html += '<td>' + x[i].celular + '</td>';
 							html += '<td>' + x[i].authToken + '</td>';
 							html += '<td>' + x[i].senha + '</td>';
-							html += '<td><a href="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
+							html += '<td><a href="http://localhost:8084/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://localhost:8084/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
 						html += '</tr>';
 				    }
 				    $("#tabelaUsuarios").append(html);
@@ -138,20 +139,22 @@
 			});
 
 			$("#btnEditar").on("click", function(){
-				var nome = $("input[name='nome']").val();
-				var email = $("input[name='email']").val();
-				var celular = $("input[name='celular']").val();
-				var telefone = $("input[name='telefone']").val();
-				var file = $("input[name='file']").val();
 				$.ajax({
 				    type: 'POST',
-					crossOrigin: true,
-				    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
-				    dataType: 'json',
-					data: { 'nome': nome, 'email': email, 'celular': celular, 'telefone': telefone, 'file': file },
-					beforeSend: function (xhr){
-				        xhr.setRequestHeader('Authorization', '<?php echo $_SESSION['basicAuth']; ?>');
-				    },
+				    //url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
+					// headers: {
+					// 	'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					// },
+					url:'http://localhost:8084/luckypets-servidor/api/usuario/edita-usuario',
+					data: new FormData($('#formulario')[0]),
+					processData: false,
+					contentType: false,
+					// beforeSend: function (xhr) {
+				    //     /* Authorization header */
+					// 	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+				    //     xhr.setRequestHeader('Authorization', '<?php echo $_SESSION['basicAuth']; ?>');
+				    // },
+					//data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
 				    success:function(x){
 					    console.log("Usuário alterado com sucesso.");
 				    },
