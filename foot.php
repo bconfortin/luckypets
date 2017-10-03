@@ -78,7 +78,7 @@
                 var email = $("input[name='formLoginEmail']").val();
                 var senha = $("input[name='formLoginSenha']").val();
                 if (email !== "" && senha !== "") {
-                    $.post("http://31.220.53.123:8080/luckypets-servidor/api/usuario/login", {
+                    $.post("http://localhost:8084/luckypets-servidor/api/usuario/login", {
                         "email": email,
                         "senha": senha
                     }).done(function(data) {
