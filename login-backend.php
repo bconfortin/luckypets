@@ -10,6 +10,7 @@
     $_SESSION['facebook'] = "";
     $_SESSION['id'] = "";
     $_SESSION['imagem'] = "";
+    $_SESSION['caminhoCompletoImagem'] = "";
     $_SESSION['nome'] = "";
     $_SESSION['senha'] = "";
     $_SESSION['telefone'] = "";
@@ -23,11 +24,10 @@
         $_SESSION['facebook'] = $_POST['facebook'];
         $_SESSION['id'] = $_POST['id'];
         $_SESSION['imagem'] = $_POST['imagem'];
+        $_SESSION['caminhoCompletoImagem'] = $_POST['caminhoCompletoImagem'];
         $_SESSION['nome'] = $_POST['nome'];
         $_SESSION['senha'] = $_POST['senha'];
         $_SESSION['telefone'] = $_POST['telefone'];
         $_SESSION['basicAuth'] = $_POST['basicAuth'];
     }
-
-    echo '<pre>' . print_r($_SESSION, TRUE) . "Session ID: " . session_id() .'</pre>';
 ?>
