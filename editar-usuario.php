@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-	<?php if (!$_SESSION['basicAuth'] || $_SESSION['basicAuth'] === '' || is_null($_SESSION['basicAuth'])) {
-		header('Location: http://localhost:81/luckypets/?message=usuarioNaoLogado');
-		exit;
-	} ?>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +10,10 @@
 		<!-- <link rel="alternate" hreflang="pt" href="">
 		<link rel="alternate" hreflang="en" href=""> -->
 		<?php include "head.php"; ?>
+		<?php
+			require_once("functions.php");
+			verifyLogin();
+		?>
 	</head>
 	<body>
 		<?php include "header.php"; ?>
@@ -39,13 +39,13 @@
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="nome">Nome</label>
-											<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves">
+											<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves" value="<?= $_SESSION['nome'] ?>">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="email">E-mail</label>
-											<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com">
+											<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email'] ?>">
 										</div>
 									</div>
 								</div>
@@ -53,13 +53,13 @@
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="celular">Celular</label>
-											<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655">
+											<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655" value="<?= $_SESSION['celular'] ?>">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="telefone">Telefone</label>
-											<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122">
+											<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122" value="<?= $_SESSION['telefone'] ?>">
 										</div>
 									</div>
 								</div>
@@ -160,6 +160,9 @@
 					// }
 				    success:function(x){
 					    console.log("Usuário alterado com sucesso.");
+						if(result === "no_errors") {
+							location.href = "http://localhost:81/luckypets/?message=usuarioAlteradoComSucesso";
+						}
 				    },
 				    error:function(){
 				    	console.log("Ops! Não foi possível fazer sua requisição.");
