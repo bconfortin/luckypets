@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +11,10 @@
 		<!-- <link rel="alternate" hreflang="pt" href="">
 		<link rel="alternate" hreflang="en" href=""> -->
 		<?php include "head.php"; ?>
+		<?php
+			require("functions.php");
+			verifyLogin();
+		?>
 	</head>
 	<body>
 		<?php include "header.php"; ?>
@@ -25,7 +30,7 @@
 			</div>
 		</div>
 		<div class="container-fluid bg-f5f5f5 padver-50">
-			<div class="">
+			<div class="container">
 				<div class="row">
 					<div class="col-xs-12"><!--  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 -->
 						<div class="padding-30 bg-fff">
@@ -42,6 +47,7 @@
 											<td>Facebook</td>
 											<td>Senha</td>
 											<td>Imagem</td>
+											<td>Deletar?</td>
 										</tr>
 									</thead>
 									<tbody>
@@ -90,14 +96,51 @@
 							html += '<td>' + x[i].authToken + '</td>';
 							html += '<td>' + x[i].senha + '</td>';
 							html += '<td><a href="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
+							html += '<td><button class="btn btn-red deletarUsuario"><input type="hidden" value="' + x[i].id + '"><i class="fa fa-times"></i></button></td>';
 						html += '</tr>';
 				    }
 				    $("#tabelaUsuarios").append(html);
+					addDeleteKey();
 			    },
 			    error:function(){
-			    	console.log("Ops! Não foi possível fazer sua requisição.");
+			    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 			    }
 			});
+
+			function addDeleteKey() {
+				$(".deletarUsuario").each(function(){
+					$(this).on("click", function(){
+						var tr = $(this).parent("td").parent("tr");
+						var id = $(this).find("input").val();
+						var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar usuário?");
+						if (confirmacao == true) {
+							$.ajax({
+							    type: 'GET',
+							    crossOrigin: true,
+							    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/exclui-usuario/' + id,
+							    dataType: 'json',
+								headers: {
+									'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+								},
+							    success:function(){
+									console.log("Usuário deletado com sucesso.");
+								},
+								error:function(){
+									console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+								}
+							});
+							tr.remove();
+							if (id == <?= $_SESSION['id'] ?>) {
+								$.get("clear-session.php");
+				                location.href = "http://localhost:81/luckypets/";
+							}
+						} else {
+							console.log("Operação cancelada.");
+							return false;
+						}
+					});
+				});
+			};
 		</script>
 	</body>
 </html>
