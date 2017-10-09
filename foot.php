@@ -55,26 +55,25 @@
 	    		$(".lucky-right-menu").removeClass("closed");
 	    		$("body").addClass("overflow-hidden");
 		    });
-	    });
 
-	    /**
-	     * Função pra remover a classe container quando a tela ser redimensionada entre 993px e 768px
-	     * Por Bruno Confortin
-	     */
-	    function containerFluidSm() {
-	    	var varWindow = $(window).width();
-	    	if (varWindow < 992 && varWindow > 767) {
-	    		$(".container-fluid-sm").removeClass("container");
-	    	} else {
-	    		$(".container-fluid-sm").addClass("container");
-	    	}
-	    }
-	    $(window).resize(function() {
-  			containerFluidSm();
-		});
+    	    /**
+    	     * Função pra remover a classe container quando a tela ser redimensionada entre 993px e 768px
+    	     * Por Bruno Confortin
+    	     */
+    	    function containerFluidSm() {
+    	    	var varWindow = $(window).width();
+    	    	if (varWindow < 992 && varWindow > 767) {
+    	    		$(".container-fluid-sm").removeClass("container");
+    	    	} else {
+    	    		$(".container-fluid-sm").addClass("container");
+    	    	}
+    	    }
+    	    $(window).resize(function() {
+      			containerFluidSm();
+    		});
 
-        $(function(){
             $("#btnLogin").on("click", function(){
+                $("#btnLogin").addClass("disabled");
                 var email = $("input[name='formLoginEmail']").val();
                 var senha = $("input[name='formLoginSenha']").val();
                 if (email !== "" && senha !== "") {
@@ -82,43 +81,61 @@
                         "email": email,
                         "senha": senha
                     }).done(function(data) {
-                        $("#btnFecharLogin").trigger("click");
                         console.log("Data Loaded: ");
                         console.log(data);
-                        var basicAuth = make_base_auth(email, senha);
-                        $.post("http://localhost:81/luckypets/login-backend.php", {
-                            "administrador": data.administrador,
-                            "authToken": data.authToken,
-                            "celular": data.celular,
-                            "email": data.email,
-                            "facebook": data.facebook,
-                            "id": data.id,
-                            "imagem": data.imagem,
-                            "nome": data.nome,
-                            "senha": data.senha,
-                            "telefone": data.telefone,
-                            "basicAuth": basicAuth
-                        });
+                        if (data != undefined) {
+                            $("#btnFecharLogin").trigger("click");
+                            var basicAuth = make_base_auth(email, senha);
+                            $.post("http://localhost:81/luckypets/login-backend.php", {
+                                "administrador": data.administrador,
+                                "authToken": data.authToken,
+                                "celular": data.celular,
+                                "email": data.email,
+                                "facebook": data.facebook,
+                                "id": data.id,
+                                "imagem": data.imagem,
+                                "caminhoCompletoImagem": "http://31.220.53.123:8080/luckypets-servidor/api/file/" + data.id + "/" + data.imagem,
+                                "nome": data.nome,
+                                "senha": data.senha,
+                                "telefone": data.telefone,
+                                "basicAuth": basicAuth
+                            }).done(function(data) {
+                                location.href = "http://localhost:81/luckypets/";
+                            });
+                        } else {
+                            alert("E-mail ou senha incorretos.");
+                            $("#btnLogin").removeClass("disabled");
+                        }
+                    }).fail(function() {
+                        alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
+                        $("#btnLogin").removeClass("disabled");
                     });
                 }
             });
+
+            function make_base_auth(user, password) {
+                var tok = user + ':' + password;
+                var hash = btoa(tok);
+                return "Basic " + hash;
+            }
+
+            $("#toggleDevMenu").on("click", function(event){
+                event.preventDefault();
+                $("#sessionDesc").addClass("hidden");
+                $("#devMenu").toggleClass("hidden");
+            });
+
+            $("#toggleSessionDesc").on("click", function(event){
+                event.preventDefault();
+                $("#devMenu").addClass("hidden");
+                $("#sessionDesc").toggleClass("hidden");
+            });
+
+            $("#logout").on("click", function(event){
+                event.preventDefault();
+                $.get("clear-session.php");
+                location.href = "http://localhost:81/luckypets/";
+            });
         });
 
-        // Só testando
-        // $(function(){
-        //     $("#btnLogin").on("click", function(){
-        //         var email = $("input[name='email']").val();
-        //         var senha = $("input[name='senha']").val();
-        //         $.post("http://localhost:81/luckypets/login-backend.php", {
-        //             "email": email,
-        //             "senha": senha
-        //         });
-        //     });
-        // });
-
-        function make_base_auth(user, password) {
-            var tok = user + ':' + password;
-            var hash = btoa(tok);
-            return "Basic " + hash;
-        }
         </script>
