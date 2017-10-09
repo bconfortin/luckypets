@@ -4606,3 +4606,16 @@ h4.footer-titulo {
 .table.middle td {
     vertical-align: middle;
 }
+
+.max-60-60 {
+    max-width: 60px;
+    max-height: 60px;
+}
+
+.header-img-usuario {
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    background-position: center center;
+}
