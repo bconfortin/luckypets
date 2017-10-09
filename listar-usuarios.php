@@ -75,6 +75,9 @@
 			    crossOrigin: true,
 			    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
 			    dataType: 'json',
+				headers: {
+					'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+				},
 			    success:function(x){
 				    var html = '';
 				    for (i = 0; i < x.length; i++) {
