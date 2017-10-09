@@ -7,7 +7,7 @@
 		background: -ms-linear-gradient(left, rgba(138,73,156,0.8) 0%, rgba(40,97,174,0.8) 100%);
 		background: linear-gradient(to right, rgba(138,73,156,0.8) 0%, rgba(40,97,174,0.8) 100%);">
     		<ul style="padding-left: 0; list-style-type: none;">
-    			<li><a href="http://localhost:81/luckypets/" style="text-transform: uppercase; color: #fff;">Página inicial</a></li>
+    			<li><a href="http://localhost/luckypets/" style="text-transform: uppercase; color: #fff;">Página inicial</a></li>
     			<li><a href="anuncio-animal.php" style="text-transform: uppercase; color: #fff;">Anúncio animal</a></li>
     			<li><a href="anuncio-animal-perdido.php" style="text-transform: uppercase; color: #fff;">Anúncio animal perdido</a></li>
     			<li><a href="anuncio-animal-perdido.php" style="text-transform: uppercase; color: #fff;">Anúncio animal encontrado</a></li>

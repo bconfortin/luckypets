@@ -161,7 +161,7 @@
 				    success:function(x){
 					    console.log("Usuário alterado com sucesso.");
 						if(result === "no_errors") {
-							location.href = "http://localhost:81/luckypets/?message=usuarioAlteradoComSucesso";
+							location.href = "http://localhost/luckypets/?message=usuarioAlteradoComSucesso";
 						}
 				    },
 				    error:function(){

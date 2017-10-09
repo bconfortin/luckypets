@@ -32,62 +32,6 @@
 							<!-- http://localhost:8084/luckypets-servidor/api/usuario/novo-usuario
 								 http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario
 							-->
-							<form action="http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario" method="POST" enctype="multipart/form-data" class="hidden">
-								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de conta</h1>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="nome">Nome</label>
-											<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="email">E-mail</label>
-											<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="celular">Celular</label>
-											<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="telefone">Telefone</label>
-											<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="senha">Senha</label>
-											<input type="text" class="form-control" name="senha" placeholder="******">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="senhaNovamente">Digite a senha novamente</label>
-											<input type="text" class="form-control" name="senhaNovamente" placeholder="******">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label for="file">Fazer upload de foto</label>
-											<input type="file" id="file" name="file" class="width-100per">
-											<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
-										</div>
-									</div>
-								</div>
-								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30">Enviar</button></p>
-							</form>
-
 							<form action="" method="POST" enctype="multipart/form-data" id="formulario">
 								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de conta</h1>
 								<div class="row">
@@ -122,13 +66,13 @@
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="senha">Senha</label>
-											<input type="text" class="form-control" name="senha" placeholder="******">
+											<input type="password" class="form-control" name="senha" placeholder="******">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="senhaNovamente">Digite a senha novamente</label>
-											<input type="text" class="form-control" name="senhaNovamente" placeholder="******">
+											<input type="password" class="form-control" name="senhaNovamente" placeholder="******">
 										</div>
 									</div>
 								</div>
@@ -165,7 +109,6 @@
 		<?php include "foot.php"; ?>
 		<script>
 			$("#btnCriar").on("click", function(event){
-				event.preventDefault();
 				$.ajax({
 					type: 'POST',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario',
@@ -178,9 +121,7 @@
 					// }
 					success:function(result){
 						console.log("Usuário criado com sucesso.");
-						if(result === "no_errors") {
-							location.href = "http://localhost:81/luckypets/?message=usuarioCriadoComSucesso";
-						}
+						location.href = "http://localhost/luckypets/?message=usuarioCriadoComSucesso";
 					},
 					error:function(){
 						console.log("Ops! Não foi possível fazer sua requisição.");

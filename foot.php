@@ -86,7 +86,7 @@
                         if (data != undefined) {
                             $("#btnFecharLogin").trigger("click");
                             var basicAuth = make_base_auth(email, senha);
-                            $.post("http://localhost:81/luckypets/login-backend.php", {
+                            $.post("http://localhost/luckypets/login-backend.php", {
                                 "administrador": data.administrador,
                                 "authToken": data.authToken,
                                 "celular": data.celular,
@@ -100,7 +100,7 @@
                                 "telefone": data.telefone,
                                 "basicAuth": basicAuth
                             }).done(function(data) {
-                                location.href = "http://localhost:81/luckypets/";
+                                location.href = "http://localhost/luckypets/";
                             });
                         } else {
                             alert("E-mail ou senha incorretos.");
@@ -134,7 +134,7 @@
             $("#logout").on("click", function(event){
                 event.preventDefault();
                 $.get("clear-session.php");
-                location.href = "http://localhost:81/luckypets/";
+                location.href = "http://localhost/luckypets/";
             });
         });
 

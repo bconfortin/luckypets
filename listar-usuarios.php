@@ -118,7 +118,6 @@
 							    type: 'GET',
 							    crossOrigin: true,
 							    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/exclui-usuario/' + id,
-							    dataType: 'json',
 								headers: {
 									'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 								},
@@ -132,7 +131,7 @@
 							tr.remove();
 							if (id == <?= $_SESSION['id'] ?>) {
 								$.get("clear-session.php");
-				                location.href = "http://localhost:81/luckypets/";
+				                location.href = "http://localhost/luckypets/";
 							}
 						} else {
 							console.log("Operação cancelada.");
