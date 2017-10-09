@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <?php if ($_GET["message"] === "usuarioNaoLogado") { ?>
+    <?php
+        if (isset($_GET["message"])) {
+            if ($_GET["message"] === "usuarioNaoLogado") { ?>
         <script>
             alert("Você precisa estar logado para acessar essa página.");
         </script>
-    <?php } ?>
+    <?php } else if ($_GET["message"] === "usuarioAlteradoComSucesso") { ?>
+        <script>
+            alert("Usuário alterado com sucesso.");
+        </script>
+    <?php } } ?>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
