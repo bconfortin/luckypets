@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+    <?php if ($_GET["message"] === "usuarioNaoLogado") { ?>
+        <script>
+            alert("Você precisa estar logado para acessar essa página.");
+        </script>
+    <?php } ?>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
