@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+	<?php if (!$_SESSION['basicAuth'] || $_SESSION['basicAuth'] === '' || is_null($_SESSION['basicAuth'])) {
+		header('Location: http://localhost:81/luckypets/?message=usuarioNaoLogado');
+		exit;
+	} ?>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -115,8 +119,10 @@
 			    type: 'GET',
 			    crossOrigin: true,
 			    //url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
-				url:'http://localhost:8084/luckypets-servidor/api/usuario',
-
+				url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
+				headers: {
+					'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+				},
 			    success:function(x){
 				    var html = '';
 				    for (i = 0; i < x.length; i++) {
@@ -128,7 +134,7 @@
 							html += '<td>' + x[i].celular + '</td>';
 							html += '<td>' + x[i].authToken + '</td>';
 							html += '<td>' + x[i].senha + '</td>';
-							html += '<td><a href="http://localhost:8084/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://localhost:8084/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
+							html += '<td><a href="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
 						html += '</tr>';
 				    }
 				    $("#tabelaUsuarios").append(html);
@@ -141,20 +147,17 @@
 			$("#btnEditar").on("click", function(){
 				$.ajax({
 				    type: 'POST',
-				    //url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
-					// headers: {
-					// 	'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-					// },
-					url:'http://localhost:8084/luckypets-servidor/api/usuario/edita-usuario',
+				    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					// Método 1 - NÃO funciona com imagens (multipart/form-data)
+					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+					// Método 2 - Funciona com imagens (multipart/form-data) {
 					data: new FormData($('#formulario')[0]),
 					processData: false,
 					contentType: false,
-					// beforeSend: function (xhr) {
-				    //     /* Authorization header */
-					// 	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-				    //     xhr.setRequestHeader('Authorization', '<?php echo $_SESSION['basicAuth']; ?>');
-				    // },
-					//data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+					// }
 				    success:function(x){
 					    console.log("Usuário alterado com sucesso.");
 				    },
