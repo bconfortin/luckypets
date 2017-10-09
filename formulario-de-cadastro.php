@@ -32,7 +32,7 @@
 							<!-- http://localhost:8084/luckypets-servidor/api/usuario/novo-usuario
 								 http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario
 							-->
-							<form action="http://localhost:8084/luckypets-servidor/api/usuario/novo-usuario" method="POST" enctype="multipart/form-data">
+							<form action="http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario" method="POST" enctype="multipart/form-data" class="hidden">
 								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de conta</h1>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
@@ -81,42 +81,67 @@
 										<div class="form-group">
 											<label for="file">Fazer upload de foto</label>
 											<input type="file" id="file" name="file" class="width-100per">
-											<style>
-												/*
-												Input file language workaround
-												https://stackoverflow.com/questions/1944267/how-to-change-the-button-text-of-input-type-file
-
-												#fotoDePerfil::-webkit-file-upload-button {
-													visibility: hidden;
-												}
-												#fotoDePerfil::before {
-													content: 'Upe uma foto';
-													display: inline-block;
-													background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
-													border: 1px solid #999;
-													border-radius: 3px;
-													padding: 5px 8px;
-													outline: none;
-													white-space: nowrap;
-													-webkit-user-select: none;
-													cursor: pointer;
-													text-shadow: 1px 1px #fff;
-													font-weight: 700;
-													font-size: 10pt;
-												}
-												#fotoDePerfil:hover::before {
-													border-color: black;
-												}
-												#fotoDePerfil:active::before {
-													background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-												}
-												*/
-											</style>
 											<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
 										</div>
 									</div>
 								</div>
 								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30">Enviar</button></p>
+							</form>
+
+							<form action="" method="POST" enctype="multipart/form-data" id="formulario">
+								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de conta</h1>
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group">
+											<label for="nome">Nome</label>
+											<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves">
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group">
+											<label for="email">E-mail</label>
+											<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group">
+											<label for="celular">Celular</label>
+											<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655">
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group">
+											<label for="telefone">Telefone</label>
+											<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group">
+											<label for="senha">Senha</label>
+											<input type="text" class="form-control" name="senha" placeholder="******">
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group">
+											<label for="senhaNovamente">Digite a senha novamente</label>
+											<input type="text" class="form-control" name="senhaNovamente" placeholder="******">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											<label for="file">Fazer upload de foto</label>
+											<input type="file" id="file" name="file" class="width-100per">
+											<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
+										</div>
+									</div>
+								</div>
+								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCriar">Enviar</button></p>
 							</form>
 						</div>
 					</div>
@@ -130,7 +155,7 @@
 						<h2 class="titulo">Gostaria de doar um animal?</h2>
 						<p class="line-height-1-5 text-justify font-1-1em">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatem saepe perspiciatis ut tempore, aliquam vero non. Hic quia voluptatem laborum eum quam maiores atque non dicta! Iure, culpa, sed.</p>
 						<p class="text-center mbottom-0 mtop-30">
-							<a href="http://www.loumarturismo.com.br/" class="btn btn-gradient force-radius-0 text-uppercase padhor-30" target="_blank">Saiba mais</a>
+							<a href="" class="btn btn-gradient force-radius-0 text-uppercase padhor-30" target="_blank">Saiba mais</a>
 						</p>
 					</div>
 				</div>
@@ -138,5 +163,30 @@
 		</div>
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
+		<script>
+			$("#btnCriar").on("click", function(event){
+				event.preventDefault();
+				$.ajax({
+					type: 'POST',
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario',
+					// Método 1 - NÃO funciona com imagens (multipart/form-data)
+					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+					// Método 2 - Funciona com imagens (multipart/form-data) {
+					data: new FormData($('#formulario')[0]),
+					processData: false,
+					contentType: false,
+					// }
+					success:function(result){
+						console.log("Usuário criado com sucesso.");
+						if(result === "no_errors") {
+							location.href = "http://localhost:81/luckypets/?message=usuarioCriadoComSucesso";
+						}
+					},
+					error:function(){
+						console.log("Ops! Não foi possível fazer sua requisição.");
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
