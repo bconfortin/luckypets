@@ -120,14 +120,18 @@
 					processData: false,
 					contentType: false,
 					// }
-					success:function(){
-						console.log("Usuário criado com sucesso.");
+					success:function(result){
+						if (result.toLowerCase() === "sucesso!") {
+							console.log("Usuário cadastrado com sucesso.");
+						} else if (result.toLowerCase() === "erro") {
+							console.log("E-mail já existente.");
+						}
 					},
 					error:function(){
 						console.log("Ops! Não foi possível fazer sua requisição.");
 					},
 					complete:function(){
-						location.href = "http://localhost/luckypets/?message=usuarioCriadoComSucesso";
+						//location.href = "http://localhost/luckypets/?message=usuarioCriadoComSucesso";
 					}
 				});
 			});
