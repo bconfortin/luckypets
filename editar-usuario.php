@@ -158,17 +158,47 @@
 					processData: false,
 					contentType: false,
 					// }
-				    success:function(x){
+				    success:function(result){
 					    console.log("Usuário alterado com sucesso.");
-						if(result === "no_errors") {
-							location.href = "http://localhost/luckypets/?message=usuarioAlteradoComSucesso";
-						}
+						refreshSession();
 				    },
 				    error:function(){
 				    	console.log("Ops! Não foi possível fazer sua requisição.");
 				    }
 				});
 			});
+
+			function refreshSession() {
+				$.ajax({
+					type: 'GET',
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/getuserdata/<?= $_SESSION['email']; ?>',
+					dataType: 'json',
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					success:function(data){
+						$.post("http://localhost/luckypets/login-backend.php", {
+							"administrador": data.administrador,
+							"authToken": data.authToken,
+							"celular": data.celular,
+							"email": data.email,
+							"facebook": data.facebook,
+							"id": data.id,
+							"imagem": data.imagem,
+							"caminhoCompletoImagem": "http://31.220.53.123:8080/luckypets-servidor/api/file/" + data.id + "/" + data.imagem,
+							"nome": data.nome,
+							"senha": data.senha,
+							"telefone": data.telefone,
+							"basicAuth": "<?php echo $_SESSION['basicAuth']; ?>"
+						}).done(function(data) {
+							location.href = "http://localhost/luckypets/?message=usuarioAlteradoComSucesso";
+						});
+					},
+					error:function(){
+						console.log("Ops! Não foi possível fazer sua requisição.");
+					}
+				});
+			}
 		</script>
 	</body>
 </html>
