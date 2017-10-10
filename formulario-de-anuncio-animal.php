@@ -148,10 +148,10 @@
 										<div class="form-group">
 											<label for="porte">Porte</label>
 											<select name="porte" id="porte" class="form-control">
-												<option value="portePequeno" selected="selected">Pequeno</option>
-												<option value="porteMedio">Médio</option>
-												<option value="porteGrande">Grande</option>
-												<option value="porteGigante">Gigante</option>
+												<option value="Pequeno" selected="selected">Pequeno</option>
+												<option value="Médio">Médio</option>
+												<option value="Grande">Grande</option>
+												<option value="Gigante">Gigante</option>
 											</select>
 										</div>
 									</div>
@@ -161,9 +161,9 @@
 										<div class="form-group">
 											<label for="idade">Idade</label>
 											<select name="idade" id="idade" class="form-control">
-												<option value="idadeFilhote" selected="selected">Filhote (0 a 2 anos)</option>
-												<option value="idadeAdulto">Adulto (2 a 8 anos)</option>
-												<option value="idadeIdoso">Idoso (acima de 8 anos)</option>
+												<option value="Filhote (0 a 2 anos)" selected="selected">Filhote (0 a 2 anos)</option>
+												<option value="Adulto (2 a 8 anos)">Adulto (2 a 8 anos)</option>
+												<option value="Idoso (acima de 8 anos)">Idoso (acima de 8 anos)</option>
 											</select>
 										</div>
 									</div>
@@ -229,29 +229,13 @@
 						// }
 						success:function(result){
 							console.log("Anúncio criado com sucesso.");
-							location.href = "http://localhost/luckypets/?message=usuarioCriadoComSucesso";
 						},
 						error:function(){
 							console.log("Ops! Não foi possível fazer sua requisição.");
 						}
 					});
+					location.href = "http://localhost/luckypets/?message=anuncioCriadoComSucesso";
 				});
-
-				/*
-				userId
-				file
-				nome
-				tipo
-				sexo
-				raca
-				cor
-				porte
-				descrição
-				castrado
-				vacinado
-				cidade
-				estado
-				*/
 			});
 		</script>
 	</body>
