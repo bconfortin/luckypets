@@ -130,152 +130,9 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-9 col-sm-9 col-lg-10">
-						<div class="row">
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
+						<div class="row" id="containerAnimais">
+							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30 hidden">
 								<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal-perdido.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal-perdido.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal-perdido.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal-perdido.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal-encontrado.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal-encontrado.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal-encontrado.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">
-								<a href="anuncio-animal-encontrado.php" class="block card-home bg-fff unstyled-link relative">
 									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
 									<div class="absolute-pet-details">
 										<p class="pull-left mbottom-0">
@@ -325,6 +182,35 @@
 					$(".collapse.in").siblings("a.no-text-deco").addClass("collapsed");
 					$("div[aria-expanded='true']").attr("aria-expanded", "false");
 				}
+
+				$.ajax({
+				    type: 'GET',
+				    crossOrigin: true,
+				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes',
+				    dataType: 'json',
+				    success:function(x){
+					    var html = '';
+					    for (i = 0; i < x.length; i++) {
+							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">';
+							html += '	<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">';
+							html += '		<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '" alt="' + x[i].animal.nome + '" class="img-responsive center-block" style="max-height: 206px;">';
+							html += '		<div class="absolute-pet-details">';
+							html += '			<p class="pull-left mbottom-0">';
+							html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.nome;
+							html += '			</p>';
+							html += '			<p class="pull-right text-right mbottom-0">';
+							html += '				' + x[i].cidade + '<br>' + x[i].estado;
+							html += '			</p>';
+							html += '		</div>';
+							html += '	</a>';
+							html += '</div>';
+					    }
+					    $("#containerAnimais").append(html);
+				    },
+				    error:function(){
+				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+				    }
+				});
 			});
 		</script>
 	</body>
