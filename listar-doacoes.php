@@ -9,8 +9,8 @@
 		<meta name="description" content=""/>
 		<?php include "head.php"; ?>
 		<?php
-			require("functions.php");
-			verifyLogin();
+			//require("functions.php");
+			//verifyLogin();
 		?>
 	</head>
 	<body>
@@ -51,7 +51,9 @@
 											<th>Castrado</th>
 											<th>Cidade</th>
 											<th>Estado</th>
-											<th>Deletar</th>
+											<?php if (isset($_SESSION['basicAuth'])) { ?>
+												<th>Deletar</th>
+											<?php } ?>
 										</tr>
 									</thead>
 									<tbody>
@@ -85,9 +87,9 @@
 			    crossOrigin: true,
 			    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes',
 			    dataType: 'json',
-				headers: {
-					'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-				},
+				// headers: {
+				// 	'Authorization': '<?php //echo $_SESSION['basicAuth']; ?>'
+				// },
 			    success:function(x){
 				    var html = '';
 				    for (i = 0; i < x.length; i++) {
@@ -108,11 +110,16 @@
 							html += '<td>' + x[i].cidade + '</td>';
 							html += '<td>' + x[i].estado + '</td>';
 							//html += '<td><a href="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
-							html += '<td><button class="btn btn-red deletarDoacao"><input type="hidden" value="' + x[i].id + '"><i class="fa fa-times"></i></button></td>';
+							<?php if (isset($_SESSION['basicAuth'])) { ?>
+								html += '<td><button class="btn btn-red deletarDoacao"><input type="hidden" value="' + x[i].id + '"><i class="fa fa-times"></i></button></td>';
+							<?php } ?>
 						html += '</tr>';
 				    }
 				    $("#tabelaUsuarios").append(html);
-					addDeleteKey();
+					<?php if (isset($_SESSION['basicAuth'])) { ?>
+						addDeleteKey();
+					<?php } ?>
+
 			    },
 			    error:function(){
 			    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
@@ -122,6 +129,7 @@
 			function addDeleteKey() {
 				$(".deletarDoacao").each(function(){
 					$(this).on("click", function(){
+						<?php if (isset($_SESSION['basicAuth'])) { ?>
 						var tr = $(this).parent("td").parent("tr");
 						var id = $(this).find("input").val();
 						var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
@@ -149,6 +157,7 @@
 							console.log("Operação cancelada.");
 							return false;
 						}
+						<?php } ?>
 					});
 				});
 			};
