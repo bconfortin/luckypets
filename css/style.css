@@ -4619,3 +4619,12 @@ h4.footer-titulo {
     background-size: 60px 60px;
     background-position: center center;
 }
+
+.img-todos-animais {
+    width: 366px;
+    height: 206px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: #666;
+}
