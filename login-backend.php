@@ -24,7 +24,12 @@
         $_SESSION['facebook'] = $_POST['facebook'];
         $_SESSION['id'] = $_POST['id'];
         $_SESSION['imagem'] = $_POST['imagem'];
-        $_SESSION['caminhoCompletoImagem'] = $_POST['caminhoCompletoImagem'];
+        if (isset($_POST['caminhoCompletoImagem'])) {
+            $_SESSION['caminhoCompletoImagem'] = $_POST['caminhoCompletoImagem'];
+        } else {
+            $_SESSION['caminhoCompletoImagem'] = 'http://31.220.53.123/luckypets/img/nophoto-placeholder.png';
+        }
+
         $_SESSION['nome'] = $_POST['nome'];
         $_SESSION['senha'] = $_POST['senha'];
         $_SESSION['telefone'] = $_POST['telefone'];
