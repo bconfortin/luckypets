@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 						<div class="padding-30 bg-fff">
-							<form action="" method="post">
+							<form action="" method="POST" id="formulario">
 								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de animal para doação</h1>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
@@ -39,11 +39,11 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Cachorro
-								                    <input type="radio" checked name="items" value="item-1"/>
+								                    <input type="radio" checked name="items" value="cachorro"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Gato
-								                    <input type="radio" name="items" value="item-2"/>
+								                    <input type="radio" name="items" value="gato"/>
 								                </a>
 								            </div>
 										</div>
@@ -54,11 +54,11 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Fêmea
-								                    <input type="radio" checked name="items" value="item-1"/>
+								                    <input type="radio" checked name="items" value="femea"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Macho
-								                    <input type="radio" name="items" value="item-2"/>
+								                    <input type="radio" name="items" value="macho"/>
 								                </a>
 								            </div>
 										</div>
@@ -71,11 +71,11 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Sim
-								                    <input type="radio" checked name="items" value="item-1"/>
+								                    <input type="radio" checked name="items" value="true"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Não
-								                    <input type="radio" name="items" value="item-2"/>
+								                    <input type="radio" name="items" value="false"/>
 								                </a>
 								            </div>
 										</div>
@@ -86,41 +86,41 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Sim
-								                    <input type="radio" checked name="items" value="item-1"/>
+								                    <input type="radio" checked name="items" value="true"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Não
-								                    <input type="radio" name="items" value="item-2"/>
+								                    <input type="radio" name="items" value="false"/>
 								                </a>
 								            </div>
 										</div>
 									</div>
 								</div>
 								<style>
-.segmented-control {
-		border: 1px solid #eee;
-}
-.segmented-control input[type="radio"] {
-    display: none;
-}
-.segmented-control .list-group-item {
-    display: inline-block;
-	margin-bottom: 0;
-	margin-left:-1px;
-	margin-right: -1px;
-	width: 50%;
-}
-.segmented-control .list-group-item:first-child {
-	border-radius:0;
-}
-.segmented-control .list-group-item:last-child {
-	border-radius:0;
-}
-.segmented-control .list-group-item.active,
-.segmented-control .list-group-item.active:focus,
-.segmented-control .list-group-item.active:hover {
-    background-color: #6452a2;
-}
+									.segmented-control {
+											border: 1px solid #eee;
+									}
+									.segmented-control input[type="radio"] {
+									    display: none;
+									}
+									.segmented-control .list-group-item {
+									    display: inline-block;
+										margin-bottom: 0;
+										margin-left:-1px;
+										margin-right: -1px;
+										width: 50%;
+									}
+									.segmented-control .list-group-item:first-child {
+										border-radius:0;
+									}
+									.segmented-control .list-group-item:last-child {
+										border-radius:0;
+									}
+									.segmented-control .list-group-item.active,
+									.segmented-control .list-group-item.active:focus,
+									.segmented-control .list-group-item.active:hover {
+									    background-color: #6452a2;
+									}
 								</style>
 
 								<div class="row">
@@ -132,8 +132,8 @@
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="sobrenome">Raça</label>
-											<input type="text" class="form-control" name="sobrenome" placeholder="Ex: Vira-lata">
+											<label for="raca">Raça</label>
+											<input type="text" class="form-control" name="raca" placeholder="Ex: Vira-lata">
 										</div>
 									</div>
 								</div>
@@ -239,8 +239,23 @@
 			        $(this).addClass('active');
 			        $(this).find('input').prop('checked',true);
 			        return false;
-
 			    });
+
+				/*
+				userId
+				file
+				nome
+				tipo
+				sexo
+				raca
+				cor
+				porte
+				descrição
+				castrado
+				vacinado
+				cidade
+				estado
+				*/
 			});
 		</script>
 	</body>
