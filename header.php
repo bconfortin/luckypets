@@ -8,7 +8,7 @@
     			<li><a href="formulario-de-anuncio-animal-perdido.php" style="color: #333; padding-left: 15px;">Animal perdido</a></li>
     			<li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Listar</li>
                 <li><a href="listar-usuarios.php" style="color: #333; padding-left: 15px;">Usuários</a></li>
-    			<li><a href="listar-animais.php" style="color: #333; padding-left: 15px;">Animais</a></li>
+    			<li><a href="listar-doacoes.php" style="color: #333; padding-left: 15px;">Doações</a></li>
                 <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Internas</li>
     			<li><a href="anuncio-animal.php" style="color: #333; padding-left: 15px;">Animal</a></li>
     			<li><a href="anuncio-animal-perdido.php" style="color: #333; padding-left: 15px;">Animal perdido</a></li>
