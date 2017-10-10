@@ -107,8 +107,8 @@
 							html += '<td>' + x[i].animal.porte + '</td>';
 							html += '<td>' + x[i].animal.vacinado + '</td>';
 							html += '<td>' + x[i].animal.castrado + '</td>';
-							html += '<td>' + x[i].animal.cidade + '</td>';
-							html += '<td>' + x[i].animal.estado + '</td>';
+							html += '<td>' + x[i].cidade + '</td>';
+							html += '<td>' + x[i].estado + '</td>';
 							//html += '<td><a href="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
 							html += '<td><button class="btn btn-red deletarDoacao"><input type="hidden" value="' + x[i].id + '"><i class="fa fa-times"></i></button></td>';
 						html += '</tr>';
