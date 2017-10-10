@@ -1,22 +1,20 @@
-    	<div id="devMenu" class="hidden" style="padding: 15px; background-color: rgba(0,0,0,0.4); z-index: 300; position: fixed; top: 80px; left: 0; width: 400px;
-    	background: rgba(138,73,156,0.8);
-		background: -moz-linear-gradient(left, rgba(138,73,156,0.8) 0%, rgba(40,97,174,0.8) 100%);
-		background: -webkit-gradient(left top, right top, color-stop(0%, rgba(138,73,156,0.8)), color-stop(100%, rgba(40,97,174,0.8)));
-		background: -webkit-linear-gradient(left, rgba(138,73,156,0.8) 0%, rgba(40,97,174,0.8) 100%);
-		background: -o-linear-gradient(left, rgba(138,73,156,0.8) 0%, rgba(40,97,174,0.8) 100%);
-		background: -ms-linear-gradient(left, rgba(138,73,156,0.8) 0%, rgba(40,97,174,0.8) 100%);
-		background: linear-gradient(to right, rgba(138,73,156,0.8) 0%, rgba(40,97,174,0.8) 100%);">
+    	<div id="devMenu" class="hidden" style="padding: 15px; background-color: #ddd; z-index: 300; position: fixed; top: 80px; left: 0; width: 400px;">
     		<ul style="padding-left: 0; list-style-type: none;">
-    			<li><a href="http://localhost/luckypets/" style="text-transform: uppercase; color: #fff;">Página inicial</a></li>
-    			<li><a href="anuncio-animal.php" style="text-transform: uppercase; color: #fff;">Anúncio animal</a></li>
-    			<li><a href="anuncio-animal-perdido.php" style="text-transform: uppercase; color: #fff;">Anúncio animal perdido</a></li>
-    			<li><a href="anuncio-animal-perdido.php" style="text-transform: uppercase; color: #fff;">Anúncio animal encontrado</a></li>
-    			<li><a href="formulario-de-anuncio-animal.php" style="text-transform: uppercase; color: #fff;">Formulário anúncio animal</a></li>
-    			<li><a href="formulario-de-anuncio-animal-encontrado.php" style="text-transform: uppercase; color: #fff;">Formulário anúncio animal encontrado</a></li>
-    			<li><a href="formulario-de-anuncio-animal-perdido.php" style="text-transform: uppercase; color: #fff;">Formulário anúncio animal perdido</a></li>
-    			<li><a href="formulario-de-cadastro.php" style="text-transform: uppercase; color: #fff;">Formulário cadastro usuário</a></li>
-    			<li><a href="todos-os-pets.php" style="text-transform: uppercase; color: #fff;">Todos os pets</a></li>
-    			<li><a href="quem-somos.php" style="text-transform: uppercase; color: #fff;">Quem somos</a></li>
+    			<li><a href="http://localhost/luckypets/" style="color: #333; padding-left: 15px;">Página inicial</a></li>
+                <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Cadastro</li>
+                <li><a href="formulario-de-cadastro.php" style="color: #333; padding-left: 15px;">Usuário</a></li>
+                <li><a href="formulario-de-anuncio-animal.php" style="color: #333; padding-left: 15px;">Doação</a></li>
+    			<li><a href="formulario-de-anuncio-animal-encontrado.php" style="color: #333; padding-left: 15px;">Animal encontrado</a></li>
+    			<li><a href="formulario-de-anuncio-animal-perdido.php" style="color: #333; padding-left: 15px;">Animal perdido</a></li>
+    			<li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Listar</li>
+                <li><a href="listar-usuarios.php" style="color: #333; padding-left: 15px;">Usuários</a></li>
+    			<li><a href="listar-animais.php" style="color: #333; padding-left: 15px;">Animais</a></li>
+                <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Internas</li>
+    			<li><a href="anuncio-animal.php" style="color: #333; padding-left: 15px;">Animal</a></li>
+    			<li><a href="anuncio-animal-perdido.php" style="color: #333; padding-left: 15px;">Animal perdido</a></li>
+    			<li><a href="anuncio-animal-perdido.php" style="color: #333; padding-left: 15px;">Animal encontrado</a></li>
+                <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Outras</li>
+    			<li><a href="quem-somos.php" style="color: #333; padding-left: 15px;">Quem somos</a></li>
     		</ul>
     	</div>
 
@@ -31,8 +29,8 @@
         </div>
 
         <div class="bg-333 inline-block" style="padding: 18px; position: fixed; top: 0; left: 0; z-index: 30000;">
-            <a href="" class="block white-link" id="toggleDevMenu">Toggle Dev Menu</a>
-            <a href="" class="block white-link" id="toggleSessionDesc">Toggle Session</a>
+            <a href="" class="block white-link" id="toggleDevMenu"><i class="fa fa-bars mright-15"></i>Toggle Dev Menu</a>
+            <a href="" class="block white-link" id="toggleSessionDesc"><i class="fa fa-user-circle mright-15"></i>Toggle Session</a>
         </div>
 
     	<div class="lucky-right-menu closed">
@@ -41,12 +39,17 @@
     		</a>
     		<div class="ptop-0 padding-20">
 				<img src="img/logo/lucky-pets-logo-white-336x98.png" alt="Logo do Lucky Pets" class="img-responsive center-block mbottom-30" style="max-width: 100px;">
-				<img src="http://placehold.it/100x100" alt="" class="img-circle img-responsive center-block mbottom-10">
-				<p class="color-fff text-center">Logado como:<br>Bruno Goerck Confortin</p>
-				<p class="text-center"><a href="" class="inline-block white-link" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR<br>(clique para mudar)</a></p>
-				<hr class="hr-white-shadow marver-30">
-				<ul class="mbottom-30 text-center">
-					<li><a href="" class="visible-lg-inline-block">Página inicial</a></li>
+                <?php if (isset($_SESSION['nome'])) { ?>
+                    <img src="<?= $_SESSION['caminhoCompletoImagem']; ?>" alt="" class="img-circle img-responsive center-block mbottom-10">
+    				<p class="color-fff text-center">Logado como:<br><?= $_SESSION['nome']; ?></p>
+    				<p class="text-center"><a href="" class="inline-block white-link" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR<br>(clique para mudar)</a></p>
+    				<hr class="hr-white-shadow marver-30">
+                    <ul class="mbottom-30 text-center">
+                <?php } else { ?>
+                    <ul class="mbottom-30 text-center">
+                        <li><a href="formulario-de-cadastro.php">Fazer cadastro</a></li>
+                <?php } ?>
+					<li><a href="http://localhost/luckypets/" class="visible-lg-inline-block">Página inicial</a></li>
 					<li><a href="">Animais</a></li>
 					<li><a href="quem-somos.php">Sobre</a></li>
 					<li><a href="">Contato</a></li>
@@ -63,13 +66,13 @@
     		<div class="container container-fluid-sm">
     			<div class="row">
     				<div class="col-xs-12">
-						<a href="" class="lucky-nav-left-logo">
+						<a href="http://localhost/luckypets/" class="lucky-nav-left-logo">
 							<img src="img/logo/lucky-pets-logo-180x260.png" alt="Logo do Lucky Pets" class="img-responsive hidden-xs" style="max-height: 55px;">
 							<img src="img/logo/lucky-pets-logo-336x98.png" alt="Logo do Lucky Pets" class="img-responsive visible-xs-block" style="max-height: 20px;">
 						</a>
 						<ul class="lucky-nav-left">
 							<span class="hidden-xs">
-								<li><a href="" class="visible-lg-inline-block">Página inicial</a></li>
+								<li><a href="http://localhost/luckypets/" class="visible-lg-inline-block">Página inicial</a></li>
 								<li>
 									<div class="dropdown">
 										<a id="dLabelAnimais" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -102,18 +105,17 @@
                                 <?php } else { ?>
                                     <li><a href="" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
                                 <?php } ?>
-								<!-- <li><a href="">Contato</a></li> -->
 							</span>
 						</ul>
 						<ul class="lucky-nav-right">
 							<li class="visible-xs-inline-block"><a href="" class="destino-hamburguer"><i class="fa fa-bars fa-lg padhor-10"></i></a></li>
                             <?php if (isset($_SESSION['nome'])) { ?>
-                                <li class="mtop-10 font-0-9em">
+                                <li class="mtop-10 font-0-9em hidden-xs">
     								<span class="inline-block pull-right mleft-15"><div class="img-circle header-img-usuario" style="background-image: url('<?= $_SESSION["caminhoCompletoImagem"]; ?>');"></div></span>
     								<span class="inline-block pull-right mtop-10 text-default font-400"><?= $_SESSION['nome']; ?><br><a href="" class="font-700" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR</a></span>
     							</li>
                             <?php } else { ?>
-                                <li><a href="">Fazer cadastro</a></li>
+                                <li><a href="formulario-de-cadastro.php">Fazer cadastro</a></li>
                             <?php } ?>
 						</ul>
     				</div>
