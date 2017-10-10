@@ -10,6 +10,10 @@
 		<!-- <link rel="alternate" hreflang="pt" href="">
 		<link rel="alternate" hreflang="en" href=""> -->
 		<?php include "head.php"; ?>
+		<?php
+			require_once("functions.php");
+			verifyLogin();
+		?>
 	</head>
 	<body>
 		<?php include "header.php"; ?>
@@ -39,7 +43,7 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Cachorro
-								                    <input type="radio" checked name="tipo" value="cachorro"/>
+								                    <input type="radio" checked="checked" name="tipo" value="cachorro"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Gato
@@ -54,7 +58,7 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Feminino
-								                    <input type="radio" checked name="sexo" value="feminino"/>
+								                    <input type="radio" checked="checked" name="sexo" value="feminino"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Masculino
@@ -71,7 +75,7 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Sim
-								                    <input type="radio" checked name="vacinado" value="true"/>
+								                    <input type="radio" checked="checked" name="vacinado" value="true"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Não
@@ -86,7 +90,7 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Sim
-								                    <input type="radio" checked name="castrado" value="true"/>
+								                    <input type="radio" checked="checked" name="castrado" value="true"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Não
@@ -202,6 +206,7 @@
 				// Baseado e modificado a partir de:
 				// Bootstrap 3.3.0 Snippet by renswijnmalen
 				// https://bootsnipp.com/snippets/vOk57
+
 			    $('div.segmented-control a').on('click', function(){
 			        $(this).siblings().each(function(i,e){
 			            $(e).removeClass('active');
@@ -214,6 +219,7 @@
 
 				$("#btnCadastrar").on("click", function(event){
 					event.preventDefault();
+					$(this).addClass("disabled");
 					$.ajax({
 						type: 'POST',
 						url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/cadastro-doacao',
@@ -232,9 +238,11 @@
 						},
 						error:function(){
 							console.log("Ops! Não foi possível fazer sua requisição.");
+						},
+						complete:function(){
+							location.href = "http://localhost/luckypets/?message=anuncioCriadoComSucesso";
 						}
 					});
-					location.href = "http://localhost/luckypets/?message=anuncioCriadoComSucesso";
 				});
 			});
 		</script>
