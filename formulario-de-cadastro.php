@@ -80,7 +80,7 @@
 									<div class="col-xs-12">
 										<div class="form-group">
 											<label for="file">Fazer upload de foto</label>
-											<input type="file" id="file" name="file" class="width-100per">
+											<input type="file" id="file" name="file" class="width-100per" accept="image/png, image/jpeg">
 											<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
 										</div>
 									</div>
@@ -110,6 +110,9 @@
 		<script>
 			$("#btnCadastrar").on("click", function(event){
 				event.preventDefault();
+				if ($("input[name=file]").val() == "") {
+					$("input[name=file]").remove();
+				}
 				$.ajax({
 					type: 'POST',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario',
