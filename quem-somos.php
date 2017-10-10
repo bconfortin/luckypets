@@ -7,8 +7,6 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>Lucky Pets</title>
 		<meta name="description" content=""/>
-		<!-- <link rel="alternate" hreflang="pt" href="">
-		<link rel="alternate" hreflang="en" href=""> -->
 		<?php include "head.php"; ?>
 	</head>
 	<body>
@@ -41,7 +39,7 @@
 							<p class="marver-15 text-center">Analista de Sistemas<br>Backend</p>
 							<p class="text-center mbottom-0">
 								<a href="https://www.facebook.com/AmandaLouiseMorais" class="marhor-5 inline-block"><i class="fa color-facebook fa-facebook-square fa-2x"></i></a>
-								<a href="https://github.com/amandaalouise" class="marhor-5 inline-block"><i class="fa color-github fa-github-square fa-2x"></i></a>	
+								<a href="https://github.com/amandaalouise" class="marhor-5 inline-block"><i class="fa color-github fa-github-square fa-2x"></i></a>
 								<a href="https://www.instagram.com/amandalouisemorais/" class="marhor-5 inline-block"><i class="fa color-instagram fa-instagram fa-2x"></i></a>
 							</p>
 						</div>
@@ -53,7 +51,7 @@
 							<p class="marver-15 text-center">Analista de Sistemas<br>Frontend</p>
 							<p class="text-center mbottom-0">
 								<a href="https://www.facebook.com/brunoconfortin" class="marhor-5 inline-block"><i class="fa color-facebook fa-facebook-square fa-2x"></i></a>
-								<a href="https://github.com/bconfortin" class="marhor-5 inline-block"><i class="fa color-github fa-github-square fa-2x"></i></a>	
+								<a href="https://github.com/bconfortin" class="marhor-5 inline-block"><i class="fa color-github fa-github-square fa-2x"></i></a>
 								<a href="https://www.instagram.com/bconfortin/" class="marhor-5 inline-block"><i class="fa color-instagram fa-instagram fa-2x"></i></a>
 							</p>
 						</div>

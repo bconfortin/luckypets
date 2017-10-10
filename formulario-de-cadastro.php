@@ -7,8 +7,6 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>Lucky Pets</title>
 		<meta name="description" content=""/>
-		<!-- <link rel="alternate" hreflang="pt" href="">
-		<link rel="alternate" hreflang="en" href=""> -->
 		<?php include "head.php"; ?>
 	</head>
 	<body>
