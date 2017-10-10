@@ -85,7 +85,7 @@
 										</div>
 									</div>
 								</div>
-								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCriar">Enviar</button></p>
+								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrar">Cadastrar</button></p>
 							</form>
 						</div>
 					</div>
@@ -108,7 +108,7 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
-			$("#btnCriar").on("click", function(event){
+			$("#btnCadastrar").on("click", function(event){
 				$.ajax({
 					type: 'POST',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario',
