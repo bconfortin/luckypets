@@ -193,7 +193,9 @@
 					    for (i = 0; i < x.length; i++) {
 							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">';
 							html += '	<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">';
-							html += '		<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '" alt="' + x[i].animal.nome + '" class="img-responsive center-block" style="max-height: 206px;">';
+							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
+							html += '       </div>';
+							//html += '		<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '" alt="' + x[i].animal.nome + '" class="img-responsive center-block" style="max-height: 206px;">';
 							html += '		<div class="absolute-pet-details">';
 							html += '			<p class="pull-left mbottom-0">';
 							html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.nome;
@@ -213,5 +215,7 @@
 				});
 			});
 		</script>
+
+
 	</body>
 </html>
