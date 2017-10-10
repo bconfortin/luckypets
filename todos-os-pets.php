@@ -148,11 +148,11 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<p class="mbottom-0 text-center">
-									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15 disabled"><i class="fa fa-angle-left mright-5"></i> Anterior</a>
+									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15 disabled"><i class="fa fa-angle-left"></i><span class="hidden-xs mleft-5">Anterior</span></a>
 									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15">1</a>
 									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15">2</a>
 									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15">3</a>
-									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15">Próxima <i class="fa fa-angle-right mleft-5"></i></a>
+									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15"><span class="hidden-xs mright-5">Próxima</span><i class="fa fa-angle-right"></i></a>
 								</p>
 							</div>
 						</div>
