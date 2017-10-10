@@ -109,6 +109,7 @@
 		<?php include "foot.php"; ?>
 		<script>
 			$("#btnCadastrar").on("click", function(event){
+				event.preventDefault();
 				$.ajax({
 					type: 'POST',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario',
@@ -119,12 +120,14 @@
 					processData: false,
 					contentType: false,
 					// }
-					success:function(result){
+					success:function(){
 						console.log("Usuário criado com sucesso.");
-						location.href = "http://localhost/luckypets/?message=usuarioCriadoComSucesso";
 					},
 					error:function(){
 						console.log("Ops! Não foi possível fazer sua requisição.");
+					},
+					complete:function(){
+						location.href = "http://localhost/luckypets/?message=usuarioCriadoComSucesso";
 					}
 				});
 			});
