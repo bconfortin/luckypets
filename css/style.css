@@ -3773,84 +3773,6 @@ a.pinterest-mobile:link, a.pinterest-mobile:visited {
 	}
 }
 
-@media (max-width: 768px) {
-
-	.img-restraint-262 {
-		min-width: 100%;
-		max-width: 100%;
-		min-height: 100%;
-		max-height: 100%;
-	}
-
-	.img-restraint {
-		max-height: 100%;
-		max-width: 100%;
-	}
-
-	.pull-left-xs {
-		float: left !important;
-	}
-
-	.mtop-30-xs {
-		margin-top: 30px;
-	}
-
-	.mbottom-30-xs {
-		margin-bottom: 30px;
-	}
-
-	.mtop-0-xs {
-		margin-top: 0;
-	}
-
-	.mbottom-0-xs {
-		margin-bottom: 0;
-	}
-
-	.text-center-xs {
-		text-align: center;
-	}
-
-	.botao-aereo-xs {
-		float: none !important;
-		display: block;
-		margin: auto;
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-
-	.i-align-center-xs {
-		display:table;
-		margin:0 auto;
-	}
-
-	.font-1-3em-xs {
-		font-size: 1.3em;
-	}
-
-	.font-1-2em-xs {
-		font-size: 1.2em;
-	}
-
-	.font-1-1em-xs {
-		font-size: 1.1em;
-	}
-
-	.font-1em-xs {
-		font-size: 1em;
-	}
-
-	.font-0-9em-xs {
-		font-size: 0.9em;
-	}
-
-	.padver-15-xs {
-		padding-top: 15px;
-		padding-bottom: 15px;
-	}
-
-}
-
 @media (min-width: 768px) {
 
 	.carousel-indicators {
@@ -4624,7 +4546,115 @@ h4.footer-titulo {
     width: 366px;
     height: 206px;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     background-size: cover;
     background-color: #666;
+}
+
+@media (max-width: 768px) {
+
+	.img-restraint-262 {
+		min-width: 100%;
+		max-width: 100%;
+		min-height: 100%;
+		max-height: 100%;
+	}
+
+	.img-restraint {
+		max-height: 100%;
+		max-width: 100%;
+	}
+
+	.pull-left-xs {
+		float: left !important;
+	}
+
+	.mtop-30-xs {
+		margin-top: 30px;
+	}
+
+	.mbottom-30-xs {
+		margin-bottom: 30px;
+	}
+
+	.mtop-0-xs {
+		margin-top: 0;
+	}
+
+	.mbottom-0-xs {
+		margin-bottom: 0;
+	}
+
+	.text-center-xs {
+		text-align: center;
+	}
+
+	.botao-aereo-xs {
+		float: none !important;
+		display: block;
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+
+	.i-align-center-xs {
+		display:table;
+		margin:0 auto;
+	}
+
+	.font-1-3em-xs {
+		font-size: 1.3em;
+	}
+
+	.font-1-2em-xs {
+		font-size: 1.2em;
+	}
+
+	.font-1-1em-xs {
+		font-size: 1.1em;
+	}
+
+	.font-1em-xs {
+		font-size: 1em;
+	}
+
+	.font-0-9em-xs {
+		font-size: 0.9em;
+	}
+
+	.padver-15-xs {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+
+    .img-todos-animais {
+        width: 738px;
+        height: 415px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        background-color: #666;
+    }
+}
+
+@media (max-width: 500px) {
+    .img-todos-animais {
+        width: 500px;
+        height: 280px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        background-color: #666;
+    }
+}
+
+@media (max-width: 360px) {
+    .img-todos-animais {
+        width: 360px;
+        height: 201px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        background-color: #666;
+    }
 }
