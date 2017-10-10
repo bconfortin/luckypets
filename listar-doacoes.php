@@ -28,32 +28,32 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid bg-f5f5f5 padver-50">
-			<div class="container">
+		<div class="container-fluid bg-f5f5f5 padver-15">
+			<div class="">
 				<div class="row">
 					<div class="col-xs-12"><!--  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 -->
 						<div class="padding-30 bg-fff">
-							<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Lista de Usuários</h1>
+							<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Lista de Animais para Doação</h1>
 							<div class="table-responsive">
 								<table class="table middle table-hover" id="tabelaUsuarios">
 									<thead>
 										<tr>
-											<td>ID</td>
-											<td>Tipo</td>
-											<td>Idade</td>
-											<td>Imagens</td>
-											<td>Imagem 1</td>
-											<td>Sexo</td>
-											<td>Nome</td>
-											<td style="min-width: 300px;">Descrição</td>
-											<td>Raça</td>
-											<td>Cor</td>
-											<td>Porte</td>
-											<td>Vacinado</td>
-											<td>Castrado</td>
-											<td>Cidade</td>
-											<td>Estado</td>
-											<td>Deletar</td>
+											<th>ID</th>
+											<th>Tipo</th>
+											<th>Idade</th>
+											<th>Imagens</th>
+											<th>Imagem 1</th>
+											<th>Sexo</th>
+											<th>Nome</th>
+											<th style="min-width: 300px;">Descrição</th>
+											<th>Raça</th>
+											<th>Cor</th>
+											<th>Porte</th>
+											<th>Vacinado</th>
+											<th>Castrado</th>
+											<th>Cidade</th>
+											<th>Estado</th>
+											<th>Deletar</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -95,7 +95,7 @@
 				    for (i = 0; i < x.length; i++) {
 			    		html += '<tr>';
 							html += '<td>' + x[i].id + '</td>';
-							html += '<td>' + x[i].animal.tipo + '</td>';
+							html += '<td class="text-capitalize">' + x[i].animal.tipo + '</td>';
 							html += '<td>' + x[i].animal.idade + '</td>';
 							html += '<td>' + x[i].animal.imagens[0] + '</td>';
 							html += '<td><img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '" class="img-responsive" style="max-height: 90px;"></td>';
