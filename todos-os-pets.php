@@ -189,7 +189,29 @@
 				$.ajax({
 				    type: 'GET',
 				    crossOrigin: true,
-				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes',
+					<?php if (isset($_GET['tipo']) || isset($_GET['porte']) || isset($_GET['sexo']) || isset($_GET['idade']) || isset($_GET['castrado'])) {
+						$tipo = ""; $porte = ""; $sexo = ""; $idade = ""; $castrado = "";
+						if (isset($_GET['tipo'])) {
+							$tipo = $_GET['tipo'];
+						}
+						if (isset($_GET['porte'])) {
+							$porte = $_GET['porte'];
+						}
+						if (isset($_GET['sexo'])) {
+							$sexo = $_GET['sexo'];
+						}
+						if (isset($_GET['idade'])) {
+							$idade = $_GET['idade'];
+						}
+						if (isset($_GET['castrado'])) {
+							$castrado = $_GET['castrado'];
+						}
+						$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&idade='.$idade.'&castrado='.$castrado; ?>
+						var fullUrl = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes-filtered' + '<?= $params ?>';
+						url: fullUrl,
+					<?php } else { ?>
+						url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes',
+					<?php } ?>
 				    dataType: 'json',
 				    success:function(x){
 					    var html = '';
