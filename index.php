@@ -25,13 +25,15 @@
     	<div class="container-fluid">
     		<div class="row">
     			<div class="col-xs-12 padhor-0">
-    				<img src="http://placehold.it/1920x350" alt="Placeholder" class="img-responsive hidden-xs hidden-sm">
-    				<img src="http://placehold.it/993x600" alt="Placeholder" class="img-responsive hidden-md hidden-lg">
-    				<div class="force-vertical-align width-100per">
-    					<h1 class="text-center font-1-8em text-uppercase font-700 color-fff mtop-0 mbottom-5 text-shadow font-1-3em-xs mbottom-30-xs">Adoção de animais</h1>
-    					<p class="mbottom-30 text-center font-300 font-1-5em color-fff text-shadow hidden-xs">Tem um animal e gostaria de colocá-lo para adoção? Você veio ao lugar certo!</p>
-    					<p class="mbottom-0 text-center"><a href="formulario-de-cadastro.php" class="btn btn-gradient force-radius-0 text-uppercase padhor-30">Se cadastrar</a></p>
-    				</div>
+    				<img src="img/topo-index-1920x450.jpg" alt="Imagem promocional" class="img-responsive hidden-xs hidden-sm">
+    				<img src="img/topo-index-993x600.jpg" alt="Imagem promocional" class="img-responsive hidden-md hidden-lg">
+                    <div class="force-vertical-align black-bg-filter width-100per">
+						<div class="force-vertical-align">
+                            <h1 class="text-center font-1-8em text-uppercase font-700 color-fff mtop-0 mbottom-5 text-shadow font-1-3em-xs mbottom-30-xs">Adoção de animais</h1>
+        					<p class="mbottom-30 text-center font-300 font-1-5em color-fff text-shadow hidden-xs">Tem um animal e gostaria de colocá-lo para adoção? Você veio ao lugar certo!</p>
+        					<p class="mbottom-0 text-center"><a href="formulario-de-cadastro.php" class="btn btn-gradient force-radius-0 text-uppercase padhor-30">Se cadastrar</a></p>
+						</div>
+					</div>
     			</div>
     		</div>
     	</div>
@@ -158,46 +160,8 @@
     			<div class="row">
     				<div class="col-xs-12">
 						<h2 class="titulo">Animais resgatados por Ongs, Protetores e Veterinários</h2>
-						<div class="row">
-							<div class="col-xs-12 col-sm-4 mbottom-30">
-								<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-sm-4 mbottom-30">
-								<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
-							<div class="col-xs-12 col-sm-4 mbottom-30">
-								<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
-									</div>
-								</a>
-							</div>
+						<div class="row" id="containerAnimais">
+
 						</div>
 						<div class="row">
 							<div class="col-xs-12">
@@ -215,7 +179,7 @@
     			<div class="row">
     				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 						<h2 class="titulo">Quem somos</h2>
-						<p class="line-height-1-5 text-justify font-1-1em">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatem saepe perspiciatis ut tempore, aliquam vero non. Hic quia voluptatem laborum eum quam maiores atque non dicta! Iure, culpa, sed.</p>
+						<p class="line-height-1-5 text-justify font-1-1em">O site Lucky Pets foi desenvolvido por três alunos do curso de tecnólogo em Análise e Desenvolvimento de Sistemas do Instituto Federal do Paraná (IFPR) e tem como objetivo promover a adoção de animais para que haja uma redução no número de animais de rua.</p>
 						<p class="text-center mbottom-0 mtop-30">
 							<a href="quem-somos.php" class="btn btn-blue force-radius-0 text-uppercase padhor-30" target="_blank">Saiba mais</a>
 						</p>
@@ -225,5 +189,39 @@
     	</div>
     	<?php include "footer.php"; ?>
     	<?php include "foot.php"; ?>
+        <script>
+            $(function(){
+                $.ajax({
+				    type: 'GET',
+				    crossOrigin: true,
+				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes',
+				    dataType: 'json',
+				    success:function(x){
+					    var html = '';
+					    for (i = x.length - 1; i > (x.length - 4); i--) {
+							html += '<div class="col-xs-12 col-lg-4 col-md-4 col-sm-4 col-xs-12 mbottom-30">';
+							html += '	<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">';
+							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
+							html += '       </div>';
+							//html += '		<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '" alt="' + x[i].animal.nome + '" class="img-responsive center-block" style="max-height: 206px;">';
+							html += '		<div class="absolute-pet-details">';
+							html += '			<p class="pull-left mbottom-0">';
+							html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.raca;
+							html += '			</p>';
+							html += '			<p class="pull-right text-right mbottom-0">';
+							html += '				' + x[i].cidade + '<br>' + x[i].estado;
+							html += '			</p>';
+							html += '		</div>';
+							html += '	</a>';
+							html += '</div>';
+					    }
+					    $("#containerAnimais").append(html);
+				    },
+				    error:function(){
+				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+				    }
+				});
+            });
+        </script>
     </body>
 </html>
