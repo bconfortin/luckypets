@@ -37,7 +37,26 @@
     			</div>
     		</div>
     	</div>
-    	<div class="container-fluid padver-50">
+        <div class="container-fluid padver-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="titulo mbottom-0">Buscar animais para doação</h2>
+                        <div class="text-center mtop-30">
+                            <div class="btn-group index-busca inline-block" role="group" aria-label="">
+                                <button type="button" class="btn btn-default">Cachorro</button>
+                                <button type="button" class="btn btn-blue selected">Tanto faz</button>
+                                <button type="button" class="btn btn-default padhor-25">Gato</button>
+                            </div>
+                        </div>
+                        <form action="todos-os-pets.php" method="GET" id="form-busca">
+                            <p class="text-center mtop-30"><button type="submit" class="btn btn-gradient text-uppercase" id="index-busca">Buscar</button></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    	<div class="container-fluid padver-50 hidden">
     		<div class="container">
     			<div class="row">
     				<div class="col-xs-12">
@@ -221,6 +240,22 @@
 				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 				    }
 				});
+
+                $(".index-busca button").on("click", function(){
+                    $(".index-busca button").removeClass("btn-blue selected").addClass("btn-default");
+                    $(this).addClass("btn-blue selected").removeClass("btn-default");
+                    if ($(this).text() == "Cachorro") {
+                        $("#form-busca").attr("action", "todos-os-pets.php?tipo=Cachorro");
+                    } else if ($(this).text() == "Gato") {
+                        $("#form-busca").attr("action", "todos-os-pets.php?tipo=Gato");
+                    } else {
+                        $("#form-busca").attr("action", "todos-os-pets.php");
+                    }
+                });
+
+                $("#index-busca").on("click", function(event){
+
+                });
             });
         </script>
     </body>
