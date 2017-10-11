@@ -41,11 +41,11 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Cachorro
-								                    <input type="radio" checked="checked" name="tipo" value="cachorro"/>
+								                    <input type="radio" checked="checked" name="tipo" value="Cachorro"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Gato
-								                    <input type="radio" name="tipo" value="gato"/>
+								                    <input type="radio" name="tipo" value="Gato"/>
 								                </a>
 								            </div>
 										</div>
@@ -56,11 +56,11 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Feminino
-								                    <input type="radio" checked="checked" name="sexo" value="feminino"/>
+								                    <input type="radio" checked="checked" name="sexo" value="Feminino"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Masculino
-								                    <input type="radio" name="sexo" value="masculino"/>
+								                    <input type="radio" name="sexo" value="Masculino"/>
 								                </a>
 								            </div>
 										</div>
