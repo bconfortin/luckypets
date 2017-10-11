@@ -14,11 +14,13 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 padhor-0">
-					<img src="http://placehold.it/1920x350" alt="Placeholder" class="img-responsive hidden-xs hidden-sm">
-					<img src="http://placehold.it/993x600" alt="Placeholder" class="img-responsive hidden-md hidden-lg">
-					<div class="force-vertical-align width-100per">
-						<h1 class="text-center font-1-8em text-uppercase font-700 color-fff mtop-0 mbottom-5 text-shadow font-1-3em-xs mbottom-30-xs">Doação de cachorros e gatos</h1>
-						<p class="mbottom-30 text-center font-300 font-1-5em color-fff text-shadow hidden-xs">Veja todos os animais disponíveis para doação.</p>
+					<img src="img/cat-dog-1920x450.jpg" alt="Imagem promocional" class="img-responsive hidden-xs hidden-sm">
+					<img src="img/cat-dog-993x600.jpg" alt="Imagem promocional" class="img-responsive hidden-md hidden-lg">
+					<div class="force-vertical-align black-bg-filter width-100per">
+						<div class="force-vertical-align">
+							<h1 class="text-center font-1-8em text-uppercase font-700 color-fff mtop-0 mbottom-5 text-shadow font-1-3em-xs mbottom-30-xs">Doação de cachorros e gatos</h1>
+							<p class="mbottom-30 text-center font-300 font-1-5em color-fff text-shadow hidden-xs">Veja todos os animais disponíveis para doação.</p>
+						</div>
 					</div>
 				</div>
 			</div>
