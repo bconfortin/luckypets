@@ -4166,6 +4166,7 @@ h2.subtitulo {
 }
 
 h2.atributo {
+    text-transform: capitalize;
 	font-size: 1em;
 	font-weight: 300;
 	text-transform: uppercase;
@@ -4176,6 +4177,7 @@ h2.atributo {
 }
 
 p.atributo {
+    text-transform: capitalize;
 	line-height: 1.7;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -4549,6 +4551,11 @@ h4.footer-titulo {
     background-position: center center;
     background-size: cover;
     background-color: #666;
+}
+
+.black-bg-filter {
+    background-color: rgba(0,0,0,0.3);
+    height: 100%;
 }
 
 @media (max-width: 768px) {
