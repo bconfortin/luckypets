@@ -4558,6 +4558,36 @@ h4.footer-titulo {
     height: 100%;
 }
 
+.segmented-control {
+    border: 1px solid #eee;
+}
+
+.segmented-control input[type="radio"] {
+    display: none;
+}
+
+.segmented-control .list-group-item {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left:-1px;
+    margin-right: -1px;
+    width: 50%;
+}
+
+.segmented-control .list-group-item:first-child {
+    border-radius:0;
+}
+
+.segmented-control .list-group-item:last-child {
+    border-radius:0;
+}
+
+.segmented-control .list-group-item.active,
+.segmented-control .list-group-item.active:focus,
+.segmented-control .list-group-item.active:hover {
+    background-color: #6452a2;
+}
+
 @media (max-width: 768px) {
 
 	.img-restraint-262 {

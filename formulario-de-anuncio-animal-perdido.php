@@ -93,33 +93,6 @@
 										</div>
 									</div>
 								</div>
-								<style>
-.segmented-control {
-		border: 1px solid #eee;
-}
-.segmented-control input[type="radio"] {
-    display: none;
-}
-.segmented-control .list-group-item {
-    display: inline-block;
-	margin-bottom: 0;
-	margin-left:-1px;
-	margin-right: -1px;
-	width: 50%;
-}
-.segmented-control .list-group-item:first-child {
-	border-radius:0;
-}
-.segmented-control .list-group-item:last-child {
-	border-radius:0;
-}
-.segmented-control .list-group-item.active,
-.segmented-control .list-group-item.active:focus,
-.segmented-control .list-group-item.active:hover {
-    background-color: #6452a2;
-}
-								</style>
-
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
