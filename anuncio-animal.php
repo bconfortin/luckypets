@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<?php
+			$animalId = $_GET["animalId"];
+			if (!isset($animalId) || $animalId == "" || is_null($animalId)) {
+				header('Location: http://localhost/luckypets/todos-os-pets.php');
+	    		exit;
+			}
+		?>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +59,7 @@
 									<h2 class="atributo">Descrição</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus dolore molestiae atque saepe cumque voluptatem a quo mollitia eos inventore illum fugit, minus, odio, ipsum reiciendis id numquam vel voluptates? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore laborum ut quidem delectus ipsa, inventore provident asperiores facere, adipisci ipsum ab voluptatum obcaecati cum aut voluptas repellat vitae nobis unde.</p>
+									<p class="atributo" id="ajaxDescricao">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus dolore molestiae atque saepe cumque voluptatem a quo mollitia eos inventore illum fugit, minus, odio, ipsum reiciendis id numquam vel voluptates? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore laborum ut quidem delectus ipsa, inventore provident asperiores facere, adipisci ipsum ab voluptatum obcaecati cum aut voluptas repellat vitae nobis unde.</p>
 								</div>
 							</div>
 							<div class="row">
@@ -60,15 +67,15 @@
 									<h2 class="atributo">Nome</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo">Lúcifer</p>
+									<p class="atributo" id="ajaxNome">Lúcifer</p>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12 col-sm-3 col-md-2">
-									<h2 class="atributo">Tipo de animal</h2>
+									<h2 class="atributo">Tipo</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo">Gato</p>
+									<p class="atributo" id="ajaxTipo">Gato</p>
 								</div>
 							</div>
 							<div class="row">
@@ -76,7 +83,7 @@
 									<h2 class="atributo">Sexo</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo">Macho</p>
+									<p class="atributo" id="ajaxSexo">Macho</p>
 								</div>
 							</div>
 							<div class="row">
@@ -84,7 +91,7 @@
 									<h2 class="atributo">Raça</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo">Hell Kitten</p>
+									<p class="atributo" id="ajaxRaca">Hell Kitten</p>
 								</div>
 							</div>
 							<div class="row">
@@ -92,7 +99,7 @@
 									<h2 class="atributo">Cor</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo">Ginger</p>
+									<p class="atributo" id="ajaxCor">Ginger</p>
 								</div>
 							</div>
 							<div class="row">
@@ -100,7 +107,7 @@
 									<h2 class="atributo">Porte</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo">Médio</p>
+									<p class="atributo" id="ajaxPorte">Médio</p>
 								</div>
 							</div>
 							<div class="row">
@@ -108,7 +115,7 @@
 									<h2 class="atributo">Idade</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo">Filhote (0 a 2 anos)</p>
+									<p class="atributo" id="ajaxIdade">Filhote (0 a 2 anos)</p>
 								</div>
 							</div>
 							<div class="row">
@@ -116,7 +123,7 @@
 									<h2 class="atributo">Vacinado</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo"><span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim</p>
+									<p class="atributo" id="ajaxVacinado"><span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim</p>
 								</div>
 							</div>
 							<div class="row">
@@ -124,7 +131,7 @@
 									<h2 class="atributo">Castrado</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo"><span class="icon-width"><i class="fa fa-times color-red"></i></span>Não</p>
+									<p class="atributo" id="ajaxCastrado"><span class="icon-width"><i class="fa fa-times color-red"></i></span>Não</p>
 								</div>
 							</div>
 						</div>
@@ -200,6 +207,39 @@
 		    			containerization();
 		    		}
 		    	}
+
+				$.ajax({
+				    type: 'GET',
+				    crossOrigin: true,
+				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacao/<?= $animalId; ?>',
+				    dataType: 'json',
+				    success:function(x){
+						if (x == undefined) {
+							location.href = "http://localhost/luckypets/todos-os-pets.php";
+						}
+						$('#ajaxDescricao').text(x.animal.descricao);
+						$('#ajaxNome').text(x.animal.nome);
+						$('#ajaxTipo').text(x.animal.tipo);
+						$('#ajaxSexo').text(x.animal.sexo);
+						$('#ajaxRaca').text(x.animal.raca);
+						$('#ajaxCor').text(x.animal.cor);
+						$('#ajaxPorte').text(x.animal.porte);
+						$('#ajaxIdade').text(x.animal.idade);
+						if (x.animal.vacinado == true) {
+							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim');
+						} else {
+							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
+						}
+						if (x.animal.castrado == true) {
+							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim');
+						} else {
+							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
+						}
+				    },
+				    error:function(){
+				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+				    }
+				});
 			});
 		</script>
 	</body>
