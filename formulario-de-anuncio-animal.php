@@ -238,7 +238,7 @@
 							console.log("Ops! Não foi possível fazer sua requisição.");
 						},
 						complete:function(){
-							location.href = "http://localhost/luckypets/?message=anuncioCriadoComSucesso";
+							location.href = "<?= $GLOBALS['www']; ?>?message=anuncioCriadoComSucesso";
 						}
 					});
 				});

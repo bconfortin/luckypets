@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<?php
-			$animalId = $_GET["animalId"];
-			if (!isset($animalId) || $animalId == "" || is_null($animalId)) {
-				header('Location: http://localhost/luckypets/todos-os-pets.php');
-	    		exit;
-			}
-		?>
+	<head>	
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +8,13 @@
 		<title>Lucky Pets</title>
 		<meta name="description" content=""/>
 		<?php include "head.php"; ?>
+		<?php
+			$animalId = $_GET["animalId"];
+			if (!isset($animalId) || $animalId == "" || is_null($animalId)) {
+				header('Location: ' . $GLOBALS['www'] . 'todos-os-pets.php');
+	    		exit;
+			}
+		?>
 	</head>
 	<body>
 		<?php include "header.php"; ?>
@@ -215,7 +215,7 @@
 				    dataType: 'json',
 				    success:function(x){
 						if (x == undefined) {
-							location.href = "http://localhost/luckypets/todos-os-pets.php";
+							location.href = "<?= $GLOBALS['www']; ?>todos-os-pets.php";
 						}
 						$('#ajaxDescricao').text(x.animal.descricao);
 						$('#ajaxNome').text(x.animal.nome);

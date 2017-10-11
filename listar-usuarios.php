@@ -129,7 +129,7 @@
 							tr.remove();
 							if (id == <?= $_SESSION['id'] ?>) {
 								$.get("clear-session.php");
-				                location.href = "http://localhost/luckypets/";
+				                location.href = "<?= $GLOBALS['www']; ?>";
 							}
 						} else {
 							console.log("Operação cancelada.");

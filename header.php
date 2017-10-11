@@ -1,6 +1,6 @@
     	<div id="devMenu" class="hidden" style="padding: 15px; background-color: #ddd; z-index: 300; position: fixed; top: 80px; left: 0; width: 400px;">
     		<ul style="padding-left: 0; list-style-type: none;">
-    			<li><a href="http://localhost/luckypets/" style="color: #333; padding-left: 15px;">Página inicial</a></li>
+    			<li><a href="<?= $GLOBALS['www']; ?>" style="color: #333; padding-left: 15px;">Página inicial</a></li>
                 <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Cadastro</li>
                 <li><a href="formulario-de-cadastro.php" style="color: #333; padding-left: 15px;">Usuário</a></li>
                 <li><a href="formulario-de-anuncio-animal.php" style="color: #333; padding-left: 15px;">Doação</a></li>
@@ -49,7 +49,7 @@
                     <ul class="mbottom-30 text-center">
                         <li><a href="formulario-de-cadastro.php">Fazer cadastro</a></li>
                 <?php } ?>
-					<li><a href="http://localhost/luckypets/" class="visible-lg-inline-block">Página inicial</a></li>
+					<li><a href="<?= $GLOBALS['www']; ?>" class="visible-lg-inline-block">Página inicial</a></li>
 					<li><a href="">Animais</a></li>
 					<li><a href="quem-somos.php">Sobre</a></li>
 					<li><a href="">Contato</a></li>
@@ -66,13 +66,13 @@
     		<div class="container container-fluid-sm">
     			<div class="row">
     				<div class="col-xs-12">
-						<a href="http://localhost/luckypets/" class="lucky-nav-left-logo">
+						<a href="<?= $GLOBALS['www']; ?>" class="lucky-nav-left-logo">
 							<img src="img/logo/lucky-pets-logo-180x260.png" alt="Logo do Lucky Pets" class="img-responsive hidden-xs" style="max-height: 55px;">
 							<img src="img/logo/lucky-pets-logo-336x98.png" alt="Logo do Lucky Pets" class="img-responsive visible-xs-block" style="max-height: 20px;">
 						</a>
 						<ul class="lucky-nav-left">
 							<span class="hidden-xs">
-								<li><a href="http://localhost/luckypets/" class="visible-lg-inline-block">Página inicial</a></li>
+								<li><a href="<?= $GLOBALS['www']; ?>" class="visible-lg-inline-block">Página inicial</a></li>
 								<li>
 									<div class="dropdown">
 										<a id="dLabelAnimais" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

@@ -175,7 +175,7 @@
 						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 					},
 					success:function(data){
-						$.post("http://localhost/luckypets/login-backend.php", {
+						$.post("<?= $GLOBALS['www']; ?>login-backend.php", {
 							"administrador": data.administrador,
 							"authToken": data.authToken,
 							"celular": data.celular,
@@ -189,7 +189,7 @@
 							"telefone": data.telefone,
 							"basicAuth": "<?php echo $_SESSION['basicAuth']; ?>"
 						}).done(function(data) {
-							location.href = "http://localhost/luckypets/?message=usuarioAlteradoComSucesso";
+							location.href = "<?= $GLOBALS['www']; ?>?message=usuarioAlteradoComSucesso";
 						});
 					},
 					error:function(){

@@ -1,7 +1,7 @@
 <?php
     function verifyLogin() {
         if (!isset($_SESSION['basicAuth'])) {
-    		header('Location: http://localhost/luckypets/?message=usuarioNaoLogado');
+    		header('Location: ' . $GLOBALS['www'] . '?message=usuarioNaoLogado');
     		exit;
     	}
     }
