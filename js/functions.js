@@ -1,4 +1,7 @@
 $(function(){
+    var www = 'http://localhost/luckypets/';
+    //var www = 'http://31.220.53.123/luckypets/';
+
     // Remover a classe container nas resoluções abaixo de 993
     // Por Bruno Confortin
     if ($(".custom-container-sm-xs")) {
@@ -40,4 +43,26 @@ $(function(){
 
         });
     }
+
+    if ($("#toggleDevMenu")) {
+        $("#toggleDevMenu").on("click", function(event){
+            event.preventDefault();
+            $("#sessionDesc").addClass("hidden");
+            $("#devMenu").toggleClass("hidden");
+        });
+    }
+
+    if ($("#toggleSessionDesc")) {
+        $("#toggleSessionDesc").on("click", function(event){
+            event.preventDefault();
+            $("#devMenu").addClass("hidden");
+            $("#sessionDesc").toggleClass("hidden");
+        });
+    }
+
+    $(".btnSair").on("click", function(event){
+        event.preventDefault();
+        $.get("clear-session.php");
+        location.href = www;
+    });
 });

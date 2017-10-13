@@ -59,9 +59,9 @@
 									</div>
 								</div>
 								<div class="clearfix mtop-15">
-									<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapsePorte" aria-expanded="true" aria-controls="collapsePorte">Porte <i class="fa fa-caret-down pull-right caret-position"></i></a>
+									<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapseSexo" aria-expanded="true" aria-controls="collapseSexo">Sexo <i class="fa fa-caret-down pull-right caret-position"></i></a>
 								</div>
-								<div class="collapse in" id="collapsePorte" aria-expanded="true">
+								<div class="collapse in" id="collapseSexo" aria-expanded="true">
 									<div class="radio mtop-0">
 										<label>
 											<input type="radio" name="sexo" value="" checked="checked"> Todos

@@ -94,21 +94,5 @@
 		</div>
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
-		<script>
-			$(function(){
-				// Baseado e modificado a partir de:
-				// Bootstrap 3.3.0 Snippet by renswijnmalen
-				// https://bootsnipp.com/snippets/vOk57
-			    $('div.segmented-control a').on('click', function(){
-			        $(this).siblings().each(function(i,e){
-			            $(e).removeClass('active');
-			        });
-			        $(this).addClass('active');
-			        $(this).find('input').prop('checked',true);
-			        return false;
-
-			    });
-			});
-		</script>
 	</body>
 </html>

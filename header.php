@@ -45,14 +45,15 @@
     				<p class="text-center"><a href="" class="inline-block white-link" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR<br>(clique para mudar)</a></p>
     				<hr class="hr-white-shadow marver-30">
                     <ul class="mbottom-30 text-center">
+                        <li><a href="" class="btnSair">Sair</a></li>
                 <?php } else { ?>
                     <ul class="mbottom-30 text-center">
                         <li><a href="formulario-de-cadastro.php">Fazer cadastro</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
                 <?php } ?>
 					<li><a href="<?= $GLOBALS['www']; ?>" class="visible-lg-inline-block">Página inicial</a></li>
 					<li><a href="">Animais</a></li>
 					<li><a href="quem-somos.php">Sobre</a></li>
-					<li><a href="">Contato</a></li>
 				</ul>
 				<p class="text-center mbottom-0">
 					<a href=""><i class="fa fa-2x fa-facebook-square color-fff marhor-5"></i></a>
@@ -63,7 +64,7 @@
     	</div>
     	<div class="destino-menu-overlay hidden"></div>
     	<div class="container-fluid bg-fff">
-    		<div class="container container-fluid-sm">
+    		<div class="container custom-container-sm-xs">
     			<div class="row">
     				<div class="col-xs-12">
 						<a href="<?= $GLOBALS['www']; ?>" class="lucky-nav-left-logo">
@@ -101,7 +102,7 @@
 								</li>
 								<li><a href="quem-somos.php">Sobre</a></li>
                                 <?php if (isset($_SESSION['nome'])) { ?>
-                                    <li><a href="" id="logout">Sair</a></li>
+                                    <li><a href="" class="btnSair">Sair</a></li>
                                 <?php } else { ?>
                                     <li><a href="" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
                                 <?php } ?>
@@ -115,7 +116,7 @@
     								<span class="inline-block pull-right mtop-10 text-default font-400"><?= $_SESSION['nome']; ?><br><a href="" class="font-700" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR</a></span>
     							</li>
                             <?php } else { ?>
-                                <li><a href="formulario-de-cadastro.php">Fazer cadastro</a></li>
+                                <li><a href="formulario-de-cadastro.php" class="hidden-xs">Fazer cadastro</a></li>
                             <?php } ?>
 						</ul>
     				</div>

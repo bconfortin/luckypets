@@ -112,30 +112,6 @@
                     });
                 }
             });
-
-            function make_base_auth(user, password) {
-                var tok = user + ':' + password;
-                var hash = btoa(tok);
-                return "Basic " + hash;
-            }
-
-            $("#toggleDevMenu").on("click", function(event){
-                event.preventDefault();
-                $("#sessionDesc").addClass("hidden");
-                $("#devMenu").toggleClass("hidden");
-            });
-
-            $("#toggleSessionDesc").on("click", function(event){
-                event.preventDefault();
-                $("#devMenu").addClass("hidden");
-                $("#sessionDesc").toggleClass("hidden");
-            });
-
-            $("#logout").on("click", function(event){
-                event.preventDefault();
-                $.get("clear-session.php");
-                location.href = "<?= $GLOBALS['www']; ?>";
-            });
         });
 
         </script>

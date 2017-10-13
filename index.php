@@ -253,10 +253,6 @@
                         $("#form-busca input[name=tipo]").val("");
                     }
                 });
-
-                $("#index-busca").on("click", function(event){
-
-                });
             });
         </script>
     </body>

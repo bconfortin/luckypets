@@ -6,8 +6,7 @@
 		    				<div class="col-xs-12">
 								<img src="img/logo/lucky-pets-logo-white-336x98.png" alt="Logo do Lucky Pets" class="img-responsive center-block pull-left logo-footer">
 								<ul class="lucky-footer-links pull-right">
-									<li><a href="">Sobre</a></li>
-									<li><a href="">Contato</a></li>
+									<li><a href="quem-somos.php">Sobre</a></li>
 								</ul>
 		    				</div>
 		    			</div>

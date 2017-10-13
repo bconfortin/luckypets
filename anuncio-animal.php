@@ -157,60 +157,64 @@
 		<?php include "foot.php"; ?>
 		<script>
 			$(function(){
-				$.ajax({
-				    type: 'GET',
-				    crossOrigin: true,
-				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacao/<?= $animalId; ?>',
-				    dataType: 'json',
-				    success:function(x){
-						if (x == undefined) {
-							location.href = "<?= $GLOBALS['www']; ?>todos-os-pets.php";
-						}
-						$('#ajaxDescricao').text(x.animal.descricao);
-						$('#ajaxNome').text(x.animal.nome);
-						$('#ajaxTipo').text(x.animal.tipo);
-						$('#ajaxSexo').text(x.animal.sexo);
-						$('#ajaxRaca').text(x.animal.raca);
-						$('#ajaxCor').text(x.animal.cor);
-						$('#ajaxPorte').text(x.animal.porte);
-						$('#ajaxIdade').text(x.animal.idade);
-						if (x.animal.vacinado == true) {
-							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim');
-						} else {
-							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
-						}
-						if (x.animal.castrado == true) {
-							$('#ajaxCastrado').html('<span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim');
-						} else {
-							$('#ajaxCastrado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
-						}
-						//var imagens = x.animal.imagem;
-						var htmlCarouselIndicators = '';
-						var htmlCarouselInner = '';
-						for (i = 0; i < (x.animal.imagens).length; i++) {
-							//console.log(x.animal.imagens[i]);
-							var img = 'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i];
+				getAnunciosDoacao();
+				
+				function getAnunciosDoacao() {
+			        $.ajax({
+			            type: 'GET',
+			            crossOrigin: true,
+			            url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacao/<?= $animalId; ?>',
+			            dataType: 'json',
+			            success:function(x){
+			                if (x == undefined) {
+			                    location.href = "<?= $GLOBALS['www']; ?>todos-os-pets.php";
+			                }
+			                $('#ajaxDescricao').text(x.animal.descricao);
+			                $('#ajaxNome').text(x.animal.nome);
+			                $('#ajaxTipo').text(x.animal.tipo);
+			                $('#ajaxSexo').text(x.animal.sexo);
+			                $('#ajaxRaca').text(x.animal.raca);
+			                $('#ajaxCor').text(x.animal.cor);
+			                $('#ajaxPorte').text(x.animal.porte);
+			                $('#ajaxIdade').text(x.animal.idade);
+			                if (x.animal.vacinado == true) {
+			                    $('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim');
+			                } else {
+			                    $('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
+			                }
+			                if (x.animal.castrado == true) {
+			                    $('#ajaxCastrado').html('<span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim');
+			                } else {
+			                    $('#ajaxCastrado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
+			                }
+			                //var imagens = x.animal.imagem;
+			                var htmlCarouselIndicators = '';
+			                var htmlCarouselInner = '';
+			                for (i = 0; i < (x.animal.imagens).length; i++) {
+			                    //console.log(x.animal.imagens[i]);
+			                    var img = 'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i];
 
-							if (i != 0) {
-								htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '"></li>';
-								htmlCarouselInner += '<div class="item"><img src="' + img + '" alt="" class="width-850"></div>';
-							} else {
-								htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '" class="active"></li>';
-								htmlCarouselInner += '<div class="item active"><img src="' + img + '" alt="" class="width-850"></div>';
-							}
-						}
-						$(".carousel-indicators").append(htmlCarouselIndicators);
-						$(".carousel-inner").append(htmlCarouselInner);
+			                    if (i != 0) {
+			                        htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '"></li>';
+			                        htmlCarouselInner += '<div class="item"><img src="' + img + '" alt="" class="width-850"></div>';
+			                    } else {
+			                        htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '" class="active"></li>';
+			                        htmlCarouselInner += '<div class="item active"><img src="' + img + '" alt="" class="width-850"></div>';
+			                    }
+			                }
+			                $(".carousel-indicators").append(htmlCarouselIndicators);
+			                $(".carousel-inner").append(htmlCarouselInner);
 
-						if (!$(".item.active")) {
-							$(".carousel-indicators").append('<li data-target="#carousel-img" data-slide-to="1" class="active"></li>');
-							$(".carousel-inner").append('<div class="item active"><img src="http://placehold.it/860x460" alt=""></div>');
-						}
-				    },
-				    error:function(){
-				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
-				    }
-				});
+			                if (!$(".item.active")) {
+			                    $(".carousel-indicators").append('<li data-target="#carousel-img" data-slide-to="1" class="active"></li>');
+			                    $(".carousel-inner").append('<div class="item active"><img src="http://placehold.it/860x460" alt=""></div>');
+			                }
+			            },
+			            error:function(){
+			                console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+			            }
+			        });
+			    }
 			});
 		</script>
 	</body>
