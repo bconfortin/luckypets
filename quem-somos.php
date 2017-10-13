@@ -29,7 +29,7 @@
 			<div class="container custom-container-sm-xs">
 				<div class="row mbottom-30">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-						<h1 class="titulo text-center mtop-0 mbottom-30">A equipe por trás do projeto</h1>
+						<h1 class="titulo text-center mtop-0 mbottom-30 mtop-30-xs">A equipe por trás do projeto</h1>
 						<p class="text-center font-1-1em line-height-1-7">O site Lucky Pets foi desenvolvido por três alunos do curso de tecnólogo em Análise e Desenvolvimento de Sistemas do Instituto Federal do Paraná (IFPR). O perfil dos alunos se encontra abaixo:</p>
 					</div>
 				</div>
