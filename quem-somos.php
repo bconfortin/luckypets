@@ -25,7 +25,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid bg-f5f5f5 padver-50">
+		<div class="container-fluid bg-f5f5f5 padver-50 padver-15-xs">
 			<div class="container">
 				<div class="row mbottom-30">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
@@ -36,7 +36,7 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
 						<div class="row">
-							<div class="col-xs-12 col-sm-4">
+							<div class="col-xs-12 col-sm-4 mbottom-15-xs">
 								<div class="bg-fff card-home">
 									<img src="img/amanda-morais.jpg" alt="" class="img-responsive">
 									<div class="padding-15">
@@ -54,7 +54,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-xs-12 col-sm-4">
+							<div class="col-xs-12 col-sm-4 mbottom-15-xs">
 								<div class="bg-fff card-home">
 									<img src="img/bruno-confortin.jpg" alt="" class="img-responsive">
 									<div class="padding-15">
