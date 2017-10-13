@@ -1,4 +1,4 @@
-    	<div id="devMenu" class="hidden" style="padding: 15px; background-color: #ddd; z-index: 300; position: fixed; top: 80px; left: 0; width: 400px;">
+    	<div id="devMenu" class="hidden" style="padding: 15px; background-color: #ddd; z-index: 300; position: fixed; top: 110px; left: 0; width: 400px;">
     		<ul style="padding-left: 0; list-style-type: none;">
     			<li><a href="<?= $GLOBALS['www']; ?>" style="color: #333; padding-left: 15px;">Página inicial</a></li>
                 <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Cadastro</li>
@@ -6,6 +6,8 @@
                 <li><a href="formulario-de-anuncio-animal.php" style="color: #333; padding-left: 15px;">Doação</a></li>
     			<li><a href="formulario-de-anuncio-animal-encontrado.php" style="color: #333; padding-left: 15px;">Animal encontrado</a></li>
     			<li><a href="formulario-de-anuncio-animal-perdido.php" style="color: #333; padding-left: 15px;">Animal perdido</a></li>
+                <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Editar</li>
+                <li><a href="editar-usuario.php" style="color: #333; padding-left: 15px;">Usuário</a></li>
     			<li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Listar</li>
                 <li><a href="listar-usuarios.php" style="color: #333; padding-left: 15px;">Usuários</a></li>
     			<li><a href="listar-doacoes.php" style="color: #333; padding-left: 15px;">Doações</a></li>
@@ -18,7 +20,7 @@
     		</ul>
     	</div>
 
-        <div id="sessionDesc" class="container-fluid hidden" style="position: fixed; left: -30px; top: 80px; z-index: 30000;">
+        <div id="sessionDesc" class="container-fluid hidden" style="position: fixed; left: -30px; top: 110px; z-index: 30000;">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -28,7 +30,7 @@
             </div>
         </div>
 
-        <div class="bg-333 inline-block" style="padding: 18px; position: fixed; top: 0; left: 0; z-index: 30000;">
+        <div class="bg-333 inline-block" style="padding: 18px; position: fixed; top: 0; left: 0; z-index: 30000;" class="mtop-30-xs">
             <a href="" class="block white-link" id="toggleDevMenu"><i class="fa fa-bars mright-15"></i>Toggle Dev Menu</a>
             <a href="" class="block white-link" id="toggleSessionDesc"><i class="fa fa-user-circle mright-15"></i>Toggle Session</a>
         </div>
