@@ -25,7 +25,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid bg-f5f5f5 padver-50">
+		<div class="container-fluid bg-f5f5f5 padver-50 padver-15-xs">
 			<div class="">
 				<div class="row">
 					<div class="col-xs-12 col-md-3 col-sm-3 col-lg-2 mbottom-30">
