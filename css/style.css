@@ -4629,8 +4629,12 @@ h4.footer-titulo {
 		margin-top: 30px;
 	}
 
-	.mbottom-30-xs {
+    .mbottom-30-xs {
 		margin-bottom: 30px;
+	}
+
+    .mbottom-15-xs {
+		margin-bottom: 15px;
 	}
 
 	.mtop-0-xs {

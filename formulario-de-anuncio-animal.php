@@ -174,20 +174,6 @@
 		<?php include "foot.php"; ?>
 		<script>
 			$(function(){
-				// Baseado e modificado a partir de:
-				// Bootstrap 3.3.0 Snippet by renswijnmalen
-				// https://bootsnipp.com/snippets/vOk57
-
-			    $('div.segmented-control a').on('click', function(){
-			        $(this).siblings().each(function(i,e){
-			            $(e).removeClass('active');
-						$(e).children('input').attr('checked', false);
-			        });
-			        $(this).addClass('active');
-			        $(this).children('input').attr('checked', true);
-			        return false;
-			    });
-
 				$("#btnCadastrar").on("click", function(event){
 					event.preventDefault();
 					$(this).addClass("disabled");
