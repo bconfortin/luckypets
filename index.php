@@ -50,6 +50,7 @@
                             </div>
                         </div>
                         <form action="todos-os-pets.php" method="GET" id="form-busca">
+                            <input type="hidden" name="tipo" value="">
                             <p class="text-center mtop-30"><button type="submit" class="btn btn-gradient text-uppercase" id="index-busca">Buscar</button></p>
                         </form>
                     </div>
@@ -245,11 +246,11 @@
                     $(".index-busca button").removeClass("btn-blue selected").addClass("btn-default");
                     $(this).addClass("btn-blue selected").removeClass("btn-default");
                     if ($(this).text() == "Cachorro") {
-                        $("#form-busca").attr("action", "todos-os-pets.php?tipo=Cachorro");
+                        $("#form-busca input[name=tipo]").val("Cachorro");
                     } else if ($(this).text() == "Gato") {
-                        $("#form-busca").attr("action", "todos-os-pets.php?tipo=Gato");
+                        $("#form-busca input[name=tipo]").val("Gato");
                     } else {
-                        $("#form-busca").attr("action", "todos-os-pets.php");
+                        $("#form-busca input[name=tipo]").val("");
                     }
                 });
 
