@@ -4592,6 +4592,21 @@ h4.footer-titulo {
     width: 850px;
 }
 
+.text-normal {
+    text-transform: none;
+}
+
+.sobre-nos-icons {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: #666;
+}
+
+.sobre-nos-icons>a {
+    padding: 7px 11px;
+}
+
 @media (max-width: 768px) {
 
 	.img-restraint-262 {
