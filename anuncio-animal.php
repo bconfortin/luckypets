@@ -231,10 +231,10 @@
 
 							if (i != 0) {
 								htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '"></li>';
-								htmlCarouselInner += '<div class="item"><img src="' + img + '" alt=""></div>';
+								htmlCarouselInner += '<div class="item"><img src="' + img + '" alt="" class="width-850"></div>';
 							} else {
 								htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '" class="active"></li>';
-								htmlCarouselInner += '<div class="item active"><img src="' + img + '" alt=""></div>';
+								htmlCarouselInner += '<div class="item active"><img src="' + img + '" alt="" class="width-850"></div>';
 							}
 						}
 						$(".carousel-indicators").append(htmlCarouselIndicators);

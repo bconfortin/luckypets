@@ -4588,6 +4588,10 @@ h4.footer-titulo {
     background-color: #6452a2;
 }
 
+.width-850 {
+    width: 850px;
+}
+
 @media (max-width: 768px) {
 
 	.img-restraint-262 {
