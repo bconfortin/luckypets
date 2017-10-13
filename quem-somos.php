@@ -14,8 +14,8 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 padhor-0">
-					<img src="img/1920x350.jpg" alt="Placeholder" class="img-responsive hidden-xs hidden-sm">
-					<img src="http://placehold.it/993x600" alt="Placeholder" class="img-responsive hidden-md hidden-lg">
+					<img src="img/cat-1920x450.jpg" alt="Imagem de um gato cor caramelo." class="img-responsive hidden-xs hidden-sm">
+					<img src="img/cat-993x600.jpg" alt="Imagem de um gato cor caramelo." class="img-responsive hidden-md hidden-lg">
 					<div class="force-vertical-align black-bg-filter width-100per">
 						<div class="force-vertical-align">
 							<h1 class="text-center font-1-8em text-uppercase font-700 color-fff mtop-0 mbottom-5 text-shadow font-1-3em-xs mbottom-30-xs">Quem somos</h1>
@@ -34,40 +34,59 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-4">
-						<div class="padding-30 bg-fff card-home">
-							<img src="img/amanda-morais.jpg" alt="" class="img-circle img-responsive mbottom-20">
-							<h2 class="text-center text-uppercase font-700 font-1em margin-0">Amanda Louise Acosta Morais</h2>
-							<p class="marver-15 text-center">Analista de Sistemas<br>Backend</p>
-							<p class="text-center mbottom-0">
-								<a href="https://www.facebook.com/AmandaLouiseMorais" class="marhor-5 inline-block"><i class="fa color-facebook fa-facebook-square fa-2x"></i></a>
-								<a href="https://github.com/amandaalouise" class="marhor-5 inline-block"><i class="fa color-github fa-github-square fa-2x"></i></a>
-								<a href="https://www.instagram.com/amandalouisemorais/" class="marhor-5 inline-block"><i class="fa color-instagram fa-instagram fa-2x"></i></a>
-							</p>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-4">
-						<div class="padding-30 bg-fff card-home">
-							<img src="img/bruno-confortin.jpg" alt="" class="img-circle img-responsive mbottom-20">
-							<h2 class="text-center text-uppercase font-700 font-1em margin-0">Bruno Goerck Confortin</h2>
-							<p class="marver-15 text-center">Analista de Sistemas<br>Frontend</p>
-							<p class="text-center mbottom-0">
-								<a href="https://www.facebook.com/brunoconfortin" class="marhor-5 inline-block"><i class="fa color-facebook fa-facebook-square fa-2x"></i></a>
-								<a href="https://github.com/bconfortin" class="marhor-5 inline-block"><i class="fa color-github fa-github-square fa-2x"></i></a>
-								<a href="https://www.instagram.com/bconfortin/" class="marhor-5 inline-block"><i class="fa color-instagram fa-instagram fa-2x"></i></a>
-							</p>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-4">
-						<div class="padding-30 bg-fff card-home">
-							<img src="img/jade-mathias.jpg" alt="" class="img-circle img-responsive mbottom-20">
-							<h2 class="text-center text-uppercase font-700 font-1em margin-0">Jade Mathias da Silva</h2>
-							<p class="marver-15 text-center">Analista de Sistemas<br>Documentação</p>
-							<p class="text-center mbottom-0">
-								<a href="https://www.facebook.com/jadeemathias" class="marhor-5 inline-block"><i class="fa color-facebook fa-facebook-square fa-2x"></i></a>
-								<!-- <a href="" class="marhor-5 inline-block"><i class="fa color-github fa-github-square fa-2x"></i></a> -->
-								<a href="https://www.instagram.com/jademathias/" class="marhor-5 inline-block"><i class="fa color-instagram fa-instagram fa-2x"></i></a>
-							</p>
+					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+						<div class="row">
+							<div class="col-xs-12 col-sm-4">
+								<div class="bg-fff card-home">
+									<img src="img/amanda-morais.jpg" alt="" class="img-responsive">
+									<div class="padding-15">
+										<h2 class="text-uppercase font-700 font-1em margin-0">Amanda Louise Acosta Morais</h2>
+										<p class="mtop-5 mbottom-15 font-300">Analista de Sistemas - Backend</p>
+										<div class="sobre-nos-icons relative text-center">
+											<a href="https://www.facebook.com/AmandaLouiseMorais" class="white-link inline-block force-vertical-align"><i class="fa fa-facebook"></i></a>
+										</div>
+										<div class="sobre-nos-icons relative text-center">
+											<a href="https://github.com/amandaalouise" class="white-link inline-block force-vertical-align"><i class="fa fa-github"></i></a>
+										</div>
+										<div class="sobre-nos-icons relative text-center">
+											<a href="https://www.instagram.com/amandalouisemorais/" class="white-link inline-block force-vertical-align"><i class="fa fa-instagram"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-4">
+								<div class="bg-fff card-home">
+									<img src="img/bruno-confortin.jpg" alt="" class="img-responsive">
+									<div class="padding-15">
+										<h2 class="text-uppercase font-700 font-1em margin-0">Bruno Goerck Confortin</h2>
+										<p class="mtop-5 mbottom-15 font-300">Analista de Sistemas - Frontend</p>
+										<div class="sobre-nos-icons relative text-center">
+											<a href="https://www.facebook.com/brunoconfortin" class="white-link inline-block force-vertical-align"><i class="fa fa-facebook"></i></a>
+										</div>
+										<div class="sobre-nos-icons relative text-center">
+											<a href="https://github.com/bconfortin" class="white-link inline-block force-vertical-align"><i class="fa fa-github"></i></a>
+										</div>
+										<div class="sobre-nos-icons relative text-center">
+											<a href="https://www.instagram.com/bconfortin" class="white-link inline-block force-vertical-align"><i class="fa fa-instagram"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-4">
+								<div class="bg-fff card-home">
+									<img src="img/jade-mathias.jpg" alt="" class="img-responsive">
+									<div class="padding-15">
+										<h2 class="text-uppercase font-700 font-1em margin-0">Jade Mathias da Silva</h2>
+										<p class="mtop-5 mbottom-15 font-300">Analista de Sistemas - Documentação</p>
+										<div class="sobre-nos-icons relative text-center">
+											<a href="https://www.facebook.com/jadeemathias" class="white-link inline-block force-vertical-align"><i class="fa fa-facebook"></i></a>
+										</div>
+										<div class="sobre-nos-icons relative text-center">
+											<a href="https://www.instagram.com/jademathias/" class="white-link inline-block force-vertical-align"><i class="fa fa-instagram"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
