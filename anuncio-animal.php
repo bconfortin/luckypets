@@ -127,27 +127,7 @@
 						<div class="bg-purple padding-15">
 							<p class="color-fff text-uppercase font-700 mbottom-0">Contato</p>
 						</div>
-						<div class="padding-15 bg-fff">
-							<a href="" class="block link-white border-ccc mbottom-5 link-contato">
-								<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-whatsapp"></i></span>
-								<span class="padding-15 inline-block link-666 font-700">WhatsApp</span>
-							</a>
-							<a href="" class="block link-white border-ccc mbottom-5 link-contato">
-								<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-phone"></i></span>
-								<span class="padding-15 inline-block link-666 font-700">Telefone</span>
-							</a>
-							<a href="" class="block link-white border-ccc mbottom-5 link-contato">
-								<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-envelope"></i></span>
-								<span class="padding-15 inline-block link-666 font-700">E-mail</span>
-							</a>
-							<a href="" class="block link-white border-ccc mbottom-5 link-contato">
-								<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-comments-o"></i></span>
-								<span class="padding-15 inline-block link-666 font-700">Chat</span>
-							</a>
-							<a href="" class="block link-white border-ccc link-contato">
-								<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-question"></i></span>
-								<span class="padding-15 inline-block link-666 font-700">Faça uma pergunta</span>
-							</a>
+						<div class="padding-15 bg-fff" id="listaDeContato">
 						</div>
 					</div>
 				</div>
@@ -158,7 +138,7 @@
 		<script>
 			$(function(){
 				getAnunciosDoacao();
-				
+
 				function getAnunciosDoacao() {
 			        $.ajax({
 			            type: 'GET',
@@ -209,6 +189,33 @@
 			                    $(".carousel-indicators").append('<li data-target="#carousel-img" data-slide-to="1" class="active"></li>');
 			                    $(".carousel-inner").append('<div class="item active"><img src="http://placehold.it/860x460" alt=""></div>');
 			                }
+
+							var htmlContato = '';
+							if (x.animal.usuario.celular != null && x.animal.usuario.celular != undefined && x.animal.usuario.celular != "") {
+								htmlContato += '<a href="tel:' + x.animal.usuario.celular + '" class="block link-white border-ccc mbottom-5 link-contato">';
+								htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-whatsapp"></i></span>';
+								htmlContato += '<span class="padding-15 inline-block link-666 font-700">WhatsApp</span>';
+								htmlContato += '</a>';
+							}
+							if (x.animal.usuario.email != null && x.animal.usuario.email != undefined && x.animal.usuario.email != "") {
+								htmlContato += '<a href="mailto:' + x.animal.usuario.email + '" class="block link-white border-ccc mbottom-5 link-contato">';
+								htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-envelope"></i></span>';
+								htmlContato += '<span class="padding-15 inline-block link-666 font-700">E-mail</span>';
+								htmlContato += '</a>';
+							}
+							if (x.animal.usuario.telefone != null && x.animal.usuario.telefone != undefined && x.animal.usuario.telefone != "") {
+								htmlContato += '<a href="tel:' + x.animal.usuario.telefone + '" class="block link-white border-ccc mbottom-5 link-contato">';
+								htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-phone"></i></span>';
+								htmlContato += '<span class="padding-15 inline-block link-666 font-700">Telefone</span>';
+								htmlContato += '</a>';
+							}
+							if (x.animal.usuario.facebook != null && x.animal.usuario.facebook != undefined && x.animal.usuario.facebook != "") {
+								htmlContato += '<a href="' + x.animal.usuario.facebook + '" class="block link-white border-ccc link-contato">';
+								htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-question"></i></span>';
+								htmlContato += '<span class="padding-15 inline-block link-666 font-700">Faça uma pergunta</span>';
+								htmlContato += '</a>';
+							}
+							$("#listaDeContato").append(htmlContato);
 			            },
 			            error:function(){
 			                console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
