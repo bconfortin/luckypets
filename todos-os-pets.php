@@ -29,125 +29,151 @@
 			<div class="">
 				<div class="row">
 					<div class="col-xs-12 col-md-3 col-sm-3 col-lg-2 mbottom-30">
-						<div class="padver-10 padhor-15 bg-gradient">
-							<h2 class="margin-0 color-fff font-700 text-uppercase font-1em">Filtro</h2>
-						</div>
-						<div class="padding-15 bg-fff font-0-9em">
-							<div class="clearfix">
-								<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapseAnimal" aria-expanded="true" aria-controls="collapseAnimal">Animal <i class="fa fa-caret-down pull-right caret-position"></i></a>
+						<form class="" action="todos-os-pets.php" method="GET">
+							<div class="padver-10 padhor-15 bg-gradient">
+								<h2 class="margin-0 color-fff font-700 text-uppercase font-1em">Filtro</h2>
 							</div>
-							<div class="collapse in" id="collapseAnimal" aria-expanded="true">
-								<div class="radio mtop-0">
-									<label>
-										<input type="radio" name="optionsAnimal" id="optionsRadios1" value="option1" checked>
-										Todos
-									</label>
+							<div class="padding-15 bg-fff font-0-9em">
+								<!-- tipo, porte, sexo, idade, castrado -->
+								<div class="clearfix">
+									<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapseAnimal" aria-expanded="true" aria-controls="collapseAnimal">Animal <i class="fa fa-caret-down pull-right caret-position"></i></a>
 								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsAnimal" id="optionsRadios1" value="option2">
-										Cachorro
-									</label>
+								<div class="collapse in" id="collapseAnimal" aria-expanded="true">
+									<div class="radio mtop-0">
+										<label>
+											<input type="radio" name="tipo" value="" checked="checked">
+											Todos
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="tipo" value="Cachorro">
+											Cachorro
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="tipo" value="Gato">
+											Gato
+										</label>
+									</div>
 								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsAnimal" id="optionsRadios1" value="option3">
-										Gato
-									</label>
+								<div class="clearfix mtop-15">
+									<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapsePorte" aria-expanded="true" aria-controls="collapsePorte">Porte <i class="fa fa-caret-down pull-right caret-position"></i></a>
 								</div>
+								<div class="collapse in" id="collapsePorte" aria-expanded="true">
+									<div class="radio mtop-0">
+										<label>
+											<input type="radio" name="sexo" value="" checked="checked"> Todos
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="sexo" value="Feminino"> Feminino
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="sexo" value="Masculino"> Masculino
+										</label>
+									</div>
+								</div>
+								<div class="clearfix mtop-15">
+									<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapsePorte" aria-expanded="true" aria-controls="collapsePorte">Porte <i class="fa fa-caret-down pull-right caret-position"></i></a>
+								</div>
+								<div class="collapse in" id="collapsePorte" aria-expanded="true">
+									<div class="radio mtop-0">
+										<label>
+											<input type="radio" name="porte" value="" checked="checked"> Todos
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="porte" value="Pequeno"> Pequeno
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="porte" value="Médio"> Médio
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="porte" value="Grande"> Grande
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="porte" value="Gigante"> Gigante
+										</label>
+									</div>
+								</div>
+								<div class="clearfix mtop-15">
+									<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapseIdade" aria-expanded="true" aria-controls="collapseIdade">Idade <i class="fa fa-caret-down pull-right caret-position"></i></a>
+								</div>
+								<div class="collapse in" id="collapseIdade" aria-expanded="true">
+									<div class="radio mtop-0">
+										<label>
+											<input type="radio" name="idade" value="" checked="checked"> Todas
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="idade" value="Filhote (0 a 2 anos)"> Filhote (0 a 2 anos)
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="idade" value="Adulto (2 a 8 anos)"> Adulto (2 a 8 anos)
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="idade" value="Idoso (acima de 8 anos)"> Idoso (acima de 8 anos)
+										</label>
+									</div>
+								</div>
+								<div class="clearfix mtop-15">
+									<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapseCastrado" aria-expanded="true" aria-controls="collapseCastrado">Castrado <i class="fa fa-caret-down pull-right caret-position"></i></a>
+								</div>
+								<div class="collapse in" id="collapseCastrado" aria-expanded="true">
+									<div class="radio mtop-0">
+										<label>
+											<input type="radio" name="castrado" value="" checked="checked">
+											Tanto faz
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="castrado" value="true">
+											Sim
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="castrado" value="false">
+											Não
+										</label>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-gradient text-uppercase width-100per mtop-30">Filtrar</button>
 							</div>
-							<div class="clearfix mtop-15">
-								<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapsePorte" aria-expanded="true" aria-controls="collapsePorte">Porte <i class="fa fa-caret-down pull-right caret-position"></i></a>
-							</div>
-							<div class="collapse in" id="collapsePorte" aria-expanded="true">
-								<div class="checkbox mtop-0">
-									<label>
-										<input type="checkbox" checked> Todos
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox"> Pequeno
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox"> Médio
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox"> Grande
-									</label>
-								</div>
-							</div>
-							<div class="clearfix mtop-15">
-								<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapseIdade" aria-expanded="true" aria-controls="collapseIdade">Idade <i class="fa fa-caret-down pull-right caret-position"></i></a>
-							</div>
-							<div class="collapse in" id="collapseIdade" aria-expanded="true">
-								<div class="checkbox mtop-0">
-									<label>
-										<input type="checkbox" checked> Todas
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox"> Filhote (0 a 2 anos)
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox"> Adulto (2 a 8 anos)
-									</label>
-								</div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox"> Idoso (acima de 8 anos)
-									</label>
-								</div>
-							</div>
-							<div class="clearfix mtop-15">
-								<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapseVacinado" aria-expanded="true" aria-controls="collapseVacinado">Vacinado <i class="fa fa-caret-down pull-right caret-position"></i></a>
-							</div>
-							<div class="collapse in" id="collapseVacinado" aria-expanded="true">
-								<div class="radio mtop-0">
-									<label>
-										<input type="radio" name="optionsVacinado" id="optionsRadios1" value="option1" checked>
-										Tanto faz
-									</label>
-								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsVacinado" id="optionsRadios1" value="option2">
-										Sim
-									</label>
-								</div>
-								<div class="radio">
-									<label>
-										<input type="radio" name="optionsVacinado" id="optionsRadios1" value="option3">
-										Não
-									</label>
-								</div>
-							</div>
-						</div>
+						</form>
 					</div>
 					<div class="col-xs-12 col-md-9 col-sm-9 col-lg-10">
 						<div class="row" id="containerAnimais">
-							<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30 hidden">
-								<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">
-									<img src="http://placehold.it/768x460" alt="Vans" class="img-responsive">
-									<div class="absolute-pet-details">
-										<p class="pull-left mbottom-0">
-											Nome: Lúcifer<br>Raça: Hell Kitten
-										</p>
-										<p class="pull-right text-right mbottom-0">
-											Foz do Iguaçu<br>Paraná
-										</p>
+							<div class="col-xs-12 hidden" id="containerErro">
+								<div class="bg-fff padding-30">
+									<div class="row padver-50">
+										<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+											<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
+											<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="todos-os-pets.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+										</div>
 									</div>
-								</a>
+								</div>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row" id="rowPagination">
 							<div class="col-xs-12">
 								<p class="mbottom-0 text-center">
 									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15 disabled"><i class="fa fa-angle-left"></i><span class="hidden-xs mleft-5">Anterior</span></a>
@@ -186,32 +212,37 @@
 				}
 
 				// filtro: tipo, porte, sexo, idade, castrado
+				<?php
+				$urlGetDoacoes = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes';
+				if (isset($_GET['tipo']) || isset($_GET['porte']) || isset($_GET['sexo']) || isset($_GET['idade']) || isset($_GET['castrado'])) {
+					$tipo = ""; $porte = ""; $sexo = ""; $idade = ""; $castrado = "";
+					if (isset($_GET['tipo']) && $_GET['tipo'] != '') {
+						$tipo = $_GET['tipo']; ?>
+						$("input[name=tipo][value='<?= $tipo ?>']").trigger("click");
+					<?php }
+					if (isset($_GET['porte']) && $_GET['porte'] != '') {
+						$porte = $_GET['porte']; ?>
+						$("input[name=porte][value='<?= $porte ?>']").trigger("click");
+					<?php }
+					if (isset($_GET['sexo']) && $_GET['sexo'] != '') {
+						$sexo = $_GET['sexo']; ?>
+						$("input[name=sexo][value='<?= $sexo ?>']").trigger("click");
+					<?php }
+					if (isset($_GET['idade']) && $_GET['idade'] != '') {
+						$idade = $_GET['idade']; ?>
+						$("input[name=idade][value='<?= $idade ?>']").trigger("click");
+					<?php }
+					if (isset($_GET['castrado']) && $_GET['castrado'] != '') {
+						$castrado = $_GET['castrado']; ?>
+						$("input[name=castrado][value='<?= $castrado ?>']").trigger("click");
+					<?php }
+					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&idade='.$idade.'&castrado='.$castrado;
+					$urlGetDoacoes = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacao-filtered' . $params;
+				} ?>
 				$.ajax({
 				    type: 'GET',
 				    crossOrigin: true,
-					<?php if (isset($_GET['tipo']) || isset($_GET['porte']) || isset($_GET['sexo']) || isset($_GET['idade']) || isset($_GET['castrado'])) {
-						$tipo = ""; $porte = ""; $sexo = ""; $idade = ""; $castrado = "";
-						if (isset($_GET['tipo'])) {
-							$tipo = $_GET['tipo'];
-						}
-						if (isset($_GET['porte'])) {
-							$porte = $_GET['porte'];
-						}
-						if (isset($_GET['sexo'])) {
-							$sexo = $_GET['sexo'];
-						}
-						if (isset($_GET['idade'])) {
-							$idade = $_GET['idade'];
-						}
-						if (isset($_GET['castrado'])) {
-							$castrado = $_GET['castrado'];
-						}
-						$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&idade='.$idade.'&castrado='.$castrado; ?>
-						var fullUrl = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes-filtered' + '<?= $params ?>';
-						url: fullUrl,
-					<?php } else { ?>
-						url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes',
-					<?php } ?>
+					url: '<?= $urlGetDoacoes; ?>',
 				    dataType: 'json',
 				    success:function(x){
 					    var html = '';
@@ -233,6 +264,11 @@
 							html += '</div>';
 					    }
 					    $("#containerAnimais").append(html);
+						if (x.length == 0) {
+							console.log(x);
+							$("#containerErro").removeClass("hidden");
+							$("#rowPagination").addClass("hidden");
+						}
 				    },
 				    error:function(){
 				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
@@ -240,7 +276,5 @@
 				});
 			});
 		</script>
-
-
 	</body>
 </html>
