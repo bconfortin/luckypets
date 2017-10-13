@@ -21,7 +21,7 @@
 		<div class="container-fluid bg-f5f5f5 padver-50 padver-15-xs">
 			<div class="container custom-container-sm-xs">
 				<div class="row">
-					<div class="col-xs-12 col-sm-9">
+					<div class="col-xs-12 col-sm-9 mbottom-15">
 						<!-- <img src="http://placehold.it/1140x500" alt="Placeholder" class="img-responsive"> -->
 						<div id="carousel-img" class="carousel slide" data-ride="carousel">
 						    <!-- Indicators -->
