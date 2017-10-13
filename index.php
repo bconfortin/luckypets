@@ -179,7 +179,7 @@
     		<div class="container container-fluid-sm">
     			<div class="row">
     				<div class="col-xs-12">
-						<h2 class="titulo">Animais resgatados por Ongs, Protetores e Veterinários</h2>
+						<h2 class="titulo">Animais para doação<br><span class="font-300 font-0-7em text-normal">Últimos 3 cadastrados</span></h2>
 						<div class="row" id="containerAnimais">
 
 						</div>
@@ -220,7 +220,7 @@
 					    var html = '';
 					    for (i = x.length - 1; i > (x.length - 4); i--) {
 							html += '<div class="col-xs-12 col-lg-4 col-md-4 col-sm-4 col-xs-12 mbottom-30">';
-							html += '	<a href="anuncio-animal.php" class="block card-home bg-fff unstyled-link relative">';
+							html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
 							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
 							html += '       </div>';
 							//html += '		<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '" alt="' + x[i].animal.nome + '" class="img-responsive center-block" style="max-height: 206px;">';
