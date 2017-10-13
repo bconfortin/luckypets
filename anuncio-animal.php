@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>	
+	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,37 +23,24 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-9">
 						<!-- <img src="http://placehold.it/1140x500" alt="Placeholder" class="img-responsive"> -->
-						<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+						<div id="carousel-img" class="carousel slide" data-ride="carousel">
 						    <!-- Indicators -->
 						    <ol class="carousel-indicators">
-						        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-						        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-						        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 						    </ol>
 						    <!-- Wrapper for slides -->
 						    <div class="carousel-inner" role="listbox">
-						        <div class="item active">
-						            <img src="http://placehold.it/860x460" alt="">
-						        </div>
-						        <div class="item">
-						            <img src="http://placehold.it/860x460" alt="">
-						        </div>
-						        <div class="item">
-						            <img src="http://placehold.it/860x460" alt="">
-						        </div>
 						    </div>
 						    <!-- Controls -->
-						    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+						    <a class="left carousel-control" href="#carousel-img" role="button" data-slide="prev">
 						    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 						    <span class="sr-only">Anterior</span>
 						    </a>
-						    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+						    <a class="right carousel-control" href="#carousel-img" role="button" data-slide="next">
 						    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 						    <span class="sr-only">Próximo</span>
 						    </a>
 						</div>
 						<div class="padding-30 bg-fff anuncio-infos">
-							<h1 class="titulo mtop-0 mbottom-30 text-center">Filhote dócil de vira lata</h1>
 							<div class="row">
 								<div class="col-xs-12 col-sm-3 col-md-2">
 									<h2 class="atributo">Descrição</h2>
@@ -231,9 +218,31 @@
 							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
 						}
 						if (x.animal.castrado == true) {
-							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim');
+							$('#ajaxCastrado').html('<span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim');
 						} else {
-							$('#ajaxVacinado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
+							$('#ajaxCastrado').html('<span class="icon-width"><i class="fa fa-times color-red"></i></span>Não');
+						}
+						//var imagens = x.animal.imagem;
+						var htmlCarouselIndicators = '';
+						var htmlCarouselInner = '';
+						for (i = 0; i < (x.animal.imagens).length; i++) {
+							//console.log(x.animal.imagens[i]);
+							var img = 'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i];
+
+							if (i != 0) {
+								htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '"></li>';
+								htmlCarouselInner += '<div class="item"><img src="' + img + '" alt=""></div>';
+							} else {
+								htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '" class="active"></li>';
+								htmlCarouselInner += '<div class="item active"><img src="' + img + '" alt=""></div>';
+							}
+						}
+						$(".carousel-indicators").append(htmlCarouselIndicators);
+						$(".carousel-inner").append(htmlCarouselInner);
+
+						if (!$(".item.active")) {
+							$(".carousel-indicators").append('<li data-target="#carousel-img" data-slide-to="1" class="active"></li>');
+							$(".carousel-inner").append('<div class="item active"><img src="http://placehold.it/860x460" alt=""></div>');
 						}
 				    },
 				    error:function(){
