@@ -45,11 +45,12 @@
                     <img src="<?= $_SESSION['caminhoCompletoImagem']; ?>" alt="" class="img-circle img-responsive center-block mbottom-10">
     				<p class="color-fff text-center">Logado como:<br><?= $_SESSION['nome']; ?></p>
     				<p class="text-center"><a href="" class="inline-block white-link" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR<br>(clique para mudar)</a></p>
+                    <p class="text-center"><a href="" class="btnSair link-white">Sair</a></p>
     				<hr class="hr-white-shadow marver-30">
-                    <ul class="mbottom-30 text-center">
-                        <li><a href="" class="btnSair">Sair</a></li>
+                    <ul class="mbottom-30">
+
                 <?php } else { ?>
-                    <ul class="mbottom-30 text-center">
+                    <ul class="mbottom-30">
                         <li><a href="formulario-de-cadastro.php">Fazer cadastro</a></li>
                         <li><a href="" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
                 <?php } ?>
@@ -79,26 +80,26 @@
 								<li>
 									<div class="dropdown">
 										<a id="dLabelAnimais" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-											Animais
+											Todos os animais
 											<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu" aria-labelledby="dLabelAnimais">
-											<li><a href="todos-os-pets.php">Animais para doação</a></li>
-											<li><a href="todos-os-pets.php">Animais perdidos</a></li>
-											<li><a href="todos-os-pets.php">Animais encontrados</a></li>
+											<li><a href="todos-os-pets.php">Para doação</a></li>
+											<li><a href="todos-os-pets.php">Perdidos</a></li>
+											<li><a href="todos-os-pets.php">Encontrados</a></li>
 										</ul>
 									</div>
 								</li>
 								<li>
 									<div class="dropdown">
 										<a id="dLabelAnuncio" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-											Anúncio
+											Anunciar
 											<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu" aria-labelledby="dLabelAnuncio">
-											<li><a href="formulario-de-anuncio-animal.php">Anunciar doação de animal</a></li>
-											<li><a href="formulario-de-anuncio-animal-perdido.php">Anunciar animal perdido</a></li>
-											<li><a href="formulario-de-anuncio-animal-encontrado.php">Anunciar animal encontrado</a></li>
+											<li><a href="formulario-de-anuncio-animal.php">Doação de animal</a></li>
+											<li><a href="formulario-de-anuncio-animal-perdido.php">Animal perdido</a></li>
+											<li><a href="formulario-de-anuncio-animal-encontrado.php">Animal encontrado</a></li>
 										</ul>
 									</div>
 								</li>
