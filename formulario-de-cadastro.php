@@ -78,6 +78,10 @@
 									<div class="col-xs-12">
 										<div class="form-group">
 											<label for="file">Fazer upload de foto</label>
+											<div>
+												<img id="profilePicture" class="hidden img-responsive" style="height: 200px;">
+												<a href="" id="removerFotoDePerfil" class="hidden block mbottom-15 link-red">Remover foto</a>
+											</div>
 											<input type="file" id="file" name="file" class="width-100per" accept="image/png, image/jpeg">
 											<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
 										</div>
@@ -133,6 +137,34 @@
 						console.log("Ops! Não foi possível fazer sua requisição.");
 					}
 				});
+
+				$("input[name=file]").on("change", function(){
+					$("#profilePicture").removeClass("hidden");
+					$("#removerFotoDePerfil").removeClass("hidden");
+					onFileSelected(event);
+				});
+
+				$("#removerFotoDePerfil").on("click", function(e){
+					e.preventDefault();
+					$("input[name=file]").val("");
+					$("#removerFotoDePerfil").addClass("hidden");
+					$("#profilePicture").addClass("hidden");
+				})
+
+				// https://stackoverflow.com/questions/3814231/loading-an-image-to-a-img-from-input-file
+				function onFileSelected(event) {
+					var selectedFile = event.target.files[0];
+					var reader = new FileReader();
+
+					var imgtag = document.getElementById("profilePicture");
+					imgtag.title = selectedFile.name;
+
+					reader.onload = function(event) {
+						imgtag.src = event.target.result;
+					};
+
+					reader.readAsDataURL(selectedFile);
+				}
 			});
 		</script>
 	</body>
