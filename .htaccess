@@ -14,3 +14,9 @@ ExpiresByType image/x-icon "access 1 year"
 ExpiresDefault "access 1 month"
 </IfModule>
 ## EXPIRES CACHING ##
+
+## REMOVE EMPTY URL GET QUERY ##
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^(.+?&)?[^=]+=(?:&(.*))?$
+RewriteRule ^ %{REQUEST_URI}?%1%2 [R=302,L,NE]
+## REMOVE EMPTY URL GET QUERY ##
