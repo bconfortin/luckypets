@@ -8,6 +8,10 @@
 		<title>Lucky Pets</title>
 		<meta name="description" content=""/>
 		<?php include "head.php"; ?>
+		<?php
+			require_once("functions.php");
+			verifyLogin();
+		?>
 	</head>
 	<body>
 		<?php include "header.php"; ?>
@@ -27,8 +31,8 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 						<div class="padding-30 bg-fff">
-							<form action="" method="post">
-								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de animal encontrado</h1>
+							<form action="" method="POST" id="formulario">
+								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de animal encontrado na rua</h1>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<p class="mbottom-5"><strong>Tipo de animal</strong></p>
@@ -36,11 +40,11 @@
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
 								                    Cachorro
-								                    <input type="radio" checked name="items" value="item-1"/>
+								                    <input type="radio" checked="checked" name="tipo" value="Cachorro"/>
 								                </a>
 								                <a href="#" class="list-group-item">
 								                    Gato
-								                    <input type="radio" name="items" value="item-2"/>
+								                    <input type="radio" name="tipo" value="Gato"/>
 								                </a>
 								            </div>
 										</div>
@@ -50,44 +54,12 @@
 										<div class="form-group">
 											<div class="list-group segmented-control">
 								                <a href="#" class="list-group-item active">
-								                    Fêmea
-								                    <input type="radio" checked name="items" value="item-1"/>
+								                    Feminino
+								                    <input type="radio" checked="checked" name="sexo" value="Feminino"/>
 								                </a>
 								                <a href="#" class="list-group-item">
-								                    Macho
-								                    <input type="radio" name="items" value="item-2"/>
-								                </a>
-								            </div>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<p class="mbottom-5"><strong>Vacinado</strong></p>
-										<div class="form-group">
-											<div class="list-group segmented-control">
-								                <a href="#" class="list-group-item active">
-								                    Sim
-								                    <input type="radio" checked name="items" value="item-1"/>
-								                </a>
-								                <a href="#" class="list-group-item">
-								                    Não
-								                    <input type="radio" name="items" value="item-2"/>
-								                </a>
-								            </div>
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<p class="mbottom-5"><strong>Castrado</strong></p>
-										<div class="form-group">
-											<div class="list-group segmented-control">
-								                <a href="#" class="list-group-item active">
-								                    Sim
-								                    <input type="radio" checked name="items" value="item-1"/>
-								                </a>
-								                <a href="#" class="list-group-item">
-								                    Não
-								                    <input type="radio" name="items" value="item-2"/>
+								                    Masculino
+								                    <input type="radio" name="sexo" value="Masculino"/>
 								                </a>
 								            </div>
 										</div>
@@ -96,105 +68,96 @@
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="nome">Nome</label>
-											<input type="text" class="form-control" name="nome" placeholder="Ex: João">
+											<label for="nome">Título</label>
+											<input type="text" class="form-control" name="nome" placeholder="Ex: Gato branco perdido no campo da vila A em Foz" maxlength="60">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="sobrenome">Raça</label>
-											<input type="text" class="form-control" name="sobrenome" placeholder="Ex: Vira-lata">
+											<label for="raca">Raça</label>
+											<input type="text" class="form-control" name="raca" placeholder="Ex: Vira-lata">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="nome">Cor</label>
-											<input type="text" class="form-control" name="nome" placeholder="Ex: Caramelo">
+											<label for="cor">Cor</label>
+											<input type="text" class="form-control" name="cor" placeholder="Ex: Caramelo">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="porte">Porte</label>
 											<select name="porte" id="porte" class="form-control">
-												<option value="" selected="selected" disabled="disabled">Selecione o porte</option>
-												<option value="portePequeno">Pequeno</option>
-												<option value="porteMedio">Médio</option>
-												<option value="porteGrande">Grande</option>
-												<option value="porteGigante">Gigante</option>
+												<option value="Pequeno" selected="selected">Pequeno</option>
+												<option value="Médio">Médio</option>
+												<option value="Grande">Grande</option>
+												<option value="Gigante">Gigante</option>
 											</select>
 										</div>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="localizacao">Localização</label>
-											<input type="text" class="form-control" id="autocomplete">
-										</div>
-									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="idade">Idade</label>
 											<select name="idade" id="idade" class="form-control">
-												<option value="" selected="selected" disabled="disabled">Selecione a idade</option>
-												<option value="idadeFilhote">Filhote (0 a 2 anos)</option>
-												<option value="idadeAdulto">Adulto (2 a 8 anos)</option>
-												<option value="idadeIdoso">Idoso (acima de 8 anos)</option>
+												<option value="Filhote (0 a 2 anos)" selected="selected">Filhote (0 a 2 anos)</option>
+												<option value="Adulto (2 a 8 anos)">Adulto (2 a 8 anos)</option>
+												<option value="Idoso (acima de 8 anos)">Idoso (acima de 8 anos)</option>
 											</select>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12 col-sm-12">
+									<div class="col-xs-12 col-sm-6">
+										<p class="mbottom-5"><strong>Resgatado?</strong></p>
 										<div class="form-group">
-											<label for="sobrenome">Descrição</label>
-											<textarea name="" id="" cols="30" rows="5" class="form-control vertical-resize-forbidden"></textarea>
+											<div class="list-group segmented-control">
+								                <a href="#" class="list-group-item">
+								                    Sim
+								                    <input type="radio" name="resgatado" value="true"/>
+								                </a>
+								                <a href="#" class="list-group-item active">
+								                    Não
+								                    <input type="radio" checked="checked" name="resgatado" value="false"/>
+								                </a>
+								            </div>
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="form-group">
-											<label for="fotoDePerfil">Fazer upload de foto</label>
-											<input type="file" id="fotosDoAnimal" class="width-100per" multiple accept="image/*">
-											<style>
-												/*
-												Input file language workaround
-												https://stackoverflow.com/questions/1944267/how-to-change-the-button-text-of-input-type-file
-
-												#fotoDePerfil::-webkit-file-upload-button {
-													visibility: hidden;
-												}
-												#fotoDePerfil::before {
-													content: 'Upe uma foto';
-													display: inline-block;
-													background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
-													border: 1px solid #999;
-													border-radius: 3px;
-													padding: 5px 8px;
-													outline: none;
-													white-space: nowrap;
-													-webkit-user-select: none;
-													cursor: pointer;
-													text-shadow: 1px 1px #fff;
-													font-weight: 700;
-													font-size: 10pt;
-												}
-												#fotoDePerfil:hover::before {
-													border-color: black;
-												}
-												#fotoDePerfil:active::before {
-													background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-												}
-												*/
-											</style>
+											<label for="localizacao">Localização</label>
+											<input type="text" class="form-control" id="autocomplete">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12">
+										<div class="form-group">
+											<label for="descricao">Descrição</label>
+											<textarea name="descricao" id="" cols="30" rows="5" class="form-control vertical-resize-forbidden"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											<label for="fotoDePerfil" class="mbottom-15">Fazer upload de fotos</label>
+											<div>
+												<img id="profilePicture" class="hidden img-responsive" style="height: 200px;">
+												<a href="" id="removerFotoDePerfil" class="hidden block mbottom-15 link-red">Remover todas as fotos</a>
+											</div>
+											<input type="file" id="file" name="file" class="width-100per" multiple accept="image/*">
 											<p class="help-block">Dê preferência a fotos com aspecto wide (fotos tiradas com o celular virado) e com extensão .jpg ou .png.<br>Ex: resolução 840x460.</p>
 										</div>
 									</div>
 								</div>
-								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30">Enviar</button></p>
+								<input type="hidden" name="userId" value="<?= $_SESSION['id']; ?>">
+								<input type="hidden" name="latitude" value="">
+								<input type="hidden" name="longitude" value="">
+								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrar">Cadastrar</button></p>
 							</form>
 						</div>
 					</div>
@@ -215,14 +178,47 @@
             function fillInAddress() {
 	        	// Get the place details from the autocomplete object.
 	        	var place = autocomplete.getPlace();
-	        	console.log(place);
+				$("input[name='latitude']").val(place.geometry.location.lat());
+				$("input[name='longitude']").val(place.geometry.location.lng());
+	        	//console.log(place);
+				//console.log(place.geometry.location.lat());
+				//console.log(place.geometry.location.lng());
 	    	}
+
 	    	$("#autocomplete").keydown(function(event){
 	    		if (event.keyCode == 13) {
 	    			event.preventDefault();
 	    			return false;
 	    		}
 	    	});
+
+			$("#btnCadastrar").on("click", function(event){
+				event.preventDefault();
+				$(this).addClass("disabled");
+				$.ajax({
+					type: 'POST',
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/cadastro-encontrado',
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					// Método 1 - NÃO funciona com imagens (multipart/form-data)
+					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+					// Método 2 - Funciona com imagens (multipart/form-data) {
+					data: new FormData($('#formulario')[0]),
+					processData: false,
+					contentType: false,
+					// }
+					success:function(result){
+						console.log("Anúncio criado com sucesso.");
+					},
+					error:function(){
+						console.log("Ops! Não foi possível fazer sua requisição.");
+					},
+					complete:function(){
+						location.href = "<?= $GLOBALS['www']; ?>?message=anuncioCriadoComSucesso";
+					}
+				});
+			});
 	    </script>
 
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkRBrkU6UVNZZclmB-oluPZ3L0ZeP5Cqs&libraries=places&callback=initAutocomplete"></script>

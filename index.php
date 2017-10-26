@@ -37,6 +37,7 @@
     			</div>
     		</div>
     	</div>
+        <?php /*
         <div class="container-fluid padver-50">
             <div class="container">
                 <div class="row">
@@ -57,6 +58,7 @@
                 </div>
             </div>
         </div>
+        */ ?>
     	<div class="container-fluid padver-50 hidden">
     		<div class="container">
     			<div class="row">
