@@ -46,7 +46,7 @@
 									<h2 class="atributo">Descrição</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxDescricao">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus dolore molestiae atque saepe cumque voluptatem a quo mollitia eos inventore illum fugit, minus, odio, ipsum reiciendis id numquam vel voluptates? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore laborum ut quidem delectus ipsa, inventore provident asperiores facere, adipisci ipsum ab voluptatum obcaecati cum aut voluptas repellat vitae nobis unde.</p>
+									<p class="atributo" id="ajaxDescricao">Não especificado</p>
 								</div>
 							</div>
 							<div class="row">
@@ -54,7 +54,7 @@
 									<h2 class="atributo">Nome</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxNome">Lúcifer</p>
+									<p class="atributo" id="ajaxNome">Não especificado.</p>
 								</div>
 							</div>
 							<div class="row">
@@ -62,7 +62,7 @@
 									<h2 class="atributo">Tipo</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxTipo">Gato</p>
+									<p class="atributo" id="ajaxTipo">Não especificado.</p>
 								</div>
 							</div>
 							<div class="row">
@@ -70,7 +70,7 @@
 									<h2 class="atributo">Sexo</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxSexo">Macho</p>
+									<p class="atributo" id="ajaxSexo">Não especificado.</p>
 								</div>
 							</div>
 							<div class="row">
@@ -78,7 +78,7 @@
 									<h2 class="atributo">Raça</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxRaca">Hell Kitten</p>
+									<p class="atributo" id="ajaxRaca">Não especificado.</p>
 								</div>
 							</div>
 							<div class="row">
@@ -86,7 +86,7 @@
 									<h2 class="atributo">Cor</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxCor">Ginger</p>
+									<p class="atributo" id="ajaxCor">Não especificado.</p>
 								</div>
 							</div>
 							<div class="row">
@@ -94,7 +94,7 @@
 									<h2 class="atributo">Porte</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxPorte">Médio</p>
+									<p class="atributo" id="ajaxPorte">Não especificado.</p>
 								</div>
 							</div>
 							<div class="row">
@@ -102,26 +102,10 @@
 									<h2 class="atributo">Idade</h2>
 								</div>
 								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxIdade">Filhote (0 a 2 anos)</p>
+									<p class="atributo" id="ajaxIdade">Não especificado.</p>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-xs-12 col-sm-3 col-md-2">
-									<h2 class="atributo">Vacinado</h2>
-								</div>
-								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxVacinado"><span class="icon-width"><i class="fa fa-check color-green"></i></span>Sim</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12 col-sm-3 col-md-2">
-									<h2 class="atributo">Castrado</h2>
-								</div>
-								<div class="col-xs-12 col-sm-9 col-md-10">
-									<p class="atributo" id="ajaxCastrado"><span class="icon-width"><i class="fa fa-times color-red"></i></span>Não</p>
-								</div>
-							</div>
-							<div class="row">
+							<div class="row mtop-30" style="margin-bottom: 0;">
 								<div class="col-xs-12">
 									<div id="map"></div>
 								</div>
@@ -169,21 +153,71 @@
 			        $.ajax({
 			            type: 'GET',
 			            crossOrigin: true,
-			            url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdido/<?= $animalId; ?>',
+			            url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrado/<?= $animalId; ?>',
 			            dataType: 'json',
 			            success:function(x){
 							console.log(x);
 			                if (x == undefined) {
 			                    location.href = "<?= $GLOBALS['www']; ?>todos-os-pets.php";
 			                }
-			                $('#ajaxDescricao').text(x.animal.descricao);
-			                $('#ajaxNome').text(x.animal.nome);
-			                $('#ajaxTipo').text(x.animal.tipo);
-			                $('#ajaxSexo').text(x.animal.sexo);
-			                $('#ajaxRaca').text(x.animal.raca);
-			                $('#ajaxCor').text(x.animal.cor);
-			                $('#ajaxPorte').text(x.animal.porte);
-			                $('#ajaxIdade').text(x.animal.idade);
+							if (x.animal.descricao != null && x.animal.descricao != "") {
+								$('#ajaxDescricao').text(x.animal.descricao);
+							}
+							if (x.animal.nome != null && x.animal.nome != "") {
+								$('#ajaxNome').text(x.animal.nome);
+							}
+							if (x.animal.tipo != null && x.animal.tipo != "") {
+								$('#ajaxTipo').text(x.animal.tipo);
+							}
+							if (x.animal.sexo != null && x.animal.sexo != "") {
+								$('#ajaxSexo').text(x.animal.sexo);
+							}
+							if (x.animal.raca != null && x.animal.raca != "") {
+								$('#ajaxRaca').text(x.animal.raca);
+							}
+							if (x.animal.cor != null && x.animal.cor != "") {
+								$('#ajaxCor').text(x.animal.cor);
+							}
+							if (x.animal.porte != null && x.animal.porte != "") {
+								$('#ajaxPorte').text(x.animal.porte);
+							}
+							if (x.animal.idade != null && x.animal.idade != "") {
+								$('#ajaxIdade').text(x.animal.idade);
+							}
+
+							if (x.resgatado == true) {
+								var htmlContato = '';
+								htmlContato += '<p class="color-red text-uppercase font-700">Atenção!!!</p><p class="mbottom-20">O animal foi resgatado e encontra-se com o anunciante. Entre em contato pelos meios disponíveis abaixo.</p>'
+								if (x.animal.usuario.celular != null && x.animal.usuario.celular != undefined && x.animal.usuario.celular != "") {
+									htmlContato += '<a href="tel:' + x.animal.usuario.celular + '" class="block link-white border-ccc mbottom-5 link-contato">';
+									htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-whatsapp"></i></span>';
+									htmlContato += '<span class="padding-15 inline-block link-666 font-700">WhatsApp</span>';
+									htmlContato += '</a>';
+								}
+								if (x.animal.usuario.email != null && x.animal.usuario.email != undefined && x.animal.usuario.email != "") {
+									htmlContato += '<a href="mailto:' + x.animal.usuario.email + '" class="block link-white border-ccc mbottom-5 link-contato">';
+									htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-envelope"></i></span>';
+									htmlContato += '<span class="padding-15 inline-block link-666 font-700">E-mail</span>';
+									htmlContato += '</a>';
+								}
+								if (x.animal.usuario.telefone != null && x.animal.usuario.telefone != undefined && x.animal.usuario.telefone != "") {
+									htmlContato += '<a href="tel:' + x.animal.usuario.telefone + '" class="block link-white border-ccc mbottom-5 link-contato">';
+									htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-phone"></i></span>';
+									htmlContato += '<span class="padding-15 inline-block link-666 font-700">Telefone</span>';
+									htmlContato += '</a>';
+								}
+								if (x.animal.usuario.facebook != null && x.animal.usuario.facebook != undefined && x.animal.usuario.facebook != "") {
+									htmlContato += '<a href="' + x.animal.usuario.facebook + '" class="block link-white border-ccc link-contato">';
+									htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-question"></i></span>';
+									htmlContato += '<span class="padding-15 inline-block link-666 font-700">Faça uma pergunta</span>';
+									htmlContato += '</a>';
+								}
+								$("#listaDeContato").append(htmlContato);
+			                } else {
+								var htmlContato = '';
+								htmlContato += '<p class="color-red text-uppercase font-700">Atenção!!!</p><p>O animal não foi resgatado e pode ainda estar nas redondezas do local indicado.</p>'
+			                    $("#listaDeContato").append(htmlContato);
+			                }
 
 							var uluru = {lat: x.lat, lng: x.lng};
 							var map = new google.maps.Map(document.getElementById('map'), {
@@ -210,7 +244,7 @@
 			                var htmlCarouselInner = '';
 			                for (i = 0; i < (x.animal.imagens).length; i++) {
 			                    //console.log(x.animal.imagens[i]);
-			                    var img = 'http://31.220.53.123:8080/luckypets-servidor/api/file/perdido/' + x.id + '/' + x.animal.imagens[i];
+			                    var img = 'http://31.220.53.123:8080/luckypets-servidor/api/file/encontrado/' + x.id + '/' + x.animal.imagens[i];
 			                    if (i != 0) {
 			                        htmlCarouselIndicators += '<li data-target="#carousel-img" data-slide-to="' + i + '"></li>';
 			                        htmlCarouselInner += '<div class="item"><img src="' + img + '" alt="" class="width-850"></div>';
@@ -226,33 +260,6 @@
 			                    $(".carousel-indicators").append('<li data-target="#carousel-img" data-slide-to="1" class="active"></li>');
 			                    $(".carousel-inner").append('<div class="item active"><img src="http://placehold.it/860x460" alt=""></div>');
 			                }
-
-							var htmlContato = '';
-							if (x.animal.usuario.celular != null && x.animal.usuario.celular != undefined && x.animal.usuario.celular != "") {
-								htmlContato += '<a href="tel:' + x.animal.usuario.celular + '" class="block link-white border-ccc mbottom-5 link-contato">';
-								htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-whatsapp"></i></span>';
-								htmlContato += '<span class="padding-15 inline-block link-666 font-700">WhatsApp</span>';
-								htmlContato += '</a>';
-							}
-							if (x.animal.usuario.email != null && x.animal.usuario.email != undefined && x.animal.usuario.email != "") {
-								htmlContato += '<a href="mailto:' + x.animal.usuario.email + '" class="block link-white border-ccc mbottom-5 link-contato">';
-								htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-envelope"></i></span>';
-								htmlContato += '<span class="padding-15 inline-block link-666 font-700">E-mail</span>';
-								htmlContato += '</a>';
-							}
-							if (x.animal.usuario.telefone != null && x.animal.usuario.telefone != undefined && x.animal.usuario.telefone != "") {
-								htmlContato += '<a href="tel:' + x.animal.usuario.telefone + '" class="block link-white border-ccc mbottom-5 link-contato">';
-								htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-phone"></i></span>';
-								htmlContato += '<span class="padding-15 inline-block link-666 font-700">Telefone</span>';
-								htmlContato += '</a>';
-							}
-							if (x.animal.usuario.facebook != null && x.animal.usuario.facebook != undefined && x.animal.usuario.facebook != "") {
-								htmlContato += '<a href="' + x.animal.usuario.facebook + '" class="block link-white border-ccc link-contato">';
-								htmlContato += '<span class="padding-15 inline-block bg-blue color-fff text-center width-50"><i class="fa fa-lg fa-question"></i></span>';
-								htmlContato += '<span class="padding-15 inline-block link-666 font-700">Faça uma pergunta</span>';
-								htmlContato += '</a>';
-							}
-							$("#listaDeContato").append(htmlContato);
 			            },
 			            error:function(){
 			                console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
