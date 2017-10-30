@@ -11,37 +11,16 @@
 	</head>
 	<body>
 		<?php include "header.php"; ?>
-		<div class="container-fluid bg-f5f5f5 padver-50 padver-15-xs">
-			<div class="container custom-container-sm-xs">
-				<div class="row">
-					<div class="col-xs-12">
-							<div class="row">
-								<div class="col-xs-12">
-									<div id="map"></div>
-								</div>
-							</div>
-							<!-- <script>
-						        function initMap() {
-						        	var uluru = {lat: -25.5046389, lng: -54.576312};
-						        	var map = new google.maps.Map(document.getElementById('map'), {
-						            	zoom: 15,
-						            	center: uluru
-						        	});
-						        	var marker = new google.maps.Marker({
-						            	position: uluru,
-						            	map: map
-						        	});
-						        }
-						    </script>
-						    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkRBrkU6UVNZZclmB-oluPZ3L0ZeP5Cqs&callback=initMap">
-						    </script> -->
-							<style>
-								#map {
-									height: 400px;
-								}
-							</style>
-						</div>
+		<div class="container-fluid bg-f5f5f5 padver-15-xs">
+			<div class="row">
+				<div class="col-xs-12 padhor-0">
+					<div id="map">
 					</div>
+					<style>
+						#map {
+							height: 800px;
+						}
+					</style>
 				</div>
 			</div>
 		</div>
@@ -67,7 +46,7 @@
 		    }
 		</style>
 		<script>
-			$(function(){
+			//$(function(){
 				var gatosEncontrados = [];
 				var gatosPerdidos = [];
 				var cachorrosEncontrados = [];
@@ -82,6 +61,9 @@
 					center: new google.maps.LatLng(-25.5172662, -54.6170038),
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				});
+
+				var idInfoBox = 0;
+				var arrayInfoBox = [];
 
 				$.ajax({
 				    type: 'GET',
@@ -171,38 +153,61 @@
 							};
 
 							// Joga o InfoBox no mapa
-							var ib = new InfoBox(ibOpcoes);
-							ib.open(map, marker);
+							arrayInfoBox[idInfoBox] = new InfoBox(ibOpcoes);
+							arrayInfoBox[idInfoBox].open(map, marker);
 
 							// Abre o InfoBox no onlick
-							google.maps.event.addListener(marker, "click", function (e) {
-							    ib.open(map, this);
+							arrayInfoBox[idInfoBox].listener = google.maps.event.addListener(marker, "click", function (e) {
+							    arrayInfoBox[idInfoBox].open(map, marker);
 							});
-							ib.close();
+							arrayInfoBox[idInfoBox].close();
+							idInfoBox++;
 						}
 
 						for (i = 0; i < gatosPerdidos.length; i++) {
 						    marker = new google.maps.Marker({
 						        position: new google.maps.LatLng(gatosPerdidos[i][0], gatosPerdidos[i][1]),
 						        map: map,
-								icon: cachorrosPerdidos[i][2]
+								icon: gatosPerdidos[i][2]
 						    });
-						    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-						        return function() {
-									var contentString = '<div style="320px;">' +
-									'<img src="'+gatosPerdidos[i][3]+'" style="width: 100%;">' +
-									'<p>'+gatosPerdidos[i][4]+'</p>' +
-									'<p>'+gatosPerdidos[i][5]+'</p>' +
-									'<p>'+gatosPerdidos[i][6]+'</p>' +
-									'<p>'+gatosPerdidos[i][7]+'</p>' +
-									'<p>'+gatosPerdidos[i][8]+'</p>' +
-									'<p>'+gatosPerdidos[i][9]+'</p>' +
-									'<p>'+gatosPerdidos[i][10]+'</p>' +
-									'</div>';
-						            infowindow.setContent(contentString);
-						            infowindow.open(map, marker);
-						        }
-						    })(marker, i));
+
+							var contentString = '<div class="div_infobox">' +
+							'<img src="'+gatosPerdidos[i][3]+'" style="max-width: 100%; margin-top: 5px;">' +
+							'<div class="padding-15">' +
+							'<p>Nome: '+gatosPerdidos[i][4]+'</p>' +
+							'<p>Tipo: '+gatosPerdidos[i][5]+'</p>' +
+							'<p>Sexo: '+gatosPerdidos[i][6]+'</p>' +
+							'<p>Raca: '+gatosPerdidos[i][7]+'</p>' +
+							'<p>Cor: '+gatosPerdidos[i][8]+'</p>' +
+							'<p>Idade: '+gatosPerdidos[i][9]+'</p>' +
+							'<p>Porte: '+gatosPerdidos[i][10]+'</p>' +
+							'<p style="text-align: center; margin-top: 30px;"><a href="http://localhost:81/luckypets/anuncio-animal-perdido.php?animalId='+gatosPerdidos[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
+							'</div>' +
+							'</div>';
+
+							// Configuracao do InfoBox
+							var ibOpcoes = {
+							    content: contentString,
+							    disableAutoPan: true,
+							    pixelOffset: new google.maps.Size(-160, 0),
+							    zIndex: null,
+							    infoBoxClearance: new google.maps.Size(1, 1),
+							    closeBoxMargin: "5px 5px 0px 0px",
+							    isHidden: false,
+							    pane: "floatPane",
+							    enableEventPropagation: true
+							};
+
+							// Joga o InfoBox no mapa
+							arrayInfoBox[idInfoBox] = new InfoBox(ibOpcoes);
+							arrayInfoBox[idInfoBox].open(map, marker);
+
+							// Abre o InfoBox no onlick
+							arrayInfoBox[idInfoBox].listener = google.maps.event.addListener(marker, "click", function (e) {
+							    arrayInfoBox[idInfoBox].open(map, marker);
+							});
+							arrayInfoBox[idInfoBox].close();
+							idInfoBox++;
 						}
 				    },
 				    error:function(){
@@ -280,7 +285,7 @@
 							'<p>Cor: '+cachorrosEncontrados[i][8]+'</p>' +
 							'<p>Idade: '+cachorrosEncontrados[i][9]+'</p>' +
 							'<p>Porte: '+cachorrosEncontrados[i][10]+'</p>' +
-							'<p style="text-align: center; margin-top: 30px;"><a href="http://localhost:81/luckypets/anuncio-animal-perdido.php?animalId='+cachorrosEncontrados[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
+							'<p style="text-align: center; margin-top: 30px;"><a href="http://localhost:81/luckypets/anuncio-animal-encontrado.php?animalId='+cachorrosEncontrados[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
 							'</div>' +
 							'</div>';
 
@@ -298,45 +303,68 @@
 							};
 
 							// Joga o InfoBox no mapa
-							var ib = new InfoBox(ibOpcoes);
-							ib.open(map, marker);
+							arrayInfoBox[idInfoBox] = new InfoBox(ibOpcoes);
+							arrayInfoBox[idInfoBox].open(map, marker);
 
 							// Abre o InfoBox no onlick
-							google.maps.event.addListener(marker, "click", function (e) {
-							    ib.open(map, this);
+							arrayInfoBox[idInfoBox].listener = google.maps.event.addListener(marker, "click", function (e) {
+							    arrayInfoBox[idInfoBox].open(map, marker);
 							});
-							ib.close();
+							arrayInfoBox[idInfoBox].close();
+							idInfoBox++;
 						}
 
 						for (i = 0; i < gatosEncontrados.length; i++) {
 						    marker = new google.maps.Marker({
 						        position: new google.maps.LatLng(gatosEncontrados[i][0], gatosEncontrados[i][1]),
 						        map: map,
-								icon: cachorrosEncontrados[i][2]
+								icon: gatosEncontrados[i][2]
 						    });
-						    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-						        return function() {
-									var contentString = '<div style="320px;">' +
-									'<img src="'+gatosEncontrados[i][3]+'" style="width: 100%;">' +
-									'<p>'+gatosEncontrados[i][4]+'</p>' +
-									'<p>'+gatosEncontrados[i][5]+'</p>' +
-									'<p>'+gatosEncontrados[i][6]+'</p>' +
-									'<p>'+gatosEncontrados[i][7]+'</p>' +
-									'<p>'+gatosEncontrados[i][8]+'</p>' +
-									'<p>'+gatosEncontrados[i][9]+'</p>' +
-									'<p>'+gatosEncontrados[i][10]+'</p>' +
-									'</div>';
-						            infowindow.setContent(contentString);
-						            infowindow.open(map, marker);
-						        }
-						    })(marker, i));
+
+							var contentString = '<div class="div_infobox">' +
+							'<img src="'+gatosEncontrados[i][3]+'" style="max-width: 100%; margin-top: 5px;">' +
+							'<div class="padding-15">' +
+							'<p>Nome: '+gatosEncontrados[i][4]+'</p>' +
+							'<p>Tipo: '+gatosEncontrados[i][5]+'</p>' +
+							'<p>Sexo: '+gatosEncontrados[i][6]+'</p>' +
+							'<p>Raca: '+gatosEncontrados[i][7]+'</p>' +
+							'<p>Cor: '+gatosEncontrados[i][8]+'</p>' +
+							'<p>Idade: '+gatosEncontrados[i][9]+'</p>' +
+							'<p>Porte: '+gatosEncontrados[i][10]+'</p>' +
+							'<p style="text-align: center; margin-top: 30px;"><a href="http://localhost:81/luckypets/anuncio-animal-encontrado.php?animalId='+gatosEncontrados[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
+							'</div>' +
+							'</div>';
+
+							// Configuracao do InfoBox
+							var ibOpcoes = {
+							    content: contentString,
+							    disableAutoPan: true,
+							    pixelOffset: new google.maps.Size(-160, 0),
+							    zIndex: null,
+							    infoBoxClearance: new google.maps.Size(1, 1),
+							    closeBoxMargin: "5px 5px 0px 0px",
+							    isHidden: false,
+							    pane: "floatPane",
+							    enableEventPropagation: true
+							};
+
+							// Joga o InfoBox no mapa
+							arrayInfoBox[idInfoBox] = new InfoBox(ibOpcoes);
+							arrayInfoBox[idInfoBox].open(map, marker);
+
+							// Abre o InfoBox no onlick
+							arrayInfoBox[idInfoBox].listener = google.maps.event.addListener(marker, "click", function (e) {
+							    arrayInfoBox[idInfoBox].open(map, marker);
+							});
+							arrayInfoBox[idInfoBox].close();
+							idInfoBox++;
 						}
 				    },
 				    error:function(){
 				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 				    }
 				});
-		    });
+		   // });
 		</script>
 	</body>
 </html>
