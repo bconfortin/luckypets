@@ -66,6 +66,17 @@
 				var markers = [];
 				var arrayInfoBox = [];
 
+				var idInfoBoxAberto = 0;
+
+				function abrirInfoBox(id, marker) {
+				    if (typeof(idInfoBoxAberto) == 'number' && typeof(arrayInfoBox[idInfoBoxAberto]) == 'object') {
+				        arrayInfoBox[idInfoBoxAberto].close();
+				    }
+
+				    arrayInfoBox[id].open(map, marker);
+				    idInfoBoxAberto = id;
+				}
+
 				$.ajax({
 				    type: 'GET',
 				    crossOrigin: true,
@@ -165,7 +176,7 @@
 							// });
 							google.maps.event.addListener(markers[idInfoBox], 'click', (function(marker, i) {
 							  return function() {
-							    arrayInfoBox[i].open(map, markers[idInfoBox]);
+							    abrirInfoBox(i, markers[idInfoBox]);
 							  }
 						  })(markers[idInfoBox], idInfoBox));
 							arrayInfoBox[idInfoBox].close();
@@ -217,7 +228,7 @@
 							// });
 							google.maps.event.addListener(markers[idInfoBox], 'click', (function(marker, i) {
 							  return function() {
-							    arrayInfoBox[i].open(map, markers[idInfoBox]);
+							    abrirInfoBox(i, markers[idInfoBox]);
 							  }
 						  })(markers[idInfoBox], idInfoBox));
 							arrayInfoBox[idInfoBox].close();
@@ -225,7 +236,7 @@
 							idInfoBox++;
 						}
 				    },
-				    error:function(xhr, textStatus, errorThrown ) {
+				    error:function(xhr, textStatus, errorThrown) {
 				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
 				            this.tryCount++;
 				            if (this.tryCount <= this.retryLimit) {
@@ -338,7 +349,7 @@
 							// });
 							google.maps.event.addListener(markers[idInfoBox], 'click', (function(marker, i) {
 							  return function() {
-							    arrayInfoBox[i].open(map, markers[idInfoBox]);
+							    abrirInfoBox(i, markers[idInfoBox]);
 							  }
 						  })(markers[idInfoBox], idInfoBox));
 							arrayInfoBox[idInfoBox].close();
@@ -390,7 +401,7 @@
 							// });
 							google.maps.event.addListener(markers[idInfoBox], 'click', (function(marker, i) {
 								return function() {
-									arrayInfoBox[i].open(map, markers[idInfoBox]);
+									abrirInfoBox(i, markers[idInfoBox]);
 								}
 							})(markers[idInfoBox], idInfoBox));
 							arrayInfoBox[idInfoBox].close();
@@ -398,7 +409,7 @@
 							idInfoBox++;
 						}
 				    },
-				    error:function(xhr, textStatus, errorThrown ) {
+				    error:function(xhr, textStatus, errorThrown) {
 				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
 				            this.tryCount++;
 				            if (this.tryCount <= this.retryLimit) {
