@@ -29,7 +29,7 @@
 			<div class="">
 				<div class="row">
 					<div class="col-xs-12 col-md-3 col-sm-3 col-lg-2 mbottom-30">
-						<form class="" action="todos-os-pets.php" method="GET">
+						<form class="" action="animais-encontrados.php" method="GET">
 							<div class="padver-10 padhor-15 bg-gradient">
 								<h2 class="margin-0 color-fff font-700 text-uppercase font-1em">Filtro</h2>
 							</div>
@@ -144,7 +144,7 @@
 									<div class="row padver-50">
 										<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 											<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
-											<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="todos-os-pets.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+											<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-encontrados.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
 										</div>
 									</div>
 								</div>
@@ -221,7 +221,7 @@
 					    var html = '';
 					    for (i = 0; i < x.length; i++) {
 							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 col-xs-12 mbottom-30">';
-							html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
+							html += '	<a href="anuncio-animal-encontrado.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
 							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/encontrado/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
 							html += '       </div>';
 							//html += '		<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/encontrado/' + x[i].id + '/' + x[i].animal.imagens[0] + '" alt="' + x[i].animal.nome + '" class="img-responsive center-block" style="max-height: 206px;">';
