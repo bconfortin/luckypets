@@ -63,6 +63,7 @@
 				});
 
 				var idInfoBox = 0;
+				var markers = [];
 				var arrayInfoBox = [];
 
 				$.ajax({
@@ -119,7 +120,7 @@
 						var marker, i;
 
 						for (i = 0; i < cachorrosPerdidos.length; i++) {
-						    marker = new google.maps.Marker({
+						    markers[idInfoBox] = new google.maps.Marker({
 						        position: new google.maps.LatLng(cachorrosPerdidos[i][0], cachorrosPerdidos[i][1]),
 						        map: map,
 								icon: cachorrosPerdidos[i][2]
@@ -154,18 +155,24 @@
 
 							// Joga o InfoBox no mapa
 							arrayInfoBox[idInfoBox] = new InfoBox(ibOpcoes);
-							arrayInfoBox[idInfoBox].open(map, marker);
+							arrayInfoBox[idInfoBox].open(map, markers[idInfoBox]);
 
 							// Abre o InfoBox no onlick
-							arrayInfoBox[idInfoBox].listener = google.maps.event.addListener(marker, "click", function (e) {
-							    arrayInfoBox[idInfoBox].open(map, marker);
-							});
+							// google.maps.event.addListener(markers[idInfoBox], "click", function (e) {
+							//     arrayInfoBox[idInfoBox].open(map, markers[idInfoBox]);
+							// });
+							google.maps.event.addListener(markers[idInfoBox], 'click', (function(marker, i) {
+							  return function() {
+							    arrayInfoBox[i].open(map, markers[idInfoBox]);
+							  }
+						  })(markers[idInfoBox], idInfoBox));
 							arrayInfoBox[idInfoBox].close();
+							console.log(idInfoBox);
 							idInfoBox++;
 						}
 
 						for (i = 0; i < gatosPerdidos.length; i++) {
-						    marker = new google.maps.Marker({
+						    markers[idInfoBox] = new google.maps.Marker({
 						        position: new google.maps.LatLng(gatosPerdidos[i][0], gatosPerdidos[i][1]),
 						        map: map,
 								icon: gatosPerdidos[i][2]
@@ -200,13 +207,19 @@
 
 							// Joga o InfoBox no mapa
 							arrayInfoBox[idInfoBox] = new InfoBox(ibOpcoes);
-							arrayInfoBox[idInfoBox].open(map, marker);
+							arrayInfoBox[idInfoBox].open(map, markers[idInfoBox]);
 
 							// Abre o InfoBox no onlick
-							arrayInfoBox[idInfoBox].listener = google.maps.event.addListener(marker, "click", function (e) {
-							    arrayInfoBox[idInfoBox].open(map, marker);
-							});
+							// google.maps.event.addListener(markers[idInfoBox], "click", function (e) {
+							//     arrayInfoBox[idInfoBox].open(map, markers[idInfoBox]);
+							// });
+							google.maps.event.addListener(markers[idInfoBox], 'click', (function(marker, i) {
+							  return function() {
+							    arrayInfoBox[i].open(map, markers[idInfoBox]);
+							  }
+						  })(markers[idInfoBox], idInfoBox));
 							arrayInfoBox[idInfoBox].close();
+							console.log(idInfoBox);
 							idInfoBox++;
 						}
 				    },
@@ -269,7 +282,7 @@
 						var marker, i;
 
 						for (i = 0; i < cachorrosEncontrados.length; i++) {
-						    marker = new google.maps.Marker({
+						    markers[idInfoBox] = new google.maps.Marker({
 						        position: new google.maps.LatLng(cachorrosEncontrados[i][0], cachorrosEncontrados[i][1]),
 						        map: map,
 								icon: cachorrosEncontrados[i][2]
@@ -304,18 +317,24 @@
 
 							// Joga o InfoBox no mapa
 							arrayInfoBox[idInfoBox] = new InfoBox(ibOpcoes);
-							arrayInfoBox[idInfoBox].open(map, marker);
+							arrayInfoBox[idInfoBox].open(map, markers[idInfoBox]);
 
 							// Abre o InfoBox no onlick
-							arrayInfoBox[idInfoBox].listener = google.maps.event.addListener(marker, "click", function (e) {
-							    arrayInfoBox[idInfoBox].open(map, marker);
-							});
+							// google.maps.event.addListener(markers[idInfoBox], "click", function (e) {
+							//     arrayInfoBox[idInfoBox].open(map, markers[idInfoBox]);
+							// });
+							google.maps.event.addListener(markers[idInfoBox], 'click', (function(marker, i) {
+							  return function() {
+							    arrayInfoBox[i].open(map, markers[idInfoBox]);
+							  }
+						  })(markers[idInfoBox], idInfoBox));
 							arrayInfoBox[idInfoBox].close();
+							console.log(idInfoBox);
 							idInfoBox++;
 						}
 
 						for (i = 0; i < gatosEncontrados.length; i++) {
-						    marker = new google.maps.Marker({
+						    markers[idInfoBox] = new google.maps.Marker({
 						        position: new google.maps.LatLng(gatosEncontrados[i][0], gatosEncontrados[i][1]),
 						        map: map,
 								icon: gatosEncontrados[i][2]
@@ -350,13 +369,19 @@
 
 							// Joga o InfoBox no mapa
 							arrayInfoBox[idInfoBox] = new InfoBox(ibOpcoes);
-							arrayInfoBox[idInfoBox].open(map, marker);
+							arrayInfoBox[idInfoBox].open(map, markers[idInfoBox]);
 
 							// Abre o InfoBox no onlick
-							arrayInfoBox[idInfoBox].listener = google.maps.event.addListener(marker, "click", function (e) {
-							    arrayInfoBox[idInfoBox].open(map, marker);
-							});
+							// google.maps.event.addListener(markers[idInfoBox], "click", function (e) {
+							//     arrayInfoBox[idInfoBox].open(map, markers[idInfoBox]);
+							// });
+							google.maps.event.addListener(markers[idInfoBox], 'click', (function(marker, i) {
+								return function() {
+									arrayInfoBox[i].open(map, markers[idInfoBox]);
+								}
+							})(markers[idInfoBox], idInfoBox));
 							arrayInfoBox[idInfoBox].close();
+							console.log(idInfoBox);
 							idInfoBox++;
 						}
 				    },
