@@ -79,20 +79,20 @@
 								<li><a href="<?= $GLOBALS['www']; ?>" class="visible-lg-inline-block">Página inicial</a></li>
 								<li>
 									<div class="dropdown">
-										<a id="dLabelAnimais" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+										<a id="dLabelAnimais" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 											Todos os animais
 											<span class="caret"></span>
 										</a>
 										<ul class="dropdown-menu" aria-labelledby="dLabelAnimais">
-											<li><a href="todos-os-pets.php">Para doação</a></li>
-											<li><a href="todos-os-pets.php">Perdidos</a></li>
-											<li><a href="todos-os-pets.php">Encontrados</a></li>
+											<li><a href="animais-para-doacao.php">Para doação</a></li>
+											<li><a href="animais-perdidos.php">Perdidos</a></li>
+											<li><a href="animais-encontrados.php">Encontrados</a></li>
 										</ul>
 									</div>
 								</li>
 								<li>
 									<div class="dropdown">
-										<a id="dLabelAnuncio" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+										<a id="dLabelAnuncio" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 											Anunciar
 											<span class="caret"></span>
 										</a>
@@ -145,11 +145,35 @@
                                 <label for="formLoginSenha" class="font-300">Senha</label>
                                 <input type="password" name="formLoginSenha" class="form-control" placeholder="******">
                             </div>
-                            <button type="button" class="btn btn-gradient text-uppercase force-radius-0" id="btnLogin">Logar</button>
+                            <p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase force-radius-0 padhor-30" id="btnLogin">Logar</button></p>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" id="btnFecharLogin">Fechar</button>
+                        <p class="text-center mbottom-0"><a href="" data-dismiss="modal" data-toggle="modal" data-target="#modalEsqueciSenha">Esqueci minha senha</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalEsqueciSenha" tabindex="-1" role="dialog" aria-labelledby="modalEsqueciSenhaLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-uppercase text-center font-700" id="modalEsqueciSenhaLabel">Esqueci a senha</h4>
+                    </div>
+                    <div class="modal-body"><!-- http://31.220.53.123:8080/luckypets-servidor/api/usuario/login -->
+                        <form class="" action="" method="POST">
+                            <div class="form-group">
+                                <label for="formLoginEmail" class="font-300">E-mail</label>
+                                <input type="text" name="formLoginEmail" class="form-control" placeholder="maria@gmail.com">
+                            </div>
+                            <p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase force-radius-0 padhor-30" id="btnRecuperar">Recuperar senha</button></p>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <p class="text-center mbottom-0"><a href="" data-dismiss="modal" data-toggle="modal" data-target="#modalLogin">Lembrei minha senha</a></p>
                     </div>
                 </div>
             </div>

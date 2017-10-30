@@ -11,14 +11,14 @@
 	</head>
 	<body>
 		<?php include "header.php"; ?>
-		<div class="container-fluid bg-f5f5f5 padver-15-xs">
+		<div class="container-fluid bg-f5f5f5">
 			<div class="row">
 				<div class="col-xs-12 padhor-0">
 					<div id="map">
 					</div>
 					<style>
 						#map {
-							height: 800px;
+							height: 789px;
 						}
 					</style>
 				</div>
@@ -44,6 +44,12 @@
 				-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 				box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 		    }
+
+			@media all and (max-width: 768px) {
+				.div_infobox {
+					width: 240px;
+				}
+			}
 		</style>
 		<script>
 			//$(function(){
@@ -149,7 +155,7 @@
 							'<p>Cor: '+cachorrosPerdidos[i][8]+'</p>' +
 							'<p>Idade: '+cachorrosPerdidos[i][9]+'</p>' +
 							'<p>Porte: '+cachorrosPerdidos[i][10]+'</p>' +
-							'<p style="text-align: center; margin-top: 30px;"><a href="http://localhost:81/luckypets/anuncio-animal-perdido.php?animalId='+cachorrosPerdidos[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
+							'<p style="text-align: center; margin-top: 30px;"><a href="<?= $GLOBALS['www']; ?>anuncio-animal-perdido.php?animalId='+cachorrosPerdidos[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
 							'</div>' +
 							'</div>';
 
@@ -201,7 +207,7 @@
 							'<p>Cor: '+gatosPerdidos[i][8]+'</p>' +
 							'<p>Idade: '+gatosPerdidos[i][9]+'</p>' +
 							'<p>Porte: '+gatosPerdidos[i][10]+'</p>' +
-							'<p style="text-align: center; margin-top: 30px;"><a href="http://localhost:81/luckypets/anuncio-animal-perdido.php?animalId='+gatosPerdidos[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
+							'<p style="text-align: center; margin-top: 30px;"><a href="<?= $GLOBALS['www']; ?>anuncio-animal-perdido.php?animalId='+gatosPerdidos[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
 							'</div>' +
 							'</div>';
 
@@ -322,7 +328,7 @@
 							'<p>Cor: '+cachorrosEncontrados[i][8]+'</p>' +
 							'<p>Idade: '+cachorrosEncontrados[i][9]+'</p>' +
 							'<p>Porte: '+cachorrosEncontrados[i][10]+'</p>' +
-							'<p style="text-align: center; margin-top: 30px;"><a href="http://localhost:81/luckypets/anuncio-animal-encontrado.php?animalId='+cachorrosEncontrados[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
+							'<p style="text-align: center; margin-top: 30px;"><a href="<?= $GLOBALS['www']; ?>anuncio-animal-encontrado.php?animalId='+cachorrosEncontrados[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
 							'</div>' +
 							'</div>';
 
@@ -374,7 +380,7 @@
 							'<p>Cor: '+gatosEncontrados[i][8]+'</p>' +
 							'<p>Idade: '+gatosEncontrados[i][9]+'</p>' +
 							'<p>Porte: '+gatosEncontrados[i][10]+'</p>' +
-							'<p style="text-align: center; margin-top: 30px;"><a href="http://localhost:81/luckypets/anuncio-animal-encontrado.php?animalId='+gatosEncontrados[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
+							'<p style="text-align: center; margin-top: 30px;"><a href="<?= $GLOBALS['www']; ?>anuncio-animal-encontrado.php?animalId='+gatosEncontrados[i][11]+'" style="padding: 6px 50px; background-color: #2861ae; color: #fff; text-transform: uppercase; font-weight: 700; text-decoration: none;">Saiba mais</a></p>' +
 							'</div>' +
 							'</div>';
 

@@ -11,7 +11,7 @@
 		<?php
 			$animalId = $_GET["animalId"];
 			if (!isset($animalId) || $animalId == "" || is_null($animalId)) {
-				header('Location: ' . $GLOBALS['www'] . 'todos-os-pets.php');
+				header('Location: ' . $GLOBALS['www'] . 'animais-para-doacao.php');
 	    		exit;
 			}
 		?>
@@ -174,7 +174,7 @@
 			            success:function(x){
 							console.log(x);
 			                if (x == undefined) {
-			                    location.href = "<?= $GLOBALS['www']; ?>todos-os-pets.php";
+			                    location.href = "<?= $GLOBALS['www']; ?>animais-para-doacao.php";
 			                }
 			                $('#ajaxDescricao').text(x.animal.descricao);
 			                $('#ajaxNome').text(x.animal.nome);

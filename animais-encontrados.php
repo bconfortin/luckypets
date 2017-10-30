@@ -181,7 +181,7 @@
 						$("input[name=sexo][value='<?= $sexo ?>']").trigger("click");
 					<?php }
 					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo;
-					$urlGetEncontrados = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrado-filtered' . $params;
+					$urlGetEncontrados = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrados-filtered' . $params;
 				} ?>
 				$.ajax({
 				    type: 'GET',
@@ -197,11 +197,8 @@
 							html += '       </div>';
 							//html += '		<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/encontrado/' + x[i].id + '/' + x[i].animal.imagens[0] + '" alt="' + x[i].animal.nome + '" class="img-responsive center-block" style="max-height: 206px;">';
 							html += '		<div class="absolute-pet-details">';
-							html += '			<p class="pull-left mbottom-0">';
-							html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.raca;
-							html += '			</p>';
-							html += '			<p class="pull-right text-right mbottom-0">';
-							html += '				' + x[i].cidade + '<br>' + x[i].estado;
+							html += '			<p class="mbottom-0 text-center">';
+							html += '				' + x[i].animal.nome;
 							html += '			</p>';
 							html += '		</div>';
 							html += '	</a>';
