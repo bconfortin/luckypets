@@ -50,7 +50,7 @@
                                 <button type="button" class="btn btn-default padhor-25">Gato</button>
                             </div>
                         </div>
-                        <form action="todos-os-pets.php" method="GET" id="form-busca">
+                        <form action="animais-para-doacao.php" method="GET" id="form-busca">
                             <input type="hidden" name="tipo" value="">
                             <p class="text-center mtop-30"><button type="submit" class="btn btn-gradient text-uppercase" id="index-busca">Buscar</button></p>
                         </form>
@@ -66,7 +66,7 @@
     					<div class="padding-30 bg-f5f5f5">
 							<h2 class="titulo mbottom-0">Busca</h2>
 							<p class="line-height-1-5 text-center font-1-1em mbottom-15">Não é necessário preencher todos os campos</p>
-							<form action="todos-os-pets.php" method="POST">
+							<form action="animais-para-doacao.php" method="POST">
 								<div class="row">
 									<div class="col-xs-12 col-sm-3">
 										<div class="form-group">
@@ -188,7 +188,7 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<p class="mbottom-0 text-center">
-									<a href="todos-os-pets.php" class="btn btn-green force-radius-0 text-uppercase padhor-30">Ver todos pets</a>
+									<a href="animais-para-doacao.php" class="btn btn-green force-radius-0 text-uppercase padhor-30">Ver todos animais</a>
 								</p>
 							</div>
 						</div>
