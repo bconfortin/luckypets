@@ -71,6 +71,8 @@
 				    crossOrigin: true,
 				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos',
 				    dataType: 'json',
+					tryCount : 0,
+    				retryLimit : 3,
 					// headers: {
 					// 	'Authorization': '<?php //echo $_SESSION['basicAuth']; ?>'
 					// },
@@ -223,7 +225,16 @@
 							idInfoBox++;
 						}
 				    },
-				    error:function(){
+				    error:function(xhr, textStatus, errorThrown ) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 				    }
 				});
@@ -233,6 +244,8 @@
 				    crossOrigin: true,
 				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrados',
 				    dataType: 'json',
+					tryCount : 0,
+    				retryLimit : 3,
 					// headers: {
 					// 	'Authorization': '<?php //echo $_SESSION['basicAuth']; ?>'
 					// },
@@ -385,7 +398,16 @@
 							idInfoBox++;
 						}
 				    },
-				    error:function(){
+				    error:function(xhr, textStatus, errorThrown ) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 				    }
 				});
