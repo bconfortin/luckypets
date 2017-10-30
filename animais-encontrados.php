@@ -108,31 +108,6 @@
 										</label>
 									</div>
 								</div>
-								<div class="clearfix mtop-15">
-									<a class="mbottom-5 font-700 pull-left width-100per no-text-deco" role="button" data-toggle="collapse" href="#collapseIdade" aria-expanded="true" aria-controls="collapseIdade">Idade <i class="fa fa-caret-down pull-right caret-position"></i></a>
-								</div>
-								<div class="collapse in" id="collapseIdade" aria-expanded="true">
-									<div class="radio mtop-0">
-										<label>
-											<input type="radio" name="idade" value="" checked="checked"> Todas
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="idade" value="Filhote (0 a 2 anos)"> Filhote (0 a 2 anos)
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="idade" value="Adulto (2 a 8 anos)"> Adulto (2 a 8 anos)
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="idade" value="Idoso (acima de 8 anos)"> Idoso (acima de 8 anos)
-										</label>
-									</div>
-								</div>
 								<button type="submit" class="btn btn-gradient text-uppercase width-100per mtop-30">Filtrar</button>
 							</div>
 						</form>
