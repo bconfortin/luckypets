@@ -190,9 +190,9 @@
 
 				// filtro: tipo, porte, sexo, idade, castrado
 				<?php
-				$urlGetDoacoes = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrados';
-				if (isset($_GET['tipo']) || isset($_GET['porte']) || isset($_GET['sexo']) || isset($_GET['idade']) || isset($_GET['castrado'])) {
-					$tipo = ""; $porte = ""; $sexo = ""; $idade = ""; $castrado = "";
+				$urlGetEncontrados = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrados';
+				if (isset($_GET['tipo']) || isset($_GET['porte']) || isset($_GET['sexo'])) {
+					$tipo = ""; $porte = ""; $sexo = "";
 					if (isset($_GET['tipo']) && $_GET['tipo'] != '') {
 						$tipo = $_GET['tipo']; ?>
 						$("input[name=tipo][value='<?= $tipo ?>']").trigger("click");
@@ -205,17 +205,13 @@
 						$sexo = $_GET['sexo']; ?>
 						$("input[name=sexo][value='<?= $sexo ?>']").trigger("click");
 					<?php }
-					if (isset($_GET['idade']) && $_GET['idade'] != '') {
-						$idade = $_GET['idade']; ?>
-						$("input[name=idade][value='<?= $idade ?>']").trigger("click");
-					<?php }
-					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&idade='.$idade.'&castrado='.$castrado;
-					$urlGetDoacoes = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrado-filtered' . $params;
+					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo;
+					$urlGetEncontrados = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrado-filtered' . $params;
 				} ?>
 				$.ajax({
 				    type: 'GET',
 				    crossOrigin: true,
-					url: '<?= $urlGetDoacoes; ?>',
+					url: '<?= $urlGetEncontrados; ?>',
 				    dataType: 'json',
 				    success:function(x){
 					    var html = '';
