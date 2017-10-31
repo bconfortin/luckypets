@@ -115,6 +115,51 @@
 												<div class="col-xs-12">
 													<h2 class="font-2em text-uppercase font-700 mtop-0">Alterar meu cadastro</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<div class="row">
+														<div class="col-xs-12 col-sm-6 col-md-6">
+															<form action="" method="POST" enctype="multipart/form-data" id="formAlterarCadastro">
+																<div class="row">
+																	<div class="col-xs-12 col-sm-6">
+																		<div class="form-group">
+																			<label for="nome">Nome</label>
+																			<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves" value="<?= $_SESSION['nome'] ?>">
+																		</div>
+																	</div>
+																	<div class="col-xs-12 col-sm-6">
+																		<div class="form-group">
+																			<label for="email">E-mail</label>
+																			<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email'] ?>">
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-xs-12 col-sm-6">
+																		<div class="form-group">
+																			<label for="celular">Celular</label>
+																			<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655" value="<?= $_SESSION['celular'] ?>">
+																		</div>
+																	</div>
+																	<div class="col-xs-12 col-sm-6">
+																		<div class="form-group">
+																			<label for="telefone">Telefone</label>
+																			<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122" value="<?= $_SESSION['telefone'] ?>">
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-xs-12">
+																		<div class="form-group">
+																			<label for="file">Fazer upload de foto</label>
+																			<input type="file" id="file" name="file" class="width-100per">
+																			<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
+																		</div>
+																	</div>
+																</div>
+																<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
+																<p class="mbottom-0"><button type="button" class="btn btn-gradient text-uppercase padhor-30" id="btnAlterarCadastro">Enviar</button></p>
+															</form>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -314,7 +359,6 @@
 			}
 
 			function ajaxTrocarSenha(){
-				event.preventDefault();
 				// senhaAntiga = $("#formAlterarSenha input[name='senhaAntiga']").val();
 				// senhaNova = $("#formAlterarSenha input[name='senhaNova']").val();
 				// email = $("#formAlterarSenha input[name='email']").val();
@@ -351,9 +395,71 @@
 				});
 			}
 
-			$("#btnAlterarSenha").on("click", function(){
+			$("#btnAlterarSenha").on("click", function(event){
+				event.preventDefault();
 				ajaxTrocarSenha();
 			});
+
+			$("#btnAlterarCadastro").on("click", function(event){
+				event.preventDefault();
+				ajaxAlterarCadastro();
+			});
+
+			function ajaxAlterarCadastro(){
+				$.ajax({
+					type: 'POST',
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					// Método 1 - NÃO funciona com imagens (multipart/form-data)
+					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+					// Método 2 - Funciona com imagens (multipart/form-data) {
+					data: new FormData($('#formAlterarCadastro')[0]),
+					processData: false,
+					contentType: false,
+					// }
+					success:function(result){
+						console.log("Usuário alterado com sucesso.");
+						refreshSession();
+					},
+					error:function(){
+						console.log("Ops! Não foi possível fazer sua requisição.");
+					}
+				});
+			}
+
+			function refreshSession() {
+				$.ajax({
+					type: 'GET',
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/getuserdata/<?= $_SESSION['email']; ?>',
+					dataType: 'json',
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					success:function(data){
+						$.post("<?= $GLOBALS['www']; ?>login-backend.php", {
+							"administrador": data.administrador,
+							"authToken": data.authToken,
+							"celular": data.celular,
+							"email": data.email,
+							"facebook": data.facebook,
+							"id": data.id,
+							"imagem": data.imagem,
+							"caminhoCompletoImagem": "http://31.220.53.123:8080/luckypets-servidor/api/file/" + data.id + "/" + data.imagem,
+							"nome": data.nome,
+							"senha": data.senha,
+							"telefone": data.telefone,
+							"basicAuth": "<?php echo $_SESSION['basicAuth']; ?>"
+						}).done(function(data) {
+							location.href = "<?= $GLOBALS['www']; ?>?message=usuarioAlteradoComSucesso";
+						});
+					},
+					error:function(){
+						console.log("Ops! Não foi possível fazer sua requisição.");
+					}
+				});
+			}
 		});
 		</script>
 	</body>
