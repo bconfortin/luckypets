@@ -1828,6 +1828,10 @@ body {
 	background-color: #eee;
 }
 
+.bg-666, .bg-666666, .bg-gray-666, .bg-grey-666 {
+	background-color: #666;
+}
+
 .bg-ededed, .bg-gray-ededed, .bg-grey-ededed {
 	background-color: #ededed;
 }
@@ -1864,7 +1868,7 @@ body {
  ###################### */
 
 .bg-blue, .bg-blue-007da8 {
-	background-color: #007da8;
+	background-color: #2861ae;
 }
 
 
@@ -4607,8 +4611,49 @@ h4.footer-titulo {
     padding: 7px 11px;
 }
 
+.dashboard {
+    background-color: #666;
+    color: #fff;
+}
+
+.dashboard h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.3em;
+    margin-top: 0;
+}
+
+.dashboard h2 {
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+.dashboard ul>li>a {
+    font-weight: 300;
+    color: #fff;
+    padding-left: 10px;
+}
+
+.dashboard ul {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.dashboard-height-hack {
+    min-height: calc(100vh - 160px);
+}
+
+.bg-transparent {
+    background-color: transparent;
+}
+
 @media (max-width: 768px) {
 
+    .dashboard-height-hack {
+        min-height: auto;
+    }
+    
 	.img-restraint-262 {
 		min-width: 100%;
 		max-width: 100%;

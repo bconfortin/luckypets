@@ -11,45 +11,119 @@
 	</head>
 	<body>
 		<?php include "header.php"; ?>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12 padhor-0">
-					<img src="img/cat-dog-1920x450.jpg" alt="Imagem promocional" class="img-responsive hidden-xs hidden-sm">
-					<img src="img/cat-dog-993x600.jpg" alt="Imagem promocional" class="img-responsive hidden-md hidden-lg">
-					<div class="force-vertical-align black-bg-filter width-100per">
-						<div class="force-vertical-align">
-							<h1 class="text-center font-1-8em text-uppercase font-700 color-fff mtop-0 mbottom-5 text-shadow font-1-3em-xs mbottom-30-xs">Doação de cachorros e gatos</h1>
-							<p class="mbottom-30 text-center font-300 font-1-5em color-fff text-shadow hidden-xs">Veja todos os animais disponíveis para doação.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container-fluid">
+		<div class="container-fluid bg-gray-666">
 			<div class="">
 				<div class="row">
-					<div class="col-xs-12 col-md-3 col-sm-3 col-lg-2">
-						<div class="padver-50 padver-15-xs bg-fff">
-							<h1>Dashboard</h1>
-							<ul>
-								<li><a href="">Teste</a></li>
-							</ul>
+					<div class="col-xs-12 col-md-3 col-sm-3 col-lg-2 padhor-0 dashboard-height-hack">
+						<div class="dashboard padhor-15">
+							<div class="padver-50 padver-15-xs">
+								<h1>Dashboard</h1>
+								<ul id="dashboardTabs">
+									<h2>Inicial</h2>
+									<li><a href="#tabHome">Anúncios do sistema</a></li>
+									<h2>Meus anúncios</h2>
+									<li><a href="#tabDoacao">Doação</a></li>
+									<li><a href="#tabPerdido">Animal perdido</a></li>
+									<li><a href="#tabEncontrado">Animal encontrado</a></li>
+									<h2>Meus perfil</h2>
+									<li><a href="#tabAlterarCadastro">Alterar dados cadastrais</a></li>
+									<li><a href="#tabAlterarSenha">Alterar senha</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-md-9 col-sm-9 col-lg-10 bg-f5f5f5">
-						<div class="row padver-50 padver-15-xs" id="containerAnimais">
+					<div class="col-xs-12 col-md-9 col-sm-9 col-lg-10 bg-f5f5f5 dashboard-height-hack">
+						<div class="row padver-15 padver-15-xs" id="containerAnimais">
 							<div class="col-xs-12">
-								<div class="bg-fff padding-30">
-									<div class="row padver-50">
-										<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-											<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Dashboard!</h2>
-											<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-para-doacao.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+								<div class="padding-30">
+									<!-- Tab panes -->
+									<div class="tab-content bg-transparent">
+										<div role="tabpanel" class="tab-pane active" id="tabHome">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-0">Bem vindo ao seu perfil</h2>
+													<p class="font-1-2em font-300 mbottom-0">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane" id="tabDoacao">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-0">Meus anúncios de doação</h2>
+													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<div class="row" id="rowAjaxDoacao">
+														<div class="col-xs-12 hidden containerErro">
+															<div class="bg-fff padding-30">
+																<div class="row padver-50">
+																	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+																		<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
+																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-para-doacao.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane" id="tabPerdido">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-0">Meus anúncios de animal perdido</h2>
+													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<div class="row" id="rowAjaxPerdido">
+														<div class="col-xs-12 hidden containerErro">
+															<div class="bg-fff padding-30">
+																<div class="row padver-50">
+																	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+																		<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
+																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-para-doacao.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane" id="tabEncontrado">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-0">Meus anúncios de animal encontrado</h2>
+													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<div class="row" id="rowAjaxEncontrado">
+														<div class="col-xs-12 hidden containerErro">
+															<div class="bg-fff padding-30">
+																<div class="row padver-50">
+																	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+																		<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
+																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-para-doacao.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane" id="tabAlterarCadastro">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-0">Alterar meu cadastro</h2>
+													<p class="font-1-2em font-300 mbottom-0">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane" id="tabAlterarSenha">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-0">Alterar minha senha</h2>
+													<p class="font-1-2em font-300 mbottom-0">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="">
-
 							</div>
 						</div>
 					</div>
@@ -71,5 +145,154 @@
 		</div> -->
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
+		<script>
+		$(function(){
+			var jaCarregouDoacoes = false;
+			var jaCarregouPerdidos = false;
+			var jaCarregouEncontrados = false;
+
+			$('#dashboardTabs a[href="#tabHome"]').click(function(e){
+				e.preventDefault();
+  				$(this).tab('show');
+			});
+			$('#dashboardTabs a[href="#tabDoacao"]').click(function(e){
+				e.preventDefault();
+				if (jaCarregouDoacoes == false) {
+					ajaxDoacoes();
+					jaCarregouDoacoes = true;
+				}
+  				$(this).tab('show');
+			});
+			$('#dashboardTabs a[href="#tabPerdido"]').click(function(e){
+				e.preventDefault();
+				if (jaCarregouPerdidos == false) {
+					ajaxPerdidos();
+					jaCarregouPerdidos = true;
+				}
+  				$(this).tab('show');
+			});
+			$('#dashboardTabs a[href="#tabEncontrado"]').click(function(e){
+				e.preventDefault();
+				if (jaCarregouEncontrados == false) {
+					ajaxEncontrados();
+					jaCarregouEncontrados = true;
+				}
+  				$(this).tab('show');
+			});
+			$('#dashboardTabs a[href="#tabAlterarCadastro"]').click(function(e){
+				e.preventDefault();
+  				$(this).tab('show');
+			});
+			$('#dashboardTabs a[href="#tabAlterarSenha"]').click(function(e){
+				e.preventDefault();
+  				$(this).tab('show');
+			});
+
+			function ajaxDoacoes() {
+				$.ajax({
+				    type: 'GET',
+				    crossOrigin: true,
+					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes-usuario/<?= $_SESSION["id"]; ?>',
+				    dataType: 'json',
+				    success:function(x){
+					    var html = '';
+					    for (i = 0; i < x.length; i++) {
+							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 mbottom-30">';
+							html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
+							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
+							html += '       </div>';
+							html += '		<div class="absolute-pet-details">';
+							html += '			<p class="pull-left mbottom-0">';
+							html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.raca;
+							html += '			</p>';
+							html += '			<p class="pull-right text-right mbottom-0">';
+							html += '				' + x[i].cidade + '<br>' + x[i].estado;
+							html += '			</p>';
+							html += '		</div>';
+							html += '	</a>';
+							html += '</div>';
+					    }
+					    $("#rowAjaxDoacao").append(html);
+						if (x.length == 0) {
+							console.log(x);
+							$("#rowAjaxDoacao .containerErro").removeClass("hidden");
+						}
+				    },
+				    error:function(){
+				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+				    }
+				});
+			}
+
+			function ajaxPerdidos() {
+				$.ajax({
+				    type: 'GET',
+				    crossOrigin: true,
+					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos-usuario/<?= $_SESSION["id"]; ?>',
+				    dataType: 'json',
+				    success:function(x){
+					    var html = '';
+					    for (i = 0; i < x.length; i++) {
+							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 mbottom-30">';
+							html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
+							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
+							html += '       </div>';
+							html += '		<div class="absolute-pet-details">';
+							html += '			<p class="pull-left mbottom-0">';
+							html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.raca;
+							html += '			</p>';
+							html += '			<p class="pull-right text-right mbottom-0">';
+							html += '				' + x[i].cidade + '<br>' + x[i].estado;
+							html += '			</p>';
+							html += '		</div>';
+							html += '	</a>';
+							html += '</div>';
+					    }
+					    $("#rowAjaxPerdido").append(html);
+						if (x.length == 0) {
+							console.log(x);
+							$("#rowAjaxPerdido .containerErro").removeClass("hidden");
+						}
+				    },
+				    error:function(){
+				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+				    }
+				});
+			}
+
+			function ajaxEncontrados() {
+				$.ajax({
+				    type: 'GET',
+				    crossOrigin: true,
+					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrados-usuario/<?= $_SESSION["id"]; ?>',
+				    dataType: 'json',
+				    success:function(x){
+					    var html = '';
+					    for (i = 0; i < x.length; i++) {
+							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 mbottom-30">';
+							html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
+							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
+							html += '       </div>';
+							html += '		<div class="absolute-pet-details">';
+							html += '			<p class="text-center mbottom-0">';
+							html += '				' + x[i].animal.nome;
+							html += '			</p>';
+							html += '		</div>';
+							html += '	</a>';
+							html += '</div>';
+					    }
+					    $("#rowAjaxEncontrado").append(html);
+						if (x.length == 0) {
+							console.log(x);
+							$("#rowAjaxEncontrado .containerErro").removeClass("hidden");
+						}
+				    },
+				    error:function(){
+				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+				    }
+				});
+			}
+		});
+		</script>
 	</body>
 </html>

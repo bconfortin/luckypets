@@ -1,4 +1,4 @@
-    	<div id="devMenu" class="hidden" style="padding: 15px; background-color: #ddd; z-index: 300; position: fixed; top: 110px; left: 0; width: 400px;">
+    	<!-- <div id="devMenu" class="hidden" style="padding: 15px; background-color: #ddd; z-index: 300; position: fixed; top: 110px; left: 0; width: 400px;">
     		<ul style="padding-left: 0; list-style-type: none;">
     			<li><a href="<?= $GLOBALS['www']; ?>" style="color: #333; padding-left: 15px;">Página inicial</a></li>
                 <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Cadastro</li>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="bg-333 inline-block mtop-30-xs" style="padding: 18px; position: fixed; top: 30px; left: 0; z-index: 30000;">
             <a href="" class="block white-link" id="toggleDevMenu"><i class="fa fa-bars mright-15"></i>Toggle Dev Menu</a>
