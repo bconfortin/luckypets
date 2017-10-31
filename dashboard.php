@@ -37,7 +37,7 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-9 col-sm-9 col-lg-10 bg-f5f5f5 dashboard-height-hack">
-						<div class="row padver-15 padver-15-xs" id="containerAnimais">
+						<div class="row">
 							<div class="col-xs-12">
 								<div class="padding-30">
 									<!-- Tab panes -->
@@ -114,7 +114,7 @@
 											<div class="row">
 												<div class="col-xs-12">
 													<h2 class="font-2em text-uppercase font-700 mtop-0">Alterar meu cadastro</h2>
-													<p class="font-1-2em font-300 mbottom-0">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 												</div>
 											</div>
 										</div>
@@ -122,7 +122,23 @@
 											<div class="row">
 												<div class="col-xs-12">
 													<h2 class="font-2em text-uppercase font-700 mtop-0">Alterar minha senha</h2>
-													<p class="font-1-2em font-300 mbottom-0">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<div class="row">
+														<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+															<form method="POST" id="formAlterarSenha">
+																<div class="form-group">
+																	<label for="senhaAntiga">Senha antiga</label>
+																	<input type="password" name="senhaAntiga" value="" class="form-control" placeholder="******">
+																</div>
+																<div class="form-group">
+																	<label for="senhaNova">Senha nova</label>
+																	<input type="password" name="senhaNova" value="" class="form-control" placeholder="******">
+																</div>
+																<input type="hidden" name="email" value="<?= $_SESSION['email']; ?>">
+																<button id="btnAlterarSenha" class="btn btn-gradient padhor-30 text-uppercase mtop-10">Alterar senha</button>
+															</form>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -238,15 +254,15 @@
 					    var html = '';
 					    for (i = 0; i < x.length; i++) {
 							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 mbottom-30">';
-							html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
-							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
+							html += '	<a href="anuncio-animal-perdido.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
+							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/perdido/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
 							html += '       </div>';
 							html += '		<div class="absolute-pet-details">';
 							html += '			<p class="pull-left mbottom-0">';
 							html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.raca;
 							html += '			</p>';
 							html += '			<p class="pull-right text-right mbottom-0">';
-							html += '				' + x[i].cidade + '<br>' + x[i].estado;
+							html += '				Sexo: ' + x[i].animal.sexo + '<br>Porte: ' + x[i].animal.porte;
 							html += '			</p>';
 							html += '		</div>';
 							html += '	</a>';
@@ -274,8 +290,8 @@
 					    var html = '';
 					    for (i = 0; i < x.length; i++) {
 							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 mbottom-30">';
-							html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
-							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
+							html += '	<a href="anuncio-animal-encontrado.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
+							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/encontrado/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
 							html += '       </div>';
 							html += '		<div class="absolute-pet-details">';
 							html += '			<p class="text-center mbottom-0">';
@@ -296,6 +312,48 @@
 				    }
 				});
 			}
+
+			function ajaxTrocarSenha(){
+				event.preventDefault();
+				// senhaAntiga = $("#formAlterarSenha input[name='senhaAntiga']").val();
+				// senhaNova = $("#formAlterarSenha input[name='senhaNova']").val();
+				// email = $("#formAlterarSenha input[name='email']").val();
+				$.ajax({
+					type: 'POST',
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/alterar-senha',
+					// url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/changepass/'+email+'/'+senhaAntiga+'/'+senhaNova,
+					// Método 1 - NÃO funciona com imagens (multipart/form-data)
+					data: {
+						senhaAntiga: $("#formAlterarSenha input[name='senhaAntiga']").val(),
+						senhaNova: $("#formAlterarSenha input[name='senhaNova']").val(),
+						email: $("#formAlterarSenha input[name='email']").val()
+					},
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					// Método 2 - Funciona com imagens (multipart/form-data) {
+					// data: new FormData($('#formulario')[0]),
+					// processData: false,
+					// contentType: false,
+					// }
+					success:function(result){
+						console.log("deu");
+						if (result.toLowerCase() === "Ok".toLowerCase()) {
+							console.log("Senha alterada com sucesso.");
+							location.href = "<?= $GLOBALS['www']; ?>?message=senhaAlteradaComSucesso";
+						} else {
+							console.log("A senha não foi alterada pois algum campo estava errado.");
+						}
+					},
+					error:function(){
+						console.log("Ops! Não foi possível fazer sua requisição.");
+					}
+				});
+			}
+
+			$("#btnAlterarSenha").on("click", function(){
+				ajaxTrocarSenha();
+			});
 		});
 		</script>
 	</body>

@@ -1,4 +1,5 @@
-    	<!-- <div id="devMenu" class="hidden" style="padding: 15px; background-color: #ddd; z-index: 300; position: fixed; top: 110px; left: 0; width: 400px;">
+    	<?php /*
+        <div id="devMenu" class="hidden" style="padding: 15px; background-color: #ddd; z-index: 300; position: fixed; top: 110px; left: 0; width: 400px;">
     		<ul style="padding-left: 0; list-style-type: none;">
     			<li><a href="<?= $GLOBALS['www']; ?>" style="color: #333; padding-left: 15px;">Página inicial</a></li>
                 <li style="margin-bottom: 10px; margin-top: 10px; color: #333; text-transform: uppercase; font-weight: 700;">Cadastro</li>
@@ -28,12 +29,15 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
+
 
         <div class="bg-333 inline-block mtop-30-xs" style="padding: 18px; position: fixed; top: 30px; left: 0; z-index: 30000;">
             <a href="" class="block white-link" id="toggleDevMenu"><i class="fa fa-bars mright-15"></i>Toggle Dev Menu</a>
             <a href="" class="block white-link" id="toggleSessionDesc"><i class="fa fa-user-circle mright-15"></i>Toggle Session</a>
         </div>
+
+        */ ?>
 
     	<div class="lucky-right-menu closed">
     		<a href="" class="destino-x">
@@ -76,7 +80,7 @@
 						</a>
 						<ul class="lucky-nav-left">
 							<span class="hidden-xs">
-								<li><a href="<?= $GLOBALS['www']; ?>" class="visible-lg-inline-block">Página inicial</a></li>
+								<!-- <li><a href="<?= $GLOBALS['www']; ?>" class="visible-lg-inline-block">Página inicial</a></li> -->
 								<li>
 									<div class="dropdown">
 										<a id="dLabelAnimais" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -105,6 +109,7 @@
 								</li>
 								<li><a href="quem-somos.php">Sobre</a></li>
                                 <?php if (isset($_SESSION['nome'])) { ?>
+                                    <li><a href="dashboard.php">Meu perfil</a></li>
                                     <li><a href="" class="btnSair">Sair</a></li>
                                 <?php } else { ?>
                                     <li><a href="" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
