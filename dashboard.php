@@ -8,6 +8,10 @@
 		<title>Lucky Pets</title>
 		<meta name="description" content=""/>
 		<?php include "head.php"; ?>
+		<?php
+			require_once("functions.php");
+			verifyLogin();
+		?>
 	</head>
 	<body>
 		<?php include "header.php"; ?>
