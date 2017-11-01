@@ -211,6 +211,33 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
+		function deletarDoacao(idDoacao) {
+			var parentCard = $(this).parent().parent();
+			parentCard.css("backgroundColor", "red");
+			console.log(parentCard);
+			var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
+			if (confirmacao == true) {
+				$.ajax({
+					type: 'GET',
+					crossOrigin: true,
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/delete-doacao/' + idDoacao,
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					success:function(){
+						console.log("Doação deletada com sucesso.");
+						parentCard.remove();
+					},
+					error:function(){
+						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+					}
+				});
+			} else {
+				console.log("Operação cancelada.");
+				return false;
+			}
+		}
+
 		$(function(){
 			var jaCarregouDoacoes = false;
 			var jaCarregouPerdidos = false;
@@ -260,27 +287,32 @@
 					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes-usuario/<?= $_SESSION["id"]; ?>',
 				    dataType: 'json',
 				    success:function(x){
-					    var html = '';
-					    for (i = 0; i < x.length; i++) {
-							html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 mbottom-30">';
-							html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
-							html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
-							html += '       </div>';
-							html += '		<div class="absolute-pet-details">';
-							html += '			<p class="pull-left mbottom-0">';
-							html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.raca;
-							html += '			</p>';
-							html += '			<p class="pull-right text-right mbottom-0">';
-							html += '				' + x[i].cidade + '<br>' + x[i].estado;
-							html += '			</p>';
-							html += '		</div>';
-							html += '	</a>';
-							html += '</div>';
-					    }
-					    $("#rowAjaxDoacao").append(html);
 						if (x.length == 0) {
 							console.log(x);
 							$("#rowAjaxDoacao .containerErro").removeClass("hidden");
+						} else {
+						    var html = '';
+						    for (i = 0; i < x.length; i++) {
+								html += '<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 mbottom-30 cardDoacao">';
+								html += '	<a href="anuncio-animal.php?animalId=' + x[i].id + '" class="block card-home bg-fff unstyled-link relative">';
+								html += '       <div class="img-todos-animais" style="background-image: url(\'http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x[i].id + '/' + x[i].animal.imagens[0] + '\');">';
+								html += '       </div>';
+								html += '		<div class="absolute-pet-details">';
+								html += '			<p class="pull-left mbottom-0">';
+								html += '				Nome: ' + x[i].animal.nome + '<br>Raça: ' + x[i].animal.raca;
+								html += '			</p>';
+								html += '			<p class="pull-right text-right mbottom-0">';
+								html += '				' + x[i].cidade + '<br>' + x[i].estado;
+								html += '			</p>';
+								html += '		</div>';
+								html += '	</a>';
+								html += '	<div class="bg-fff padding-15">';
+								html += '		<a href="editar-doacao.php?animalId='+x[i].id+'" class="btn btn-blue text-uppercase width-100per block mbottom-10">Editar doação</a>';
+								html += '		<button onclick="deletarDoacao('+x[i].id+');" class="btn btn-red text-uppercase width-100per block">Deletar doação</button>';
+								html += '	</div>';
+								html += '</div>';
+						    }
+						    $("#rowAjaxDoacao").append(html);
 						}
 				    },
 				    error:function(){
