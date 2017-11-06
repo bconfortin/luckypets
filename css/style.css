@@ -3709,6 +3709,10 @@ a.pinterest-mobile:link, a.pinterest-mobile:visited {
 }
 
 @media (max-width: 993px) {
+    .padding-0-sm {
+        padding: 0;
+    }
+
 	.header-nav-pleft-telefones {
 		padding-left: 20%;
 	}
@@ -4653,7 +4657,7 @@ h4.footer-titulo {
     .dashboard-height-hack {
         min-height: auto;
     }
-    
+
 	.img-restraint-262 {
 		min-width: 100%;
 		max-width: 100%;
@@ -4739,6 +4743,15 @@ h4.footer-titulo {
         background-position: center center;
         background-size: cover;
         background-color: #666;
+    }
+
+    .padding-0-xs {
+        padding: 0;
+    }
+
+    .padver-15-xs {
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
 }
 

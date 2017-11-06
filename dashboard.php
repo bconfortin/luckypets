@@ -38,14 +38,14 @@
 					</div>
 					<div class="col-xs-12 col-md-9 col-sm-9 col-lg-10 bg-f5f5f5 dashboard-height-hack">
 						<div class="row">
-							<div class="col-xs-12">
-								<div class="padding-30">
+							<div class="col-xs-12 padver-15-xs">
+								<div class="padding-30 padding-0-xs padding-0-sm">
 									<!-- Tab panes -->
-									<div class="tab-content bg-transparent">
+									<div class="tab-content bg-transparent padding-0-xs">
 										<div role="tabpanel" class="tab-pane active" id="tabHome">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0">Bem vindo ao seu perfil</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Bem vindo ao seu perfil</h2>
 													<p class="font-1-2em font-300 mbottom-0">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 												</div>
 											</div>
@@ -53,7 +53,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabDoacao">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0">Meus anúncios de doação</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Meus anúncios de doação</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row" id="rowAjaxDoacao">
 														<div class="col-xs-12 hidden containerErro">
@@ -73,7 +73,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabPerdido">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0">Meus anúncios de animal perdido</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Meus anúncios de animal perdido</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row" id="rowAjaxPerdido">
 														<div class="col-xs-12 hidden containerErro">
@@ -93,7 +93,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabEncontrado">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0">Meus anúncios de animal encontrado</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Meus anúncios de animal encontrado</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row" id="rowAjaxEncontrado">
 														<div class="col-xs-12 hidden containerErro">
@@ -113,7 +113,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabAlterarCadastro">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0">Alterar meu cadastro</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Alterar meu cadastro</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row">
 														<div class="col-xs-12 col-sm-6 col-md-6">
@@ -166,7 +166,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabAlterarSenha">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0">Alterar minha senha</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Alterar minha senha</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row">
 														<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">

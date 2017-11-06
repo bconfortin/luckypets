@@ -46,13 +46,13 @@
     		<div class="ptop-0 padding-20">
 				<img src="img/logo/lucky-pets-logo-white-336x98.png" alt="Logo do Lucky Pets" class="img-responsive center-block mbottom-30" style="max-width: 100px;">
                 <?php if (isset($_SESSION['nome'])) { ?>
-                    <img src="<?= $_SESSION['caminhoCompletoImagem']; ?>" alt="" class="img-circle img-responsive center-block mbottom-10">
+                    <a href="dashboard.php"><img src="<?= $_SESSION['caminhoCompletoImagem']; ?>" alt="" class="img-circle img-responsive center-block mbottom-10"></a>
     				<p class="color-fff text-center">Logado como:<br><?= $_SESSION['nome']; ?></p>
     				<p class="text-center"><a href="" class="inline-block white-link" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR<br>(clique para mudar)</a></p>
+                    <p class="text-center"><a href="dashboard.php">Meu perfil</a></p>
                     <p class="text-center"><a href="" class="btnSair link-white">Sair</a></p>
     				<hr class="hr-white-shadow marver-30">
                     <ul class="mbottom-30">
-
                 <?php } else { ?>
                     <ul class="mbottom-30">
                         <li><a href="formulario-de-cadastro.php">Fazer cadastro</a></li>
@@ -61,6 +61,15 @@
 					<li><a href="<?= $GLOBALS['www']; ?>" class="visible-lg-inline-block">Página inicial</a></li>
 					<li><a href="">Animais</a></li>
 					<li><a href="quem-somos.php">Sobre</a></li>
+
+                    <li><h4 class="font-1em font-700 text-uppercase color-fff">Todos os animais</h4></li>
+                    <li><a href="animais-para-doacao.php">Para doação</a></li>
+                    <li><a href="animais-perdidos.php">Perdidos</a></li>
+                    <li><a href="animais-encontrados.php">Encontrados</a></li>
+                    <li><h4 class="font-1em font-700 text-uppercase color-fff">Anunciar</h4></li>
+                    <li><a href="formulario-de-anuncio-animal.php">Doação de animal</a></li>
+                    <li><a href="formulario-de-anuncio-animal-perdido.php">Animal perdido</a></li>
+                    <li><a href="formulario-de-anuncio-animal-encontrado.php">Animal encontrado</a></li>
 				</ul>
 				<p class="text-center mbottom-0">
 					<a href=""><i class="fa fa-2x fa-facebook-square color-fff marhor-5"></i></a>
@@ -120,7 +129,7 @@
 							<li class="visible-xs-inline-block"><a href="" class="destino-hamburguer"><i class="fa fa-bars fa-lg padhor-10"></i></a></li>
                             <?php if (isset($_SESSION['nome'])) { ?>
                                 <li class="mtop-10 font-0-9em hidden-xs">
-    								<span class="inline-block pull-right mleft-15"><div class="img-circle header-img-usuario" style="background-image: url('<?= $_SESSION["caminhoCompletoImagem"]; ?>');"></div></span>
+    								<span class="inline-block pull-right mleft-15"><a href="dashboard.php" class="block"><div class="img-circle header-img-usuario" style="background-image: url('<?= $_SESSION["caminhoCompletoImagem"]; ?>');"></div></a></span>
     								<span class="inline-block pull-right mtop-10 text-default font-400"><?= $_SESSION['nome']; ?><br><a href="" class="font-700" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR</a></span>
     							</li>
                             <?php } else { ?>
@@ -199,14 +208,14 @@
 								<label for="cidade">Estado</label>
 								<select name="estado" id="estado" class="form-control force-radius-0">
 									<option value="" disabled="disabled" selected="selected">Escolha o estado</option>
-									<option value="">Teste</option>
+									<option value="">Paraná</option>
 								</select>
 			                </div>
 			                <div class="form-group">
 								<label for="cidade">Cidade</label>
 								<select name="cidade" id="cidade" class="form-control force-radius-0">
 									<option value="" disabled="disabled" selected="selected">Escolha a cidade</option>
-									<option value="">Teste</option>
+									<option value="">Foz do Iguaçu</option>
 								</select>
 			                </div>
 			                <button type="submit" class="btn btn-gradient text-uppercase force-radius-0 width-100per">Salvar</button>

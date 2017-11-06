@@ -72,14 +72,6 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label for="localizacao">Localização</label>
-											<input type="text" class="form-control" id="autocomplete">
-										</div>
-									</div>
-								</div>
-								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="nome">Nome</label>
@@ -96,8 +88,12 @@
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="cor">Cor</label>
-											<input type="text" class="form-control" name="cor" placeholder="Ex: Caramelo">
+											<label for="idade">Idade</label>
+											<select name="idade" id="idade" class="form-control">
+												<option value="Filhote (0 a 2 anos)" selected="selected">Filhote (0 a 2 anos)</option>
+												<option value="Adulto (2 a 8 anos)">Adulto (2 a 8 anos)</option>
+												<option value="Idoso (acima de 8 anos)">Idoso (acima de 8 anos)</option>
+											</select>
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
@@ -115,12 +111,14 @@
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="idade">Idade</label>
-											<select name="idade" id="idade" class="form-control">
-												<option value="Filhote (0 a 2 anos)" selected="selected">Filhote (0 a 2 anos)</option>
-												<option value="Adulto (2 a 8 anos)">Adulto (2 a 8 anos)</option>
-												<option value="Idoso (acima de 8 anos)">Idoso (acima de 8 anos)</option>
-											</select>
+											<label for="cor">Cor</label>
+											<input type="text" class="form-control" name="cor" placeholder="Ex: Caramelo">
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<div class="form-group">
+											<label for="localizacao">Localização</label>
+											<input type="text" class="form-control" id="autocomplete">
 										</div>
 									</div>
 								</div>
