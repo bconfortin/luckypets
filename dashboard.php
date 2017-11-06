@@ -212,9 +212,6 @@
 		<?php include "foot.php"; ?>
 		<script>
 		function deletarDoacao(idDoacao) {
-			var parentCard = $(this).parent().parent();
-			parentCard.css("backgroundColor", "red");
-			console.log(parentCard);
 			var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
 			if (confirmacao == true) {
 				$.ajax({
@@ -225,11 +222,65 @@
 						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 					},
 					success:function(){
-						console.log("Doação deletada com sucesso.");
-						parentCard.remove();
+						console.log("Anúncio deletado com sucesso.");
 					},
 					error:function(){
 						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+					},
+					complete:function(){
+						location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
+					}
+				});
+			} else {
+				console.log("Operação cancelada.");
+				return false;
+			}
+		}
+
+		function deletarPerdido(idPerdido) {
+			var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
+			if (confirmacao == true) {
+				$.ajax({
+					type: 'GET',
+					crossOrigin: true,
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/delete-perdido/' + idPerdido,
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					success:function(){
+						console.log("Anúncio deletado com sucesso.");
+					},
+					error:function(){
+						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+					},
+					complete:function(){
+						location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
+					}
+				});
+			} else {
+				console.log("Operação cancelada.");
+				return false;
+			}
+		}
+
+		function deletarEncontrado(idEncontrado) {
+			var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
+			if (confirmacao == true) {
+				$.ajax({
+					type: 'GET',
+					crossOrigin: true,
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/delete-encontrado/' + idEncontrado,
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					success:function(){
+						console.log("Anúncio deletado com sucesso.");
+					},
+					error:function(){
+						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+					},
+					complete:function(){
+						location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
 					}
 				});
 			} else {
@@ -343,6 +394,10 @@
 							html += '			</p>';
 							html += '		</div>';
 							html += '	</a>';
+							html += '	<div class="bg-fff padding-15">';
+							html += '		<a href="editar-perdido.php?animalId='+x[i].id+'" class="btn btn-blue text-uppercase width-100per block mbottom-10">Editar anúncio</a>';
+							html += '		<button onclick="deletarPerdido('+x[i].id+');" class="btn btn-red text-uppercase width-100per block">Deletar anúncio</button>';
+							html += '	</div>';
 							html += '</div>';
 					    }
 					    $("#rowAjaxPerdido").append(html);
@@ -376,6 +431,10 @@
 							html += '			</p>';
 							html += '		</div>';
 							html += '	</a>';
+							html += '	<div class="bg-fff padding-15">';
+							html += '		<a href="editar-encontrado.php?animalId='+x[i].id+'" class="btn btn-blue text-uppercase width-100per block mbottom-10">Editar anúncio</a>';
+							html += '		<button onclick="deletarEncontrado('+x[i].id+');" class="btn btn-red text-uppercase width-100per block">Deletar anúncio</button>';
+							html += '	</div>';
 							html += '</div>';
 					    }
 					    $("#rowAjaxEncontrado").append(html);

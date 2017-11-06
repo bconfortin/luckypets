@@ -37,8 +37,8 @@
 				<div class="row">
 					<div class="col-xs-12"><!--  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 -->
 						<div class="padding-30 bg-fff">
-							<form action="" method="POST" enctype="multipart/form-data" id="formEditarDoacao">
-								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Editar anúncio de animal para doação</h1>
+							<form action="" method="POST" enctype="multipart/form-data" id="formEditarAnuncio">
+								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Editar anúncio de animal perdido</h1>
 								<div class="row">
 									<div class="col-xs-12 col-sm-6">
 										<p class="mbottom-5"><strong>Tipo de animal</strong></p>
@@ -72,34 +72,10 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<p class="mbottom-5"><strong>Vacinado</strong></p>
+									<div class="col-xs-12">
 										<div class="form-group">
-											<div class="list-group segmented-control">
-								                <a href="#" class="list-group-item active">
-								                    Sim
-								                    <input type="radio" name="vacinado" value="true"/>
-								                </a>
-								                <a href="#" class="list-group-item">
-								                    Não
-								                    <input type="radio" name="vacinado" value="false"/>
-								                </a>
-								            </div>
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<p class="mbottom-5"><strong>Castrado</strong></p>
-										<div class="form-group">
-											<div class="list-group segmented-control">
-								                <a href="#" class="list-group-item active">
-								                    Sim
-								                    <input type="radio" name="castrado" value="true"/>
-								                </a>
-								                <a href="#" class="list-group-item">
-								                    Não
-								                    <input type="radio" name="castrado" value="false"/>
-								                </a>
-								            </div>
+											<label for="localizacao">Localização</label>
+											<input type="text" class="form-control" id="autocomplete">
 										</div>
 									</div>
 								</div>
@@ -170,6 +146,8 @@
 									</div>
 								</div>
 								<input type="hidden" name="userId" value="<?= $_SESSION['id']; ?>">
+								<input type="hidden" name="latitude" value="">
+								<input type="hidden" name="longitude" value="">
 								<input type="hidden" name="anuncioId" value="">
 								<input type="hidden" name="cidade" value="Foz do Iguaçu">
 								<input type="hidden" name="estado" value="Paraná">
@@ -188,14 +166,14 @@
 				$(this).addClass("disabled");
 				$.ajax({
 				    type: 'POST',
-				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/edita-doacao',
+				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/edita-perdido',
 					headers: {
 						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 					},
 					// Método 1 - NÃO funciona com imagens (multipart/form-data)
 					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
 					// Método 2 - Funciona com imagens (multipart/form-data) {
-					data: new FormData($('#formEditarDoacao')[0]),
+					data: new FormData($('#formEditarAnuncio')[0]),
 					processData: false,
 					contentType: false,
 					// }
@@ -218,45 +196,62 @@
 				$.ajax({
 					type: 'GET',
 					crossOrigin: true,
-					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacao/<?= $animalId; ?>',
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdido/<?= $animalId; ?>',
 					dataType: 'json',
 					success:function(x){
 						if (x == undefined) {
 							location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
 						}
 						if (x.animal.tipo == "Cachorro") {
-							$('#formEditarDoacao input[name="tipo"][value="Cachorro"]').trigger('click');
+							$('#formEditarAnuncio input[name="tipo"][value="Cachorro"]').trigger('click');
 						} else if (x.animal.tipo == "Gato") {
-							$('#formEditarDoacao input[name="tipo"][value="Gato"]').trigger('click');
+							$('#formEditarAnuncio input[name="tipo"][value="Gato"]').trigger('click');
 						}
 						if (x.animal.sexo == "Feminino") {
-							$('#formEditarDoacao input[name="sexo"][value="Feminino"]').trigger('click');
+							$('#formEditarAnuncio input[name="sexo"][value="Feminino"]').trigger('click');
 						} else if (x.animal.sexo == "Masculino") {
-							$('#formEditarDoacao input[name="sexo"][value="Masculino"]').trigger('click');
+							$('#formEditarAnuncio input[name="sexo"][value="Masculino"]').trigger('click');
 						}
-						if (x.animal.vacinado == true) {
-							$('#formEditarDoacao input[name="vacinado"][value="true"]').trigger('click');
-						} else if (x.animal.vacinado == false) {
-							$('#formEditarDoacao input[name="vacinado"][value="false"]').trigger('click');
-						}
-						if (x.animal.castrado == true) {
-							$('#formEditarDoacao input[name="castrado"][value="true"]').trigger('click');
-						} else if (x.animal.castrado == false) {
-							$('#formEditarDoacao input[name="castrado"][value="false"]').trigger('click');
-						}
-						$('#formEditarDoacao input[name="anuncioId"]').val(x.id);
-						$('#formEditarDoacao input[name="nome"]').val(x.animal.nome);
-						$('#formEditarDoacao input[name="raca"]').val(x.animal.raca);
-						$('#formEditarDoacao input[name="cor"]').val(x.animal.cor);
-						$('#formEditarDoacao select[name="porte"] option[value="'+x.animal.porte+'"]').prop("selected", "selected");
-						$('#formEditarDoacao select[name="idade"] option[value="'+x.animal.idade+'"]').prop("selected", "selected");
-						$('#formEditarDoacao textarea[name="descricao"]').val(x.animal.descricao);
+						$('#formEditarAnuncio input[name="anuncioId"]').val(x.id);
+						$('#formEditarAnuncio input[name="nome"]').val(x.animal.nome);
+						$('#formEditarAnuncio input[name="raca"]').val(x.animal.raca);
+						$('#formEditarAnuncio input[name="cor"]').val(x.animal.cor);
+						$('#formEditarAnuncio select[name="porte"] option[value="'+x.animal.porte+'"]').prop("selected", "selected");
+						$('#formEditarAnuncio select[name="idade"] option[value="'+x.animal.idade+'"]').prop("selected", "selected");
+						$('#formEditarAnuncio textarea[name="descricao"]').val(x.animal.descricao);
+						$('#formEditarAnuncio input[name="latitude"]').val(x.lat);
+						$('#formEditarAnuncio input[name="longitude"]').val(x.lng);
 					},
 					error:function(){
 						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 					}
 				});
 			}
+
+			var autocomplete;
+			function initAutocomplete() {
+			  autocomplete = new google.maps.places.Autocomplete(
+				  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+				  { types: ['geocode'] });
+			  google.maps.event.addListener(autocomplete, 'place_changed', fillInAddress);
+			}
+
+			function fillInAddress() {
+				// Get the place details from the autocomplete object.
+				var place = autocomplete.getPlace();
+				$("input[name='latitude']").val(place.geometry.location.lat());
+				$("input[name='longitude']").val(place.geometry.location.lng());
+			}
+
+			$("#autocomplete").keydown(function(event){
+				if (event.keyCode == 13) {
+					event.preventDefault();
+					return false;
+				}
+			});
 		</script>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkRBrkU6UVNZZclmB-oluPZ3L0ZeP5Cqs&libraries=places&callback=initAutocomplete"></script>
+		<!-- Google places api
+		AIzaSyCkRBrkU6UVNZZclmB-oluPZ3L0ZeP5Cqs -->
 	</body>
 </html>
