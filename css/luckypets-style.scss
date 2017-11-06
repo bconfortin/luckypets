@@ -171,6 +171,7 @@ body {
 	display: inline-block;
 }
 
+/*
 .dropdown-menu {
     position: absolute;
     top: 97%;
@@ -212,6 +213,7 @@ body {
     color: #fff;
     border-left: 5px solid $secondary-color;
 }
+*/
 
 .horizontal-footer-list {
     margin-bottom: 0;
@@ -1318,6 +1320,125 @@ h4.footer-titulo {
 
 .bg-transparent {
     background-color: transparent;
+}
+
+.force-vertical-align {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.black-bg-filter {
+    background-color: rgba(0,0,0,0.3);
+    height: 100%;
+}
+
+.bg-purple {
+	background-color: #6452a2;
+}
+
+.dropdown-menu .sub-menu {
+	left: 100%;
+	position: absolute;
+	top: 0;
+	visibility: hidden;
+	margin-top: -1px;
+}
+
+.dropdown-menu li:hover .sub-menu {
+	visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+}
+
+.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu, .navbar .dropdown-menu {
+	margin-top: 0;
+}
+
+.link-contato {
+	transition: .3s;
+}
+
+.link-contato:hover span {
+	transition: .3s;
+}
+
+.link-contato:hover {
+	background-color: #007da8;
+	color: #fff;
+	transition: .3s;
+}
+
+.link-contato:hover span {
+	color: #fff;
+	transition: .3s;
+}
+
+.link-contato:hover span:first-child {
+	background-color: #fff;
+	color: #007da8;
+	transition: .3s;
+}
+
+.bg-blue, .bg-blue-007da8 {
+	background-color: #2861ae;
+}
+
+.bg-dark-blue, .bg-blue-32465a {
+	background-color: #32465a;
+}
+
+.link-white, .link-white:hover, .link-white:focus, .link-white:active, .link-white:link,
+.white-link, .white-link:hover, .white-link:focus, .white-link:active, .white-link:link {
+	color: #fff;
+	text-decoration: none;
+}
+
+.card-home {
+	border-radius: 3px;
+	text-decoration: none;
+	overflow: hidden;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.card-home:hover {
+	border-radius: 3px;
+	overflow: hidden;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23);
+	box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23);
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.bg-gradient {
+	background-color: #6452a2;
+	background: rgba(138,73,156,1);
+	background: -moz-linear-gradient(left, rgba(138,73,156,1) 0%, rgba(40,97,174,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(138,73,156,1)), color-stop(100%, rgba(40,97,174,1)));
+	background: -webkit-linear-gradient(left, rgba(138,73,156,1) 0%, rgba(40,97,174,1) 100%);
+	background: -o-linear-gradient(left, rgba(138,73,156,1) 0%, rgba(40,97,174,1) 100%);
+	background: -ms-linear-gradient(left, rgba(138,73,156,1) 0%, rgba(40,97,174,1) 100%);
+	background: linear-gradient(to right, rgba(138,73,156,1) 0%, rgba(40,97,174,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8a499c', endColorstr='#2861ae', GradientType=1 );
+}
+
+.link-666, .link-666:hover, .link-666:focus, .link-666:active, .link-666:link {
+	color: #666;
+	text-decoration: none;
+}
+
+.border-ccc, .border-gray-ccc, .border-grey-ccc {
+	border: 1px solid #ccc;
 }
 
 @media (max-width: 768px) {
