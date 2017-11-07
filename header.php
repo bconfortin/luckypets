@@ -46,30 +46,33 @@
     		<div class="ptop-0 padding-20">
 				<img src="img/logo/lucky-pets-logo-white-336x98.png" alt="Logo do Lucky Pets" class="img-responsive center-block mbottom-30" style="max-width: 100px;">
                 <?php if (isset($_SESSION['nome'])) { ?>
-                    <a href="dashboard.php"><img src="<?= $_SESSION['caminhoCompletoImagem']; ?>" alt="" class="img-circle img-responsive center-block mbottom-10"></a>
+                    <a href="dashboard.php"><img src="<?= $_SESSION['caminhoCompletoImagem']; ?>" alt="" class="img-circle img-responsive center-block mbottom-10 max-width-180"></a>
     				<p class="color-fff text-center">Logado como:<br><?= $_SESSION['nome']; ?></p>
     				<p class="text-center"><a href="" class="inline-block white-link" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR<br>(clique para mudar)</a></p>
-                    <p class="text-center"><a href="dashboard.php">Meu perfil</a></p>
-                    <p class="text-center"><a href="" class="btnSair link-white">Sair</a></p>
-    				<hr class="hr-white-shadow marver-30">
+    				<hr class="hr-white-shadow marver-15">
                     <ul class="mbottom-30">
+                        <li><h4 class="font-1em font-700 text-uppercase color-fff">Menu de Navegação</h4></li>
+                        <li><a href="<?= $GLOBALS['www']; ?>">Página inicial</a></li>
+                        <li><a href="dashboard.php">Meu perfil</a></li>
+                        <li><a href="" class="btnSair">Sair</a></li>
                 <?php } else { ?>
                     <ul class="mbottom-30">
+                        <li><a href="<?= $GLOBALS['www']; ?>">Página inicial</a></li>
                         <li><a href="formulario-de-cadastro.php">Fazer cadastro</a></li>
                         <li><a href="" data-toggle="modal" data-target="#modalLogin">Entrar</a></li>
                 <?php } ?>
-					<li><a href="<?= $GLOBALS['www']; ?>" class="visible-lg-inline-block">Página inicial</a></li>
-					<li><a href="">Animais</a></li>
-					<li><a href="quem-somos.php">Sobre</a></li>
-
+                    <hr class="hr-white-shadow marver-15 block">
                     <li><h4 class="font-1em font-700 text-uppercase color-fff">Todos os animais</h4></li>
                     <li><a href="animais-para-doacao.php">Para doação</a></li>
                     <li><a href="animais-perdidos.php">Perdidos</a></li>
                     <li><a href="animais-encontrados.php">Encontrados</a></li>
+                    <hr class="hr-white-shadow marver-15 block">
                     <li><h4 class="font-1em font-700 text-uppercase color-fff">Anunciar</h4></li>
                     <li><a href="formulario-de-anuncio-animal.php">Doação de animal</a></li>
                     <li><a href="formulario-de-anuncio-animal-perdido.php">Animal perdido</a></li>
                     <li><a href="formulario-de-anuncio-animal-encontrado.php">Animal encontrado</a></li>
+                    <hr class="hr-white-shadow marver-15 block">
+                    <li><a href="quem-somos.php">Sobre</a></li>
 				</ul>
 				<p class="text-center mbottom-0">
 					<a href=""><i class="fa fa-2x fa-facebook-square color-fff marhor-5"></i></a>
