@@ -24,6 +24,11 @@
 				</div>
 			</div>
 		</div>
+		<div id="legendaMapa">
+			<h4 class="text-uppercase font-1em font-700 mtop-0 mbottom-15">Legenda</h4>
+			<p><span class="legenda-blue">&nbsp;</span>Animal encontrado</p>
+			<p class="mbottom-0"><span class="legenda-red">&nbsp;</span>Animal perdido</p>
+		</div>
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkRBrkU6UVNZZclmB-oluPZ3L0ZeP5Cqs"></script>
@@ -39,11 +44,50 @@
 			    padding: 0;
 			    color: #666;
 				width: 320px;
-
 				-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 				-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 				box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 		    }
+
+			#legendaMapa {
+				background-color: #fff;
+				padding: 15px;
+				overflow: hidden;
+				-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+				-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+				box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+				-webkit-transition: all 0.2s ease-in-out;
+				-o-transition: all 0.2s ease-in-out;
+				transition: all 0.2s ease-in-out;
+				margin-bottom: 15px;
+				margin-left: 15px;
+			}
+
+			#legendaMapa:hover {
+				overflow: hidden;
+				-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23);
+				-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23);
+				box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 4px rgba(0,0,0,0.23);
+				-webkit-transition: all 0.2s ease-in-out;
+				-o-transition: all 0.2s ease-in-out;
+				transition: all 0.2s ease-in-out;
+			}
+
+			.legenda-blue, .legenda-red {
+				min-width: 10px;
+				display: inline-block;
+				height: 100%;
+				margin-right: 10px;
+				font-size: 1.2em;
+			}
+
+			.legenda-blue {
+				background-color: #2196f3;
+			}
+
+			.legenda-red {
+				background-color: #f44336;
+			}
 
 			@media all and (max-width: 768px) {
 				.div_infobox {
@@ -57,16 +101,19 @@
 				var gatosPerdidos = [];
 				var cachorrosEncontrados = [];
 				var cachorrosPerdidos = [];
-				var iconGatoEncontrado = '<?= $GLOBALS['www']; ?>' + 'img/icons/cat-blue-icon-1.png';
-				var iconGatoPerdido = '<?= $GLOBALS['www']; ?>' + 'img/icons/cat-red-icon-1.png';
-				var iconCachorroEncontrado = '<?= $GLOBALS['www']; ?>' + 'img/icons/dog-blue-icon-1.png';
-				var iconCachorroPerdido = '<?= $GLOBALS['www']; ?>' + 'img/icons/dog-red-icon-1.png';
+				var iconGatoEncontrado = '<?= $GLOBALS['www']; ?>' + 'img/icons/bg-fff/cat-blue-icon-1.png';
+				var iconGatoPerdido = '<?= $GLOBALS['www']; ?>' + 'img/icons/bg-fff/cat-red-icon-1.png';
+				var iconCachorroEncontrado = '<?= $GLOBALS['www']; ?>' + 'img/icons/bg-fff/dog-blue-icon-1.png';
+				var iconCachorroPerdido = '<?= $GLOBALS['www']; ?>' + 'img/icons/bg-fff/dog-red-icon-1.png';
 
 				var map = new google.maps.Map(document.getElementById('map'), {
 					zoom: 12,
 					center: new google.maps.LatLng(-25.5172662, -54.6170038),
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				});
+
+				var legendaMapa = document.getElementById('legendaMapa');
+        		map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legendaMapa);
 
 				var idInfoBox = 0;
 				var markers = [];
