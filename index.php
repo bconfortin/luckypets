@@ -177,7 +177,7 @@
     			</div>
     		</div>
     	</div> -->
-    	<div class="container-fluid bg-f5f5f5 padver-50">
+        <div class="container-fluid bg-f5f5f5 padver-50">
     		<div class="container container-fluid-sm">
     			<div class="row">
     				<div class="col-xs-12">
@@ -193,6 +193,21 @@
 							</div>
 						</div>
     				</div>
+    			</div>
+    		</div>
+    	</div>
+        <div class="container-fluid">
+    		<div class="row">
+    			<div class="col-xs-12 padhor-0">
+    				<img src="img/mapa-com-pets-1920x450.jpg" alt="Imagem promocional" class="img-responsive hidden-xs hidden-sm">
+    				<img src="img/mapa-com-pets-993x600.jpg" alt="Imagem promocional" class="img-responsive hidden-md hidden-lg">
+                    <div class="force-vertical-align black-bg-filter width-100per">
+						<div class="force-vertical-align">
+                            <h1 class="text-center font-1-8em text-uppercase font-700 color-fff mtop-0 mbottom-5 text-shadow font-1-3em-xs mbottom-30-xs">Animais perdidos e encontrados</h1>
+        					<p class="mbottom-30 text-center font-300 font-1-5em color-fff text-shadow hidden-xs">Veja todos os animais em um mapa interativo</p>
+        					<p class="mbottom-0 text-center"><a href="mapa.php" class="btn btn-gradient force-radius-0 text-uppercase padhor-30">Ver o mapa</a></p>
+						</div>
+					</div>
     			</div>
     		</div>
     	</div>

@@ -32,6 +32,17 @@
 									<h2>Meus perfil</h2>
 									<li><a href="#tabAlterarCadastro">Alterar dados cadastrais</a></li>
 									<li><a href="#tabAlterarSenha">Alterar senha</a></li>
+									<h2>Minhas metas<br><small class="color-fff">if (prestador)</small></h2>
+									<li><a href="#tabMinhasMetas">Metas ativas</a></li>
+									<li><a href="#tabCriarMeta">Criar meta</a></li>
+									<!-- INICIO FORMULARIO BOTAO PAGSEGURO
+									<form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post">
+									<input type="hidden" name="currency" value="BRL" />
+									<input type="hidden" name="receiverEmail" value="brunoconfortin@gmail.com" />
+									<input type="hidden" name="iot" value="button" />
+									<input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/doacoes/209x48-doar-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+									</form>
+									FINAL FORMULARIO BOTAO PAGSEGURO -->
 								</ul>
 							</div>
 						</div>

@@ -57,10 +57,10 @@
 				var gatosPerdidos = [];
 				var cachorrosEncontrados = [];
 				var cachorrosPerdidos = [];
-				var iconGatoEncontrado = '<?= $GLOBALS['www']; ?>' + 'img/icons/cat-64x52-green.png';
-				var iconGatoPerdido = '<?= $GLOBALS['www']; ?>' + 'img/icons/cat-64x52-red.png';
-				var iconCachorroEncontrado = '<?= $GLOBALS['www']; ?>' + 'img/icons/dog-64x59-green.png';
-				var iconCachorroPerdido = '<?= $GLOBALS['www']; ?>' + 'img/icons/dog-64x59-red.png';
+				var iconGatoEncontrado = '<?= $GLOBALS['www']; ?>' + 'img/icons/cat-blue-icon-1.png';
+				var iconGatoPerdido = '<?= $GLOBALS['www']; ?>' + 'img/icons/cat-red-icon-1.png';
+				var iconCachorroEncontrado = '<?= $GLOBALS['www']; ?>' + 'img/icons/dog-blue-icon-1.png';
+				var iconCachorroPerdido = '<?= $GLOBALS['www']; ?>' + 'img/icons/dog-red-icon-1.png';
 
 				var map = new google.maps.Map(document.getElementById('map'), {
 					zoom: 12,
