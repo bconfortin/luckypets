@@ -125,7 +125,11 @@
 					</div>
 					<div class="col-xs-12 col-sm-3">
 						<div class="bg-purple padding-15">
-							<p class="color-fff text-uppercase font-700 mbottom-0">Contato</p>
+							<p class="color-fff text-uppercase font-700 mbottom-0">Sobre o doador</p>
+						</div>
+						<div class="padding-15 bg-fff">
+							<img id="ajaxPerfilImagem" src="http://placehold.it/768x768" alt="" class="img-responsive img-circle center-block" style="max-width: 200px;">
+							<h3 id="ajaxPerfilNome" class="text-center font-700 font-1-1em text-uppercase mtop-15 mbottom-0">Nome do doador</h3>
 						</div>
 						<div class="padding-15 bg-fff" id="listaDeContato">
 						</div>
@@ -149,6 +153,8 @@
 			                if (x == undefined) {
 			                    location.href = "<?= $GLOBALS['www']; ?>animais-para-doacao.php";
 			                }
+							$('#ajaxPerfilNome').text(x.animal.usuario.nome);
+							$('#ajaxPerfilImagem').attr("src", "http://31.220.53.123:8080/luckypets-servidor/api/file/" + x.animal.usuario.id + "/" + x.animal.usuario.imagem);
 			                $('#ajaxDescricao').text(x.animal.descricao);
 			                $('#ajaxNome').text(x.animal.nome);
 			                $('#ajaxTipo').text(x.animal.tipo);
