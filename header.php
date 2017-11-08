@@ -164,6 +164,7 @@
                             </div>
                             <p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase force-radius-0 padhor-30" id="btnLogin">Logar</button></p>
                         </form>
+                        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
                     </div>
                     <div class="modal-footer">
                         <p class="text-center mbottom-0"><a href="" data-dismiss="modal" data-toggle="modal" data-target="#modalEsqueciSenha">Esqueci minha senha</a></p>
