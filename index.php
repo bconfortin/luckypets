@@ -31,7 +31,7 @@
 						<div class="force-vertical-align">
                             <h1 class="text-center font-1-8em text-uppercase font-700 color-fff mtop-0 mbottom-5 text-shadow font-1-3em-xs mbottom-30-xs">Adoção de animais</h1>
         					<p class="mbottom-30 text-center font-300 font-1-5em color-fff text-shadow hidden-xs">Tem um animal e gostaria de colocá-lo para adoção? Você veio ao lugar certo!</p>
-        					<p class="mbottom-0 text-center"><a href="formulario-de-cadastro.php" class="btn btn-gradient force-radius-0 text-uppercase padhor-30">Se cadastrar</a></p>
+        					<p class="mbottom-0 text-center"><a href="formulario-de-cadastro.php" class="btn btn-gradient force-radius-0 text-uppercase padhor-30">Criar conta (rápido e grátis!)</a></p>
 						</div>
 					</div>
     			</div>

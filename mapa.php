@@ -18,7 +18,13 @@
 					</div>
 					<style>
 						#map {
-							height: 789px;
+							height: calc(100vh - 160px);
+						}
+
+						@media all and (max-width: 768px) {
+							#map {
+								height: calc(100vh - 144px);
+							}
 						}
 					</style>
 				</div>
@@ -26,8 +32,8 @@
 		</div>
 		<div id="legendaMapa">
 			<h4 class="text-uppercase font-1em font-700 mtop-0 mbottom-15">Legenda</h4>
-			<p><span class="legenda-blue">&nbsp;</span>Animal encontrado</p>
-			<p class="mbottom-0"><span class="legenda-red">&nbsp;</span>Animal perdido</p>
+			<p><span class="legenda-blue">&nbsp;</span>Encontrado</p>
+			<p class="mbottom-0"><span class="legenda-red">&nbsp;</span>Perdido</p>
 		</div>
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
