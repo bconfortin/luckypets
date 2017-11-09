@@ -128,7 +128,7 @@
 					success:function(result){
 						if (result.toLowerCase() === "sucesso!") {
 							console.log("Usuário cadastrado com sucesso.");
-							location.href = "<?= $GLOBALS['www']; ?>?message=usuarioCriadoComSucesso";
+							location.href = "<?= $GLOBALS['www']; ?>?m=1";
 						} else if (result.toLowerCase() === "erro") {
 							console.log("E-mail já existente.");
 						}

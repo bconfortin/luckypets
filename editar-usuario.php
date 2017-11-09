@@ -73,25 +73,6 @@
 								<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
 								<p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase padhor-30" id="btnEditar">Enviar</button></p>
 							</form>
-							<div class="table-responsive">
-								<table class="table middle table-hover" id="tabelaUsuarios">
-									<thead>
-										<tr>
-											<td>ID</td>
-											<td>Nome</td>
-											<td>E-mail</td>
-											<td>Telefone</td>
-											<td>Celular</td>
-											<td>Facebook</td>
-											<td>Senha</td>
-											<td>Imagem</td>
-										</tr>
-									</thead>
-									<tbody>
-
-									</tbody>
-								</table>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -113,35 +94,6 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
-			$.ajax({
-			    type: 'GET',
-			    crossOrigin: true,
-			    //url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
-				url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario',
-				headers: {
-					'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-				},
-			    success:function(x){
-				    var html = '';
-				    for (i = 0; i < x.length; i++) {
-			    		html += '<tr>';
-							html += '<td>' + x[i].id + '</td>';
-							html += '<td>' + x[i].nome + '</td>';
-							html += '<td>' + x[i].email + '</td>';
-							html += '<td>' + x[i].telefone + '</td>';
-							html += '<td>' + x[i].celular + '</td>';
-							html += '<td>' + x[i].authToken + '</td>';
-							html += '<td>' + x[i].senha + '</td>';
-							html += '<td><a href="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '"><img src="http://31.220.53.123:8080/luckypets-servidor/api/file/' + x[i].id + '/' + x[i].imagem + '" class="img-responsive" style="max-height: 90px;"></a></td>';
-						html += '</tr>';
-				    }
-				    $("#tabelaUsuarios").append(html);
-			    },
-			    error:function(){
-			    	console.log("Ops! Não foi possível fazer sua requisição.");
-			    }
-			});
-
 			$("#btnEditar").on("click", function(){
 				$.ajax({
 				    type: 'POST',
@@ -189,7 +141,7 @@
 							"telefone": data.telefone,
 							"basicAuth": "<?php echo $_SESSION['basicAuth']; ?>"
 						}).done(function(data) {
-							location.href = "<?= $GLOBALS['www']; ?>?message=usuarioAlteradoComSucesso";
+							location.href = "<?= $GLOBALS['www']; ?>?m=1";
 						});
 					},
 					error:function(){

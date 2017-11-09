@@ -486,7 +486,7 @@
 						console.log("deu");
 						if (result.toLowerCase() === "Ok".toLowerCase()) {
 							console.log("Senha alterada com sucesso.");
-							location.href = "<?= $GLOBALS['www']; ?>?message=senhaAlteradaComSucesso";
+							location.href = "<?= $GLOBALS['www']; ?>?m=1";
 						} else {
 							console.log("A senha não foi alterada pois algum campo estava errado.");
 						}
@@ -554,7 +554,7 @@
 							"telefone": data.telefone,
 							"basicAuth": "<?php echo $_SESSION['basicAuth']; ?>"
 						}).done(function(data) {
-							location.href = "<?= $GLOBALS['www']; ?>?message=usuarioAlteradoComSucesso";
+							location.href = "<?= $GLOBALS['www']; ?>?m=1";
 						});
 					},
 					error:function(){
