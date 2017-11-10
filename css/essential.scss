@@ -728,6 +728,10 @@
     background-color: #fff;
 }
 
+.bg-fff-transparent {
+	background-color: rbga(255, 255, 255, 0.7);
+}
+
 .bg-000, .bg-black-000, .bg-black-000000, .black-bg, .bg-black, .bg-000000 {
     background-color: #000;
 }

@@ -1,9 +1,20 @@
     <?php
-        $GLOBALS['www'] = 'http://localhost/luckypets/';
+        $GLOBALS['www'] = 'http://localhost:81/luckypets/';
         //$GLOBALS['www'] = 'http://31.220.53.123/luckypets/';
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        //echo $actual_link;
+        function verifyLocation($link) {
+            if ($link != $GLOBALS['www'] . "/landing-page.php") {
+                if (!isset($_SESSION['cidade']) && !isset($_SESSION['estado'])) {
+                    header('Location: ' . $GLOBALS['www'] . "/landing-page.php");
+                    exit;
+                }
+            }
+        }
+        verifyLocation($actual_link);
     ?>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">

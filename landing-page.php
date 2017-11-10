@@ -16,7 +16,7 @@
         		<div class="row">
         			<div class="col-xs-12 height-hack">
                         <div style="height: 320px;">&nbsp;</div>
-                        <form action="" id="formLocalizacaoLandingPage" method="POST" class="width-290 force-vertical-align bg-fff padding-15 mbottom-30 mbottom-0-xs">
+                        <form action="" id="formLocalizacaoLandingPage" method="POST" class="width-290 force-vertical-align bg-fff bg-fff-transparent padding-15 mbottom-30 mbottom-0-xs">
                             <h1 class="mtop-0 mbottom-15 font-700 font-1-2em text-uppercase text-center"><img src="img/logo/lucky-pets-logo-336x98.png" alt="" class="img-responsive max-height-30 center-block"></h1>
                             <h2 class="mtop-0 mbottom-15 font-300 font-0-9em text-center">Para continuar, selecione sua localização</h2>
                             <div class="form-group">
