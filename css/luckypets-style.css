@@ -2071,6 +2071,18 @@ h4.footer-titulo {
   max-height: 25px;
 }
 
+.max-height-30 {
+  max-height: 30px;
+}
+
+.max-height-40 {
+  max-height: 40px;
+}
+
+.max-height-50 {
+  max-height: 50px;
+}
+
 .max-height-17 {
   max-height: 17px;
 }
@@ -2228,6 +2240,10 @@ h4.footer-titulo {
   width: 50px;
 }
 
+.width-290 {
+  width: 290px;
+}
+
 .link-contato {
   transition: .3s;
 }
@@ -2362,7 +2378,7 @@ h4.footer-titulo {
   padding-left: 0;
 }
 
-.dashboard-height-hack {
+.dashboard-height-hack, .height-hack {
   min-height: calc(100vh - 160px);
 }
 
@@ -2490,8 +2506,8 @@ h4.footer-titulo {
 }
 
 @media (max-width: 768px) {
-  .dashboard-height-hack {
-    min-height: auto;
+  .dashboard-height-hack, .height-hack {
+    min-height: calc(100vh - 144px);
   }
 
   .img-restraint-262 {

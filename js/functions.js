@@ -79,4 +79,40 @@ $(function(){
         $("#loginTabs a").addClass("ghost transparent");
         $(this).tab('show').removeClass("ghost transparent");
     });
+
+    $("#formLocalizacao .btnLocalizacao").on("click", function(event){
+        event.preventDefault();
+        $("#formLocalizacao .btnLocalizacao").addClass("disabled");
+        var estado = $("#formLocalizacao select[name='estado']").val();
+        var cidade = $("#formLocalizacao select[name='cidade']").val();
+        if (estado !== "" && cidade !== "") {
+            $.post("http://localhost:81/luckypets/session-localizacao.php", {
+                "estado": estado,
+                "cidade": cidade
+            }).done(function(data) {
+                console.log("Deu tudo certo.");
+            }).fail(function() {
+                alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
+                $("#formLocalizacao .btnLocalizacao").removeClass("disabled");
+            });
+        }
+    });
+
+    $("#formLocalizacaoLandingPage .btnLocalizacao").on("click", function(event){
+        event.preventDefault();
+        $("#formLocalizacaoLandingPage .btnLocalizacao").addClass("disabled");
+        var estado = $("#formLocalizacaoLandingPage select[name='estado']").val();
+        var cidade = $("#formLocalizacaoLandingPage select[name='cidade']").val();
+        if (estado !== "" && cidade !== "") {
+            $.post("http://localhost:81/luckypets/session-localizacao.php", {
+                "estado": estado,
+                "cidade": cidade
+            }).done(function(data) {
+                console.log("Deu tudo certo.");
+            }).fail(function() {
+                alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
+                $("#formLocalizacaoLandingPage .btnLocalizacao").removeClass("disabled");
+            });
+        }
+    });
 });

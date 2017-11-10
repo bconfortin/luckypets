@@ -11,26 +11,29 @@
     </head>
     <body>
     	<?php include "header.php"; ?>
-        <div class="container-fluid">
+        <div class="container-fluid bg-f5f5f5">
             <div class="container">
         		<div class="row">
-        			<div class="col-xs-12">
-                        <form action="" method="POST">
+        			<div class="col-xs-12 height-hack">
+                        <div style="height: 320px;">&nbsp;</div>
+                        <form action="" id="formLocalizacaoLandingPage" method="POST" class="width-290 force-vertical-align bg-fff padding-15 mbottom-30 mbottom-0-xs">
+                            <h1 class="mtop-0 mbottom-15 font-700 font-1-2em text-uppercase text-center"><img src="img/logo/lucky-pets-logo-336x98.png" alt="" class="img-responsive max-height-30 center-block"></h1>
+                            <h2 class="mtop-0 mbottom-15 font-300 font-0-9em text-center">Para continuar, selecione sua localização</h2>
                             <div class="form-group">
-								<label for="formEstado">Estado</label>
-								<select name="formEstado" id="formEstado" class="form-control force-radius-0">
+								<label for="estado">Estado</label>
+								<select name="estado" class="form-control force-radius-0">
 									<option value="" disabled="disabled" selected="selected">Escolha o estado</option>
 									<option value="Paraná">Paraná</option>
 								</select>
 			                </div>
 			                <div class="form-group">
-								<label for="formCidade">Cidade</label>
-								<select name="formCidade" id="formCidade" class="form-control force-radius-0">
+								<label for="cidade">Cidade</label>
+								<select name="cidade" class="form-control force-radius-0">
 									<option value="" disabled="disabled" selected="selected">Escolha a cidade</option>
 									<option value="Foz do Iguaçu">Foz do Iguaçu</option>
 								</select>
 			                </div>
-			                <button id="btnLocalizacao" class="btn btn-gradient text-uppercase force-radius-0 width-100per">Salvar</button>
+			                <button class="btnLocalizacao btn btn-gradient text-uppercase force-radius-0 width-100per">Salvar</button>
                         </form>
         			</div>
         		</div>
@@ -38,25 +41,5 @@
     	</div>
     	<?php include "footer.php"; ?>
     	<?php include "foot.php"; ?>
-        <script>
-        $("#btnLocalizacao").on("click", function(event){
-            event.preventDefault();
-            $("#btnLocalizacao").addClass("disabled");
-            var estado = $("select[name='formEstado']").val();
-            var cidade = $("select[name='formCidade']").val();
-            if (estado !== "" && cidade !== "") {
-                $.post("<?= $GLOBALS['www']; ?>session-localizacao.php", {
-                    "estado": estado,
-                    "cidade": cidade
-                }).done(function(data) {
-                    console.log("Data Loaded: ");
-                    console.log(data);
-                }).fail(function() {
-                    alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
-                    $("#btnLocalizacao").removeClass("disabled");
-                });
-            }
-        });
-        </script>
     </body>
 </html>
