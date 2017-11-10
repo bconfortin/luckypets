@@ -1,5 +1,5 @@
 $(function(){
-    var www = 'http://localhost/luckypets/';
+    var www = 'http://localhost:81/luckypets/';
     //var www = 'http://31.220.53.123/luckypets/';
 
     // Remover a classe container nas resoluções abaixo de 993
@@ -91,6 +91,7 @@ $(function(){
                 "cidade": cidade
             }).done(function(data) {
                 console.log("Deu tudo certo.");
+                location.href = www;
             }).fail(function() {
                 alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
                 $("#formLocalizacao .btnLocalizacao").removeClass("disabled");
@@ -109,6 +110,7 @@ $(function(){
                 "cidade": cidade
             }).done(function(data) {
                 console.log("Deu tudo certo.");
+                location.href = www;
             }).fail(function() {
                 alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
                 $("#formLocalizacaoLandingPage .btnLocalizacao").removeClass("disabled");

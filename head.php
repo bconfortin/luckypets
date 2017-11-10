@@ -7,9 +7,9 @@
         $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         //echo $actual_link;
         function verifyLocation($link) {
-            if ($link != $GLOBALS['www'] . "/landing-page.php") {
+            if ($link != $GLOBALS['www'] . "landing-page.php") {
                 if (!isset($_SESSION['cidade']) && !isset($_SESSION['estado'])) {
-                    header('Location: ' . $GLOBALS['www'] . "/landing-page.php");
+                    header('Location: ' . $GLOBALS['www'] . "landing-page.php");
                     exit;
                 }
             }
