@@ -65,4 +65,18 @@ $(function(){
         $.get("clear-session.php");
         location.href = www;
     });
+
+    $('#loginTabs a[href="#tabUsuario"]').click(function(e){
+        e.preventDefault();
+        $("#modalLoginLabel").text("Login de usuário");
+        $("#loginTabs a").addClass("ghost transparent");
+        $(this).tab('show').removeClass("ghost transparent");
+    });
+
+    $('#loginTabs a[href="#tabPrestador"]').click(function(e){
+        e.preventDefault();
+        $("#modalLoginLabel").text("Login de prestador");
+        $("#loginTabs a").addClass("ghost transparent");
+        $(this).tab('show').removeClass("ghost transparent");
+    });
 });

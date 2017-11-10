@@ -150,21 +150,37 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title text-uppercase text-center font-700" id="modalLoginLabel">Login</h4>
+                        <h4 class="modal-title text-uppercase text-center font-700" id="modalLoginLabel">Login de usuário</h4>
                     </div>
                     <div class="modal-body"><!-- http://31.220.53.123:8080/luckypets-servidor/api/usuario/login -->
-                        <form class="" action="" method="POST">
-                            <div class="form-group">
-                                <label for="formLoginEmail" class="font-300">E-mail</label>
-                                <input type="text" name="formLoginEmail" class="form-control" placeholder="maria@gmail.com">
+                        <div class="row mbottom-15" id="loginTabs">
+                            <div class="col-xs-6">
+                                <a href="#tabUsuario" class="btn btn-blue text-uppercase block">Usuário</a>
                             </div>
-                            <div class="form-group">
-                                <label for="formLoginSenha" class="font-300">Senha</label>
-                                <input type="password" name="formLoginSenha" class="form-control" placeholder="******">
+                            <div class="col-xs-6">
+                                <a href="#tabPrestador" class="btn btn-blue text-uppercase ghost transparent block">Prestador</a>
                             </div>
-                            <p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase force-radius-0 padhor-30" id="btnLogin">Logar</button></p>
-                        </form>
-                        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                        </div>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="tabUsuario">
+                                <form class="" action="" method="POST">
+                                    <div class="form-group">
+                                        <label for="formLoginEmail" class="font-300">E-mail</label>
+                                        <input type="text" name="formLoginEmail" class="form-control" placeholder="maria@gmail.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formLoginSenha" class="font-300">Senha</label>
+                                        <input type="password" name="formLoginSenha" class="form-control" placeholder="******">
+                                    </div>
+                                    <p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase force-radius-0 padhor-30" id="btnLogin">Logar</button></p>
+                                </form>
+                                <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="tabPrestador">
+                                Colocar o login do prestador aqui.
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <p class="text-center mbottom-0"><a href="" data-dismiss="modal" data-toggle="modal" data-target="#modalEsqueciSenha">Esqueci minha senha</a></p>
