@@ -86,7 +86,7 @@
                         console.log("Data Loaded: ");
                         console.log(data);
                         if (data != undefined) {
-                            $("#btnFecharLogin").trigger("click");
+                            $("#modalLoginX").trigger("click");
                             var basicAuth = make_base_auth(email, senha);
                             $.post("<?= $GLOBALS['www']; ?>login-backend.php", {
                                 "administrador": data.administrador,
@@ -111,6 +111,57 @@
                     }).fail(function() {
                         alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
                         $("#btnLogin").removeClass("disabled");
+                    });
+                }
+            });
+
+            $("#btnLoginPrestador").on("click", function(){
+                $("#btnLoginPrestador").addClass("disabled");
+                var email = $("input[name='formLoginPrestadorEmail']").val();
+                var senha = $("input[name='formLoginPrestadorSenha']").val();
+                if (email !== "" && senha !== "") {
+                    $.post("http://31.220.53.123:8080/luckypets-servidor/api/prestador/login", {
+                        "email": email,
+                        "senha": senha
+                    }).done(function(data) {
+                        console.log("Data Loaded: ");
+                        console.log(data);
+                        if (data != undefined) {
+                            $("#modalLoginX").trigger("click");
+                            var basicAuth = make_base_auth(email, senha);
+                            $.post("<?= $GLOBALS['www']; ?>login-prestador-backend.php", {
+                                "id": data.id,
+                                "nome": data.nome,
+                                "email": data.email,
+                                "senha": data.senha,
+                                "imagem": data.imagem,
+                                "caminhoCompletoImagem": "http://31.220.53.123:8080/luckypets-servidor/api/file/prestador/" + data.id + "/" + data.imagem,
+                                "telefone": data.telefone,
+                                "celular": data.celular,
+                                "authToken": data.authToken,
+                                "facebook": data.facebook,
+                                "administrador": data.administrador,
+                                "ativo": data.ativo,
+                                "codConfirmacao": data.codConfirmacao,
+                                "responsavel": data.responsavel,
+                                "cpfResposavel": data.cpfResposavel,
+                                "tipo": data.tipo,
+                                "cep": data.cep,
+                                "logradouro": data.logradouro,
+                                "numero": data.numero,
+                                "cidade": data.cidade,
+                                "estado": data.estado,
+                                "basicAuth": basicAuth
+                            }).done(function(data) {
+                                location.href = "<?= $GLOBALS['www']; ?>";
+                            });
+                        } else {
+                            alert("E-mail ou senha incorretos.");
+                            $("#btnLoginPrestador").removeClass("disabled");
+                        }
+                    }).fail(function() {
+                        alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
+                        $("#btnLoginPrestador").removeClass("disabled");
                     });
                 }
             });
