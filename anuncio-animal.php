@@ -40,7 +40,7 @@
 						    <span class="sr-only">Próximo</span>
 						    </a>
 						</div>
-						<div class="padding-30 bg-fff anuncio-infos">
+						<div class="padding-30 mbottom-15 bg-fff anuncio-infos">
 							<div class="row">
 								<div class="col-xs-12 col-sm-3 col-md-2">
 									<h2 class="atributo">Descrição</h2>
@@ -120,6 +120,45 @@
 								<div class="col-xs-12 col-sm-9 col-md-10">
 									<p class="atributo" id="ajaxCastrado"><span class="icon-width"><i class="fa fa-times color-red"></i></span>Não</p>
 								</div>
+							</div>
+						</div>
+						<div class="bg-fff comentarios">
+							<h2>Dúvidas, perguntas e respostas sobre o animal</h2>
+							<h3>Fazer uma pergunta</h3>
+							<div class="perguntar mbottom-30">
+								<form action="" id="formNovaPergunta">
+									<div class="form-group">
+										<textarea name="pergunta" id="" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Seja breve e certifique-se de que a sua dúvida ainda não tenha sido respondida no anúncio ou nos comentários abaixo."></textarea>
+									</div>
+									<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Enviar pergunta</button>
+								</form>
+							</div>
+							<h3>Dúvidas</h3>
+							<div class="pergunta">
+								<p>Ele é bom com crianças?</p>
+								<small>13/11/2017 11:03</small>
+								<a href="" class="responder">Responder</a>
+								<form action="" class="formResponder height-0" method="POST">
+									<div class="form-group mtop-15">
+										<textarea name="pergunta" id="" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>
+									</div>
+									<input type="hidden" name="idPergunta" value="">
+									<input type="hidden" name="anuncioId" value="<?= $animalId; ?>">
+									<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>
+								</form>
+							</div>
+							<div class="resposta">
+								<p>Sim! Muito. Temos 2 crianças e ele adora brincar com elas.</p>
+								<small>13/11/2017 11:03</small>
+							</div>
+							<div class="pergunta">
+								<p>Ele pega a bolinha?</p>
+								<small>13/11/2017 11:03</small>
+								<a href="" class="responder">Responder</a>
+							</div>
+							<div class="resposta">
+								<p>Ele é louco por qualquer tipo de brinquedo :D</p>
+								<small>13/11/2017 11:03</small>
 							</div>
 						</div>
 					</div>
@@ -228,6 +267,43 @@
 			            }
 			        });
 			    }
+
+				//getComentarios();
+				function getComentarios() {
+					$.ajax({
+			            url: 'http://etc', // Get the action URL to send AJAX to
+			            type: 'POST',
+			            data: form.serialize(), // get all form variables
+			            success: function(result){
+			                // ... do your AJAX post result
+			            },
+						error: function(){
+
+						}
+			        });
+				}
+
+				$(".formResponder").on("submit", function(){
+					var form = $(this);
+					$.ajax({
+			            url: 'http://etc', // Get the action URL to send AJAX to
+			            type: 'POST',
+			            data: form.serialize(), // get all form variables
+			            success: function(result){
+							form[0].reset();
+			                getComentarios();
+			            },
+						error: function(){
+							console.log("Tente novamente mais tarde.");
+						}
+			        });
+				});
+
+				$(".pergunta .responder").on("click", function(event){
+					event.preventDefault();
+					var container = $(this).parent(".pergunta");
+					container.find(".formResponder").toggleClass("height-0", 300);
+				});
 			});
 		</script>
 	</body>

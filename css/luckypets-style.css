@@ -2087,6 +2087,11 @@ h4.footer-titulo {
   max-height: 17px;
 }
 
+.height-0 {
+  height: 0;
+  overflow: hidden;
+}
+
 .flags {
   position: relative;
   bottom: 1px;
@@ -2199,6 +2204,68 @@ h4.footer-titulo {
 
 .anuncio-infos div.row:last-child {
   margin-bottom: 0;
+}
+
+.comentarios {
+  padding: 30px 30px 25px 30px;
+}
+
+.comentarios h2 {
+  margin-top: 0px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.1em;
+}
+
+.comentarios h3 {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  font-weight: 300;
+  font-size: 1.1em;
+}
+
+.comentarios .pergunta, .comentarios .resposta {
+  padding: 15px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+}
+
+.comentarios .pergunta p, .comentarios .resposta p {
+  margin-bottom: 0;
+}
+
+.comentarios .pergunta small, .comentarios .resposta small {
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+.comentarios .pergunta .responder {
+  display: block;
+}
+
+.comentarios .pergunta {
+  background-color: rgba(40, 97, 174, 0.07);
+  margin-right: 50px;
+  font-weight: 700;
+}
+
+.comentarios .pergunta form {
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.comentarios .pergunta form textarea {
+  border-radius: 5px;
+}
+
+.comentarios .pergunta form button {
+  border-radius: 5px;
+}
+
+.comentarios .resposta {
+  background-color: rgba(100, 82, 162, 0.07);
+  margin-left: 50px;
 }
 
 .icon-width {
