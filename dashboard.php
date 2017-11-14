@@ -481,7 +481,6 @@
 					// contentType: false,
 					// }
 					success:function(result){
-						console.log("deu");
 						if (result.toLowerCase() === "Ok".toLowerCase()) {
 							console.log("Senha alterada com sucesso.");
 							location.href = "<?= $GLOBALS['www']; ?>?m=1";

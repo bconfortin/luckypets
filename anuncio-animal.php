@@ -282,11 +282,18 @@
 					$.ajax({
 			            url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/comentar', // Get the action URL to send AJAX to
 			            type: 'POST',
-			            data: form.serialize(), // get all form variables
-			            success: function(result){
+						contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+						headers: {
+							'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+						},
+			            data: {
+							texto: form.find("textarea[name='texto']").val(),
+							anuncio:  form.find("input[name='anuncio']").val(),
+							usuario:  form.find("input[name='usuario']").val()
+						},
+			            success: function(){
 							form[0].reset();
 							console.log("Deu.");
-							console.log(result);
 							form.find("button").removeClass("disabled");
 			                //getComentarios();
 			            },
