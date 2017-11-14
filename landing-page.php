@@ -10,22 +10,6 @@
         <?php include "head.php"; ?>
     </head>
     <body>
-        <style media="screen">
-            .height-hack-lading-page {
-                height: calc(100vh - 38px);
-            }
-
-            .bg-landing-page {
-                background-image: url('img/img-landing-page.jpg');
-                background-repeat: no-repeat;
-                background-position: 50% 54%;
-                background-size: cover;
-            }
-
-            .bg-fff-transparent {
-                background-color: rgba(255,255,255,0.7);
-            }
-        </style>
         <div class="container-fluid bg-f5f5f5 bg-landing-page">
             <div class="container">
         		<div class="row">
@@ -36,15 +20,13 @@
                             <h2 class="mtop-0 mbottom-15 font-300 font-0-9em text-center">Para continuar, selecione sua localização</h2>
                             <div class="form-group">
 								<label for="estado">Estado</label>
-								<select name="estado" class="form-control force-radius-0">
-									<option value="" disabled="disabled" selected="selected">Escolha o estado</option>
+								<select name="estado" class="form-control force-radius-0" required>
 									<option value="Paraná">Paraná</option>
 								</select>
 			                </div>
 			                <div class="form-group">
 								<label for="cidade">Cidade</label>
-								<select name="cidade" class="form-control force-radius-0">
-									<option value="" disabled="disabled" selected="selected">Escolha a cidade</option>
+								<select name="cidade" class="form-control force-radius-0" required>
 									<option value="Foz do Iguaçu">Foz do Iguaçu</option>
 								</select>
 			                </div>
@@ -68,5 +50,13 @@
     		</div>
     	</div>
     	<?php include "foot.php"; ?>
+        <script>
+            $("#formLocalizacaoLandingPage").validate({
+                rules: {
+				    estado: "required",
+                    cidade: "required"
+                }
+            });
+        </script>
     </body>
 </html>

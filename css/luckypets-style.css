@@ -2572,6 +2572,21 @@ h4.footer-titulo {
   border: 1px solid #ccc;
 }
 
+.height-hack-lading-page {
+  height: calc(100vh - 38px);
+}
+
+.bg-landing-page {
+  background-image: url("../img/img-landing-page.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 54%;
+  background-size: cover;
+}
+
+.bg-fff-transparent {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
 @media (max-width: 768px) {
   .dashboard-height-hack, .height-hack {
     min-height: calc(100vh - 144px);

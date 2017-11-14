@@ -163,8 +163,8 @@
 									</div>
 								</div>
 								<input type="hidden" name="userId" value="<?= $_SESSION['id']; ?>">
-								<input type="hidden" name="cidade" value="Foz do Iguaçu">
-								<input type="hidden" name="estado" value="Paraná">
+								<input type="hidden" name="cidade" value="<?= $_SESSION['cidade']; ?>">
+								<input type="hidden" name="estado" value="<?= $_SESSION['estado']; ?>">
 								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrar">Cadastrar</button></p>
 							</form>
 						</div>
@@ -176,33 +176,78 @@
 		<?php include "foot.php"; ?>
 		<script>
 			$(function(){
-				$("#btnCadastrar").on("click", function(event){
-					event.preventDefault();
-					$(this).addClass("disabled");
-					$.ajax({
-						type: 'POST',
-						url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/cadastro-doacao',
-						headers: {
-							'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-						},
-						// Método 1 - NÃO funciona com imagens (multipart/form-data)
-						// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
-						// Método 2 - Funciona com imagens (multipart/form-data) {
-						data: new FormData($('#formulario')[0]),
-						processData: false,
-						contentType: false,
-						// }
-						success:function(result){
-							console.log("Anúncio criado com sucesso.");
-						},
-						error:function(){
-							console.log("Ops! Não foi possível fazer sua requisição.");
-						},
-						complete:function(){
-							location.href = "<?= $GLOBALS['www']; ?>?m=1";
-						}
-					});
-				});
+				$("#formulario").validate({
+	                rules: {
+						tipo: "required",
+						sexo: "required",
+						vacinado: "required",
+						castrado: "required",
+						nome: "required",
+						raca: "required",
+						cor: "required",
+						porte: "required",
+						idade: "required",
+						descricao: "required",
+						userId: "required",
+						cidade: "required",
+						estado: "required"
+	                },
+					submitHandler: function(form) {
+						$("#btnCadastrar").addClass("disabled");
+						$.ajax({
+							type: 'POST',
+							url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/cadastro-doacao',
+							headers: {
+								'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+							},
+							// Método 1 - NÃO funciona com imagens (multipart/form-data)
+							// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+							// Método 2 - Funciona com imagens (multipart/form-data) {
+							data: new FormData($('#formulario')[0]),
+							processData: false,
+							contentType: false,
+							// }
+							success:function(result){
+								console.log("Anúncio criado com sucesso.");
+							},
+							error:function(){
+								console.log("Ops! Não foi possível fazer sua requisição.");
+								$("#btnCadastrar").removeClass("disabled");
+							},
+							complete:function(){
+								location.href = "<?= $GLOBALS['www']; ?>?m=1";
+							}
+						});
+					}
+	            });
+
+				// $("#btnCadastrar").on("click", function(event){
+				// 	event.preventDefault();
+				// 	$(this).addClass("disabled");
+				// 	$.ajax({
+				// 		type: 'POST',
+				// 		url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/cadastro-doacao',
+				// 		headers: {
+				// 			'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+				// 		},
+				// 		// Método 1 - NÃO funciona com imagens (multipart/form-data)
+				// 		// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+				// 		// Método 2 - Funciona com imagens (multipart/form-data) {
+				// 		data: new FormData($('#formulario')[0]),
+				// 		processData: false,
+				// 		contentType: false,
+				// 		// }
+				// 		success:function(result){
+				// 			console.log("Anúncio criado com sucesso.");
+				// 		},
+				// 		error:function(){
+				// 			console.log("Ops! Não foi possível fazer sua requisição.");
+				// 		},
+				// 		complete:function(){
+				// 			location.href = "<?= $GLOBALS['www']; ?>?m=1";
+				// 		}
+				// 	});
+				// });
 
 				$("input[name=file]").on("change", function(){
 					$("#profilePicture").removeClass("hidden");
