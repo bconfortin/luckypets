@@ -149,7 +149,6 @@
 							</div>
 							<div class="resposta">
 								<p>Sim! Muito. Temos 2 crianças e ele adora brincar com elas.</p>
-								<small>13/11/2017 11:03</small>
 							</div>
 							<div class="pergunta">
 								<p>Ele pega a bolinha?</p>
@@ -158,7 +157,6 @@
 							</div>
 							<div class="resposta">
 								<p>Ele é louco por qualquer tipo de brinquedo :D</p>
-								<small>13/11/2017 11:03</small>
 							</div>
 						</div>
 					</div>
@@ -172,6 +170,7 @@
 						</div>
 						<div class="padding-15 bg-fff" id="listaDeContato">
 						</div>
+						<a href="" class="btn btn-red mtop-15 width-100per text-uppercase denuncia"><i class="fa fa-flag mright-10"></i>Denunciar anúncio</a>
 					</div>
 				</div>
 			</div>
@@ -303,6 +302,16 @@
 					event.preventDefault();
 					var container = $(this).parent(".pergunta");
 					container.find(".formResponder").toggleClass("height-0", 300);
+				});
+
+				$(".denuncia").on("click", function(event){
+					event.preventDefault();
+					var confirma = confirm("Gostaria mesmo de denunciar esse anúncio? Essa ação não pode ser desfeita.");
+					if (confirma == true) {
+						console.log("Confirmou.");
+					} else {
+						console.log("Ação cancelada.");
+					}
 				});
 			});
 		</script>
