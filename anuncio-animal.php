@@ -21,7 +21,7 @@
 		<div class="container-fluid bg-f5f5f5 padver-50 padver-15-xs">
 			<div class="container custom-container-sm-xs">
 				<div class="row">
-					<div class="col-xs-12 col-sm-9 mbottom-15">
+					<div class="col-xs-12 col-md-9 col-sm-8 mbottom-15">
 						<!-- <img src="http://placehold.it/1140x500" alt="Placeholder" class="img-responsive"> -->
 						<div id="carousel-img" class="carousel slide" data-ride="carousel">
 						    <!-- Indicators -->
@@ -126,10 +126,12 @@
 							<h2>Dúvidas, perguntas e respostas sobre o animal</h2>
 							<h3>Fazer uma pergunta</h3>
 							<div class="perguntar mbottom-30">
-								<form action="" id="formNovaPergunta">
+								<form action="" class="formPerguntar">
 									<div class="form-group">
-										<textarea name="pergunta" id="" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Seja breve e certifique-se de que a sua dúvida ainda não tenha sido respondida no anúncio ou nos comentários abaixo."></textarea>
+										<textarea name="texto" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Seja breve e certifique-se de que a sua dúvida ainda não tenha sido respondida no anúncio ou nos comentários abaixo."></textarea>
 									</div>
+									<input type="hidden" name="anuncio" value="<?= $animalId; ?>">
+									<input type="hidden" name="usuario" value="<?= $_SESSION['id']; ?>">
 									<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Enviar pergunta</button>
 								</form>
 							</div>
@@ -160,12 +162,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-sm-3">
+					<div class="col-xs-12 col-md-3 col-sm-4">
 						<div class="bg-purple padding-15">
 							<p class="color-fff text-uppercase font-700 mbottom-0">Sobre o doador</p>
 						</div>
 						<div class="padding-15 bg-fff">
-							<img id="ajaxPerfilImagem" src="http://placehold.it/768x768" alt="" class="img-responsive img-circle center-block" style="max-width: 200px;">
+							<img id="ajaxPerfilImagem" src="http://placehold.it/768x768" alt="" class="img-responsive img-circle center-block" style="width: 200px;">
 							<h3 id="ajaxPerfilNome" class="text-center font-700 font-1-1em text-uppercase mtop-15 mbottom-0">Nome do doador</h3>
 						</div>
 						<div class="padding-15 bg-fff" id="listaDeContato">
@@ -267,6 +269,34 @@
 			        });
 			    }
 
+				$(".formPerguntar").on("submit", function(event){
+					event.preventDefault();
+					var form = $(this);
+					form.find("button").addClass("disabled");
+					//console.log(form.serialize());
+					// {
+					// 	texto: form.find("input[textarea='texto']").val(),
+					// 	anuncio:  form.find("input[name='anuncio']").val(),
+					// 	usuario:  form.find("input[name='usuario']").val()
+					// }
+					$.ajax({
+			            url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/comentar', // Get the action URL to send AJAX to
+			            type: 'POST',
+			            data: form.serialize(), // get all form variables
+			            success: function(result){
+							form[0].reset();
+							console.log("Deu.");
+							console.log(result);
+							form.find("button").removeClass("disabled");
+			                //getComentarios();
+			            },
+						error: function(){
+							console.log("Tente novamente mais tarde.");
+							form.find("button").removeClass("disabled");
+						}
+			        });
+				});
+
 				//getComentarios();
 				function getComentarios() {
 					$.ajax({
@@ -282,7 +312,8 @@
 			        });
 				}
 
-				$(".formResponder").on("submit", function(){
+				$(".formResponder").on("submit", function(event){
+					event.preventDefault();
 					var form = $(this);
 					$.ajax({
 			            url: 'http://etc', // Get the action URL to send AJAX to
@@ -306,9 +337,32 @@
 
 				$(".denuncia").on("click", function(event){
 					event.preventDefault();
+					var btn = $(this);
+					btn.addClass("disabled");
 					var confirma = confirm("Gostaria mesmo de denunciar esse anúncio? Essa ação não pode ser desfeita.");
 					if (confirma == true) {
 						console.log("Confirmou.");
+						$.ajax({
+				            url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/denunciar', // Get the action URL to send AJAX to
+				            type: 'POST',
+				            data: {
+								usuario: <?= $_SESSION['id']; ?>,
+								anuncio: <?= $animalId; ?>
+							},
+				            success: function(result){
+								console.log("Deu.");
+								if (result == true) {
+									console.log("Denúncia registrada com sucesso.");
+									btn.text("Anúncio denunciado");
+								} else {
+									console.log("Denúncia já registrada anteriormente.");
+								}
+				            },
+							error: function(){
+								console.log("Tente novamente mais tarde.");
+								btn.removeClass("disabled");
+							}
+				        });
 					} else {
 						console.log("Ação cancelada.");
 					}
