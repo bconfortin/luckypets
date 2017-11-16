@@ -1,5 +1,5 @@
     <?php
-        $GLOBALS['www'] = 'http://localhost/luckypets/';
+        $GLOBALS['www'] = 'http://localhost:81/luckypets/';
         //$GLOBALS['www'] = 'http://31.220.53.123/luckypets/';
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -72,7 +72,37 @@
                 FB.api('/me', {
                     fields: 'name, email, picture.type(large)'
                 }, function(response) {
-                    console.log(response.name);
+                    // var name = response.name;
+                    // var email = response.email;
+                    // var picture = response.picture.data.url;
+                    // $.post("http://31.220.53.123:8080/luckypets-servidor/api/usuario/checkFaceUser", {
+                    //     "email": email,
+                    //     "facebookID": accessToken
+                    // }).done(function(data) {
+                    //     console.log("Data Loaded: ");
+                    //     console.log(data);
+                    //     if (data != undefined) {
+                    //         $.post("<?= $GLOBALS['www']; ?>login-facebook.php", {
+                    //             "administrador": data.administrador,
+                    //             "authToken": data.authToken,
+                    //             "celular": data.celular,
+                    //             "email": data.email,
+                    //             "facebook": data.facebook,
+                    //             "id": data.id,
+                    //             "imagem": picture,
+                    //             "caminhoCompletoImagem": picture,
+                    //             "nome": data.nome,
+                    //             "senha": data.senha,
+                    //             "telefone": data.telefone
+                    //         }).done(function(data) {
+                    //             //location.href = "<?= $GLOBALS['www']; ?>";
+                    //         });
+                    //     } else {
+                    //         alert("Usuário ainda não possui cadastro.");
+                    //     }
+                    // }).fail(function() {
+                    //     alert("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
+                    // });
                 });
             } else if (response.status === 'not_authorized') {
                 // the user is logged in to Facebook,

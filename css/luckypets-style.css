@@ -1038,6 +1038,10 @@ body {
   font-size: 16px;
 }
 
+.alert {
+  border-radius: 0;
+}
+
 .bleft-3-green {
   border-left: 3px solid green;
 }

@@ -161,7 +161,12 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane mtop-15" id="tabUsuario">
-                                <form class="mbottom-15" action="" method="POST">
+                                <form class="mbottom-15" action="" method="POST" id="formLogin">
+                                    <div class="error height-0">
+                                        <div class="alert alert-danger" role="alert">
+                                            E-mail ou senha incorretos.
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="formLoginEmail" class="font-300">E-mail</label>
                                         <input type="text" name="formLoginEmail" class="form-control" placeholder="maria@gmail.com">

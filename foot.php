@@ -108,7 +108,7 @@
                                 location.href = "<?= $GLOBALS['www']; ?>";
                             });
                         } else {
-                            alert("E-mail ou senha incorretos.");
+                            $("#formLogin .error").removeClass("height-0", 300);
                             $("#btnLogin").removeClass("disabled");
                         }
                     }).fail(function() {

@@ -107,6 +107,60 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
+			$("#formulario").validate({
+				rules: {
+					tipo: "required",
+					sexo: "required",
+					nome: "required",
+					raca: "required",
+					cor: "required",
+					porte: "required",
+					idade: "required",
+					resgatado: "required",
+					descricao: "required",
+					userId: "required",
+					latitude: "required",
+					longitude: "required"
+				},
+				highlight: function(element) {
+					$(element).closest('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element) {
+					$(element).closest('.form-group').removeClass('has-error');
+				},
+				submitHandler: function(form) {
+					$("#btnCadastrar").addClass("disabled");
+					if ($("input[name=file]").val() == "") {
+						$("input[name=file]").remove();
+					}
+					$.ajax({
+						type: 'POST',
+						url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario',
+						// Método 1 - NÃO funciona com imagens (multipart/form-data)
+						// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+						// Método 2 - Funciona com imagens (multipart/form-data) {
+						data: new FormData($('#formulario')[0]),
+						processData: false,
+						contentType: false,
+						// }
+						success:function(result){
+							if (result.toLowerCase() === "sucesso!") {
+								console.log("Usuário cadastrado com sucesso.");
+								location.href = "<?= $GLOBALS['www']; ?>?m=1";
+							} else if (result.toLowerCase() === "erro") {
+								$("#btnCadastrar").removeClass("disabled");
+								console.log("E-mail já existente.");
+							}
+						},
+						error:function(){
+							$("#btnCadastrar").removeClass("disabled");
+							console.log("Ops! Não foi possível fazer sua requisição.");
+						}
+					});
+				}
+			});
+
+			/*
 			$("#btnCadastrar").on("click", function(event){
 				event.preventDefault();
 				if ($("input[name=file]").val() == "") {
@@ -134,35 +188,36 @@
 						console.log("Ops! Não foi possível fazer sua requisição.");
 					}
 				});
-
-				$("input[name=file]").on("change", function(){
-					$("#profilePicture").removeClass("hidden");
-					$("#removerFotoDePerfil").removeClass("hidden");
-					onFileSelected(event);
-				});
-
-				$("#removerFotoDePerfil").on("click", function(e){
-					e.preventDefault();
-					$("input[name=file]").val("");
-					$("#removerFotoDePerfil").addClass("hidden");
-					$("#profilePicture").addClass("hidden");
-				})
-
-				// https://stackoverflow.com/questions/3814231/loading-an-image-to-a-img-from-input-file
-				function onFileSelected(event) {
-					var selectedFile = event.target.files[0];
-					var reader = new FileReader();
-
-					var imgtag = document.getElementById("profilePicture");
-					imgtag.title = selectedFile.name;
-
-					reader.onload = function(event) {
-						imgtag.src = event.target.result;
-					};
-
-					reader.readAsDataURL(selectedFile);
-				}
 			});
+			*/
+
+			$("input[name=file]").on("change", function(){
+				$("#profilePicture").removeClass("hidden");
+				$("#removerFotoDePerfil").removeClass("hidden");
+				onFileSelected(event);
+			});
+
+			$("#removerFotoDePerfil").on("click", function(e){
+				e.preventDefault();
+				$("input[name=file]").val("");
+				$("#removerFotoDePerfil").addClass("hidden");
+				$("#profilePicture").addClass("hidden");
+			})
+
+			// https://stackoverflow.com/questions/3814231/loading-an-image-to-a-img-from-input-file
+			function onFileSelected(event) {
+				var selectedFile = event.target.files[0];
+				var reader = new FileReader();
+
+				var imgtag = document.getElementById("profilePicture");
+				imgtag.title = selectedFile.name;
+
+				reader.onload = function(event) {
+					imgtag.src = event.target.result;
+				};
+
+				reader.readAsDataURL(selectedFile);
+			}
 		</script>
 	</body>
 </html>
