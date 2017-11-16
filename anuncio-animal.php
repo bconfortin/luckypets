@@ -136,29 +136,31 @@
 								</form>
 							</div>
 							<h3>Dúvidas</h3>
-							<div class="pergunta">
-								<p>Ele é bom com crianças?</p>
-								<small>13/11/2017 11:03</small>
-								<a href="" class="responder">Responder</a>
-								<form action="" class="formResponder height-0" method="POST">
-									<div class="form-group mtop-15">
-										<textarea name="pergunta" id="" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>
-									</div>
-									<input type="hidden" name="idPergunta" value="">
-									<input type="hidden" name="anuncioId" value="<?= $animalId; ?>">
-									<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>
-								</form>
-							</div>
-							<div class="resposta">
-								<p>Sim! Muito. Temos 2 crianças e ele adora brincar com elas.</p>
-							</div>
-							<div class="pergunta">
-								<p>Ele pega a bolinha?</p>
-								<small>13/11/2017 11:03</small>
-								<a href="" class="responder">Responder</a>
-							</div>
-							<div class="resposta">
-								<p>Ele é louco por qualquer tipo de brinquedo :D</p>
+							<div class="duvidas">
+								<div class="pergunta">
+									<p>Ele é bom com crianças?</p>
+									<small>13/11/2017 11:03</small>
+									<a href="" class="responder">Responder</a>
+									<form action="" class="formResponder height-0" method="POST">
+										<div class="form-group mtop-15">
+											<textarea name="pergunta" id="" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>
+										</div>
+										<input type="hidden" name="idPergunta" value="">
+										<input type="hidden" name="anuncioId" value="<?= $animalId; ?>">
+										<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>
+									</form>
+								</div>
+								<div class="resposta">
+									<p>Sim! Muito. Temos 2 crianças e ele adora brincar com elas.</p>
+								</div>
+								<div class="pergunta">
+									<p>Ele pega a bolinha?</p>
+									<small>13/11/2017 11:03</small>
+									<a href="" class="responder">Responder</a>
+								</div>
+								<div class="resposta">
+									<p>Ele é louco por qualquer tipo de brinquedo :D</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -304,20 +306,46 @@
 			        });
 				});
 
-				//getComentarios();
-				function getComentarios() {
+				function getPerguntas() {
+					var urlExtenso = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/mensagensAnuncio/' + '<?= $animalId; ?>';
+					console.log(urlExtenso);
 					$.ajax({
-			            url: 'http://etc', // Get the action URL to send AJAX to
-			            type: 'POST',
-			            data: form.serialize(), // get all form variables
+			            url: urlExtenso,
+			            type: 'GET',
+						dataType: 'json',
+						headers: {
+							'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+						},
 			            success: function(result){
-			                // ... do your AJAX post result
+							console.log(result.length);
+							for (i = 0; i < result.length; i++) {
+								var timestamp = result[i].dataPergunta,
+									date = new Date(timestamp),
+									datevalues = ((date.getDate() < 10 ? "0" : "") + date.getDate()) + '/' + (((date.getMonth()+1) < 10 ? "0" : "") + (date.getMonth()+1)) + '/' + date.getFullYear() + ' ' +
+												 ((date.getHours() < 10 ? "0" : "") + date.getHours()) + ':' + ((date.getMinutes() < 10 ? "0" : "") + date.getMinutes()) + ':' + ((date.getSeconds() < 10 ? "0" : "") + date.getSeconds());
+				                var html = '';
+								html += '<div class="pergunta">';
+								html +=		'<p>' + result[i].texto + '</p>';
+								html +=		'<small>' + datevalues + '</small>';
+								html +=		'<a href="" class="responder">Responder</a>';
+								html +=		'<form action="" class="formResponder height-0" method="POST">';
+								html +=			'<div class="form-group mtop-15">';
+								html +=				'<textarea name="pergunta" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>';
+								html +=			'</div>';
+								html +=			'<input type="hidden" name="idPergunta" value="' + result[i].id + '">';
+								html +=			'<input type="hidden" name="anuncioId" value="<?= $animalId; ?>">';
+								html +=			'<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>';
+								html += 	'</form>';
+								html += '</div>';
+								$(".duvidas").append(html);
+							}
 			            },
 						error: function(){
-
+							console.log("Ops! Ocorreu algum erro, tente novamente mais tarde.");
 						}
 			        });
 				}
+				getPerguntas();
 
 				$(".formResponder").on("submit", function(event){
 					event.preventDefault();
