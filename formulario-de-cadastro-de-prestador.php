@@ -174,6 +174,8 @@
 				var cep = $("#cep").val();
 				if (cep != "" && cep != null && cep != undefined) {
 					$.ajax({
+						tryCount : 0,
+	    				retryLimit : 3,
 						type: 'GET',
 						url: 'http://viacep.com.br/ws/'+ cep +'/json/',
 						dataType: 'json',
@@ -245,6 +247,8 @@
 						$("input[name=file]").remove();
 					}
 					$.ajax({
+						tryCount : 0,
+	    				retryLimit : 3,
 						type: 'POST',
 						url:'http://31.220.53.123:8080/luckypets-servidor/api/prestador/cadastro-prestador',
 						// Método 1 - NÃO funciona com imagens (multipart/form-data)

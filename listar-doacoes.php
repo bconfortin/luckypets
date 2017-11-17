@@ -81,6 +81,8 @@
 		<?php include "foot.php"; ?>
 		<script>
 			$.ajax({
+				tryCount : 0,
+				retryLimit : 3,
 			    type: 'GET',
 			    crossOrigin: true,
 			    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes',
@@ -142,6 +144,8 @@
 						var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
 						if (confirmacao == true) {
 							$.ajax({
+								tryCount : 0,
+			    				retryLimit : 3,
 							    type: 'GET',
 							    crossOrigin: true,
 							    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/delete-doacao/' + id,

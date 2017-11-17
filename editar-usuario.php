@@ -119,6 +119,8 @@
 						$("input[name=file]").remove();
 					}
 					$.ajax({
+						tryCount : 0,
+	    				retryLimit : 3,
 					    type: 'POST',
 					    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
 						headers: {
@@ -181,6 +183,8 @@
 
 			function refreshSession() {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 					type: 'GET',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/getuserdata/<?= $_SESSION['email']; ?>',
 					dataType: 'json',

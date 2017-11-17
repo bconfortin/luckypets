@@ -137,6 +137,8 @@
 				}
 
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 				    type: 'GET',
 				    crossOrigin: true,
 				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos',
@@ -310,6 +312,8 @@
 				});
 
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 				    type: 'GET',
 				    crossOrigin: true,
 				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrados',

@@ -166,6 +166,8 @@
 
 				function getAnunciosDoacao() {
 			        $.ajax({
+						tryCount : 0,
+	    				retryLimit : 3,
 			            type: 'GET',
 			            crossOrigin: true,
 			            url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacao/<?= $animalId; ?>',
@@ -272,6 +274,8 @@
 						// 	usuario:  form.find("input[name='usuario']").val()
 						// }
 						$.ajax({
+							tryCount : 0,
+		    				retryLimit : 3,
 				            url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/comentar', // Get the action URL to send AJAX to
 				            type: 'POST',
 							contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -283,13 +287,22 @@
 								anuncio:  form.find("input[name='anuncio']").val(),
 								usuario:  form.find("input[name='usuario']").val()
 							},
-				            success: function(){
+				            success:function(){
 								form[0].reset();
 								console.log("Deu.");
 								form.find("button").removeClass("disabled");
 				                //getComentarios();
 				            },
-							error: function(){
+							error:function(xhr, textStatus, errorThrown) {
+						        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+						            this.tryCount++;
+						            if (this.tryCount <= this.retryLimit) {
+						                //try again
+						                $.ajax(this);
+						                return;
+						            }
+						            return;
+						        }
 								console.log("Tente novamente mais tarde.");
 								form.find("button").removeClass("disabled");
 							}
@@ -300,13 +313,15 @@
 						var urlExtenso = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/mensagensAnuncio/' + '<?= $animalId; ?>';
 						console.log(urlExtenso);
 						$.ajax({
+							tryCount : 0,
+		    				retryLimit : 3,
 				            url: urlExtenso,
 				            type: 'GET',
 							dataType: 'json',
 							headers: {
 								'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 							},
-				            success: function(result){
+				            success:function(result){
 								console.log(result);
 								for (i = 0; i < result.length; i++) {
 									var timestamp = result[i].dataPergunta,
@@ -334,7 +349,16 @@
 									getRespostas(result[i].id);
 								}
 				            },
-							error: function(){
+							error:function(xhr, textStatus, errorThrown) {
+						        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+						            this.tryCount++;
+						            if (this.tryCount <= this.retryLimit) {
+						                //try again
+						                $.ajax(this);
+						                return;
+						            }
+						            return;
+						        }
 								console.log("Ops! Ocorreu algum erro, tente novamente mais tarde.");
 							},
 							complete: function(){
@@ -349,13 +373,15 @@
 						var urlExtenso = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/respostas/' + idPergunta;
 						console.log(urlExtenso);
 						$.ajax({
+							tryCount : 0,
+		    				retryLimit : 3,
 				            url: urlExtenso,
 				            type: 'GET',
 							dataType: 'json',
 							headers: {
 								'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 							},
-				            success: function(result){
+				            success:function(result){
 								for (i = 0; i < result.length; i++) {
 									var timestamp = result[i].data,
 										date = new Date(timestamp),
@@ -370,7 +396,16 @@
 									$("#containerPergunta".concat(result[i].msg.id)).append(html);
 								}
 				            },
-							error: function(){
+							error:function(xhr, textStatus, errorThrown) {
+						        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+						            this.tryCount++;
+						            if (this.tryCount <= this.retryLimit) {
+						                //try again
+						                $.ajax(this);
+						                return;
+						            }
+						            return;
+						        }
 								console.log("Ops! Ocorreu algum erro, tente novamente mais tarde.");
 							},
 							complete: function(){
@@ -384,17 +419,28 @@
 							event.preventDefault();
 							var form = $(this);
 							$.ajax({
+								tryCount : 0,
+			    				retryLimit : 3,
 								url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/responder', // Get the action URL to send AJAX to
 								type: 'POST',
 								data: form.serialize(), // get all form variables
 								headers: {
 									'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 								},
-								success: function(result){
+								success:function(result){
 									form[0].reset();
 									//getComentarios();
 								},
-								error: function(){
+								error:function(xhr, textStatus, errorThrown) {
+							        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+							            this.tryCount++;
+							            if (this.tryCount <= this.retryLimit) {
+							                //try again
+							                $.ajax(this);
+							                return;
+							            }
+							            return;
+							        }
 									console.log("Tente novamente mais tarde.");
 								}
 							});
@@ -419,13 +465,15 @@
 						if (confirma == true) {
 							console.log("Confirmou.");
 							$.ajax({
+								tryCount : 0,
+			    				retryLimit : 3,
 					            url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/denunciar', // Get the action URL to send AJAX to
 					            type: 'POST',
 					            data: {
 									usuario: <?= $_SESSION['id']; ?>,
 									anuncio: <?= $animalId; ?>
 								},
-					            success: function(result){
+					            success:function(result){
 									console.log("Deu.");
 									if (result == true) {
 										console.log("Denúncia registrada com sucesso.");
@@ -435,7 +483,16 @@
 										btn.removeClass("disabled");
 									}
 					            },
-								error: function(){
+								error:function(xhr, textStatus, errorThrown) {
+							        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+							            this.tryCount++;
+							            if (this.tryCount <= this.retryLimit) {
+							                //try again
+							                $.ajax(this);
+							                return;
+							            }
+							            return;
+							        }
 									console.log("Tente novamente mais tarde.");
 									btn.removeClass("disabled");
 								}

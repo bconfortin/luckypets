@@ -224,6 +224,8 @@
 			var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
 			if (confirmacao == true) {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 					type: 'GET',
 					crossOrigin: true,
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/delete-doacao/' + idDoacao,
@@ -259,6 +261,8 @@
 			var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
 			if (confirmacao == true) {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 					type: 'GET',
 					crossOrigin: true,
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/delete-perdido/' + idPerdido,
@@ -294,6 +298,8 @@
 			var confirmacao = confirm("Essa operação não pode ser desfeita. Deletar doação?");
 			if (confirmacao == true) {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 					type: 'GET',
 					crossOrigin: true,
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/delete-encontrado/' + idEncontrado,
@@ -369,6 +375,8 @@
 
 			function ajaxDoacoes() {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 				    type: 'GET',
 				    crossOrigin: true,
 					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes-usuario/<?= $_SESSION["id"]; ?>',
@@ -419,6 +427,8 @@
 
 			function ajaxPerdidos() {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 				    type: 'GET',
 				    crossOrigin: true,
 					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos-usuario/<?= $_SESSION["id"]; ?>',
@@ -468,6 +478,8 @@
 
 			function ajaxEncontrados() {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 				    type: 'GET',
 				    crossOrigin: true,
 					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrados-usuario/<?= $_SESSION["id"]; ?>',
@@ -517,6 +529,8 @@
 				// senhaNova = $("#formAlterarSenha input[name='senhaNova']").val();
 				// email = $("#formAlterarSenha input[name='email']").val();
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 					type: 'POST',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/alterar-senha',
 					// url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/changepass/'+email+'/'+senhaAntiga+'/'+senhaNova,
@@ -569,6 +583,8 @@
 
 			function ajaxAlterarCadastro(){
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 					type: 'POST',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
 					headers: {
@@ -602,6 +618,8 @@
 
 			function refreshSession() {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 					type: 'GET',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/getuserdata/<?= $_SESSION['email']; ?>',
 					dataType: 'json',

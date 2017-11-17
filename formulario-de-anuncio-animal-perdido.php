@@ -196,6 +196,8 @@
 				submitHandler: function(form) {
 					$("#btnCadastrar").addClass("disabled");
 					$.ajax({
+						tryCount : 0,
+	    				retryLimit : 3,
 						type: 'POST',
 						url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/cadastro-perdido',
 						headers: {

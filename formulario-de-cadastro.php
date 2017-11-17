@@ -134,6 +134,8 @@
 						$("input[name=file]").remove();
 					}
 					$.ajax({
+						tryCount : 0,
+	    				retryLimit : 3,
 						type: 'POST',
 						url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/novo-usuario',
 						// Método 1 - NÃO funciona com imagens (multipart/form-data)

@@ -174,6 +174,8 @@
 				submitHandler: function(form) {
 					$("#btnEditar").addClass("disabled");
 					$.ajax({
+						tryCount : 0,
+	    				retryLimit : 3,
 						type: 'POST',
 						url:'http://31.220.53.123:8080/luckypets-servidor/api/prestador/edita-prestador',
 						headers: {
@@ -241,6 +243,8 @@
 
 			function refreshSession() {
 				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
 					type: 'GET',
 					url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/getuserdata/<?= $_SESSION['email']; ?>',
 					dataType: 'json',
