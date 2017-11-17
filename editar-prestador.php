@@ -148,29 +148,87 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
-			$("#btnEditar").on("click", function(){
-				$.ajax({
-				    type: 'POST',
-				    url:'http://31.220.53.123:8080/luckypets-servidor/api/prestador/edita-prestador',
-					headers: {
-						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-					},
-					// Método 1 - NÃO funciona com imagens (multipart/form-data)
-					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
-					// Método 2 - Funciona com imagens (multipart/form-data) {
-					data: new FormData($('#formulario')[0]),
-					processData: false,
-					contentType: false,
-					// }
-				    success:function(result){
-					    console.log("Prestador alterado com sucesso.");
-						refreshSession();
-				    },
-				    error:function(){
-				    	console.log("Ops! Não foi possível fazer sua requisição.");
-				    }
-				});
+			$("#formulario").validate({
+				rules: {
+					nome: "required",
+					email: "required",
+					celular: "required",
+					telefone: "required",
+					responsavel: "required",
+					cpfResponsavel: "required",
+					tipo: "required",
+					cep: "required",
+					logradouro: "required",
+					numero: "required",
+					estado: "required",
+					cidade: "required",
+					senha: "required",
+					senhaNovamente: "required"
+				},
+				highlight: function(element) {
+					$(element).closest('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element) {
+					$(element).closest('.form-group').removeClass('has-error');
+				},
+				submitHandler: function(form) {
+					$("#btnEditar").addClass("disabled");
+					$.ajax({
+						type: 'POST',
+						url:'http://31.220.53.123:8080/luckypets-servidor/api/prestador/edita-prestador',
+						headers: {
+							'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+						},
+						// Método 1 - NÃO funciona com imagens (multipart/form-data)
+						// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+						// Método 2 - Funciona com imagens (multipart/form-data) {
+						data: new FormData($('#formulario')[0]),
+						processData: false,
+						contentType: false,
+						// }
+						success:function(result){
+							console.log("Prestador alterado com sucesso.");
+							refreshSession();
+						},
+						error:function(){
+							console.log("Ops! Não foi possível fazer sua requisição.");
+							$("#btnEditar").removeClass("disabled");
+						},
+						complete:function(){
+							$("#btnEditar").removeClass("disabled");
+						}
+					});
+				}
 			});
+
+			// $("#btnEditar").on("click", function(){
+			// 	$("#btnEditar").addClass("disabled");
+			// 	$.ajax({
+			// 	    type: 'POST',
+			// 	    url:'http://31.220.53.123:8080/luckypets-servidor/api/prestador/edita-prestador',
+			// 		headers: {
+			// 			'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+			// 		},
+			// 		// Método 1 - NÃO funciona com imagens (multipart/form-data)
+			// 		// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+			// 		// Método 2 - Funciona com imagens (multipart/form-data) {
+			// 		data: new FormData($('#formulario')[0]),
+			// 		processData: false,
+			// 		contentType: false,
+			// 		// }
+			// 	    success:function(result){
+			// 		    console.log("Prestador alterado com sucesso.");
+			// 			refreshSession();
+			// 	    },
+			// 	    error:function(){
+			// 	    	console.log("Ops! Não foi possível fazer sua requisição.");
+			// 			$("#btnEditar").removeClass("disabled");
+			// 	    },
+			// 		complete:function(){
+			// 			$("#btnEditar").removeClass("disabled");
+			// 		}
+			// 	});
+			// });
 
 			function refreshSession() {
 				$.ajax({

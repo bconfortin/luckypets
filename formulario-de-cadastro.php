@@ -155,6 +155,9 @@
 						error:function(){
 							$("#btnCadastrar").removeClass("disabled");
 							console.log("Ops! Não foi possível fazer sua requisição.");
+						},
+						complete:function(){
+							$("#btnCadastrar").removeClass("disabled");
 						}
 					});
 				}

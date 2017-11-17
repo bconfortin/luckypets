@@ -11,8 +11,10 @@
 		<?php
 			$animalId = $_GET["animalId"];
 			if (!isset($animalId) || $animalId == "" || is_null($animalId)) {
-				header('Location: ' . $GLOBALS['www'] . 'animais-para-doacao.php');
-	    		exit;
+				if (!headers_sent()) {
+					header('Location: ' . $GLOBALS['www'] . 'animais-encontrados.php');
+		    		exit;
+				}
 			}
 		?>
 	</head>

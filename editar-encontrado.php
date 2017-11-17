@@ -176,34 +176,86 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
-			$("#btnEditarDoacao").on("click", function(){
-				event.preventDefault();
-				$(this).addClass("disabled");
-				$.ajax({
-				    type: 'POST',
-				    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/edita-encontrado',
-					headers: {
-						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-					},
-					// Método 1 - NÃO funciona com imagens (multipart/form-data)
-					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
-					// Método 2 - Funciona com imagens (multipart/form-data) {
-					data: new FormData($('#formEditarAnuncio')[0]),
-					processData: false,
-					contentType: false,
-					// }
-				    success:function(result){
-					    console.log("Anúncio alterado com sucesso.");
-				    },
-				    error:function(e){
-						console.log(e.responseText);
-				    	console.log("Ops! Não foi possível fazer sua requisição.");
-				    },
-					complete:function(){
-						$("#btnEditarDoacao").removeClass("disabled");
-					}
-				});
+			$("#formEditarAnuncio").validate({
+				rules: {
+					tipo: "required",
+					sexo: "required",
+					nome: "required",
+					raca: "required",
+					cor: "required",
+					porte: "required",
+					idade: "required",
+					resgatado: "required",
+					descricao: "required",
+					userId: "required",
+					latitude: "required",
+					longitude: "required"
+				},
+				highlight: function(element) {
+					$(element).closest('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element) {
+					$(element).closest('.form-group').removeClass('has-error');
+				},
+				submitHandler: function(form) {
+					$("#btnEditarDoacao").addClass("disabled");
+					$.ajax({
+					    type: 'POST',
+					    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/edita-encontrado',
+						headers: {
+							'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+						},
+						// Método 1 - NÃO funciona com imagens (multipart/form-data)
+						// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+						// Método 2 - Funciona com imagens (multipart/form-data) {
+						data: new FormData($('#formEditarAnuncio')[0]),
+						processData: false,
+						contentType: false,
+						// }
+					    success:function(result){
+						    console.log("Anúncio alterado com sucesso.");
+					    },
+					    error:function(e){
+							console.log(e.responseText);
+					    	console.log("Ops! Não foi possível fazer sua requisição.");
+							$("#btnEditarDoacao").removeClass("disabled");
+					    },
+						complete:function(){
+							$("#btnEditarDoacao").removeClass("disabled");
+						}
+					});
+				}
 			});
+
+
+			// $("#btnEditarDoacao").on("click", function(){
+			// 	event.preventDefault();
+			// 	$(this).addClass("disabled");
+			// 	$.ajax({
+			// 	    type: 'POST',
+			// 	    url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/edita-encontrado',
+			// 		headers: {
+			// 			'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+			// 		},
+			// 		// Método 1 - NÃO funciona com imagens (multipart/form-data)
+			// 		// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+			// 		// Método 2 - Funciona com imagens (multipart/form-data) {
+			// 		data: new FormData($('#formEditarAnuncio')[0]),
+			// 		processData: false,
+			// 		contentType: false,
+			// 		// }
+			// 	    success:function(result){
+			// 		    console.log("Anúncio alterado com sucesso.");
+			// 	    },
+			// 	    error:function(e){
+			// 			console.log(e.responseText);
+			// 	    	console.log("Ops! Não foi possível fazer sua requisição.");
+			// 	    },
+			// 		complete:function(){
+			// 			$("#btnEditarDoacao").removeClass("disabled");
+			// 		}
+			// 	});
+			// });
 
 			getAnunciosDoacao();
 

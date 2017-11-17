@@ -92,29 +92,83 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
-			$("#btnEditar").on("click", function(){
-				$.ajax({
-				    type: 'POST',
-				    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
-					headers: {
-						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-					},
-					// Método 1 - NÃO funciona com imagens (multipart/form-data)
-					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
-					// Método 2 - Funciona com imagens (multipart/form-data) {
-					data: new FormData($('#formulario')[0]),
-					processData: false,
-					contentType: false,
-					// }
-				    success:function(result){
-					    console.log("Usuário alterado com sucesso.");
-						refreshSession();
-				    },
-				    error:function(){
-				    	console.log("Ops! Não foi possível fazer sua requisição.");
-				    }
-				});
+			$("#formulario").validate({
+				rules: {
+					tipo: "required",
+					sexo: "required",
+					nome: "required",
+					raca: "required",
+					cor: "required",
+					porte: "required",
+					idade: "required",
+					resgatado: "required",
+					descricao: "required",
+					userId: "required",
+					latitude: "required",
+					longitude: "required"
+				},
+				highlight: function(element) {
+					$(element).closest('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element) {
+					$(element).closest('.form-group').removeClass('has-error');
+				},
+				submitHandler: function(form) {
+					$("#btnEditar").addClass("disabled");
+					if ($("input[name=file]").val() == "") {
+						$("input[name=file]").remove();
+					}
+					$.ajax({
+					    type: 'POST',
+					    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
+						headers: {
+							'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+						},
+						// Método 1 - NÃO funciona com imagens (multipart/form-data)
+						// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+						// Método 2 - Funciona com imagens (multipart/form-data) {
+						data: new FormData($('#formulario')[0]),
+						processData: false,
+						contentType: false,
+						// }
+					    success:function(result){
+						    console.log("Usuário alterado com sucesso.");
+							refreshSession();
+					    },
+					    error:function(){
+					    	console.log("Ops! Não foi possível fazer sua requisição.");
+							$("#btnEditar").removeClass("disabled");
+					    },
+						complete:function(){
+							$("#btnEditar").removeClass("disabled");
+						}
+					});
+				}
 			});
+
+			// $("#btnEditar").on("click", function(){
+			// 	$.ajax({
+			// 	    type: 'POST',
+			// 	    url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/edita-usuario',
+			// 		headers: {
+			// 			'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+			// 		},
+			// 		// Método 1 - NÃO funciona com imagens (multipart/form-data)
+			// 		// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+			// 		// Método 2 - Funciona com imagens (multipart/form-data) {
+			// 		data: new FormData($('#formulario')[0]),
+			// 		processData: false,
+			// 		contentType: false,
+			// 		// }
+			// 	    success:function(result){
+			// 		    console.log("Usuário alterado com sucesso.");
+			// 			refreshSession();
+			// 	    },
+			// 	    error:function(){
+			// 	    	console.log("Ops! Não foi possível fazer sua requisição.");
+			// 	    }
+			// 	});
+			// });
 
 			function refreshSession() {
 				$.ajax({
