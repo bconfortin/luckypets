@@ -20,14 +20,14 @@
                             <h2 class="mtop-0 mbottom-15 font-300 font-0-9em text-center">Para continuar, selecione sua localização</h2>
                             <div class="form-group">
 								<label for="estado">Estado</label>
-								<select name="estado" class="form-control force-radius-0" required>
-									<option value="Paraná">Paraná</option>
+								<select name="estado" id="estado" class="form-control force-radius-0" required>
+
 								</select>
 			                </div>
 			                <div class="form-group">
 								<label for="cidade">Cidade</label>
-								<select name="cidade" class="form-control force-radius-0" required>
-									<option value="Foz do Iguaçu">Foz do Iguaçu</option>
+								<select name="cidade" id="cidade" class="form-control force-radius-0" required>
+									<option value="" disabled="disabled" selected="selected">Escolha um estado</option>
 								</select>
 			                </div>
 			                <button class="btnLocalizacao btn btn-gradient text-uppercase force-radius-0 width-100per">Salvar</button>
@@ -51,6 +51,80 @@
     	</div>
     	<?php include "foot.php"; ?>
         <script>
+            $.ajax({
+				tryCount : 0,
+				retryLimit : 3,
+			    type: 'GET',
+			    crossOrigin: true,
+			    url:'http://www.geonames.org/childrenJSON?geonameId=3469034',
+			    dataType: 'json',
+			    success:function(x){
+                    console.log(x);
+				    var html = '';
+                    html += '<option value="" disabled="disabled" selected="selected">Escolha um estado</option>';
+				    for (i = 0; i < x.geonames.length; i++) {
+			    		html += '<option idestado="' + x.geonames[i].geonameId + '" value="' + x.geonames[i].toponymName + '">' + x.geonames[i].toponymName + '</option>';
+				    }
+				    $("#estado").html(html);
+			    },
+			    error:function(xhr, textStatus, errorThrown) {
+					if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+						this.tryCount++;
+						if (this.tryCount <= this.retryLimit) {
+							//try again
+							$.ajax(this);
+							return;
+						}
+						return;
+					}
+			    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+			    },
+                complete:function() {
+                    bindEstadoSelector();
+                }
+			});
+
+            function bindEstadoSelector() {
+                $("#estado").change(function() {
+                    ajaxCidade($(this).find("option:selected").attr("idestado"));
+                });
+            }
+
+            function ajaxCidade(id) {
+                $.ajax({
+    				tryCount : 0,
+    				retryLimit : 3,
+    			    type: 'GET',
+    			    crossOrigin: true,
+    			    url:'http://www.geonames.org/childrenJSON?geonameId=' + id,
+    			    dataType: 'json',
+    			    success:function(x){
+                        console.log(x);
+    				    var html = '';
+                        html += '<option value="" disabled="disabled" selected="selected">Escolha uma cidade</option>';
+    				    for (i = 0; i < x.geonames.length; i++) {
+    			    		html += '<option idcidade="' + x.geonames[i].geonameId + '" value="' + x.geonames[i].toponymName + '">' + x.geonames[i].toponymName + '</option>';
+    				    }
+    				    $("#cidade").html(html);
+    			    },
+    			    error:function(xhr, textStatus, errorThrown) {
+    					if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+    						this.tryCount++;
+    						if (this.tryCount <= this.retryLimit) {
+    							//try again
+    							$.ajax(this);
+    							return;
+    						}
+    						return;
+    					}
+    			    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+    			    },
+                    complete:function() {
+                        console.log("Requisição completada com sucesso.");
+                    }
+    			});
+            }
+
             $("#formLocalizacaoLandingPage").validate({
                 rules: {
 				    estado: "required",
