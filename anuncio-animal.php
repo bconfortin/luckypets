@@ -137,30 +137,6 @@
 							</div>
 							<h3>Dúvidas</h3>
 							<div class="duvidas">
-								<div class="pergunta">
-									<p>Ele é bom com crianças?</p>
-									<small>13/11/2017 11:03</small>
-									<a href="" class="responder">Responder</a>
-									<form action="" class="formResponder height-0" method="POST">
-										<div class="form-group mtop-15">
-											<textarea name="pergunta" id="" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>
-										</div>
-										<input type="hidden" name="idPergunta" value="">
-										<input type="hidden" name="anuncioId" value="<?= $animalId; ?>">
-										<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>
-									</form>
-								</div>
-								<div class="resposta">
-									<p>Sim! Muito. Temos 2 crianças e ele adora brincar com elas.</p>
-								</div>
-								<div class="pergunta">
-									<p>Ele pega a bolinha?</p>
-									<small>13/11/2017 11:03</small>
-									<a href="" class="responder">Responder</a>
-								</div>
-								<div class="resposta">
-									<p>Ele é louco por qualquer tipo de brinquedo :D</p>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -324,51 +300,100 @@
 									datevalues = ((date.getDate() < 10 ? "0" : "") + date.getDate()) + '/' + (((date.getMonth()+1) < 10 ? "0" : "") + (date.getMonth()+1)) + '/' + date.getFullYear() + ' ' +
 												 ((date.getHours() < 10 ? "0" : "") + date.getHours()) + ':' + ((date.getMinutes() < 10 ? "0" : "") + date.getMinutes()) + ':' + ((date.getSeconds() < 10 ? "0" : "") + date.getSeconds());
 				                var html = '';
-								html += '<div class="pergunta">';
-								html +=		'<p>' + result[i].texto + '</p>';
-								html +=		'<small>' + datevalues + '</small>';
-								html +=		'<a href="" class="responder">Responder</a>';
-								html +=		'<form action="" class="formResponder height-0" method="POST">';
-								html +=			'<div class="form-group mtop-15">';
-								html +=				'<textarea name="pergunta" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>';
-								html +=			'</div>';
-								html +=			'<input type="hidden" name="idPergunta" value="' + result[i].id + '">';
-								html +=			'<input type="hidden" name="anuncioId" value="<?= $animalId; ?>">';
-								html +=			'<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>';
-								html += 	'</form>';
+								html += '<div id="containerPergunta'+result[i].id+'">';
+								html +=		'<div class="pergunta">';
+								html +=			'<p>' + result[i].texto + '</p>';
+								html +=			'<small>' + datevalues + '</small>';
+								html +=			'<a href="" class="responder">Responder</a>';
+								html +=			'<form action="" class="formResponder height-0" method="POST">';
+								html +=				'<div class="form-group mtop-15">';
+								html +=					'<textarea name="resposta" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>';
+								html +=				'</div>';
+								html +=				'<input type="hidden" name="mensagem" value="' + result[i].id + '">';
+								html +=				'<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>';
+								html +=			'</form>';
+								html +=		'</div>';
 								html += '</div>';
 								$(".duvidas").append(html);
+								getRespostas(result[i].id);
 							}
 			            },
 						error: function(){
 							console.log("Ops! Ocorreu algum erro, tente novamente mais tarde.");
+						},
+						complete: function(){
+							adicionarResponder();
+							bindFormResponder();
 						}
 			        });
 				}
 				getPerguntas();
 
-				$(".formResponder").on("submit", function(event){
-					event.preventDefault();
-					var form = $(this);
+				function getRespostas(idPergunta) {
+					var urlExtenso = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/respostas/' + idPergunta;
+					console.log(urlExtenso);
 					$.ajax({
-			            url: 'http://etc', // Get the action URL to send AJAX to
-			            type: 'POST',
-			            data: form.serialize(), // get all form variables
+			            url: urlExtenso,
+			            type: 'GET',
+						dataType: 'json',
+						headers: {
+							'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+						},
 			            success: function(result){
-							form[0].reset();
-			                getComentarios();
+							for (i = 0; i < result.length; i++) {
+								var timestamp = result[i].data,
+									date = new Date(timestamp),
+									datevalues = ((date.getDate() < 10 ? "0" : "") + date.getDate()) + '/' + (((date.getMonth()+1) < 10 ? "0" : "") + (date.getMonth()+1)) + '/' + date.getFullYear() + ' ' +
+												 ((date.getHours() < 10 ? "0" : "") + date.getHours()) + ':' + ((date.getMinutes() < 10 ? "0" : "") + date.getMinutes()) + ':' + ((date.getSeconds() < 10 ? "0" : "") + date.getSeconds());
+				                var html = '';
+								html += '<div class="resposta">';
+								html += 	'<p>' + result[i].texto + '</p>';
+								html +=		'<small>' + datevalues + '</small>';
+								html += '</div>';
+								console.log("containerPergunta" + result[i].msg.id);
+								$("#containerPergunta".concat(result[i].msg.id)).append(html);
+							}
 			            },
 						error: function(){
-							console.log("Tente novamente mais tarde.");
+							console.log("Ops! Ocorreu algum erro, tente novamente mais tarde.");
+						},
+						complete: function(){
+							console.log("Deu tudo certo.");
 						}
 			        });
-				});
+				}
 
-				$(".pergunta .responder").on("click", function(event){
-					event.preventDefault();
-					var container = $(this).parent(".pergunta");
-					container.find(".formResponder").toggleClass("height-0", 300);
-				});
+				function bindFormResponder() {
+					$(".formResponder").on("submit", function(event){
+						event.preventDefault();
+						var form = $(this);
+						$.ajax({
+							url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/responder', // Get the action URL to send AJAX to
+							type: 'POST',
+							data: form.serialize(), // get all form variables
+							headers: {
+								'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+							},
+							success: function(result){
+								form[0].reset();
+								//getComentarios();
+							},
+							error: function(){
+								console.log("Tente novamente mais tarde.");
+							}
+						});
+					});
+
+				}
+
+				function adicionarResponder() {
+					$(".pergunta .responder").on("click", function(event){
+						event.preventDefault();
+						var container = $(this).parent(".pergunta");
+						container.find(".formResponder").toggleClass("height-0", 300);
+					});
+				}
+
 
 				$(".denuncia").on("click", function(event){
 					event.preventDefault();
@@ -391,6 +416,7 @@
 									btn.text("Anúncio denunciado");
 								} else {
 									console.log("Denúncia já registrada anteriormente.");
+									btn.removeClass("disabled");
 								}
 				            },
 							error: function(){
@@ -400,6 +426,7 @@
 				        });
 					} else {
 						console.log("Ação cancelada.");
+						btn.removeClass("disabled");
 					}
 				});
 			});

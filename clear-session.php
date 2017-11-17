@@ -6,7 +6,7 @@
     session_destroy();
     $_SESSION = array();
 
-    $GLOBALS['www'] = 'http://localhost:81/luckypets/';
+    $GLOBALS['www'] = 'http://localhost/luckypets/';
     header('Location: ' . $GLOBALS['www'] . "landing-page.php");
     exit;
 ?>
