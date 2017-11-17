@@ -215,8 +215,16 @@
 					    success:function(result){
 						    console.log("Anúncio alterado com sucesso.");
 					    },
-					    error:function(e){
-							console.log(e.responseText);
+					    error:function(xhr, textStatus, errorThrown) {
+					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+					            this.tryCount++;
+					            if (this.tryCount <= this.retryLimit) {
+					                //try again
+					                $.ajax(this);
+					                return;
+					            }
+					            return;
+					        }
 					    	console.log("Ops! Não foi possível fazer sua requisição.");
 							$("#btnEditarDoacao").removeClass("disabled");
 					    },
@@ -294,7 +302,16 @@
 						$('#formEditarAnuncio input[name="latitude"]').val(x.lat);
 						$('#formEditarAnuncio input[name="longitude"]').val(x.lng);
 					},
-					error:function(){
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 					}
 				});

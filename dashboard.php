@@ -233,7 +233,16 @@
 					success:function(){
 						console.log("Anúncio deletado com sucesso.");
 					},
-					error:function(){
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 					},
 					complete:function(){
@@ -259,7 +268,16 @@
 					success:function(){
 						console.log("Anúncio deletado com sucesso.");
 					},
-					error:function(){
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 					},
 					complete:function(){
@@ -285,7 +303,16 @@
 					success:function(){
 						console.log("Anúncio deletado com sucesso.");
 					},
-					error:function(){
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 					},
 					complete:function(){
@@ -375,7 +402,16 @@
 						    $("#rowAjaxDoacao").append(html);
 						}
 				    },
-				    error:function(){
+				    error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 				    }
 				});
@@ -415,7 +451,16 @@
 							$("#rowAjaxPerdido .containerErro").removeClass("hidden");
 						}
 				    },
-				    error:function(){
+				    error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 				    }
 				});
@@ -452,7 +497,16 @@
 							$("#rowAjaxEncontrado .containerErro").removeClass("hidden");
 						}
 				    },
-				    error:function(){
+				    error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 				    }
 				});
@@ -488,7 +542,16 @@
 							console.log("A senha não foi alterada pois algum campo estava errado.");
 						}
 					},
-					error:function(){
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 						console.log("Ops! Não foi possível fazer sua requisição.");
 					}
 				});
@@ -522,7 +585,16 @@
 						console.log("Usuário alterado com sucesso.");
 						refreshSession();
 					},
-					error:function(){
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 						console.log("Ops! Não foi possível fazer sua requisição.");
 					}
 				});
@@ -554,7 +626,16 @@
 							location.href = "<?= $GLOBALS['www']; ?>?m=1";
 						});
 					},
-					error:function(){
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 						console.log("Ops! Não foi possível fazer sua requisição.");
 					}
 				});

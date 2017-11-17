@@ -10,7 +10,7 @@
             if ($link != $GLOBALS['www'] . "landing-page.php") {
                 if (!isset($_SESSION['cidade']) && !isset($_SESSION['estado'])) {
                     if (!headers_sent()) {
-                        header('Location: ' . $GLOBALS['www'] . "landing-page.php");
+                        header('Location: ' . $GLOBALS['www'] . 'landing-page.php');
                         exit;
                     }
                 }

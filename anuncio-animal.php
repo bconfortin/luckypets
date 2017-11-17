@@ -160,6 +160,7 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
+			var idDonoAnuncio;
 			$(function(){
 				getAnunciosDoacao();
 
@@ -173,6 +174,7 @@
 			                if (x == undefined) {
 			                    location.href = "<?= $GLOBALS['www']; ?>animais-para-doacao.php";
 			                }
+							idDonoAnuncio = x.animal.usuario.id;
 							$('#ajaxPerfilNome').text(x.animal.usuario.nome);
 							$('#ajaxPerfilImagem').attr("src", "http://31.220.53.123:8080/luckypets-servidor/api/file/" + x.animal.usuario.id + "/" + x.animal.usuario.imagem);
 			                $('#ajaxDescricao').text(x.animal.descricao);
@@ -243,7 +245,16 @@
 							}
 							$("#listaDeContato").append(htmlContato);
 			            },
-			            error:function(){
+			            error:function(xhr, textStatus, errorThrown) {
+					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+					            this.tryCount++;
+					            if (this.tryCount <= this.retryLimit) {
+					                //try again
+					                $.ajax(this);
+					                return;
+					            }
+					            return;
+					        }
 			                console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 			            }
 			        });
@@ -296,7 +307,7 @@
 								'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 							},
 				            success: function(result){
-								console.log(result.length);
+								console.log(result);
 								for (i = 0; i < result.length; i++) {
 									var timestamp = result[i].dataPergunta,
 										date = new Date(timestamp),
@@ -307,14 +318,16 @@
 									html +=		'<div class="pergunta">';
 									html +=			'<p>' + result[i].texto + '</p>';
 									html +=			'<small>' + datevalues + '</small>';
-									html +=			'<a href="" class="responder">Responder</a>';
-									html +=			'<form action="" class="formResponder height-0" method="POST">';
-									html +=				'<div class="form-group mtop-15">';
-									html +=					'<textarea name="resposta" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>';
-									html +=				'</div>';
-									html +=				'<input type="hidden" name="mensagem" value="' + result[i].id + '">';
-									html +=				'<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>';
-									html +=			'</form>';
+									if (idDonoAnuncio == <?= $_SESSION['id']; ?>) {
+										html +=			'<a href="" class="responder">Responder</a>';
+										html +=			'<form action="" class="formResponder height-0" method="POST">';
+										html +=				'<div class="form-group mtop-15">';
+										html +=					'<textarea name="resposta" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>';
+										html +=				'</div>';
+										html +=				'<input type="hidden" name="mensagem" value="' + result[i].id + '">';
+										html +=				'<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>';
+										html +=			'</form>';
+									}
 									html +=		'</div>';
 									html += '</div>';
 									$(".duvidas").append(html);

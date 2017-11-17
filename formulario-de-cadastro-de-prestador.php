@@ -198,7 +198,16 @@
 							}
 							*/
 						},
-						error:function(){
+						error:function(xhr, textStatus, errorThrown) {
+					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+					            this.tryCount++;
+					            if (this.tryCount <= this.retryLimit) {
+					                //try again
+					                $.ajax(this);
+					                return;
+					            }
+					            return;
+					        }
 							console.log("Ops! Aconteceu algo de errado. Tente novamente mais tarde.");
 						}
 					});
@@ -254,7 +263,16 @@
 								$("#btnCadastrar").removeClass("disabled");
 							}
 						},
-						error:function(){
+						error:function(xhr, textStatus, errorThrown) {
+					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+					            this.tryCount++;
+					            if (this.tryCount <= this.retryLimit) {
+					                //try again
+					                $.ajax(this);
+					                return;
+					            }
+					            return;
+					        }
 							console.log("Ops! Não foi possível fazer sua requisição.");
 							$("#btnCadastrar").removeClass("disabled");
 						}

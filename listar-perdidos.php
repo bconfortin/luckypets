@@ -115,7 +115,16 @@
 					<?php } ?>
 
 			    },
-			    error:function(){
+			    error:function(xhr, textStatus, errorThrown) {
+					if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+						this.tryCount++;
+						if (this.tryCount <= this.retryLimit) {
+							//try again
+							$.ajax(this);
+							return;
+						}
+						return;
+					}
 			    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 			    }
 			});
@@ -138,7 +147,16 @@
 							    success:function(){
 									console.log("Anúncio deletado com sucesso.");
 								},
-								error:function(){
+								error:function(xhr, textStatus, errorThrown) {
+							        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+							            this.tryCount++;
+							            if (this.tryCount <= this.retryLimit) {
+							                //try again
+							                $.ajax(this);
+							                return;
+							            }
+							            return;
+							        }
 									console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
 								}
 							});

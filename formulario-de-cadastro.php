@@ -152,7 +152,16 @@
 								console.log("E-mail já existente.");
 							}
 						},
-						error:function(){
+						error:function(xhr, textStatus, errorThrown) {
+					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+					            this.tryCount++;
+					            if (this.tryCount <= this.retryLimit) {
+					                //try again
+					                $.ajax(this);
+					                return;
+					            }
+					            return;
+					        }
 							$("#btnCadastrar").removeClass("disabled");
 							console.log("Ops! Não foi possível fazer sua requisição.");
 						},

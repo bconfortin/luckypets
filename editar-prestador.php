@@ -190,7 +190,16 @@
 							console.log("Prestador alterado com sucesso.");
 							refreshSession();
 						},
-						error:function(){
+						error:function(xhr, textStatus, errorThrown) {
+					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+					            this.tryCount++;
+					            if (this.tryCount <= this.retryLimit) {
+					                //try again
+					                $.ajax(this);
+					                return;
+					            }
+					            return;
+					        }
 							console.log("Ops! Não foi possível fazer sua requisição.");
 							$("#btnEditar").removeClass("disabled");
 						},
@@ -256,7 +265,16 @@
 							location.href = "<?= $GLOBALS['www']; ?>?m=1";
 						});
 					},
-					error:function(){
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
 						console.log("Ops! Não foi possível fazer sua requisição.");
 					}
 				});
