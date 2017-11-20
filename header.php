@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="bg-333 inline-block mtop-30-xs" style="padding: 18px; position: fixed; top: 30px; left: 0; z-index: 30000;">
+        <div class="hidden bg-333 inline-block mtop-30-xs" style="padding: 18px; position: fixed; top: 30px; left: 0; z-index: 30000;">
             <a href="" class="block white-link" id="toggleDevMenu"><i class="fa fa-bars mright-15"></i>Toggle Dev Menu</a>
             <a href="" class="block white-link" id="toggleSessionDesc"><i class="fa fa-user-circle mright-15"></i>Toggle Session</a>
         </div>

@@ -61,7 +61,7 @@
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
 											<label for="senha">Senha</label>
-											<input type="password" class="form-control" name="senha" placeholder="******">
+											<input type="password" class="form-control" name="senha" placeholder="******" id="senha">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-6">
@@ -109,18 +109,24 @@
 		<script>
 			$("#formulario").validate({
 				rules: {
-					tipo: "required",
-					sexo: "required",
 					nome: "required",
-					raca: "required",
-					cor: "required",
-					porte: "required",
-					idade: "required",
-					resgatado: "required",
-					descricao: "required",
-					userId: "required",
-					latitude: "required",
-					longitude: "required"
+					email: {
+						required: true,
+						email: true
+					},
+					celular: {
+						required: true,
+						digits: true
+					},
+					telefone: {
+						required: true,
+						digits: true
+					},
+					senha: "required",
+					senhaNovamente: {
+						required: true,
+						equalTo: "#senha"
+					}
 				},
 				highlight: function(element) {
 					$(element).closest('.form-group').addClass('has-error');

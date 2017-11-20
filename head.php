@@ -1,5 +1,5 @@
     <?php
-        $GLOBALS['www'] = 'http://localhost:81/luckypets/';
+        $GLOBALS['www'] = 'http://localhost/luckypets/';
         //$GLOBALS['www'] = 'http://31.220.53.123/luckypets/';
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -9,10 +9,11 @@
         function verifyLocation($link) {
             if ($link != $GLOBALS['www'] . "landing-page.php") {
                 if (!isset($_SESSION['cidade']) && !isset($_SESSION['estado'])) {
-                    if (!headers_sent()) {
-                        header('Location: ' . $GLOBALS['www'] . 'landing-page.php');
-                        exit;
-                    }
+                    if (!headers_sent()) { ?>
+                        <script>
+                            window.location = "<?= $GLOBALS['www']; ?>landing-page.php";
+                        </script>
+                    <?php }
                 }
             }
         }
