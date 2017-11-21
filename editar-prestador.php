@@ -70,8 +70,8 @@
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="cpfResponsavel">CPF do Responsavel</label>
-											<input type="text" class="form-control" name="cpfResponsavel" placeholder="Ex: 00011122244" value="<?= $_SESSION['cpfResponsavel']; ?>">
+											<label for="cpfResposavel">CPF do Responsavel</label>
+											<input type="text" class="form-control" name="cpfResposavel" placeholder="Ex: 00011122244" value="<?= $_SESSION['cpfResposavel']; ?>">
 										</div>
 									</div>
 								</div>
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
-								<p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase padhor-30" id="btnEditar">Enviar</button></p>
+								<p class="text-center mbottom-0"><button type="submit" class="btn btn-gradient text-uppercase padhor-30" id="btnEditar">Enviar</button></p>
 							</form>
 						</div>
 					</div>
@@ -155,7 +155,7 @@
 					celular: "required",
 					telefone: "required",
 					responsavel: "required",
-					cpfResponsavel: "required",
+					cpfResposavel: "required",
 					tipo: "required",
 					cep: "required",
 					logradouro: "required",

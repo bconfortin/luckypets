@@ -1,8 +1,9 @@
 <?php
     function verifyLogin() {
-        if (!isset($_SESSION['basicAuth']) && !headers_sent()) {
-    		header('Location: ' . $GLOBALS['www'] . '?m=2');
-    		exit;
-    	}
+        if (!isset($_SESSION['basicAuth'])) { ?>
+            <script>
+                window.location = "<?= $GLOBALS['www']; ?>?m=2";
+            </script>
+    	<?php }
     }
 ?>

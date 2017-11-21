@@ -66,8 +66,8 @@
 									</div>
 									<div class="col-xs-12 col-sm-6">
 										<div class="form-group">
-											<label for="cpfResponsavel">CPF do Responsavel</label>
-											<input type="text" class="form-control" name="cpfResponsavel" placeholder="Ex: 00011122244">
+											<label for="cpfResposavel">CPF do Responsavel</label>
+											<input type="text" class="form-control" name="cpfResposavel" placeholder="Ex: 00011122244">
 										</div>
 									</div>
 								</div>
@@ -234,7 +234,7 @@
 						digits: true
 					},
 					responsavel: "required",
-					cpfResponsavel: "required",
+					cpfResposavel: "required",
 					tipo: "required",
 					cep: "required",
 					logradouro: "required",

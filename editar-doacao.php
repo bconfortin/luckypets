@@ -156,6 +156,9 @@
 										</div>
 									</div>
 								</div>
+								<div class="row fotos-ja-cadastradas">
+
+								</div>
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="form-group">
@@ -315,6 +318,15 @@
 						$('#formEditarDoacao select[name="porte"] option[value="'+x.animal.porte+'"]').prop("selected", "selected");
 						$('#formEditarDoacao select[name="idade"] option[value="'+x.animal.idade+'"]').prop("selected", "selected");
 						$('#formEditarDoacao textarea[name="descricao"]').val(x.animal.descricao);
+
+						var html = "";
+						for (i = 0; i < x.animal.imagens.length; i++) {
+							html += '<div class="col-md-3">'
+							html += '<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i] + '" class="img-responsive">';
+							html += '</div>';
+							//console.log('http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i]);
+						}
+						$(".fotos-ja-cadastradas").append(html);
 					},
 					error:function(xhr, textStatus, errorThrown) {
 				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {

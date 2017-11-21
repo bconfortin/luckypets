@@ -9,11 +9,11 @@
         function verifyLocation($link) {
             if ($link != $GLOBALS['www'] . "landing-page.php") {
                 if (!isset($_SESSION['cidade']) && !isset($_SESSION['estado'])) {
-                    if (!headers_sent()) { ?>
+                    ?>
                         <script>
                             window.location = "<?= $GLOBALS['www']; ?>landing-page.php";
                         </script>
-                    <?php }
+                    <?php
                 }
             }
         }
