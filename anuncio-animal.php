@@ -126,6 +126,7 @@
 						</div>
 						<div class="bg-fff comentarios">
 							<h2>Dúvidas, perguntas e respostas sobre o animal</h2>
+							<?php if (isset($_SESSION['basicAuth'])) { ?>
 							<h3>Fazer uma pergunta</h3>
 							<div class="perguntar mbottom-30">
 								<form action="" class="formPerguntar">
@@ -140,6 +141,11 @@
 							<h3>Dúvidas</h3>
 							<div class="duvidas">
 							</div>
+						<?php } else { ?>
+							<p class="mbottom-15">Para ver as perguntas e respostas, você precisa estar logado(a).</p>
+							<p class="mbottom-10"><button class="btn btn-green text-uppercase padhor-35" data-toggle="modal" data-target="#modalLogin">Logar</button></p>
+							<p class="mbottom-0"><a href="formulario-de-cadastro.php" class="btn btn-gradient text-uppercase">Criar conta</a></p>
+						<?php } ?>
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-3 col-sm-4">
@@ -331,7 +337,7 @@
 					                var html = '';
 									html += '<div id="containerPergunta'+result[i].id+'">';
 									html +=		'<div class="pergunta">';
-									html +=			'<p>' + result[i].texto + '</p>';
+									html +=			'<p class="pright-30 relative">' + result[i].texto + '<a href="" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
 									html +=			'<small>' + datevalues + '</small>';
 									if (idDonoAnuncio == <?= $_SESSION['id']; ?>) {
 										html +=			'<a href="" class="responder">Responder</a>';

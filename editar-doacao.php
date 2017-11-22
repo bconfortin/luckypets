@@ -320,9 +320,14 @@
 						$('#formEditarDoacao textarea[name="descricao"]').val(x.animal.descricao);
 
 						var html = "";
+						// remover img
+						// <div class="div-red-remove-image"><p class="div-red-remove-image-text">Essa imagem será removida</p></div>
 						for (i = 0; i < x.animal.imagens.length; i++) {
 							html += '<div class="col-md-3">'
+							html += '<div class="edit-image-container">';
 							html += '<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i] + '" class="img-responsive">';
+							html += '<div class="div-red-remove-image height-0"><p class="div-red-remove-image-text">Essa imagem será removida</p></div>';
+							html += '</div>';
 							html += '</div>';
 							//console.log('http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i]);
 						}
@@ -339,9 +344,24 @@
 				            return;
 				        }
 						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+					},
+					complete:function() {
+						bindImgRemover();
 					}
 				});
 			}
+
+			function bindImgRemover() {
+				$(".edit-image-container img").on("click", function(){
+					$(this).siblings(".div-red-remove-image").removeClass("height-0");
+				});
+
+				$(".div-red-remove-image").on("click", function(){
+					$(this).addClass("height-0", 300);
+				});
+			}
+
+			var arrayRemoveImgs = [];
 		</script>
 	</body>
 </html>
