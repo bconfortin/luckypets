@@ -353,11 +353,21 @@
 
 			function bindImgRemover() {
 				$(".edit-image-container img").on("click", function(){
+					var img = $(this);
 					$(this).siblings(".div-red-remove-image").removeClass("height-0");
+					if (arrayRemoveImgs.indexOf(img.attr("src")) == -1) {
+						arrayRemoveImgs.push(img.attr("src"));
+					}
 				});
 
 				$(".div-red-remove-image").on("click", function(){
+					var img = $(this).parent(".edit-image-container").find("img");
+					var imgIndex = arrayRemoveImgs.indexOf(img.attr("src"));
+					console.log(imgIndex);
 					$(this).addClass("height-0", 300);
+					if (arrayRemoveImgs.indexOf(img.attr("src")) != -1) {
+						arrayRemoveImgs.splice(imgIndex, 1);
+					}
 				});
 			}
 
