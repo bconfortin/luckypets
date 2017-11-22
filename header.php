@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="bg-333 inline-block mtop-30-xs" style="padding: 18px; position: fixed; top: 30px; left: 0; z-index: 30000;">
+        <div class="bg-333 inline-block mtop-30-xs hidden" style="padding: 18px; position: fixed; top: 30px; left: 0; z-index: 30000;">
             <a href="" class="block white-link" id="toggleDevMenu"><i class="fa fa-bars mright-15"></i>Toggle Dev Menu</a>
             <a href="" class="block white-link" id="toggleSessionDesc"><i class="fa fa-user-circle mright-15"></i>Toggle Session</a>
         </div>
@@ -45,7 +45,7 @@
                 <?php if (isset($_SESSION['nome'])) { ?>
                     <a href="dashboard.php"><img src="<?= $_SESSION['caminhoCompletoImagem']; ?>" alt="" class="img-circle img-responsive center-block mbottom-10 max-width-180"></a>
     				<p class="color-fff text-center">Logado como:<br><?= $_SESSION['nome']; ?></p>
-    				<p class="text-center"><a href="" class="inline-block white-link" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR<br>(clique para mudar)</a></p>
+    				<p class="text-center"><a href="" class="inline-block white-link" data-toggle="modal" data-target="#modalLocalizacao"><?= $_SESSION["cidade"]; ?> - <?= $_SESSION["estado"]; ?><br>(clique para mudar)</a></p>
     				<hr class="hr-white-shadow marver-15">
                     <ul class="mbottom-30">
                         <li><h4 class="font-1em font-700 text-uppercase color-fff">Menu de Navegação</h4></li>
@@ -130,7 +130,7 @@
                             <?php if (isset($_SESSION['nome'])) { ?>
                                 <li class="mtop-10 font-0-9em hidden-xs">
     								<span class="inline-block pull-right mleft-15"><a href="dashboard.php" class="block"><div class="img-circle header-img-usuario" style="background-image: url('<?= $_SESSION["caminhoCompletoImagem"]; ?>');"></div></a></span>
-    								<span class="inline-block pull-right mtop-10 text-default font-400"><?= $_SESSION['nome']; ?><br><a href="" class="font-700" data-toggle="modal" data-target="#modalLocalizacao">Foz do Iguaçu - PR</a></span>
+    								<span class="inline-block pull-right mtop-10 text-default font-400"><?= $_SESSION['nome']; ?><br><a href="" class="font-700" data-toggle="modal" data-target="#modalLocalizacao"><?= $_SESSION["cidade"]; ?> - <?= $_SESSION["estado"]; ?></a></span>
     							</li>
                             <?php } else { ?>
                                 <li><a href="formulario-de-cadastro.php" class="hidden-xs">Fazer cadastro</a></li>
@@ -234,22 +234,18 @@
 		                <h4 class="modal-title text-center" id="modalLocalizacaoLabel">Localização</h4>
 		            </div>
 		            <div class="modal-body">
-		                <p>Não está em <strong id="naoEstaEmLocalizacao">Foz do Iguaçu - PR</strong>?</p>
-                        <form action="" id="formLocalizacao" method="POST" class="width-290 force-vertical-align bg-fff padding-15 mbottom-30 mbottom-0-xs">
-                            <h1 class="mtop-0 mbottom-15 font-700 font-1-2em text-uppercase text-center"><img src="img/logo/lucky-pets-logo-336x98.png" alt="" class="img-responsive max-height-30 center-block"></h1>
-                            <h2 class="mtop-0 mbottom-15 font-300 font-0-9em text-center">Para continuar, selecione sua localização</h2>
+		                <p class="text-center font-300">Não está em <strong id="naoEstaEmLocalizacao"><?= $_SESSION["cidade"]; ?> - <?= $_SESSION["estado"]; ?></strong>?</p>
+                        <form action="" id="formLocalizacao" method="POST" class="bg-fff padding-15 mbottom-0 mbottom-0-xs">
                             <div class="form-group">
 								<label for="estado">Estado</label>
-								<select name="estado" class="form-control force-radius-0">
-									<option value="" disabled="disabled" selected="selected">Escolha o estado</option>
-									<option value="Paraná">Paraná</option>
+								<select name="estado" id="estado" class="form-control force-radius-0" required>
+
 								</select>
 			                </div>
 			                <div class="form-group">
 								<label for="cidade">Cidade</label>
-								<select name="cidade" class="form-control force-radius-0">
-									<option value="" disabled="disabled" selected="selected">Escolha a cidade</option>
-									<option value="Foz do Iguaçu">Foz do Iguaçu</option>
+								<select name="cidade" id="cidade" class="form-control force-radius-0" required>
+									<option value="" disabled="disabled" selected="selected">Escolha um estado</option>
 								</select>
 			                </div>
 			                <button class="btnLocalizacao btn btn-gradient text-uppercase force-radius-0 width-100per">Salvar</button>

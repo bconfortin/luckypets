@@ -281,7 +281,7 @@
 
 				// https://stackoverflow.com/questions/3814231/loading-an-image-to-a-img-from-input-file
 				function onFileSelected(event) {
-					var selectedFile = event.target.files[0];
+					var selectedFile = event.target.files;
 					var reader = new FileReader();
 
 					var imgtag = document.getElementById("profilePicture");

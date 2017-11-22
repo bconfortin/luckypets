@@ -70,14 +70,16 @@
                 // and signed request each expire
                 var uid = response.authResponse.userID;
                 var accessToken = response.authResponse.accessToken;
-                console.log(uid);
-                console.log(accessToken);
+                // console.log(uid);
+                // console.log(accessToken);
                 FB.api('/me', {
                     fields: 'name, email, picture.type(large)'
                 }, function(response) {
                     var name = response.name;
                     var email = response.email;
                     var picture = response.picture.data.url;
+                    console.log("Email: " + email);
+                    console.log("UID: " + uid);
                     $.post("http://31.220.53.123:8080/luckypets-servidor/api/usuario/checkFaceUser", {
                         "email": email,
                         "facebookID": uid
