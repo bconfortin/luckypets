@@ -86,6 +86,19 @@
                     }).done(function(data) {
                         console.log("Data Loaded: ");
                         console.log(data);
+                        if (data == "NormalUserOnly") {
+                            // Atualiza usuário usando /addFbToUser
+                        } else if (data == "UsuarioNaoExiste") {
+                            // Cria conta usando /salvaFacebook
+                        } else if (data == "NormaleFaceUser") {
+                            // Já possui as duas contas
+                        } else if (data == "FaceUserOnly") {
+
+                        } else if (data == "Deu merda!" && "I have no idea what I'm doing!") {
+                            console.log("Deu algum erro no Facebook ID ou e-mail.");
+                        } else {
+                            console.log("Erro desconhecido.");
+                        }
                         if (data != undefined) {
                             $.post("<?= $GLOBALS['www']; ?>login-facebook.php", {
                                 "administrador": data.administrador,
