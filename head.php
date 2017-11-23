@@ -88,8 +88,10 @@
                         console.log(data);
                         if (data == "NormalUserOnly") {
                             // Atualiza usuário usando /addFbToUser
+                            pathAddFbToUser(email, uid);
                         } else if (data == "UsuarioNaoExiste") {
                             // Cria conta usando /salvaFacebook
+                            pathSalvaFacebook(email, uid, name);
                         } else if (data == "NormaleFaceUser") {
                             // Já possui as duas contas
                         } else if (data == "FaceUserOnly") {
@@ -100,21 +102,22 @@
                             console.log("Erro desconhecido.");
                         }
                         if (data != undefined) {
-                            $.post("<?= $GLOBALS['www']; ?>login-facebook.php", {
-                                "administrador": data.administrador,
-                                "authToken": data.authToken,
-                                "celular": data.celular,
-                                "email": data.email,
-                                "facebook": data.facebook,
-                                "id": data.id,
-                                "imagem": picture,
-                                "caminhoCompletoImagem": picture,
-                                "nome": data.nome,
-                                "senha": data.senha,
-                                "telefone": data.telefone
-                            }).done(function(data) {
-                                //location.href = "<?= $GLOBALS['www']; ?>";
-                            });
+
+                            // $.post("<?= $GLOBALS['www']; ?>login-facebook.php", {
+                            //     "administrador": data.administrador,
+                            //     "authToken": data.authToken,
+                            //     "celular": data.celular,
+                            //     "email": data.email,
+                            //     "facebook": data.facebook,
+                            //     "id": data.id,
+                            //     "imagem": picture,
+                            //     "caminhoCompletoImagem": picture,
+                            //     "nome": data.nome,
+                            //     "senha": data.senha,
+                            //     "telefone": data.telefone
+                            // }).done(function(data) {
+                            //     //location.href = "<?= $GLOBALS['www']; ?>";
+                            // });
                         } else {
                             console.log("Usuário ainda não possui cadastro.");
                         }
@@ -132,6 +135,79 @@
             }
         });
     };
+
+    function pathAddFbToUser(pEmail, pUserID) {
+        var pUserProfile = "https://www.facebook.com/" + pUserID;
+        $.ajax({
+            tryCount : 0,
+            retryLimit : 3,
+            type: 'POST',
+            crossOrigin: true,
+            url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/addFbToUser',
+            data: {
+                email: pEmail,
+                userID: pUserID,
+                facebook: pUserProfile
+            },
+            success:function(x){
+                if (x == undefined) {
+                    //location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
+                    console.log("Ops! A requisição voltou vazia.");
+                } else {
+                    console.log(x);
+                }
+            },
+            error:function(xhr, textStatus, errorThrown) {
+                if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+                    this.tryCount++;
+                    if (this.tryCount <= this.retryLimit) {
+                        //try again
+                        $.ajax(this);
+                        return;
+                    }
+                    return;
+                }
+                console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+            }
+        });
+    }
+
+    function pathSalvaFacebook(pEmail, pUserID, pNome) {
+        var pUserProfile = "https://www.facebook.com/" + pUserID;
+        $.ajax({
+            tryCount : 0,
+            retryLimit : 3,
+            type: 'POST',
+            crossOrigin: true,
+            url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/salvaFacebook',
+            data: {
+                email: pEmail,
+                userID: pUserID,
+                facebook: pUserProfile,
+                nome: pNome
+            },
+            success:function(x){
+                if (x == undefined) {
+                    //location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
+                    console.log("Ops! A requisição voltou vazia.");
+                } else {
+                    console.log(x);
+                }
+            },
+            error:function(xhr, textStatus, errorThrown) {
+                if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+                    this.tryCount++;
+                    if (this.tryCount <= this.retryLimit) {
+                        //try again
+                        $.ajax(this);
+                        return;
+                    }
+                    return;
+                }
+                console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+            }
+        });
+    }
 
     // Load the SDK asynchronously
     (function(d, s, id) {
