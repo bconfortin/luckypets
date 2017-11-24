@@ -177,7 +177,7 @@
                                     </div>
                                     <p class="text-center mbottom-0"><button type="button" class="btn btn-gradient block width-100per text-uppercase force-radius-0 padhor-30" id="btnLogin">Logar</button></p>
                                 </form>
-                                <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                                <div class="fb-login-button" auto_logout_link="true" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
                             </div>
                             <div role="tabpanel" class="tab-pane mtop-15" id="tabPrestador">
                                 <form class="" action="" method="POST">

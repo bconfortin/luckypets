@@ -173,6 +173,9 @@
 				},
 				submitHandler: function(form) {
 					$("#btnEditar").addClass("disabled");
+					if ($("input[name=file]").val() == "") {
+						$("input[name=file]").remove();
+					}
 					$.ajax({
 						tryCount : 0,
 	    				retryLimit : 3,

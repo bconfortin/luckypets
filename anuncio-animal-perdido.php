@@ -205,6 +205,7 @@
 			                if (x == undefined) {
 			                    location.href = "<?= $GLOBALS['www']; ?>animais-para-doacao.php";
 			                }
+							idDonoAnuncio = x.animal.usuario.id;
 			                $('#ajaxDescricao').text(x.animal.descricao);
 			                $('#ajaxNome').text(x.animal.nome);
 			                $('#ajaxTipo').text(x.animal.tipo);

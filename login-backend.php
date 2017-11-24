@@ -29,10 +29,14 @@
         } else {
             $_SESSION['caminhoCompletoImagem'] = $_POST['caminhoCompletoImagem'];
         }
-
         $_SESSION['nome'] = $_POST['nome'];
-        $_SESSION['senha'] = $_POST['senha'];
         $_SESSION['telefone'] = $_POST['telefone'];
-        $_SESSION['basicAuth'] = $_POST['basicAuth'];
+        if (isset($_POST['senha'])) {
+            $_SESSION['senha'] = $_POST['senha'];
+            $_SESSION['basicAuth'] = $_POST['basicAuth'];
+        }
+        if (isset($_POST['logoucomface'])) {
+            $_SESSION['logoucomface'] = $_POST['logoucomface'];
+        }
     }
 ?>

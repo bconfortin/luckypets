@@ -60,7 +60,10 @@
         //    your app or not.
         //
         // These three cases are handled in the callback function.
+        loginFB();
+    };
 
+    function loginFB() {
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 // the user is logged in and has authenticated your
@@ -94,32 +97,13 @@
                             pathSalvaFacebook(email, uid, name);
                         } else if (data == "NormaleFaceUser") {
                             // Já possui as duas contas
+                            loginFacebook(uid);
                         } else if (data == "FaceUserOnly") {
-
+                            loginFacebook(uid);
                         } else if (data == "Deu merda!" && "I have no idea what I'm doing!") {
                             console.log("Deu algum erro no Facebook ID ou e-mail.");
                         } else {
                             console.log("Erro desconhecido.");
-                        }
-                        if (data != undefined) {
-
-                            // $.post("<?= $GLOBALS['www']; ?>login-facebook.php", {
-                            //     "administrador": data.administrador,
-                            //     "authToken": data.authToken,
-                            //     "celular": data.celular,
-                            //     "email": data.email,
-                            //     "facebook": data.facebook,
-                            //     "id": data.id,
-                            //     "imagem": picture,
-                            //     "caminhoCompletoImagem": picture,
-                            //     "nome": data.nome,
-                            //     "senha": data.senha,
-                            //     "telefone": data.telefone
-                            // }).done(function(data) {
-                            //     //location.href = "<?= $GLOBALS['www']; ?>";
-                            // });
-                        } else {
-                            console.log("Usuário ainda não possui cadastro.");
                         }
                    }).fail(function() {
                        console.log("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
@@ -131,10 +115,10 @@
                 console.log("Nós realmente precisamos dos seus dados.");
             } else {
                 // the user isn't logged in to Facebook.
-                console.log("Usuário não logado.")
+                console.log("Usuário não logado.");
             }
         });
-    };
+    }
 
     function pathAddFbToUser(pEmail, pUserID) {
         var pUserProfile = "https://www.facebook.com/" + pUserID;
@@ -154,7 +138,7 @@
                     //location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
                     console.log("Ops! A requisição voltou vazia.");
                 } else {
-                    console.log(x);
+                    loginFacebook(pUserID);
                 }
             },
             error:function(xhr, textStatus, errorThrown) {
@@ -191,7 +175,67 @@
                     //location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
                     console.log("Ops! A requisição voltou vazia.");
                 } else {
-                    console.log(x);
+                    loginFacebook(pUserID);
+                }
+            },
+            error:function(xhr, textStatus, errorThrown) {
+                if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+                    this.tryCount++;
+                    if (this.tryCount <= this.retryLimit) {
+                        //try again
+                        $.ajax(this);
+                        return;
+                    }
+                    return;
+                }
+                console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+            }
+        });
+    }
+
+    function loginFacebook(id) {
+        $.ajax({
+            tryCount : 0,
+            retryLimit : 3,
+            type: 'POST',
+            crossOrigin: true,
+            url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/login-facebook',
+            data: {
+                facebookID: id
+            },
+            success:function(data){
+                if (data == undefined) {
+                    //location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
+                    console.log("Ops! A requisição voltou vazia.");
+                } else {
+                    // console.log(data);
+                    var basicAuth;
+                    if (data.email != null && data.email != "" && data.senha != null && data.senha != "") {
+                        basicAuth = make_base_auth(data.email, data.senha);
+                    } else {
+                        basicAuth = "";
+                    }
+                    $.post("<?= $GLOBALS['www']; ?>login-backend.php", {
+                        "administrador": data.administrador,
+                        "authToken": data.authToken,
+                        "celular": data.celular,
+                        "email": data.email,
+                        "facebook": data.facebook,
+                        "id": data.id,
+                        "imagem": data.imagem,
+                        "caminhoCompletoImagem": "http://31.220.53.123:8080/luckypets-servidor/api/file/" + data.id + "/" + data.imagem,
+                        "nome": data.nome,
+                        "senha": data.senha,
+                        "telefone": data.telefone,
+                        "basicAuth": basicAuth,
+                        "logoucomface": "true"
+                    }).done(function(data) {
+                        <?php if (!isset($_SESSION['logoucomface'])) { ?>
+                            location.href = "<?= $GLOBALS['www']; ?>";
+                        <?php } else { ?>
+                            console.log("Usuário logado via facebook");
+                        <?php } ?>
+                    });
                 }
             },
             error:function(xhr, textStatus, errorThrown) {

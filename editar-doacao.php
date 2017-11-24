@@ -186,6 +186,7 @@
 		<?php include "footer.php"; ?>
 		<?php include "foot.php"; ?>
 		<script>
+			var formData;
 			$("#formEditarDoacao").validate({
 				rules: {
 					tipo: "required",
@@ -210,6 +211,12 @@
 				},
 				submitHandler: function(form) {
 					$("#btnEditarDoacao").addClass("disabled");
+					if ($("input[name=file]").val() == "") {
+						$("input[name=file]").remove();
+					}
+					formData = new FormData($('#formEditarDoacao')[0]);
+					formData.append("imgdelete", JSON.stringify(arrayRemoveImgs));
+					console.log(formData);
 					$.ajax({
 						tryCount : 0,
 	    				retryLimit : 3,
@@ -221,7 +228,7 @@
 						// Método 1 - NÃO funciona com imagens (multipart/form-data)
 						// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
 						// Método 2 - Funciona com imagens (multipart/form-data) {
-						data: new FormData($('#formEditarDoacao')[0]),
+						data: formData,
 						processData: false,
 						contentType: false,
 						// }
@@ -323,9 +330,9 @@
 						// remover img
 						// <div class="div-red-remove-image"><p class="div-red-remove-image-text">Essa imagem será removida</p></div>
 						for (i = 0; i < x.animal.imagens.length; i++) {
-							html += '<div class="col-md-3">'
+							html += '<div class="col-md-3 mbottom-15">'
 							html += '<div class="edit-image-container">';
-							html += '<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i] + '" class="img-responsive">';
+							html += '<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i] + '" finalendereco="'+x.animal.imagens[i]+'" class="img-responsive">';
 							html += '<div class="div-red-remove-image height-0"><p class="div-red-remove-image-text">Essa imagem será removida</p></div>';
 							html += '</div>';
 							html += '</div>';
@@ -355,17 +362,17 @@
 				$(".edit-image-container img").on("click", function(){
 					var img = $(this);
 					$(this).siblings(".div-red-remove-image").removeClass("height-0");
-					if (arrayRemoveImgs.indexOf(img.attr("src")) == -1) {
-						arrayRemoveImgs.push(img.attr("src"));
+					if (arrayRemoveImgs.indexOf(img.attr("finalendereco")) == -1) {
+						arrayRemoveImgs.push(img.attr("finalendereco"));
 					}
 				});
 
 				$(".div-red-remove-image").on("click", function(){
 					var img = $(this).parent(".edit-image-container").find("img");
-					var imgIndex = arrayRemoveImgs.indexOf(img.attr("src"));
+					var imgIndex = arrayRemoveImgs.indexOf(img.attr("finalendereco"));
 					console.log(imgIndex);
 					$(this).addClass("height-0", 300);
-					if (arrayRemoveImgs.indexOf(img.attr("src")) != -1) {
+					if (arrayRemoveImgs.indexOf(img.attr("finalendereco")) != -1) {
 						arrayRemoveImgs.splice(imgIndex, 1);
 					}
 				});

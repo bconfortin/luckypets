@@ -189,6 +189,7 @@
 			                if (x == undefined) {
 			                    location.href = "<?= $GLOBALS['www']; ?>animais-para-doacao.php";
 			                }
+							idDonoAnuncio = x.animal.usuario.id;
 							if (x.animal.descricao != null && x.animal.descricao != "") {
 								$('#ajaxDescricao').text(x.animal.descricao);
 							}
