@@ -63,10 +63,9 @@ $(function(){
     $(".btnSair").on("click", function(event){
         event.preventDefault();
         $.get("clear-session.php");
-        FB.logout(function(response){
-
+        FB.logout(function(response) {
         });
-        //location.href = www;
+        location.href = www + 'landing-page.php';
     });
 
     $('#loginTabs a[href="#tabUsuario"]').click(function(e){

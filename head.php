@@ -40,14 +40,52 @@
         }
     </script>
     <script>
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            loginFB(response.authResponse.accessToken, response.authResponse.userID);
+        } else {
+            // The person is not logged into your app or we are unable to tell.
+            if (document.getElementById('status')) {
+                document.getElementById('status').innerHTML = 'Por favor, faça seu login.';
+            }
+        }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    }
+
     window.fbAsyncInit = function() {
         FB.init({
             appId: '347116579081153',
-            cookie: false, // enable cookies to allow the server to access
+            cookie: true, // enable cookies to allow the server to access
             // the session
             xfbml: true, // parse social plugins on this page
             version: 'v2.8' // use graph api version 2.8
         });
+
+        // FB.Event.subscribe('auth.login', function(response) {
+        //     loginFB();
+        // });
+        //
+        // FB.Event.subscribe('auth.logout', function(response) {
+        //     $.get("clear-session.php");
+        //     var www = 'http://localhost/luckypets/';
+        //     location.href = www;
+        // });
 
         // Now that we've initialized the JavaScript SDK, we call
         // FB.getLoginStatus().  This function gets the state of the
@@ -60,63 +98,49 @@
         //    your app or not.
         //
         // These three cases are handled in the callback function.
-        loginFB();
+        // loginFB();
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
     };
 
-    function loginFB() {
-        FB.getLoginStatus(function(response) {
-            if (response.status === 'connected') {
-                // the user is logged in and has authenticated your
-                // app, and response.authResponse supplies
-                // the user's ID, a valid access token, a signed
-                // request, and the time the access token
-                // and signed request each expire
-                var uid = response.authResponse.userID;
-                var accessToken = response.authResponse.accessToken;
-                // console.log(uid);
-                // console.log(accessToken);
-                FB.api('/me', {
-                    fields: 'name, email, picture.type(large)'
-                }, function(response) {
-                    var name = response.name;
-                    var email = response.email;
-                    var picture = response.picture.data.url;
-                    console.log("Email: " + email);
-                    console.log("UID: " + uid);
-                    $.post("http://31.220.53.123:8080/luckypets-servidor/api/usuario/checkFaceUser", {
-                        "email": email,
-                        "facebookID": uid
-                    }).done(function(data) {
-                        console.log("Data Loaded: ");
-                        console.log(data);
-                        if (data == "NormalUserOnly") {
-                            // Atualiza usuário usando /addFbToUser
-                            pathAddFbToUser(email, uid);
-                        } else if (data == "UsuarioNaoExiste") {
-                            // Cria conta usando /salvaFacebook
-                            pathSalvaFacebook(email, uid, name);
-                        } else if (data == "NormaleFaceUser") {
-                            // Já possui as duas contas
-                            loginFacebook(uid);
-                        } else if (data == "FaceUserOnly") {
-                            loginFacebook(uid);
-                        } else if (data == "Deu merda!" && "I have no idea what I'm doing!") {
-                            console.log("Deu algum erro no Facebook ID ou e-mail.");
-                        } else {
-                            console.log("Erro desconhecido.");
-                        }
-                   }).fail(function() {
-                       console.log("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
-                   });
-                });
-            } else if (response.status === 'not_authorized') {
-                // the user is logged in to Facebook,
-                // but has not authenticated your app
-                console.log("Nós realmente precisamos dos seus dados.");
-            } else {
-                // the user isn't logged in to Facebook.
-                console.log("Usuário não logado.");
-            }
+    function loginFB(authToken, id) {
+        var uid = id;
+        var accessToken = authToken;
+        FB.api('/me', {
+            fields: 'name, email, picture.type(large)'
+        }, function(response) {
+            console.log(response);
+            var name = response.name;
+            var email = response.email;
+            var picture = response.picture.data.url;
+            console.log("Email: " + email);
+            console.log("UID: " + uid);
+            $.post("http://31.220.53.123:8080/luckypets-servidor/api/usuario/checkFaceUser", {
+                "email": email,
+                "facebookID": uid
+            }).done(function(data) {
+                console.log("Data Loaded: ");
+                console.log(data);
+                if (data == "NormalUserOnly") {
+                    // Atualiza usuário usando /addFbToUser
+                    pathAddFbToUser(email, uid);
+                } else if (data == "UsuarioNaoExiste") {
+                    // Cria conta usando /salvaFacebook
+                    pathSalvaFacebook(email, uid, name);
+                } else if (data == "NormaleFaceUser") {
+                    // Já possui as duas contas
+                    loginFacebook(uid);
+                } else if (data == "FaceUserOnly") {
+                    loginFacebook(uid);
+                } else if (data == "Deu merda!" && "I have no idea what I'm doing!") {
+                    console.log("Deu algum erro no Facebook ID ou e-mail.");
+                } else {
+                    console.log("Erro desconhecido.");
+                }
+           }).fail(function() {
+               console.log("Ops! Parece que temos algum problema de conexão. Tente novamente mais tarde.");
+           });
         });
     }
 
