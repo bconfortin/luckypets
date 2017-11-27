@@ -167,6 +167,75 @@
 		<?php include "foot.php"; ?>
 		<script>
 			var idDonoAnuncio;
+
+			<?php if (isset($_SESSION['basicAuth'])) { ?>
+			function deletarPergunta(id) {
+				$.ajax({
+					tryCount : 0,
+					retryLimit : 3,
+					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/exclui-comentario', // Get the action URL to send AJAX to
+					type: 'POST',
+					data: {
+						msgId: id
+					},
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					success:function(result){
+						console.log("Pergunta deletada com sucesso.");
+					},
+					error:function(xhr, textStatus, errorThrown) {
+						if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+							this.tryCount++;
+							if (this.tryCount <= this.retryLimit) {
+								//try again
+								$.ajax(this);
+								return;
+							}
+							return;
+						}
+						console.log("Tente novamente mais tarde.");
+					},
+					complete:function() {
+						console.log("Deu.");
+					}
+				});
+			}
+
+			function deletarResposta(id) {
+				$.ajax({
+					tryCount : 0,
+					retryLimit : 3,
+					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/exclui-resposta', // Get the action URL to send AJAX to
+					type: 'POST',
+					data: {
+						respId: id
+					},
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					success:function(result){
+						console.log("Resposta deletada com sucesso.");
+					},
+					error:function(xhr, textStatus, errorThrown) {
+						if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+							this.tryCount++;
+							if (this.tryCount <= this.retryLimit) {
+								//try again
+								$.ajax(this);
+								return;
+							}
+							return;
+						}
+						console.log("Tente novamente mais tarde.");
+					},
+					complete:function() {
+						console.log("Deu.");
+					}
+				});
+			}
+			<?php } ?>
+
 			$(function(){
 				getAnunciosDoacao();
 
@@ -269,6 +338,8 @@
 			    }
 
 				<?php if (isset($_SESSION['basicAuth'])) { ?>
+
+
 					$(".formPerguntar").on("submit", function(event){
 						event.preventDefault();
 						var form = $(this);
@@ -337,7 +408,7 @@
 					                var html = '';
 									html += '<div id="containerPergunta'+result[i].id+'">';
 									html +=		'<div class="pergunta">';
-									html +=			'<p class="pright-30 relative">' + result[i].texto + '<a href="" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
+									html +=			'<p class="pright-30 relative">' + result[i].texto + '<a href="" onclick="event.preventDefault(); deletarPergunta(' + result[i].id + ');" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
 									html +=			'<small>' + datevalues + '</small>';
 									if (idDonoAnuncio == <?= $_SESSION['id']; ?>) {
 										html +=			'<a href="" class="responder">Responder</a>';
@@ -395,7 +466,7 @@
 													 ((date.getHours() < 10 ? "0" : "") + date.getHours()) + ':' + ((date.getMinutes() < 10 ? "0" : "") + date.getMinutes()) + ':' + ((date.getSeconds() < 10 ? "0" : "") + date.getSeconds());
 					                var html = '';
 									html += '<div class="resposta">';
-									html += 	'<p>' + result[i].texto + '</p>';
+									html +=		'<p class="pright-30 relative">' + result[i].texto + '<a href="" onclick="event.preventDefault(); deletarResposta(' + result[i].id + ');" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
 									html +=		'<small>' + datevalues + '</small>';
 									html += '</div>';
 									console.log("containerPergunta" + result[i].msg.id);
@@ -461,6 +532,7 @@
 							container.find(".formResponder").toggleClass("height-0", 300);
 						});
 					}
+
 
 
 					$(".denuncia").on("click", function(event){

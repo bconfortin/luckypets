@@ -1,5 +1,5 @@
 $(function(){
-    var www = 'http://localhost:81/luckypets/';
+    var www = 'http://localhost/luckypets/';
     //var www = 'http://31.220.53.123/luckypets/';
 
     // Remover a classe container nas resoluções abaixo de 993
@@ -66,6 +66,9 @@ $(function(){
         FB.logout(function(response) {
             console.log("Tentando sair do face.");
             $("#facebook_btn").click();
+            FB.logout(function(response) {
+                // user is now logged out
+            });
         });
         setTimeout(function(){
             location.href = www + 'landing-page.php';
@@ -92,7 +95,7 @@ $(function(){
         var estado = $("#formLocalizacao select[name='estado']").val();
         var cidade = $("#formLocalizacao select[name='cidade']").val();
         if (estado !== "" && cidade !== "") {
-            $.post("http://localhost:81/luckypets/session-localizacao.php", {
+            $.post("http://localhost/luckypets/session-localizacao.php", {
                 "estado": estado,
                 "cidade": cidade
             }).done(function(data) {
@@ -111,7 +114,7 @@ $(function(){
         var estado = $("#formLocalizacaoLandingPage select[name='estado']").val();
         var cidade = $("#formLocalizacaoLandingPage select[name='cidade']").val();
         if (estado !== "" && cidade !== "") {
-            $.post("http://localhost:81/luckypets/session-localizacao.php", {
+            $.post("http://localhost/luckypets/session-localizacao.php", {
                 "estado": estado,
                 "cidade": cidade
             }).done(function(data) {
