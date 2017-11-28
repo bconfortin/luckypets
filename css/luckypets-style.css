@@ -1,4 +1,13 @@
 @charset "UTF-8";
+
+.color-blue {
+    color: #6452a2;
+}
+
+.color-purple {
+    color: #8a499c;
+}
+
 .btn-gradient {
   color: #ffffff;
   background-color: #6452a2;
@@ -2622,6 +2631,11 @@ h4.footer-titulo {
   transform: translate(-50%, -50%);
 }
 
+@media (max-height: 560px) {
+  .dashboard-height-hack, .height-hack {
+    min-height: calc(100vh);
+  }
+}
 @media (max-width: 768px) {
   .edit-image-container {
     max-height: none;

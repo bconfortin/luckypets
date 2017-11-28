@@ -13,10 +13,10 @@
 	</head>
 	<body>
 		<?php include "header.php"; ?>
-		<div class="container-fluid bg-gray-666">
+		<div class="container-fluid bg-gray-f5f5f5">
 			<div class="">
 				<div class="row">
-					<div class="col-xs-12 col-md-3 col-sm-3 col-lg-2 padhor-0 dashboard-height-hack">
+					<div class="col-xs-12 col-md-3 col-sm-3 col-lg-2 padhor-0 dashboard-height-hack bg-gray-666">
 						<div class="dashboard padhor-15">
 							<div class="padver-50 padver-15-xs">
 								<h1>Dashboard</h1>
@@ -57,7 +57,19 @@
 											<div class="row">
 												<div class="col-xs-12">
 													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Bem vindo ao seu perfil</h2>
-													<p class="font-1-2em font-300 mbottom-0">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="bg-fff padding-30">
+																<div class="row padver-50">
+																	<div class="col-xs-12">
+																		<h2 class="font-2em text-uppercase font-700 mtop-0">Atenção!</h2>
+																		<p class="font-1-2em font-300 mbottom-0">Hoje é dia da apresentação do seu <strong class="color-blue">Projeto Integrador</strong>. Tomara que dê tudo certo e que a equipe consiga <strong class="color-blue">conceito A</strong>!</p>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -72,7 +84,7 @@
 																<div class="row padver-50">
 																	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 																		<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
-																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-para-doacao.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.</p>
 																	</div>
 																</div>
 															</div>
@@ -92,7 +104,7 @@
 																<div class="row padver-50">
 																	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 																		<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
-																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-para-doacao.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.</p>
 																	</div>
 																</div>
 															</div>
@@ -112,7 +124,7 @@
 																<div class="row padver-50">
 																	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 																		<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
-																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-para-doacao.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+																		<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.</p>
 																	</div>
 																</div>
 															</div>
@@ -128,47 +140,159 @@
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row">
 														<div class="col-xs-12 col-sm-6 col-md-6">
-															<form action="" method="POST" enctype="multipart/form-data" id="formAlterarCadastro">
-																<div class="row">
-																	<div class="col-xs-12 col-sm-6">
-																		<div class="form-group">
-																			<label for="nome">Nome</label>
-																			<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves" value="<?= $_SESSION['nome'] ?>">
+															<?php if ($_SESSION["tipo"] == "Usuário") { ?>
+																<form action="" method="POST" enctype="multipart/form-data" id="formAlterarCadastro">
+																	<div class="row">
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="nome">Nome</label>
+																				<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves" value="<?= $_SESSION['nome'] ?>">
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="email">E-mail</label>
+																				<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email'] ?>">
+																			</div>
 																		</div>
 																	</div>
-																	<div class="col-xs-12 col-sm-6">
-																		<div class="form-group">
-																			<label for="email">E-mail</label>
-																			<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email'] ?>">
+																	<div class="row">
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="celular">Celular</label>
+																				<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655" value="<?= $_SESSION['celular'] ?>">
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="telefone">Telefone</label>
+																				<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122" value="<?= $_SESSION['telefone'] ?>">
+																			</div>
 																		</div>
 																	</div>
-																</div>
-																<div class="row">
-																	<div class="col-xs-12 col-sm-6">
-																		<div class="form-group">
-																			<label for="celular">Celular</label>
-																			<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655" value="<?= $_SESSION['celular'] ?>">
+																	<div class="row">
+																		<div class="col-xs-12">
+																			<div class="form-group">
+																				<label for="file">Fazer upload de foto</label>
+																				<input type="file" id="file" name="file" class="width-100per">
+																				<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
+																			</div>
 																		</div>
 																	</div>
-																	<div class="col-xs-12 col-sm-6">
-																		<div class="form-group">
-																			<label for="telefone">Telefone</label>
-																			<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122" value="<?= $_SESSION['telefone'] ?>">
+																	<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
+																	<p class="mbottom-0"><button type="button" class="btn btn-gradient text-uppercase padhor-30" id="btnAlterarCadastro">Enviar</button></p>
+																</form>
+															<?php } else { ?>
+																<form action="" method="POST" enctype="multipart/form-data" id="formularioEditarPrestador">
+																	<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Alterar dados cadastrais</h1>
+																	<div class="row">
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="nome">Nome</label>
+																				<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves" value="<?= $_SESSION['nome']; ?>">
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="email">E-mail</label>
+																				<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email']; ?>">
+																			</div>
 																		</div>
 																	</div>
-																</div>
-																<div class="row">
-																	<div class="col-xs-12">
-																		<div class="form-group">
-																			<label for="file">Fazer upload de foto</label>
-																			<input type="file" id="file" name="file" class="width-100per">
-																			<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
+																	<div class="row">
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="celular">Celular</label>
+																				<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655" value="<?= $_SESSION['celular']; ?>">
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="telefone">Telefone</label>
+																				<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122" value="<?= $_SESSION['telefone']; ?>">
+																			</div>
 																		</div>
 																	</div>
-																</div>
-																<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
-																<p class="mbottom-0"><button type="button" class="btn btn-gradient text-uppercase padhor-30" id="btnAlterarCadastro">Enviar</button></p>
-															</form>
+																	<div class="row">
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="responsavel">Responsável</label>
+																				<input type="text" class="form-control" name="responsavel" placeholder="Ex: Nome da pessoa física" value="<?= $_SESSION['responsavel']; ?>">
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="cpfResposavel">CPF do Responsavel</label>
+																				<input type="text" class="form-control" name="cpfResposavel" placeholder="Ex: 00011122244" value="<?= $_SESSION['cpfResposavel']; ?>">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-xs-12">
+																			<div class="form-group">
+																				<label for="tipo">Tipo</label>
+																				<select name="tipo" class="form-control">
+																					<option value="" disabled="disabled" selected="selected">Escolha a área de atuação</option>
+																					<option value="Protetor de animais">Protetor de animais</option>
+																					<option value="Veterinário">Veterinário</option>
+																					<option value="ONG - Organização não governamental">ONG - Organização não governamental</option>
+																				</select>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-xs-12">
+																			<div class="form-group">
+																				<label for="cep">CEP <small><a href="http://www.buscacep.correios.com.br/sistemas/buscacep/buscaCepEndereco.cfm" target="_blank">Não lembra do CEP?</a></small></label>
+																				<input type="text" class="form-control" id="cep" name="cep" placeholder="Digite para habilitar o preenchimento automático" value="<?= $_SESSION['cep']; ?>">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row rowEndereco hidden">
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="logradouro">Logradouro</label>
+																				<input type="text" class="form-control" name="logradouro" placeholder="Ex: Seu endereço" value="<?= $_SESSION['logradouro']; ?>">
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="numero">Número</label>
+																				<input type="text" class="form-control" name="numero" placeholder="Ex: 1000" value="<?= $_SESSION['numero']; ?>">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row rowEndereco hidden">
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="estado">Estado</label>
+																				<input type="text" class="form-control" name="estado" placeholder="Ex: Paraná" value="<?= $_SESSION['estado']; ?>">
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="cidade">Cidade</label>
+																				<input type="text" class="form-control" name="cidade" placeholder="Ex: Foz do Iguaçu" value="<?= $_SESSION['cidade']; ?>">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-xs-12">
+																			<div class="form-group">
+																				<label for="file">Fazer upload de foto</label>
+																				<div>
+																					<img id="profilePicture" class="hidden img-responsive" style="height: 200px;">
+																					<a href="" id="removerFotoDePerfil" class="hidden block mbottom-15 link-red">Remover foto</a>
+																				</div>
+																				<input type="file" id="file" name="file" class="width-100per" accept="image/png, image/jpeg">
+																				<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
+																			</div>
+																		</div>
+																	</div>
+																	<input type="hidden" name="userId" value="<?php echo $_SESSION['id']; ?>">
+																	<p class="text-center mbottom-0"><button type="submit" class="btn btn-gradient text-uppercase padhor-30" id="btnEditarPrestador">Enviar</button></p>
+																</form>
+															<?php } ?>
 														</div>
 													</div>
 												</div>
@@ -206,42 +330,49 @@
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode ver todas as suas metas cadastradas.</p>
 													<div class="row">
 														<div class="col-xs-12">
-															<div class="table-responsive">
-																<table class="table table-hover">
-																	<thead>
-																		<tr>
-																			<th>Tipo</th>
-																			<th>Quantidade necessária</th>
-																			<th>Quantidade alcançada</th>
-																			<th>Mês</th>
-																			<th>Ano</th>
-																			<th>Ativa/Inativa</th>
-																			<th colspan="2">Ações</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr>
-																			<td>Ração</td>
-																			<td>100</td>
-																			<td>120</td>
-																			<td>11</td>
-																			<td>2017</td>
-																			<td>TRUE</td>
-																			<td><button class="btn btn-blue text-uppercase">Editar</button></td>
-																			<td><button class="btn btn-red text-uppercase">Desativar</button></td>
-																		</tr>
-																		<tr>
-																			<td>Financeiro</td>
-																			<td>2000</td>
-																			<td>1700</td>
-																			<td>11</td>
-																			<td>2017</td>
-																			<td>TRUE</td>
-																			<td><button class="btn btn-blue text-uppercase">Editar</button></td>
-																			<td><button class="btn btn-red text-uppercase">Desativar</button></td>
-																		</tr>
-																	</tbody>
-																</table>
+															<div class="bg-fff padding-15">
+																<style>
+																.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+																	vertical-align: middle;
+																}
+																</style>
+																<div class="table-responsive">
+																	<table class="table table-hover mbottom-0">
+																		<thead>
+																			<tr>
+																				<th>Tipo</th>
+																				<th>Quantidade necessária</th>
+																				<th>Quantidade alcançada</th>
+																				<th>Mês</th>
+																				<th>Ano</th>
+																				<th>Ativa/Inativa</th>
+																				<th colspan="2">Ações</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>Ração</td>
+																				<td>100</td>
+																				<td>120</td>
+																				<td>11</td>
+																				<td>2017</td>
+																				<td>TRUE</td>
+																				<td><button class="btn btn-blue text-uppercase">Editar</button></td>
+																				<td><button class="btn btn-red text-uppercase">Desativar</button></td>
+																			</tr>
+																			<tr>
+																				<td>Financeiro</td>
+																				<td>2000</td>
+																				<td>1700</td>
+																				<td>11</td>
+																				<td>2017</td>
+																				<td>TRUE</td>
+																				<td><button class="btn btn-blue text-uppercase">Editar</button></td>
+																				<td><button class="btn btn-red text-uppercase">Desativar</button></td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
 															</div>
 														</div>
 													</div>
@@ -804,6 +935,78 @@
 					}
 				});
 			}
+
+			$("#formularioEditarPrestador").validate({
+				rules: {
+					nome: "required",
+					email: "required",
+					celular: "required",
+					telefone: "required",
+					responsavel: "required",
+					cpfResposavel: "required",
+					tipo: "required",
+					cep: "required",
+					logradouro: "required",
+					numero: "required",
+					estado: "required",
+					cidade: "required",
+					senha: "required",
+					senhaNovamente: "required"
+				},
+				highlight: function(element) {
+					$(element).closest('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element) {
+					$(element).closest('.form-group').removeClass('has-error');
+				},
+				submitHandler: function(form) {
+					$("#btnEditarPrestador").addClass("disabled");
+					if ($("input[name=file]").val() == "") {
+						$("input[name=file]").remove();
+					}
+					$.ajax({
+						tryCount : 0,
+	    				retryLimit : 3,
+						type: 'POST',
+						url:'http://31.220.53.123:8080/luckypets-servidor/api/prestador/edita-prestador',
+						headers: {
+							'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+						},
+						// Método 1 - NÃO funciona com imagens (multipart/form-data)
+						// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+						// Método 2 - Funciona com imagens (multipart/form-data) {
+						data: new FormData($('#formularioEditarPrestador')[0]),
+						processData: false,
+						contentType: false,
+						// }
+						success:function(result) {
+							if (result.toLowerCase() == "sucesso!") {
+								refreshSession();
+								location.href = "<?= $GLOBALS['www']; ?>?m=1";
+							} else {
+								alert("Aconteceu algum erro! Verifique os campos e tente novamente.");
+								$("#btnEditarPrestador").removeClass("disabled");
+							}
+						},
+						error:function(xhr, textStatus, errorThrown) {
+					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+					            this.tryCount++;
+					            if (this.tryCount <= this.retryLimit) {
+					                //try again
+					                $.ajax(this);
+					                return;
+					            }
+					            return;
+					        }
+							console.log("Ops! Não foi possível fazer sua requisição.");
+							$("#btnEditarPrestador").removeClass("disabled");
+						},
+						complete:function(){
+							$("#btnEditarPrestador").removeClass("disabled");
+						}
+					});
+				}
+			});
 		});
 		</script>
 	</body>

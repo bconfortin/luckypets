@@ -1582,6 +1582,12 @@ h4.footer-titulo {
     transform: translate(-50%, -50%);
 }
 
+@media (max-height: 560px) {
+    .dashboard-height-hack, .height-hack {
+        min-height: calc(100vh);
+    }
+}
+
 @media (max-width: 768px) {
 
     .edit-image-container {
