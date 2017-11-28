@@ -254,7 +254,7 @@
 															<form method="POST" id="formAlterarSenha">
 																<div class="form-group">
 																	<label for="tipo">Tipo de doação</label>
-																	<select name="tipo">
+																	<select name="tipo" class="form-control">
 																		<option value="" disabled="disabled" selected="selected">Selecione uma opção</option>
 																		<option value="">Dinheiro</option>
 																		<option value="">Ração</option>
@@ -279,7 +279,7 @@
 																</div>
 																<div class="form-group">
 																	<label for="ativa">Ativa</label>
-																	<select name="tipo">
+																	<select name="ativa" class="form-control">
 																		<option value="" selected="selected">Sim</option>
 																		<option value="">Não</option>
 																	</select>
