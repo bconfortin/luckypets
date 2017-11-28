@@ -291,6 +291,9 @@
 					        }
 							console.log("Ops! Não foi possível fazer sua requisição.");
 							$("#btnCadastrar").removeClass("disabled");
+						},
+						complete:function() {
+							$("#btnCadastrar").removeClass("disabled");
 						}
 					});
 				}

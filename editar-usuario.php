@@ -135,7 +135,13 @@
 						// }
 					    success:function(result){
 						    console.log("Usuário alterado com sucesso.");
-							refreshSession();
+							if (result.toLowerCase() == "sucesso!") {
+								refreshSession();
+								location.href = "<?= $GLOBALS['www']; ?>?m=1";
+							} else {
+								alert("Aconteceu algum erro! Verifique os campos e tente novamente.");
+								$("#btnEditar").removeClass("disabled");
+							}
 					    },
 					    error:function(xhr, textStatus, errorThrown) {
 					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {

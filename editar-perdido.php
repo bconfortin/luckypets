@@ -200,7 +200,13 @@
 						contentType: false,
 						// }
 					    success:function(result){
-						    console.log("Anúncio alterado com sucesso.");
+							if (result.toLowerCase() == "salvo") {
+								console.log("Anúncio alterado com sucesso.");
+								location.href = "<?= $GLOBALS['www']; ?>?m=1";
+							} else {
+								alert("Aconteceu algum erro! Verifique os campos e tente novamente.");
+								$("#btnEditarDoacao").removeClass("disabled");
+							}
 					    },
 					    error:function(xhr, textStatus, errorThrown) {
 					        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {

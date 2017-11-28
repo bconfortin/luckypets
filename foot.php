@@ -298,7 +298,7 @@
                             $("#btnEsqueciSenha").removeClass("disabled");
                         },
                         complete:function() {
-                            //location.href = "<?= $GLOBALS['www']; ?>?m=1";
+                            location.href = "<?= $GLOBALS['www']; ?>?m=1";
                         }
                     });
                 }
