@@ -34,7 +34,6 @@
 									<h2>Minhas metas</h2>
 									<li><a href="#tabMinhasMetas">Minhas metas</a></li>
 									<li><a href="#tabCriarMeta">Criar meta</a></li>
-									<li><a href="#tabCadastroBanco">Cadastrar banco</a></li>
 									<?php } ?>
 									<!-- INICIO FORMULARIO BOTAO PAGSEGURO
 									<form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post">
@@ -217,6 +216,7 @@
 																			<th>Mês</th>
 																			<th>Ano</th>
 																			<th>Ativa/Inativa</th>
+																			<th colspan="2">Ações</th>
 																		</tr>
 																	</thead>
 																	<tbody>
@@ -227,6 +227,8 @@
 																			<td>11</td>
 																			<td>2017</td>
 																			<td>TRUE</td>
+																			<td><button class="btn btn-blue text-uppercase">Editar</button></td>
+																			<td><button class="btn btn-red text-uppercase">Desativar</button></td>
 																		</tr>
 																		<tr>
 																			<td>Financeiro</td>
@@ -235,6 +237,8 @@
 																			<td>11</td>
 																			<td>2017</td>
 																			<td>TRUE</td>
+																			<td><button class="btn btn-blue text-uppercase">Editar</button></td>
+																			<td><button class="btn btn-red text-uppercase">Desativar</button></td>
 																		</tr>
 																	</tbody>
 																</table>
