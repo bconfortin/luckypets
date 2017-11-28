@@ -339,7 +339,6 @@
 
 				<?php if (isset($_SESSION['basicAuth'])) { ?>
 
-
 					$(".formPerguntar").on("submit", function(event){
 						event.preventDefault();
 						var form = $(this);

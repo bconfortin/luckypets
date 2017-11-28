@@ -221,12 +221,12 @@
                         <h4 class="modal-title text-uppercase text-center font-700" id="modalEsqueciSenhaLabel">Esqueci a senha</h4>
                     </div>
                     <div class="modal-body"><!-- http://31.220.53.123:8080/luckypets-servidor/api/usuario/login -->
-                        <form class="" action="" method="POST">
+                        <form class="" id="formEsqueciSenha" method="POST">
                             <div class="form-group">
-                                <label for="formLoginEmail" class="font-300">E-mail</label>
-                                <input type="text" name="formLoginEmail" class="form-control" placeholder="maria@gmail.com">
+                                <label for="email" class="font-300">E-mail</label>
+                                <input type="text" name="email" class="form-control" placeholder="maria@gmail.com">
                             </div>
-                            <p class="text-center mbottom-0"><button type="button" class="btn btn-gradient text-uppercase force-radius-0 padhor-30" id="btnRecuperar">Recuperar senha</button></p>
+                            <p class="text-center mbottom-0"><button type="submit" class="btn btn-gradient text-uppercase force-radius-0 padhor-30" id="btnEsqueciSenha">Recuperar senha</button></p>
                         </form>
                     </div>
                     <div class="modal-footer">
