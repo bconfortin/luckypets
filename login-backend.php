@@ -38,5 +38,6 @@
         if (isset($_POST['logoucomface'])) {
             $_SESSION['logoucomface'] = $_POST['logoucomface'];
         }
+        $_SESSION['tipo'] = "Usuário";
     }
 ?>

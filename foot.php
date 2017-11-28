@@ -274,8 +274,6 @@
                         retryLimit : 3,
                         type: 'POST',
                         url:'http://31.220.53.123:8080/luckypets-servidor/api/usuario/esqueci-senha',
-                        processData: false,
-                        contentType: false,
                         // Método 1 - NÃO funciona com imagens (multipart/form-data)
                         // data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
                         // Método 2 - Funciona com imagens (multipart/form-data) {

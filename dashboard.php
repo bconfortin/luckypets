@@ -30,9 +30,12 @@
 									<h2>Meus perfil</h2>
 									<li><a href="#tabAlterarCadastro">Alterar dados cadastrais</a></li>
 									<li><a href="#tabAlterarSenha">Alterar senha</a></li>
-									<h2>Minhas metas<br><small class="color-fff">if (prestador)</small></h2>
-									<li><a href="#tabMinhasMetas">Metas ativas</a></li>
+									<?php if ($_SESSION["tipo"] != "Usuário") { ?>
+									<h2>Minhas metas</h2>
+									<li><a href="#tabMinhasMetas">Minhas metas</a></li>
 									<li><a href="#tabCriarMeta">Criar meta</a></li>
+									<li><a href="#tabCadastroBanco">Cadastrar banco</a></li>
+									<?php } ?>
 									<!-- INICIO FORMULARIO BOTAO PAGSEGURO
 									<form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post">
 									<input type="hidden" name="currency" value="BRL" />
@@ -54,7 +57,7 @@
 										<div role="tabpanel" class="tab-pane active" id="tabHome">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Bem vindo ao seu perfil</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Bem vindo ao seu perfil</h2>
 													<p class="font-1-2em font-300 mbottom-0">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 												</div>
 											</div>
@@ -62,7 +65,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabDoacao">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Meus anúncios de doação</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Meus anúncios de doação</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row" id="rowAjaxDoacao">
 														<div class="col-xs-12 hidden containerErro">
@@ -82,7 +85,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabPerdido">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Meus anúncios de animal perdido</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Meus anúncios de animal perdido</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row" id="rowAjaxPerdido">
 														<div class="col-xs-12 hidden containerErro">
@@ -102,7 +105,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabEncontrado">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Meus anúncios de animal encontrado</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Meus anúncios de animal encontrado</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row" id="rowAjaxEncontrado">
 														<div class="col-xs-12 hidden containerErro">
@@ -122,7 +125,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabAlterarCadastro">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Alterar meu cadastro</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Alterar meu cadastro</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row">
 														<div class="col-xs-12 col-sm-6 col-md-6">
@@ -175,7 +178,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabAlterarSenha">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-0 font-1-3em-xs">Alterar minha senha</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Alterar minha senha</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row">
 														<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -190,6 +193,133 @@
 																</div>
 																<input type="hidden" name="email" value="<?= $_SESSION['email']; ?>">
 																<button id="btnAlterarSenha" class="btn btn-gradient padhor-30 text-uppercase mtop-10">Alterar senha</button>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div role="tabpanel" class="tab-pane" id="tabMinhasMetas">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Minhas metas</h2>
+													<p class="font-1-2em font-300 mbottom-30">Aqui você pode ver todas as suas metas cadastradas.</p>
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="table-responsive">
+																<table class="table table-hover">
+																	<thead>
+																		<tr>
+																			<th>Tipo</th>
+																			<th>Quantidade necessária</th>
+																			<th>Quantidade alcançada</th>
+																			<th>Mês</th>
+																			<th>Ano</th>
+																			<th>Ativa/Inativa</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td>Ração</td>
+																			<td>100</td>
+																			<td>120</td>
+																			<td>11</td>
+																			<td>2017</td>
+																			<td>TRUE</td>
+																		</tr>
+																		<tr>
+																			<td>Financeiro</td>
+																			<td>2000</td>
+																			<td>1700</td>
+																			<td>11</td>
+																			<td>2017</td>
+																			<td>TRUE</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane" id="tabCriarMeta">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Criar meta</h2>
+													<p class="font-1-2em font-300 mbottom-30">Crie uma meta para que as pessoas possam doar.</p>
+													<div class="row">
+														<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+															<form method="POST" id="formAlterarSenha">
+																<div class="form-group">
+																	<label for="tipo">Tipo de doação</label>
+																	<select name="tipo">
+																		<option value="" disabled="disabled" selected="selected">Selecione uma opção</option>
+																		<option value="">Dinheiro</option>
+																		<option value="">Ração</option>
+																		<option value="">Medicamento</option>
+																	</select>
+																</div>
+																<div class="form-group">
+																	<label for="quantidadeNecessaria">Quantidade necessária</label>
+																	<input type="text" name="quantidadeNecessaria" value="" class="form-control" placeholder="">
+																</div>
+																<div class="form-group">
+																	<label for="quantidadeAlcancada">Quantidade alcançada</label>
+																	<input type="text" name="quantidadeAlcancada" value="" class="form-control" placeholder="0">
+																</div>
+																<div class="form-group">
+																	<label for="mes">Mês</label>
+																	<input type="text" name="mes" value="" class="form-control" placeholder="11">
+																</div>
+																<div class="form-group">
+																	<label for="ano">Ano</label>
+																	<input type="text" name="ano" value="" class="form-control" placeholder="2017">
+																</div>
+																<div class="form-group">
+																	<label for="ativa">Ativa</label>
+																	<select name="tipo">
+																		<option value="" selected="selected">Sim</option>
+																		<option value="">Não</option>
+																	</select>
+																</div>
+																<button id="btnAlterarSenha" class="btn btn-gradient padhor-30 text-uppercase mtop-10">Alterar senha</button>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div role="tabpanel" class="tab-pane" id="tabCadastroBanco">
+											<div class="row">
+												<div class="col-xs-12">
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Cadastro de banco</h2>
+													<p class="font-1-2em font-300 mbottom-30">Aqui você pode cadastrar o seu banco.</p>
+													<div class="row">
+														<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+															<form method="POST" id="formCadastrarBanco">
+																<div class="form-group">
+																	<label for="banco">Banco</label>
+																	<input type="text" name="banco" value="" class="form-control" placeholder="******">
+																</div>
+																<div class="form-group">
+																	<label for="agencia">Agência</label>
+																	<input type="text" name="agencia" value="" class="form-control" placeholder="******">
+																</div>
+																<div class="form-group">
+																	<label for="contacorrente">Conta corrente</label>
+																	<input type="text" name="contacorrente" value="" class="form-control" placeholder="******">
+																</div>
+																<div class="form-group">
+																	<label for="responsavel">Responsável (nome ou empresa)</label>
+																	<input type="text" name="responsavel" value="" class="form-control" placeholder="******">
+																</div>
+																<div class="form-group">
+																	<label for="cpfOuCnpj">CPF/CNPJ</label>
+																	<input type="text" name="cpfOuCnpj" value="" class="form-control" placeholder="******">
+																</div>
+																<button id="btnCriarBanco" class="btn btn-gradient padhor-30 text-uppercase mtop-10">Alterar senha</button>
 															</form>
 														</div>
 													</div>
@@ -369,6 +499,18 @@
   				$(this).tab('show');
 			});
 			$('#dashboardTabs a[href="#tabAlterarSenha"]').click(function(e){
+				e.preventDefault();
+  				$(this).tab('show');
+			});
+			$('#dashboardTabs a[href="#tabMinhasMetas"]').click(function(e){
+				e.preventDefault();
+  				$(this).tab('show');
+			});
+			$('#dashboardTabs a[href="#tabCriarMeta"]').click(function(e){
+				e.preventDefault();
+  				$(this).tab('show');
+			});
+			$('#dashboardTabs a[href="#tabCadastroBanco"]').click(function(e){
 				e.preventDefault();
   				$(this).tab('show');
 			});

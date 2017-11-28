@@ -35,5 +35,6 @@
             $_SESSION['senha'] = $_POST['senha'];
             $_SESSION['basicAuth'] = $_POST['basicAuth'];
         }
+        $_SESSION['tipo'] = "Usuário";
     }
 ?>
