@@ -236,7 +236,7 @@
 						$castrado = $_GET['castrado']; ?>
 						$("input[name=castrado][value='<?= $castrado ?>']").trigger("click");
 					<?php }
-					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&idade='.$idade.'&castrado='.$castrado;
+					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&idade='.$idade.'&castrado='.$castrado.'&cidade='.'&estado=';
 					$urlGetDoacoes = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacao-filtered' . $params;
 				} ?>
 				$.ajax({

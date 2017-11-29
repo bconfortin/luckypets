@@ -385,42 +385,8 @@
 													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Criar meta</h2>
 													<p class="font-1-2em font-300 mbottom-30">Crie uma meta para que as pessoas possam doar.</p>
 													<div class="row">
-														<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-															<form method="POST" id="formAlterarSenha">
-																<div class="form-group">
-																	<label for="tipo">Tipo de doação</label>
-																	<select name="tipo" class="form-control">
-																		<option value="" disabled="disabled" selected="selected">Selecione uma opção</option>
-																		<option value="">Dinheiro</option>
-																		<option value="">Ração</option>
-																		<option value="">Medicamento</option>
-																	</select>
-																</div>
-																<div class="form-group">
-																	<label for="quantidadeNecessaria">Quantidade necessária</label>
-																	<input type="text" name="quantidadeNecessaria" value="" class="form-control" placeholder="">
-																</div>
-																<div class="form-group">
-																	<label for="quantidadeAlcancada">Quantidade alcançada</label>
-																	<input type="text" name="quantidadeAlcancada" value="" class="form-control" placeholder="0">
-																</div>
-																<div class="form-group">
-																	<label for="mes">Mês</label>
-																	<input type="text" name="mes" value="" class="form-control" placeholder="11">
-																</div>
-																<div class="form-group">
-																	<label for="ano">Ano</label>
-																	<input type="text" name="ano" value="" class="form-control" placeholder="2017">
-																</div>
-																<div class="form-group">
-																	<label for="ativa">Ativa</label>
-																	<select name="ativa" class="form-control">
-																		<option value="" selected="selected">Sim</option>
-																		<option value="">Não</option>
-																	</select>
-																</div>
-																<button id="btnAlterarSenha" class="btn btn-gradient padhor-30 text-uppercase mtop-10">Alterar senha</button>
-															</form>
+														<div class="col-xs-12" id="containerMeta">
+
 														</div>
 													</div>
 												</div>
@@ -644,6 +610,9 @@
 			$('#dashboardTabs a[href="#tabCriarMeta"]').click(function(e){
 				e.preventDefault();
   				$(this).tab('show');
+				<?php if ($_SESSION["tipo"] != "Usuário") { ?>
+					verificaMeta();
+				<?php } ?>
 			});
 			$('#dashboardTabs a[href="#tabCadastroBanco"]').click(function(e){
 				e.preventDefault();
@@ -1007,6 +976,264 @@
 					});
 				}
 			});
+
+			<?php if ($_SESSION['tipo'] != "Usuário") { ?>
+
+			function verificaMeta() {
+				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
+				    type: 'GET',
+				    crossOrigin: true,
+					url: 'http://31.220.53.123:8080/luckypets-servidor/api/prestador/verifica-meta/<?= date('m'); ?>/<?= date('Y'); ?>/<?= $_SESSION['id']; ?>',
+				    dataType: 'json',
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+				    success:function(x, status, xhr){
+						if (x == null || x == "") {
+							console.log("Meta mensal ainda não cadastrada.");
+							html = "";
+							html += '<div class="row">'
+							html += 	'<div class="col-xs-12">'
+							html += 		'<button id="btnMeta" class="btn btn-gradient text-uppercase padhor-30">Criar meta mensal</button>'
+							html += 	'</div>'
+							html += '</div>'
+							$("#containerMeta").append(html);
+							bindBtnMeta();
+						} else {
+							console.log(x);
+							html = "";
+							html += '<div class="row">';
+							html += 	'<div class="col-xs-12">';
+							html +=			'<div class="table-responsive">';
+							html +=				'<table class="table">';
+							html +=					'<thead>';
+							html +=						'<tr>';
+							html +=							'<th>ID</th>';
+							html +=							'<th>Mês</th>';
+							html +=							'<th>Ano</th>';
+							html +=							'<th>Prestador</th>';
+							html +=						'</tr>';
+							html +=					'</thead>';
+							html +=					'<tbody>';
+							html +=						'<tr>';
+							html +=							'<td>' + x.id + '</td>';
+							html +=							'<td>' + x.mes + '</td>';
+							html +=							'<td>' + x.ano + '</td>';
+							html +=							'<td>' + x.prestador.nome + '</td>';
+							html +=						'</tr>';
+							html +=					'</tbody>'	;
+							html +=				'</table>';
+							html +=			'</div>';
+							html += 	'</div>';
+							html += '</div>';
+							if (x.itens.length > 0) {
+								html += '<div class="row">';
+								html += 	'<div class="col-xs-12">'
+								html +=			'<div class="table-responsive">';
+								html +=				'<table class="table">';
+								html +=					'<thead>';
+								html +=						'<tr>';
+								html +=							'<th>ID da Meta Mensal</th>';
+								html +=							'<th>Tipo</th>';
+								html +=							'<th>Quantidade</th>';
+								html +=							'<th>Progresso</th>';
+								html +=						'</tr>';
+								html +=					'</thead>';
+								html +=					'<tbody>';
+								for (i = 0; i < x.itens.length; i++) {
+									html +=					'<tr>';
+									html +=						'<td>' + x.itens[i].id + '</td>';
+									html +=						'<td>' + x.itens[i].tipo + '</td>';
+									if (x.itens[i].unidade.toLowerCase() == "caixa" || x.itens[i].unidade.toLowerCase() == "cirurgia") {
+										if (x.itens[i].quantidade > 1) {
+											html +=						'<td>' + x.itens[i].quantidade + ' ' + x.itens[i].unidade.toLowerCase() + 's' + '</td>';
+										} else {
+											html +=						'<td>' + x.itens[i].quantidade + ' ' + x.itens[i].unidade.toLowerCase() + '</td>';
+										}
+									} else {
+										html +=						'<td>' + x.itens[i].quantidade + ' ' + x.itens[i].unidade + '</td>';
+									}
+									html +=						'<td>' + x.itens[i].progresso + '/' + x.itens[i].quantidade + '</td>';
+									html +=					'</tr>';
+								}
+								html +=					'</tbody>'	;
+								html +=				'</table>';
+								html +=			'</div>';
+								html += 	'</div>';
+								html += '</div>';
+
+							}
+							// form de criar meta
+							html += '<div class="row">';
+							html += 	'<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">';
+							html +=			'<div class="bg-fff padding-15">';
+							html += 			'<h2 class="text-center font-700 font-1-1em mtop-0">Criar nova doação</h2>'
+							html += 			'<form action="" id="formItemDeMeta">';
+							html += 				'<div class="form-group">';
+							html += 					'<label for="tipo">Tipo de doação</label>';
+							html += 					'<select name="tipo" id="" class="form-control">';
+							html += 						'<option value="Recurso financeiro" selected="selected">Recurso financeiro</option>';
+							html += 						'<option value="Ração">Ração</option>';
+							html += 						'<option value="Medicamento">Medicamento</option>';
+							html += 						'<option value="Castração">Castração</option>';
+							html += 					'</select>';
+							html += 				'</div>';
+							html += 				'<div class="form-group">';
+							html += 					'<label for="unidade">Unidade</label>';
+							html += 					'<select name="unidade" id="" class="form-control">';
+							html += 						'<option value="kg" selected="selected">Quilogramas (kg)</option>';
+							html += 						'<option value="R$">Real (R$)</option>';
+							html += 						'<option value="Caixa">Caixas</option>';
+							html += 						'<option value="Cirurgia">Cirurgia</option>';
+							html += 					'</select>';
+							html += 				'</div>';
+							html += 				'<div class="form-group">';
+							html += 					'<label for="quantidade">Quantidade</label>';
+							html += 					'<input type="text" name="quantidade" class="form-control" placeholder="Qual a quantidade necessária?">';
+							html += 				'</div>';
+							html += 				'<div class="form-group">';
+							html += 					'<label for="progresso">Progresso</label>';
+							html += 					'<input type="text" name="progresso" class="form-control" value="0">';
+							html += 				'</div>';
+							html += 				'<input type="hidden" name="idMetaMensal" class="form-control" value="' + x.id + '">';
+							html += 				'<button type="submit" id="btnCriarItemDeMeta" class="btn btn-gradient text-uppercase width-100per">Adicionar item de meta</button>';
+							html += 			'</form>';
+							html += 		'</div>';
+							html += 	'</div>';
+							html += '</div>';
+							$("#containerMeta").prepend(html);
+							bindFormItemMeta();
+						    // var html = '';
+						    // for (i = 0; i < x.length; i++) {
+                            //
+						    // }
+						    // $("#rowAjaxDoacao").append(html);
+						}
+				    },
+				    error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
+				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+				    }
+				});
+			}
+
+			function bindBtnMeta() {
+				$("#btnMeta").on("click", function(){
+					criarMeta();
+				});
+			}
+
+			function criarMeta() {
+				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
+				    type: 'POST',
+				    crossOrigin: true,
+					url: 'http://31.220.53.123:8080/luckypets-servidor/api/prestador/cadastra-metamensal/',
+				    dataType: 'json',
+					data: {
+						mes: <?= date('m'); ?>,
+						ano: <?= date('Y'); ?>,
+						prestadorId: <?= $_SESSION['id']; ?>
+					},
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+				    success:function(x, status, xhr){
+						if (xhr.status == 200) {
+							alert("Meta mensal cadastrada com sucesso!");
+							location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
+						} else {
+							alert("Ocorreu algum erro. Tente novamente mais tarde.");
+						}
+				    },
+				    error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
+				    	console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+				    }
+				});
+			}
+
+			function bindFormItemMeta() {
+				$("#formItemDeMeta").validate({
+					rules: {
+					},
+					highlight: function(element) {
+						$(element).closest('.form-group').addClass('has-error');
+					},
+					unhighlight: function(element) {
+						$(element).closest('.form-group').removeClass('has-error');
+					},
+					submitHandler: function(form) {
+						$("#btnCriarItemDeMeta").addClass("disabled");
+						$.ajax({
+							tryCount : 0,
+		    				retryLimit : 3,
+							type: 'POST',
+							url:'http://31.220.53.123:8080/luckypets-servidor/api/prestador/cadastra-item',
+							headers: {
+								'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+							},
+							// Método 1 - NÃO funciona com imagens (multipart/form-data)
+							// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
+							// Método 2 - Funciona com imagens (multipart/form-data) {
+							data: {
+								quantidade: $("#formItemDeMeta input[name='quantidade']").val(),
+								progresso: $("#formItemDeMeta input[name='progresso']").val(),
+								idMetaMensal: $("#formItemDeMeta input[name='idMetaMensal']").val(),
+								tipo: $("#formItemDeMeta select[name='tipo']").val(),
+								unidade: $("#formItemDeMeta select[name='unidade']").val()
+							},
+							// }
+							success:function(result, status, xhr) {
+								if (xhr.status == 200 || result.toLowerCase() == "cadastrado com sucesso") {
+									location.href = "<?= $GLOBALS['www']; ?>dashboard.php";
+								} else {
+									alert("Aconteceu algum erro! Verifique os campos e tente novamente.");
+									$("#btnCriarItemDeMeta").removeClass("disabled");
+								}
+							},
+							error:function(xhr, textStatus, errorThrown) {
+						        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+						            this.tryCount++;
+						            if (this.tryCount <= this.retryLimit) {
+						                //try again
+						                $.ajax(this);
+						                return;
+						            }
+						            return;
+						        }
+								console.log("Ops! Não foi possível fazer sua requisição.");
+								$("#btnCriarItemDeMeta").removeClass("disabled");
+							},
+							complete:function(){
+								$("#btnCriarItemDeMeta").removeClass("disabled");
+							}
+						});
+					}
+				});
+			}
+
+			<?php } ?>
+
 		});
 		</script>
 	</body>

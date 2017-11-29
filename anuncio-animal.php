@@ -182,7 +182,11 @@
 						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 					},
 					success:function(result){
-						console.log("Pergunta deletada com sucesso.");
+						if (result.toLowerCase() == "ocorreu um erro") {
+							console.log("Ocorreu um erro");
+						} else {
+							console.log("Pergunta deletada com sucesso.");
+						}
 					},
 					error:function(xhr, textStatus, errorThrown) {
 						if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
@@ -197,7 +201,6 @@
 						console.log("Tente novamente mais tarde.");
 					},
 					complete:function() {
-						console.log("Deu.");
 					}
 				});
 			}
