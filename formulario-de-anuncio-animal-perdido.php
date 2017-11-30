@@ -128,10 +128,6 @@
 									<div class="col-xs-12">
 										<div class="form-group">
 											<label for="fotoDePerfil" class="mbottom-15">Fazer upload de fotos</label>
-											<div>
-												<img id="profilePicture" class="hidden img-responsive" style="height: 200px;">
-												<a href="" id="removerFotoDePerfil" class="hidden block mbottom-15 link-red">Remover todas as fotos</a>
-											</div>
 											<input type="file" id="file" name="file" class="width-100per" multiple accept="image/*">
 											<p class="help-block">Dê preferência a fotos com aspecto wide (fotos tiradas com o celular virado) e com extensão .jpg ou .png.<br>Ex: resolução 840x460.</p>
 										</div>
@@ -242,36 +238,6 @@
 					});
 				}
 			});
-
-			/*
-			$("#btnCadastrar").on("click", function(event){
-				event.preventDefault();
-				$(this).addClass("disabled");
-				$.ajax({
-					type: 'POST',
-					url:'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/cadastro-perdido',
-					headers: {
-						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-					},
-					// Método 1 - NÃO funciona com imagens (multipart/form-data)
-					// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
-					// Método 2 - Funciona com imagens (multipart/form-data) {
-					data: new FormData($('#formulario')[0]),
-					processData: false,
-					contentType: false,
-					// }
-					success:function(result){
-						console.log("Anúncio criado com sucesso.");
-					},
-					error:function(){
-						console.log("Ops! Não foi possível fazer sua requisição.");
-					},
-					complete:function(){
-						location.href = "<?= $GLOBALS['www']; ?>?m=1";
-					}
-				});
-			});
-			*/
 	    </script>
 
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkRBrkU6UVNZZclmB-oluPZ3L0ZeP5Cqs&libraries=places&callback=initAutocomplete"></script>

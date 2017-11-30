@@ -69,7 +69,7 @@
 										<div class="col-xs-12 col-sm-6">
 											<div class="form-group">
 												<label for="senha">Senha</label>
-												<input type="password" class="form-control" name="senha" placeholder="******" id="senha">
+												<input type="password" class="form-control" name="senha" placeholder="******" id="senhaUsuario">
 											</div>
 										</div>
 										<div class="col-xs-12 col-sm-6">
@@ -87,12 +87,12 @@
 													<img id="profilePicture" class="hidden img-responsive" style="height: 200px;">
 													<a href="" id="removerFotoDePerfil" class="hidden block mbottom-15 link-red">Remover foto</a>
 												</div>
-												<input type="file" id="file" name="file" class="width-100per" accept="image/png, image/jpeg">
+												<input type="file" name="file" class="width-100per" accept="image/png, image/jpeg">
 												<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
 											</div>
 										</div>
 									</div>
-									<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrar">Cadastrar</button></p>
+									<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrarUsuario">Cadastrar</button></p>
 								</form>
 							</div>
 							<div role="tabpanel" class="tab-pane mtop-30" id="tabCadastroPrestador">
@@ -135,8 +135,8 @@
 										</div>
 										<div class="col-xs-12 col-sm-6">
 											<div class="form-group">
-												<label for="cpfResposavel">CPF do Responsavel</label>
-												<input type="text" class="form-control" name="cpfResposavel" placeholder="Ex: 00011122244">
+												<label for="cpfResponsavel">CPF do Responsavel</label>
+												<input type="text" class="form-control" name="cpfResponsavel" placeholder="Ex: 00011122244">
 											</div>
 										</div>
 									</div>
@@ -193,7 +193,7 @@
 										<div class="col-xs-12 col-sm-6">
 											<div class="form-group">
 												<label for="senha">Senha</label>
-												<input type="password" class="form-control" name="senha" placeholder="******" id="senha">
+												<input type="password" class="form-control" name="senha" placeholder="******" id="senhaPrestador">
 											</div>
 										</div>
 										<div class="col-xs-12 col-sm-6">
@@ -232,16 +232,12 @@
 										<div class="col-xs-12">
 											<div class="form-group">
 												<label for="file">Fazer upload de foto</label>
-												<div>
-													<img id="profilePicture" class="hidden img-responsive" style="height: 200px;">
-													<a href="" id="removerFotoDePerfil" class="hidden block mbottom-15 link-red">Remover foto</a>
-												</div>
-												<input type="file" id="file" name="file" class="width-100per" accept="image/png, image/jpeg">
+												<input type="file" name="file" class="width-100per" accept="image/png, image/jpeg">
 												<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
 											</div>
 										</div>
 									</div>
-									<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrar">Cadastrar</button></p>
+									<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrarPrestador">Cadastrar</button></p>
 								</form>
 							</div>
 						</div>
@@ -284,7 +280,7 @@
 			senha: "required",
 			senhaNovamente: {
 				required: true,
-				equalTo: "#senha"
+				equalTo: "#senhaUsuario"
 			}
 		},
 		highlight: function(element) {
@@ -295,8 +291,8 @@
 		},
 		submitHandler: function(form) {
 			$("#btnCadastrar").addClass("disabled");
-			if ($("input[name=file]").val() == "") {
-				$("input[name=file]").remove();
+			if ($("#formularioUsuario input[name=file]").val() == "") {
+				$("#formularioUsuario input[name=file]").remove();
 			}
 			$.ajax({
 				tryCount : 0,
@@ -315,7 +311,7 @@
 						console.log("Usuário cadastrado com sucesso.");
 						location.href = "<?= $GLOBALS['www']; ?>?m=1";
 					} else if (result.toLowerCase() === "erro") {
-						$("#btnCadastrar").removeClass("disabled");
+						$("#btnCadastrarUsuario").removeClass("disabled");
 						console.log("E-mail já existente.");
 					}
 				},
@@ -329,11 +325,11 @@
 						}
 						return;
 					}
-					$("#btnCadastrar").removeClass("disabled");
+					$("#btnCadastrarUsuario").removeClass("disabled");
 					console.log("Ops! Não foi possível fazer sua requisição.");
 				},
 				complete:function(){
-					$("#btnCadastrar").removeClass("disabled");
+					$("#btnCadastrarUsuario").removeClass("disabled");
 				}
 			});
 		}
@@ -408,7 +404,7 @@
 				digits: true
 			},
 			responsavel: "required",
-			cpfResposavel: "required",
+			cpfResponsavel: "required",
 			tipo: "required",
 			cep: "required",
 			logradouro: "required",
@@ -418,7 +414,7 @@
 			senha: "required",
 			senhaNovamente: {
 				required: true,
-				equalTo: "#senha"
+				equalTo: "#senhaPrestador"
 			}
 		},
 		highlight: function(element) {
@@ -429,8 +425,8 @@
 		},
 		submitHandler: function(form) {
 			$("#btnCadastrar").addClass("disabled");
-			if ($("input[name=file]").val() == "") {
-				$("input[name=file]").remove();
+			if ($("#formularioPrestador input[name=file]").val() == "") {
+				$("#formularioPrestador input[name=file]").remove();
 			}
 			$.ajax({
 				tryCount : 0,
@@ -450,7 +446,7 @@
 						location.href = "<?= $GLOBALS['www']; ?>?m=1";
 					} else if (result.toLowerCase() === "erro") {
 						console.log("E-mail já existente.");
-						$("#btnCadastrar").removeClass("disabled");
+						$("#btnCadastrarPrestador").removeClass("disabled");
 					}
 				},
 				error:function(xhr, textStatus, errorThrown) {
@@ -464,10 +460,10 @@
 						return;
 					}
 					console.log("Ops! Não foi possível fazer sua requisição.");
-					$("#btnCadastrar").removeClass("disabled");
+					$("#btnCadastrarPrestador").removeClass("disabled");
 				},
 				complete:function() {
-					$("#btnCadastrar").removeClass("disabled");
+					$("#btnCadastrarPrestador").removeClass("disabled");
 				}
 			});
 		}

@@ -17,7 +17,7 @@
     $_SESSION['ativo'] = "";
     $_SESSION['codConfirmacao'] = "";
     $_SESSION['responsavel'] = "";
-    $_SESSION['cpfResposavel'] = "";
+    $_SESSION['cpfResponsavel'] = "";
     $_SESSION['tipo'] = "";
     $_SESSION['cep'] = "";
     $_SESSION['logradouro'] = "";
@@ -25,6 +25,10 @@
     $_SESSION['cidade'] = "";
     $_SESSION['estado'] = "";
     $_SESSION['basicAuth'] = "";
+
+    $_SESSION['banco'] = "";
+    $_SESSION['agencia'] = "";
+    $_SESSION['conta'] = "";
 
     if (isset($_POST['email'])) {
         $_SESSION['id'] = $_POST['id'];
@@ -45,7 +49,7 @@
         $_SESSION['ativo'] = $_POST['ativo'];
         $_SESSION['codConfirmacao'] = $_POST['codConfirmacao'];
         $_SESSION['responsavel'] = $_POST['responsavel'];
-        $_SESSION['cpfResposavel'] = $_POST['cpfResposavel'];
+        $_SESSION['cpfResponsavel'] = $_POST['cpfResponsavel'];
         $_SESSION['tipo'] = $_POST['tipo'];
         $_SESSION['cep'] = $_POST['cep'];
         $_SESSION['logradouro'] = $_POST['logradouro'];
@@ -53,5 +57,9 @@
         $_SESSION['cidade'] = $_POST['cidade'];
         $_SESSION['estado'] = $_POST['estado'];
         $_SESSION['basicAuth'] = $_POST['basicAuth'];
+
+        $_SESSION['banco'] = $_POST['banco'];
+        $_SESSION['agencia'] = $_POST['agencia'];
+        $_SESSION['conta'] = $_POST['conta'];
     }
 ?>

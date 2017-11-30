@@ -147,14 +147,17 @@
                                 "ativo": data.ativo,
                                 "codConfirmacao": data.codConfirmacao,
                                 "responsavel": data.responsavel,
-                                "cpfResposavel": data.cpfResposavel,
+                                "cpfResponsavel": data.cpfResponsavel,
                                 "tipo": data.tipo,
                                 "cep": data.cep,
                                 "logradouro": data.logradouro,
                                 "numero": data.numero,
                                 "cidade": data.cidade,
                                 "estado": data.estado,
-                                "basicAuth": basicAuth
+                                "basicAuth": basicAuth,
+                                "banco": data.banco,
+                                "agencia": data.agencia,
+                                "conta": data.conta
                             }).done(function(data) {
                                 location.href = "<?= $GLOBALS['www']; ?>";
                             });

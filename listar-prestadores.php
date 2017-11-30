@@ -59,7 +59,7 @@
 											@FormDataParam("telefone") String telefone,
 											@FormDataParam("celular") String celular,
 											@FormDataParam("responsavel") String responsavel,
-											@FormDataParam("cpfResponsavel") String cpfResposavel,
+											@FormDataParam("cpfResponsavel") String cpfResponsavel,
 											@FormDataParam("tipo") String tipo,
 											@FormDataParam("cep") String cep,
 											@FormDataParam("logradouro") String logradouro,
@@ -105,6 +105,7 @@
 					'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 				},
 			    success:function(x){
+					console.log(x);
 				    var html = '';
 				    for (i = 0; i < x.length; i++) {
 			    		html += '<tr>';
@@ -114,7 +115,7 @@
 							html += '<td>' + x[i].telefone + '</td>';
 							html += '<td>' + x[i].celular + '</td>';
 							html += '<td>' + x[i].responsavel + '</td>';
-							html += '<td>' + x[i].cpfResposavel + '</td>';
+							html += '<td>' + x[i].cpfResponsavel + '</td>';
 							html += '<td>' + x[i].tipo + '</td>';
 							html += '<td>' + x[i].cep + '</td>';
 							html += '<td>' + x[i].logradouro + '</td>';

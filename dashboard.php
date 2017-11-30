@@ -136,7 +136,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabAlterarCadastro">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Alterar meu cadastro</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Alterar dados cadastrais</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row">
 														<div class="col-xs-12 col-sm-6 col-md-6">
@@ -184,7 +184,6 @@
 																</form>
 															<?php } else { ?>
 																<form action="" method="POST" enctype="multipart/form-data" id="formularioEditarPrestador">
-																	<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Alterar dados cadastrais</h1>
 																	<div class="row">
 																		<div class="col-xs-12 col-sm-6">
 																			<div class="form-group">
@@ -222,8 +221,8 @@
 																		</div>
 																		<div class="col-xs-12 col-sm-6">
 																			<div class="form-group">
-																				<label for="cpfResposavel">CPF do Responsavel</label>
-																				<input type="text" class="form-control" name="cpfResposavel" placeholder="Ex: 00011122244" value="<?= $_SESSION['cpfResposavel']; ?>">
+																				<label for="cpfResponsavel">CPF do Responsavel</label>
+																				<input type="text" class="form-control" name="cpfResponsavel" placeholder="Ex: 00011122244" value="<?= $_SESSION['cpfResponsavel']; ?>">
 																			</div>
 																		</div>
 																	</div>
@@ -231,8 +230,7 @@
 																		<div class="col-xs-12">
 																			<div class="form-group">
 																				<label for="tipo">Tipo</label>
-																				<select name="tipo" class="form-control">
-																					<option value="" disabled="disabled" selected="selected">Escolha a área de atuação</option>
+																				<select name="tipo" class="form-control" id="tipoPrestador">
 																					<option value="Protetor de animais">Protetor de animais</option>
 																					<option value="Veterinário">Veterinário</option>
 																					<option value="ONG - Organização não governamental">ONG - Organização não governamental</option>
@@ -248,7 +246,7 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="row rowEndereco hidden">
+																	<div class="row rowEndereco">
 																		<div class="col-xs-12 col-sm-6">
 																			<div class="form-group">
 																				<label for="logradouro">Logradouro</label>
@@ -278,6 +276,31 @@
 																	</div>
 																	<div class="row">
 																		<div class="col-xs-12">
+																			<h2 class="font-700 font-1-1em">Cadastro de banco para doações</h2>
+																			<hr class="marver-5">
+																			<p class="font-300">A opção de cadastramento de banco serve caso o prestador de serviços queira abrir seu perfil para que os usuários façam doações de recursos financeiros, rações e outros.</p>
+																			<div class="form-group">
+																				<label for="banco">Banco</label>
+																				<input type="text" class="form-control" name="banco" placeholder="Ex: Banco Santander" value="<?= $_SESSION['banco'] ?>">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="conta">Conta</label>
+																				<input type="text" class="form-control" name="conta" placeholder="Ex: 1-2223-442" value="<?= $_SESSION['conta'] ?>">
+																			</div>
+																		</div>
+																		<div class="col-xs-12 col-sm-6">
+																			<div class="form-group">
+																				<label for="agencia">Agência</label>
+																				<input type="text" class="form-control" name="agencia" placeholder="Ex: 4292" value="<?= $_SESSION['agencia'] ?>">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col-xs-12">
 																			<div class="form-group">
 																				<label for="file">Fazer upload de foto</label>
 																				<div>
@@ -301,7 +324,7 @@
 										<div role="tabpanel" class="tab-pane" id="tabAlterarSenha">
 											<div class="row">
 												<div class="col-xs-12">
-													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Alterar minha senha</h2>
+													<h2 class="font-2em text-uppercase font-700 mtop-15 font-1-3em-xs">Alterar senha</h2>
 													<p class="font-1-2em font-300 mbottom-30">Aqui você pode gerenciar os seus anúncios, seus dados pessoais e alterar sua senha cadastrada.</p>
 													<div class="row">
 														<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -912,7 +935,7 @@
 					celular: "required",
 					telefone: "required",
 					responsavel: "required",
-					cpfResposavel: "required",
+					cpfResponsavel: "required",
 					tipo: "required",
 					cep: "required",
 					logradouro: "required",
@@ -1236,5 +1259,11 @@
 
 		});
 		</script>
+
+		<?php if ($_SESSION['tipo'] != "Usuário") { $tipo = $_SESSION['tipo']; ?>
+			<script>
+				$('#tipoPrestador option[value="<?= $tipo ?>"]').prop('selected', true);
+			</script>
+		<?php } ?>
 	</body>
 </html>
