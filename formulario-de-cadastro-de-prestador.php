@@ -25,7 +25,7 @@
 		<div class="container-fluid bg-f5f5f5 padver-50 padver-15-xs">
 			<div class="">
 				<div class="row">
-					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 dashboard-height-hack">
 						<div class="padding-30 bg-fff">
 							<form action="" method="POST" enctype="multipart/form-data" id="formulario">
 								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de conta</h1>
@@ -154,7 +154,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid padver-50">
+		<div class="container-fluid padver-50 hidden">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">

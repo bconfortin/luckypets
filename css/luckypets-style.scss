@@ -1413,6 +1413,10 @@ h4.footer-titulo {
     min-height: calc(100vh - 160px);
 }
 
+.dashboard-height-hack-2, .height-hack-2 {
+    min-height: calc(100vh - 260px);
+}
+
 .bg-transparent {
     background-color: transparent;
 }
@@ -1554,6 +1558,18 @@ h4.footer-titulo {
 .carousel {
     // max-height: 500px;
     // overflow: hidden;
+}
+
+.lista-cadastro {
+    display: block;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.lista-cadastro li {
+    display: inline-block;
+    margin: 0 5px;
+    text-align: center;
 }
 
 .edit-image-container {
