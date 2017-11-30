@@ -208,6 +208,7 @@
             function bindEstadoSelector() {
                 $("#estado").change(function() {
                     ajaxCidade($(this).find("option:selected").attr("idestado"));
+                    $('#cidade').html('<option value="" disabled="disabled" selected="selected">Carregando...</option>');
                 });
             }
 

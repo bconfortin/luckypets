@@ -137,6 +137,7 @@
 									<div class="col-xs-12 col-sm-12">
 										<div class="form-group">
 											<label for="descricao">Descrição</label>
+											<p class="mbottom-0 font-300 maxChar255"></p>
 											<textarea name="descricao" id="" cols="30" rows="5" class="form-control vertical-resize-forbidden"></textarea>
 										</div>
 									</div>
@@ -202,10 +203,18 @@
 					porte: "required",
 					idade: "required",
 					resgatado: "required",
-					descricao: "required",
+					descricao: {
+						required: true,
+						maxlength: 250
+					},
 					userId: "required",
 					latitude: "required",
 					longitude: "required"
+				},
+				messages: {
+					descricao: {
+						maxlength: jQuery.validator.format("O máximo permitido são {0} caracteres")
+					}
 				},
 				highlight: function(element) {
 					$(element).closest('.form-group').addClass('has-error');
@@ -285,6 +294,21 @@
 	    </script>
 
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkRBrkU6UVNZZclmB-oluPZ3L0ZeP5Cqs&libraries=places&callback=initAutocomplete"></script>
+		<script type="text/javascript">
+		$("textarea[name='descricao']").keyup(function () {
+			var max = 250;
+			var len = $(this).val().length;
+			if (len > max) {
+				var char = max - len;
+				$(".maxChar255").text(char + " caracteres sobrando");
+			} else if (len == max) {
+				$(".maxChar255").text("0 caracteres sobrando");
+			} else {
+				var char = max - len;
+				$(".maxChar255").text(char + " caracteres sobrando");
+			}
+		});
+		</script>
 		<!-- Google places api
 		AIzaSyCkRBrkU6UVNZZclmB-oluPZ3L0ZeP5Cqs -->
 	</body>

@@ -368,8 +368,8 @@
 							},
 				            success:function(){
 								form[0].reset();
-								console.log("Deu.");
 								form.find("button").removeClass("disabled");
+								location.href = "<?= $GLOBALS['www']; ?>anuncio-animal.php?animalId=<?= $animalId; ?>";
 				                //getComentarios();
 				            },
 							error:function(xhr, textStatus, errorThrown) {
@@ -418,7 +418,7 @@
 										html +=				'<div class="form-group mtop-15">';
 										html +=					'<textarea name="resposta" cols="30" rows="3" class="form-control no-horizontal-resize" placeholder="Tente responder a pergunta do jeito mais completo possível."></textarea>';
 										html +=				'</div>';
-										html +=				'<input type="hidden" name="mensagem" value="' + result[i].id + '">';
+										html +=				'<input type="hidden" name="mensagemId" value="' + result[i].id + '">';
 										html +=				'<button type="submit" class="btn btn-gradient padhor-30 text-uppercase">Responder</button>';
 										html +=			'</form>';
 									}
@@ -461,6 +461,7 @@
 								'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 							},
 				            success:function(result){
+								console.log(result);
 								for (i = 0; i < result.length; i++) {
 									var timestamp = result[i].data,
 										date = new Date(timestamp),
@@ -506,8 +507,11 @@
 								headers: {
 									'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 								},
-								success:function(result){
+								success:function(result, status, xhr){
+									console.log(result);
+									console.log(xhr.status);
 									form[0].reset();
+									location.href = "<?= $GLOBALS['www']; ?>anuncio-animal.php?animalId=<?= $animalId; ?>";
 									//getComentarios();
 								},
 								error:function(xhr, textStatus, errorThrown) {

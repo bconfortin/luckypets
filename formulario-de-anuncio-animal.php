@@ -187,11 +187,19 @@
 						cor: "required",
 						porte: "required",
 						idade: "required",
-						descricao: "required",
+						descricao: {
+							required: true,
+							maxlength: 250
+						},
 						userId: "required",
 						cidade: "required",
 						estado: "required"
 	                },
+					messages: {
+						descricao: {
+							maxlength: jQuery.validator.format("O máximo permitido são {0} caracteres")
+						}
+					},
 					highlight: function(element) {
 				        $(element).closest('.form-group').addClass('has-error');
 				    },
