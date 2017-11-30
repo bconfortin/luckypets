@@ -152,7 +152,7 @@
 																		<div class="col-xs-12 col-sm-6">
 																			<div class="form-group">
 																				<label for="email">E-mail</label>
-																				<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email'] ?>">
+																				<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email'] ?>" readonly disabled>
 																			</div>
 																		</div>
 																	</div>
@@ -194,7 +194,7 @@
 																		<div class="col-xs-12 col-sm-6">
 																			<div class="form-group">
 																				<label for="email">E-mail</label>
-																				<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email']; ?>">
+																				<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email']; ?>" readonly disabled>
 																			</div>
 																		</div>
 																	</div>
@@ -943,7 +943,8 @@
 					estado: "required",
 					cidade: "required",
 					senha: "required",
-					senhaNovamente: "required"
+					senhaNovamente: "required",
+					file: "required"
 				},
 				highlight: function(element) {
 					$(element).closest('.form-group').addClass('has-error');
@@ -953,8 +954,8 @@
 				},
 				submitHandler: function(form) {
 					$("#btnEditarPrestador").addClass("disabled");
-					if ($("input[name=file]").val() == "") {
-						$("input[name=file]").remove();
+					if ($("formularioEditarPrestador input[name=file]").val() == "") {
+						$("formularioEditarPrestador input[name=file]").remove();
 					}
 					$.ajax({
 						tryCount : 0,

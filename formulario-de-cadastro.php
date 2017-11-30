@@ -281,7 +281,8 @@
 			senhaNovamente: {
 				required: true,
 				equalTo: "#senhaUsuario"
-			}
+			},
+			file: "required"
 		},
 		highlight: function(element) {
 			$(element).closest('.form-group').addClass('has-error');
@@ -415,7 +416,8 @@
 			senhaNovamente: {
 				required: true,
 				equalTo: "#senhaPrestador"
-			}
+			},
+			file: "required"
 		},
 		highlight: function(element) {
 			$(element).closest('.form-group').addClass('has-error');

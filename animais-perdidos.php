@@ -183,7 +183,7 @@
 						$sexo = $_GET['sexo']; ?>
 						$("input[name=sexo][value='<?= $sexo ?>']").trigger("click");
 					<?php }
-					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&cidade='.$cidade'&estado='.$estado;
+					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo;
 					$urlGetPerdidos = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos-filtered' . $params;
 				} ?>
 				$.ajax({

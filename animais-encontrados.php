@@ -185,7 +185,7 @@
 						$("input[name=sexo][value='<?= $sexo ?>']").trigger("click");
 					<?php }
 
-					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&cidade='.$cidade'&estado='.$estado;
+					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo;
 					$urlGetEncontrados = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-encontrados-filtered' . $params;
 				} ?>
 				$.ajax({

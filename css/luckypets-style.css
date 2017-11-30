@@ -1033,6 +1033,14 @@ fieldset[disabled] .btn-red.ghost.transparent.active {
   border-radius: 0;
 }
 
+.color-blue {
+  color: #2861ae;
+}
+
+.color-purple {
+  color: #6452a2;
+}
+
 body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;

@@ -25,6 +25,14 @@ $color-blue-rgb: rgb(40, 97, 174);
 
 @import 'buttons';
 
+.color-blue {
+    color: $color-blue;
+}
+
+.color-purple {
+    color: $color-purple;
+}
+
 body {
     font-family: $font-family;
     font-size: 16px;
