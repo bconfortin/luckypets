@@ -423,9 +423,19 @@
 										html +=			'</form>';
 									}
 									html +=		'</div>';
+									for (j = 0; j < result[i].respostas.length; j++) {
+										var timestamp = result[i].respostas[j].data,
+											date = new Date(timestamp),
+											datevalues = ((date.getDate() < 10 ? "0" : "") + date.getDate()) + '/' + (((date.getMonth()+1) < 10 ? "0" : "") + (date.getMonth()+1)) + '/' + date.getFullYear() + ' ' +
+														 ((date.getHours() < 10 ? "0" : "") + date.getHours()) + ':' + ((date.getMinutes() < 10 ? "0" : "") + date.getMinutes()) + ':' + ((date.getSeconds() < 10 ? "0" : "") + date.getSeconds());
+										html += '<div class="resposta">';
+										html +=		'<p class="pright-30 relative">' + result[i].respostas[j].texto + '<a href="" onclick="event.preventDefault(); deletarResposta(' + result[i].respostas[j].id + ');" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
+										html +=		'<small>' + datevalues + '</small>';
+										html += '</div>';
+									}
 									html += '</div>';
 									$(".duvidas").append(html);
-									getRespostas(result[i].id);
+									//getRespostas(result[i].id);
 								}
 				            },
 							error:function(xhr, textStatus, errorThrown) {
