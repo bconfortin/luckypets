@@ -69,9 +69,9 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 						<h2 class="titulo">Gostaria de doar um animal?</h2>
-						<p class="line-height-1-5 text-justify font-1-1em">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam voluptatem saepe perspiciatis ut tempore, aliquam vero non. Hic quia voluptatem laborum eum quam maiores atque non dicta! Iure, culpa, sed.</p>
+						<p class="line-height-1-5 text-justify font-1-1em">Precisa de um lar para um animal que você tem? Faça a vida de alguém muito feliz doando seu cachorro ou gato!</p>
 						<p class="text-center mbottom-0 mtop-30">
-							<a href="http://www.loumarturismo.com.br/" class="btn btn-gradient force-radius-0 text-uppercase padhor-30" target="_blank">Saiba mais</a>
+							<a href="formulario-de-anuncio-animal.php" class="btn btn-gradient force-radius-0 text-uppercase padhor-30" target="_blank">Saiba mais</a>
 						</p>
 					</div>
 				</div>
