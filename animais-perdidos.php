@@ -165,7 +165,10 @@
 
 				// filtro: tipo, porte, sexo, idade, castrado
 				<?php
-				$urlGetPerdidos = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos';
+				$cidade = $_SESSION['cidade'];
+				$estado = $_SESSION['estado'];
+				$cidadeestado = '?cidade='.$cidade.'&estado='.$estado;
+				$urlGetPerdidos = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos-cidade'.$cidadeestado;
 				if (isset($_GET['tipo']) || isset($_GET['porte']) || isset($_GET['sexo'])) {
 					$tipo = ""; $porte = ""; $sexo = "";
 					if (isset($_GET['tipo']) && $_GET['tipo'] != '') {
@@ -180,7 +183,7 @@
 						$sexo = $_GET['sexo']; ?>
 						$("input[name=sexo][value='<?= $sexo ?>']").trigger("click");
 					<?php }
-					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&cidade='.'&estado=';
+					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&cidade='.$cidade'&estado='.$estado;
 					$urlGetPerdidos = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos-filtered' . $params;
 				} ?>
 				$.ajax({

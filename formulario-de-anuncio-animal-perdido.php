@@ -111,6 +111,8 @@
 										<div class="form-group">
 											<label for="localizacao">Localização</label>
 											<input type="text" class="form-control" id="autocomplete">
+											<input type="hidden" name="cidade" value="<?php echo $_SESSION['cidade']; ?>">
+											<input type="hidden" name="estado" value="<?php echo $_SESSION['estado']; ?>">
 										</div>
 									</div>
 								</div>

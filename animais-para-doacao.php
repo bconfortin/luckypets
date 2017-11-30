@@ -213,7 +213,10 @@
 
 				// filtro: tipo, porte, sexo, idade, castrado
 				<?php
-				$urlGetDoacoes = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes';
+				$cidade = $_SESSION['cidade'];
+				$estado = $_SESSION['estado'];
+				$cidadeestado = '?cidade='.$cidade.'&estado='.$estado;
+				$urlGetDoacoes = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacoes-cidade'.$cidadeestado;
 				if (isset($_GET['tipo']) || isset($_GET['porte']) || isset($_GET['sexo']) || isset($_GET['idade']) || isset($_GET['castrado'])) {
 					$tipo = ""; $porte = ""; $sexo = ""; $idade = ""; $castrado = "";
 					if (isset($_GET['tipo']) && $_GET['tipo'] != '') {
@@ -236,7 +239,7 @@
 						$castrado = $_GET['castrado']; ?>
 						$("input[name=castrado][value='<?= $castrado ?>']").trigger("click");
 					<?php }
-					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&idade='.$idade.'&castrado='.$castrado.'&cidade='.'&estado=';
+					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&idade='.$idade.'&castrado='.$castrado.'&cidade='.$cidade'&estado='.$estado;
 					$urlGetDoacoes = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-doacao-filtered' . $params;
 				} ?>
 				$.ajax({
