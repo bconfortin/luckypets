@@ -1,13 +1,4 @@
 @charset "UTF-8";
-
-.color-blue {
-    color: #6452a2;
-}
-
-.color-purple {
-    color: #8a499c;
-}
-
 .btn-gradient {
   color: #ffffff;
   background-color: #6452a2;
@@ -2598,11 +2589,6 @@ h4.footer-titulo {
 
 .bg-fff-transparent {
   background-color: rgba(255, 255, 255, 0.7);
-}
-
-.carousel {
-  max-height: 500px;
-  overflow: hidden;
 }
 
 .edit-image-container {
