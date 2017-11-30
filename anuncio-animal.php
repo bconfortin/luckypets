@@ -458,52 +458,6 @@
 					}
 					getPerguntas();
 
-					function getRespostas(idPergunta) {
-						var urlExtenso = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/respostas/' + idPergunta;
-						console.log(urlExtenso);
-						$.ajax({
-							tryCount : 0,
-		    				retryLimit : 3,
-				            url: urlExtenso,
-				            type: 'GET',
-							dataType: 'json',
-							headers: {
-								'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
-							},
-				            success:function(result){
-								console.log(result);
-								for (i = 0; i < result.length; i++) {
-									var timestamp = result[i].data,
-										date = new Date(timestamp),
-										datevalues = ((date.getDate() < 10 ? "0" : "") + date.getDate()) + '/' + (((date.getMonth()+1) < 10 ? "0" : "") + (date.getMonth()+1)) + '/' + date.getFullYear() + ' ' +
-													 ((date.getHours() < 10 ? "0" : "") + date.getHours()) + ':' + ((date.getMinutes() < 10 ? "0" : "") + date.getMinutes()) + ':' + ((date.getSeconds() < 10 ? "0" : "") + date.getSeconds());
-					                var html = '';
-									html += '<div class="resposta">';
-									html +=		'<p class="pright-30 relative">' + result[i].texto + '<a href="" onclick="event.preventDefault(); deletarResposta(' + result[i].id + ');" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
-									html +=		'<small>' + datevalues + '</small>';
-									html += '</div>';
-									console.log("containerPergunta" + idPergunta);
-									$("#containerPergunta".concat(idPergunta)).append(html);
-								}
-				            },
-							error:function(xhr, textStatus, errorThrown) {
-						        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
-						            this.tryCount++;
-						            if (this.tryCount <= this.retryLimit) {
-						                //try again
-						                $.ajax(this);
-						                return;
-						            }
-						            return;
-						        }
-								console.log("Ops! Ocorreu algum erro, tente novamente mais tarde.");
-							},
-							complete: function(){
-								console.log("Deu tudo certo.");
-							}
-				        });
-					}
-
 					function bindFormResponder() {
 						$(".formResponder").on("submit", function(event){
 							event.preventDefault();
