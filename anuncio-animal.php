@@ -472,8 +472,8 @@
 									html +=		'<p class="pright-30 relative">' + result[i].texto + '<a href="" onclick="event.preventDefault(); deletarResposta(' + result[i].id + ');" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
 									html +=		'<small>' + datevalues + '</small>';
 									html += '</div>';
-									console.log("containerPergunta" + result[i].msg.id);
-									$("#containerPergunta".concat(result[i].msg.id)).append(html);
+									console.log("containerPergunta" + idPergunta);
+									$("#containerPergunta".concat(idPergunta)).append(html);
 								}
 				            },
 							error:function(xhr, textStatus, errorThrown) {
