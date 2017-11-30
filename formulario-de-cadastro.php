@@ -27,65 +27,78 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 						<div class="padding-30 bg-fff">
-							<form action="" method="POST" enctype="multipart/form-data" id="formulario">
-								<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de conta</h1>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="nome">Nome</label>
-											<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="email">E-mail</label>
-											<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="celular">Celular</label>
-											<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="telefone">Telefone</label>
-											<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="senha">Senha</label>
-											<input type="password" class="form-control" name="senha" placeholder="******" id="senha">
-										</div>
-									</div>
-									<div class="col-xs-12 col-sm-6">
-										<div class="form-group">
-											<label for="senhaNovamente">Digite a senha novamente</label>
-											<input type="password" class="form-control" name="senhaNovamente" placeholder="******">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="form-group">
-											<label for="file">Fazer upload de foto</label>
-											<div>
-												<img id="profilePicture" class="hidden img-responsive" style="height: 200px;">
-												<a href="" id="removerFotoDePerfil" class="hidden block mbottom-15 link-red">Remover foto</a>
+
+							<!-- Nav tabs -->
+							<ul id="tabsCadastro">
+								<li><a href="#tabUsuario">Usuário</a></li>
+								<li><a href="#tabPrestador">Prestador de serviços</a></li>
+							</ul>
+							<div class="tab-content">
+   								<div role="tabpanel" class="tab-pane active" id="tabUsuario">
+									<form action="" method="POST" enctype="multipart/form-data" id="formulario">
+										<h1 class="font-700 mbottom-30 mtop-0 text-uppercase text-center font-1-3em color-blue">Formulário de cadastro de conta</h1>
+										<div class="row">
+											<div class="col-xs-12 col-sm-6">
+												<div class="form-group">
+													<label for="nome">Nome</label>
+													<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves">
+												</div>
 											</div>
-											<input type="file" id="file" name="file" class="width-100per" accept="image/png, image/jpeg">
-											<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
+											<div class="col-xs-12 col-sm-6">
+												<div class="form-group">
+													<label for="email">E-mail</label>
+													<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com">
+												</div>
+											</div>
 										</div>
-									</div>
+										<div class="row">
+											<div class="col-xs-12 col-sm-6">
+												<div class="form-group">
+													<label for="celular">Celular</label>
+													<input type="text" class="form-control" name="celular" placeholder="Ex: 45988776655">
+												</div>
+											</div>
+											<div class="col-xs-12 col-sm-6">
+												<div class="form-group">
+													<label for="telefone">Telefone</label>
+													<input type="text" class="form-control" name="telefone" placeholder="Ex: 4535001122">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12 col-sm-6">
+												<div class="form-group">
+													<label for="senha">Senha</label>
+													<input type="password" class="form-control" name="senha" placeholder="******" id="senha">
+												</div>
+											</div>
+											<div class="col-xs-12 col-sm-6">
+												<div class="form-group">
+													<label for="senhaNovamente">Digite a senha novamente</label>
+													<input type="password" class="form-control" name="senhaNovamente" placeholder="******">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="form-group">
+													<label for="file">Fazer upload de foto</label>
+													<div>
+														<img id="profilePicture" class="hidden img-responsive" style="height: 200px;">
+														<a href="" id="removerFotoDePerfil" class="hidden block mbottom-15 link-red">Remover foto</a>
+													</div>
+													<input type="file" id="file" name="file" class="width-100per" accept="image/png, image/jpeg">
+													<p class="help-block">Dê preferência a fotos com aspecto quadrado e com extensão .jpg ou .png. Ex: resolução 200x200.</p>
+												</div>
+											</div>
+										</div>
+										<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrar">Cadastrar</button></p>
+									</form>
+   								</div>
+								<div role="tabpanel" class="tab-pane" id="tabPrestador">
+									Teste
 								</div>
-								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnCadastrar">Cadastrar</button></p>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -238,6 +251,19 @@
 
 				reader.readAsDataURL(selectedFile);
 			}
+
+		</script>
+		<script>
+		$(function(){
+			$('#tabsCadastro a[href="#tabUsuario"]').click(function(e){
+				e.preventDefault();
+				$(this).tab('show');
+			});
+			$('#tabsCadastro a[href="#tabPrestador"]').click(function(e){
+				e.preventDefault();
+				$(this).tab('show');
+			});
+		});
 		</script>
 	</body>
 </html>

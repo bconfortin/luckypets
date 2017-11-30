@@ -184,8 +184,10 @@
 					success:function(result){
 						if (result.toLowerCase() == "ocorreu um erro") {
 							console.log("Ocorreu um erro");
+							alert("Ocorreu um erro ao tentar excluir a pergunta. Tente novamente mais tarde.");
 						} else {
 							console.log("Pergunta deletada com sucesso.");
+							location.href = "<?= $GLOBALS['www']; ?>anuncio-animal.php?animalId=<?= $animalId; ?>";
 						}
 					},
 					error:function(xhr, textStatus, errorThrown) {
@@ -199,26 +201,34 @@
 							return;
 						}
 						console.log("Tente novamente mais tarde.");
+						alert("Estamos com problemas no servidor. Tente novamente mais tarde.");
 					},
 					complete:function() {
 					}
 				});
 			}
 
-			function deletarResposta(id) {
+			function deletarResposta(pRespId, pMsgId) {
 				$.ajax({
 					tryCount : 0,
 					retryLimit : 3,
 					url: 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/exclui-resposta', // Get the action URL to send AJAX to
 					type: 'POST',
 					data: {
-						respId: id
+						respId: pRespId,
+						msgId: pMsgId
 					},
 					headers: {
 						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
 					},
 					success:function(result){
-						console.log("Resposta deletada com sucesso.");
+						if (result.toLowerCase() == "excluido com sucesso") {
+							console.log("Pergunta deletada com sucesso.");
+							location.href = "<?= $GLOBALS['www']; ?>anuncio-animal.php?animalId=<?= $animalId; ?>";
+						} else {
+							console.log("Ocorreu um erro");
+							alert("Ocorreu um erro ao tentar excluir a pergunta. Tente novamente mais tarde.");
+						}
 					},
 					error:function(xhr, textStatus, errorThrown) {
 						if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
@@ -231,9 +241,9 @@
 							return;
 						}
 						console.log("Tente novamente mais tarde.");
+						alert("Estamos com problemas no servidor. Tente novamente mais tarde.");
 					},
 					complete:function() {
-						console.log("Deu.");
 					}
 				});
 			}
@@ -429,7 +439,7 @@
 											datevalues = ((date.getDate() < 10 ? "0" : "") + date.getDate()) + '/' + (((date.getMonth()+1) < 10 ? "0" : "") + (date.getMonth()+1)) + '/' + date.getFullYear() + ' ' +
 														 ((date.getHours() < 10 ? "0" : "") + date.getHours()) + ':' + ((date.getMinutes() < 10 ? "0" : "") + date.getMinutes()) + ':' + ((date.getSeconds() < 10 ? "0" : "") + date.getSeconds());
 										html += '<div class="resposta">';
-										html +=		'<p class="pright-30 relative">' + result[i].respostas[j].texto + '<a href="" onclick="event.preventDefault(); deletarResposta(' + result[i].respostas[j].id + ');" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
+										html +=		'<p class="pright-30 relative">' + result[i].respostas[j].texto + '<a href="" onclick="event.preventDefault(); deletarResposta(' + result[i].respostas[j].id + ', ' + result[i].id + ');" class="block" style="position: absolute; right: 0px; top: 0px"><i class="fa fa-trash"></i></a></p>';
 										html +=		'<small>' + datevalues + '</small>';
 										html += '</div>';
 									}
