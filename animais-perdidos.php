@@ -8,6 +8,7 @@
 		<title>Lucky Pets</title>
 		<meta name="description" content=""/>
 		<?php include "head.php"; ?>
+		<?php include "functions.php"; ?>
 	</head>
 	<body>
 		<?php include "header.php"; ?>
@@ -119,13 +120,13 @@
 									<div class="row padver-50">
 										<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 											<h2 class="text-center font-2em text-uppercase font-700 mtop-0">Ops!</h2>
-											<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado.<br>Mude os filtros ou <a href="animais-perdidos.php" class="font-700">clique aqui para ver todos os animais cadastrados</a>.</p>
+											<p class="font-1-2em text-center font-300 mbottom-0">Parece que a sua busca não retornou nenhum resultado para <?= $_SESSION["cidade"]; ?> - <?= $_SESSION["estado"]; ?>.<br>Mude os filtros e tente novamente ou desative o filtro por cidade e estado <a href="animais-perdidos.php?desativarFiltro=1" class="font-700">clicando aqui</a>.</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="row" id="rowPagination">
+						<div class="row hidden" id="rowPagination">
 							<div class="col-xs-12">
 								<p class="mbottom-0 text-center">
 									<a href="" class="btn btn-blue force-radius-0 text-uppercase padhor-15 disabled"><i class="fa fa-angle-left"></i><span class="hidden-xs mleft-5">Anterior</span></a>
@@ -165,10 +166,16 @@
 
 				// filtro: tipo, porte, sexo, idade, castrado
 				<?php
-				$cidade = $_SESSION['cidade'];
-				$estado = $_SESSION['estado'];
-				$cidadeestado = '?cidade='.$cidade.'&estado='.$estado;
+				$cidade = cleanString($_SESSION['cidade']);
+				$estado = cleanString($_SESSION['estado']);
+
+				$cidadeestado = '?cidade=' . $cidade . '&estado=' . $estado;
 				$urlGetPerdidos = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos-cidade'.$cidadeestado;
+				if (isset($_GET['desativarFiltro'])) {
+					if ($_GET['desativarFiltro'] == 1) {
+						$urlGetPerdidos = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos';
+					}
+				}
 				if (isset($_GET['tipo']) || isset($_GET['porte']) || isset($_GET['sexo'])) {
 					$tipo = ""; $porte = ""; $sexo = "";
 					if (isset($_GET['tipo']) && $_GET['tipo'] != '') {
@@ -183,7 +190,7 @@
 						$sexo = $_GET['sexo']; ?>
 						$("input[name=sexo][value='<?= $sexo ?>']").trigger("click");
 					<?php }
-					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo;
+					$params = '?tipo='.$tipo.'&porte='.$porte.'&sexo='.$sexo.'&cidade='.$cidade.'&estado='.$estado;
 					$urlGetPerdidos = 'http://31.220.53.123:8080/luckypets-servidor/api/anuncio/get-perdidos-filtered' . $params;
 				} ?>
 				$.ajax({

@@ -1,5 +1,6 @@
     <?php
-        $GLOBALS['www'] = 'http://localhost/luckypets/';
+        // Alterar em js/functions.js, head.php e clear-session.php
+        $GLOBALS['www'] = 'http://localhost:81/luckypets/';
         //$GLOBALS['www'] = 'http://31.220.53.123/luckypets/';
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -83,7 +84,7 @@
         //
         // FB.Event.subscribe('auth.logout', function(response) {
         //     $.get("clear-session.php");
-        //     var www = 'http://localhost/luckypets/';
+        //     var www = 'http://localhost:81/luckypets/';
         //     location.href = www;
         // });
 
