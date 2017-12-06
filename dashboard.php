@@ -185,16 +185,10 @@
 															<?php } else { ?>
 																<form action="" method="POST" enctype="multipart/form-data" id="formularioEditarPrestador">
 																	<div class="row">
-																		<div class="col-xs-12 col-sm-6">
+																		<div class="col-xs-12 col-sm-12">
 																			<div class="form-group">
 																				<label for="nome">Nome</label>
 																				<input type="text" class="form-control" name="nome" placeholder="Ex: João das Neves" value="<?= $_SESSION['nome']; ?>">
-																			</div>
-																		</div>
-																		<div class="col-xs-12 col-sm-6">
-																			<div class="form-group">
-																				<label for="email">E-mail</label>
-																				<input type="text" class="form-control" name="email" placeholder="Ex: joao@dasneves.com" value="<?= $_SESSION['email']; ?>" readonly disabled>
 																			</div>
 																		</div>
 																	</div>
@@ -930,21 +924,21 @@
 
 			$("#formularioEditarPrestador").validate({
 				rules: {
+					file: "required",
 					nome: "required",
-					email: "required",
-					celular: "required",
 					telefone: "required",
+					celular: "required",
 					responsavel: "required",
 					cpfResponsavel: "required",
 					tipo: "required",
 					cep: "required",
 					logradouro: "required",
 					numero: "required",
-					estado: "required",
 					cidade: "required",
-					senha: "required",
-					senhaNovamente: "required",
-					file: "required"
+					estado: "required",
+					banco: "required",
+					conta: "required",
+					agencia: "required"
 				},
 				highlight: function(element) {
 					$(element).closest('.form-group').addClass('has-error');
