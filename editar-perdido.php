@@ -150,8 +150,8 @@
 								<input type="hidden" name="latitude" value="">
 								<input type="hidden" name="longitude" value="">
 								<input type="hidden" name="anuncioId" value="">
-								<input type="hidden" name="cidade" value="Foz do Iguaçu">
-								<input type="hidden" name="estado" value="Paraná">
+								<input type="hidden" name="cidade" value="<?= $_SESSION['cidade']; ?>">
+								<input type="hidden" name="estado" value="<?= $_SESSION['estado']; ?>">
 								<p class="text-center mbottom-0"><button class="btn btn-gradient text-uppercase padhor-30" id="btnEditarDoacao">Alterar cadastro</button></p>
 							</form>
 						</div>
