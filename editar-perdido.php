@@ -130,6 +130,9 @@
 										</div>
 									</div>
 								</div>
+								<div class="row fotos-ja-cadastradas">
+
+								</div>
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="form-group">
@@ -290,6 +293,20 @@
 						$('#formEditarAnuncio textarea[name="descricao"]').val(x.animal.descricao);
 						$('#formEditarAnuncio input[name="latitude"]').val(x.lat);
 						$('#formEditarAnuncio input[name="longitude"]').val(x.lng);
+
+						var html = "";
+						// remover img
+						// <div class="div-red-remove-image"><p class="div-red-remove-image-text">Essa imagem será removida</p></div>
+						for (i = 0; i < x.animal.imagens.length; i++) {
+							html += '<div class="col-md-3 mbottom-15">'
+							html += '<div class="edit-image-container">';
+							html += '<img src="http://31.220.53.123:8080/luckypets-servidor/api/file/perdido/' + x.id + '/' + x.animal.imagens[i] + '" finalendereco="'+x.animal.imagens[i]+'" class="img-responsive">';
+							html += '<div class="div-red-remove-image height-0"><p class="div-red-remove-image-text">Essa imagem será removida</p></div>';
+							html += '</div>';
+							html += '</div>';
+							//console.log('http://31.220.53.123:8080/luckypets-servidor/api/file/doacao/' + x.id + '/' + x.animal.imagens[i]);
+						}
+						$(".fotos-ja-cadastradas").append(html);
 					},
 					error:function(xhr, textStatus, errorThrown) {
 				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
@@ -302,9 +319,34 @@
 				            return;
 				        }
 						console.log("Não foi possível fazer sua requisição. Tente novamente mais tarde.");
+					},
+					complete:function() {
+						bindImgRemover();
 					}
 				});
 			}
+
+			function bindImgRemover() {
+				$(".edit-image-container img").on("click", function(){
+					var img = $(this);
+					$(this).siblings(".div-red-remove-image").removeClass("height-0");
+					if (arrayRemoveImgs.indexOf(img.attr("finalendereco")) == -1) {
+						arrayRemoveImgs.push(img.attr("finalendereco"));
+					}
+				});
+
+				$(".div-red-remove-image").on("click", function(){
+					var img = $(this).parent(".edit-image-container").find("img");
+					var imgIndex = arrayRemoveImgs.indexOf(img.attr("finalendereco"));
+					console.log(imgIndex);
+					$(this).addClass("height-0", 300);
+					if (arrayRemoveImgs.indexOf(img.attr("finalendereco")) != -1) {
+						arrayRemoveImgs.splice(imgIndex, 1);
+					}
+				});
+			}
+
+			var arrayRemoveImgs = [];
 
 			var autocomplete;
 			function initAutocomplete() {

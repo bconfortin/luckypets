@@ -879,6 +879,63 @@
 				});
 			}
 
+			function refreshSessionPrestador() {
+				$.ajax({
+					tryCount : 0,
+    				retryLimit : 3,
+					type: 'GET',
+					url:'http://31.220.53.123:8080/luckypets-servidor/api/prestador/getuserdata/<?= $_SESSION['email']; ?>',
+					dataType: 'json',
+					headers: {
+						'Authorization': '<?php echo $_SESSION['basicAuth']; ?>'
+					},
+					success:function(data){
+						$.post("<?= $GLOBALS['www']; ?>login-prestador-backend.php", {
+							"id": data.id,
+							"nome": data.nome,
+							"email": data.email,
+							"senha": data.senha,
+							"imagem": data.imagem,
+							"caminhoCompletoImagem": "http://31.220.53.123:8080/luckypets-servidor/api/file/prestador/" + data.id + "/" + data.imagem,
+							"telefone": data.telefone,
+							"celular": data.celular,
+							"authToken": data.authToken,
+							"facebook": data.facebook,
+							"administrador": data.administrador,
+							"ativo": data.ativo,
+							"codConfirmacao": data.codConfirmacao,
+							"responsavel": data.responsavel,
+							"cpfResponsavel": data.cpfResponsavel,
+							"tipo": data.tipo,
+							"cep": data.cep,
+							"logradouro": data.logradouro,
+							"numero": data.numero,
+							"cidade": data.cidade,
+							"estado": data.estado,
+							"basicAuth": basicAuth,
+							"banco": data.banco,
+							"agencia": data.agencia,
+							"conta": data.conta
+						}).done(function(data) {
+							location.href = "<?= $GLOBALS['www']; ?>";
+						});
+					},
+					error:function(xhr, textStatus, errorThrown) {
+				        if (textStatus == 'timeout' || xhr.status == 500 || xhr.status == 400) {
+				            this.tryCount++;
+				            if (this.tryCount <= this.retryLimit) {
+				                //try again
+				                $.ajax(this);
+				                return;
+				            }
+				            return;
+				        }
+						console.log("Ops! Não foi possível fazer sua requisição.");
+					}
+				});
+
+			}
+
 			function refreshSession() {
 				$.ajax({
 					tryCount : 0,
@@ -948,8 +1005,8 @@
 				},
 				submitHandler: function(form) {
 					$("#btnEditarPrestador").addClass("disabled");
-					if ($("formularioEditarPrestador input[name=file]").val() == "") {
-						$("formularioEditarPrestador input[name=file]").remove();
+					if ($("#formularioEditarPrestador input[name=file]").val() == "") {
+						$("#formularioEditarPrestador input[name=file]").remove();
 					}
 					$.ajax({
 						tryCount : 0,
@@ -968,7 +1025,7 @@
 						// }
 						success:function(result) {
 							if (result.toLowerCase() == "sucesso!") {
-								refreshSession();
+								refreshSessionPrestador();
 								location.href = "<?= $GLOBALS['www']; ?>?m=1";
 							} else {
 								alert("Aconteceu algum erro! Verifique os campos e tente novamente.");
