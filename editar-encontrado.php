@@ -205,6 +205,8 @@
 					if ($("input[name=file]").val() == "") {
 						$("input[name=file]").remove();
 					}
+					formData = new FormData($('#formEditarAnuncio')[0]);
+					formData.append("imgdelete", JSON.stringify(arrayRemoveImgs));
 					$.ajax({
 						tryCount : 0,
 	    				retryLimit : 3,
@@ -216,7 +218,7 @@
 						// Método 1 - NÃO funciona com imagens (multipart/form-data)
 						// data: { nome: $("input[name='nome']").val(), email: $("input[name='email']").val(), celular: $("input[name='celular']").val(), telefone: $("input[name='telefone']").val(), file: $("input[name='file']").val(), userId: $("input[name='userId']").val() },
 						// Método 2 - Funciona com imagens (multipart/form-data) {
-						data: new FormData($('#formEditarAnuncio')[0]),
+						data: formData,
 						processData: false,
 						contentType: false,
 						// }
