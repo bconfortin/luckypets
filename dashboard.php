@@ -896,7 +896,7 @@
 							"email": data.email,
 							"senha": data.senha,
 							"imagem": data.imagem,
-							"caminhoCompletoImagem": "http://31.220.53.123:8080/luckypets-servidor/api/file/prestador/" + data.id + "/" + data.imagem,
+							"caminhoCompletoImagem": "http://31.220.53.123:8080/luckypets-servidor/api/file/usuario/" + data.id + "/" + data.imagem,
 							"telefone": data.telefone,
 							"celular": data.celular,
 							"authToken": data.authToken,
